@@ -13,19 +13,19 @@ import com.google.gwt.sample.itProjekt.shared.bo.Post;
 public class PostMapper {
 	
 	/**
-	* Konstruktor für den PostMapper (Singleton) 
+	* Konstruktor fï¿½r den PostMapper (Singleton) 
 	* static weil Singleton. Einzige Instanz dieser Klasse
 	* 
-	* @author Egor Krämer
+	* @author Egor Krï¿½mer
 	*/
 	private static PostMapper  postmapper = null;
 	
 	/**
-	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zurück
+	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zurï¿½ck
 	 * 
 	 * @return erstmalig erstellter PostMapper
 	 * 
-	 * @author Egor Krämer
+	 * @author Egor Krï¿½mer
 	 */
 	public static PostMapper contactMapper() {
 		if (postmapper == null){
@@ -35,13 +35,13 @@ public class PostMapper {
 		}
 	
 	/**
-		 * Gibt alle Post Objekte zurück welche mit P_ID, creator, cintent, create_date und mod_date befüllt sind
-		 * Hierfür holen wir P_ID, creator, cintent, create_date und mod_date aus der T_Post Tabelle und speichern diese in einem Post Objekt ab und fügen diese dem Vector hinzu
-		 * Diesen Vector befüllt mit Posts geben wir zurück
+		 * Gibt alle Post Objekte zurï¿½ck welche mit P_ID, creator, cintent, create_date und mod_date befï¿½llt sind
+		 * Hierfï¿½r holen wir P_ID, creator, cintent, create_date und mod_date aus der T_Post Tabelle und speichern diese in einem Post Objekt ab und fï¿½gen diese dem Vector hinzu
+		 * Diesen Vector befï¿½llt mit Posts geben wir zurï¿½ck
 		 * 
-		 * @return Ein Vector voller Post Objekte welche befüllt sind
+		 * @return Ein Vector voller Post Objekte welche befï¿½llt sind
 		 * 
-		 * @author Egor Krämer
+		 * @author Egor Krï¿½mer
 		 */
 		public Vector<Post> findAll(){
 	Connection con = DBConnection.connection();
@@ -49,15 +49,15 @@ public class PostMapper {
 			
 			try{
 				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT P_ID, creator, content, create_date, mod_date FROM T_Post ORDER BY mod_date");
+				ResultSet rs = stmt.executeQuery("SELECT P_ID, creator, content, createDate, modDate FROM T_Post ORDER BY mod_date");
 				
 				while (rs.next()){
 					Post p = new Post();
 					p.setId(rs.getInt("P_ID"));
 					p.setOwnerId(rs.getInt("creator"));
 					p.setContent(rs.getString("content"));
-					p.setCreateDate(rs.getTimestamp("create_date"));
-					p.setModificationDate(rs.getTimestamp("mod_date"));
+					p.setCreateDate(rs.getTimestamp("createDate"));
+					p.setModificationDate(rs.getTimestamp("modDate"));
 					result.addElement(p);
 				}		
 			}catch(SQLException e2){
@@ -67,13 +67,13 @@ public class PostMapper {
 		}
 
 	/**
-		 * Gibt alle Posts Objekte zurück welche mit P_ID, creator, cintent, create_date und mod_date befüllt sind und die spezifische U_ID haben.
-		 * Hierfür holen wir P_ID, creator, cintent, create_date und mod_date aus der T_Post Tabelle und speichern diese in einem Post Objekt ab und fügen diese dem Vector hinzu
-		 * Diesen Vector befüllt mit Posts geben wir zurück
+		 * Gibt alle Posts Objekte zurï¿½ck welche mit P_ID, creator, cintent, create_date und mod_date befï¿½llt sind und die spezifische U_ID haben.
+		 * Hierfï¿½r holen wir P_ID, creator, cintent, create_date und mod_date aus der T_Post Tabelle und speichern diese in einem Post Objekt ab und fï¿½gen diese dem Vector hinzu
+		 * Diesen Vector befï¿½llt mit Posts geben wir zurï¿½ck
 		 * 
-		 * @return Ein Vector voller Post Objekte welche befüllt sind und zum übergebenen User gehören
+		 * @return Ein Vector voller Post Objekte welche befï¿½llt sind und zum ï¿½bergebenen User gehï¿½ren
 		 * 
-		 * @author Egor Krämer
+		 * @author Egor Krï¿½mer
 		 * @author Robert Mattheis
 		 */
 		public Vector<Post> findPostsOfUser(User u){
@@ -82,15 +82,15 @@ public class PostMapper {
 			
 			try{
 				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT P_ID, creator, content, create_date, mod_date FROM T_Post WHERE creator ="+u.getId()+ " ORDER BY mod_date");
+				ResultSet rs = stmt.executeQuery("SELECT P_ID, creator, content, createDate, modDate FROM T_Post WHERE creator ="+u.getId()+ " ORDER BY modDate");
 				
 				while (rs.next()){
 					Post p = new Post();
 					p.setId(rs.getInt("P_ID"));
 					p.setOwnerId(rs.getInt("creator"));
 					p.setContent(rs.getString("content"));
-					p.setCreateDate(rs.getTimestamp("create_date"));
-					p.setModificationDate(rs.getTimestamp("mod_date"));
+					p.setCreateDate(rs.getTimestamp("createDate"));
+					p.setModificationDate(rs.getTimestamp("modDate"));
 					result.addElement(p);
 				}		
 			}catch(SQLException e2){
