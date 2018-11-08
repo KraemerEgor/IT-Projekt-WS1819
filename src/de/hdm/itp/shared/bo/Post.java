@@ -3,7 +3,7 @@ package de.hdm.itp.shared.bo;
 import java.sql.Timestamp;
 
 /**
- * Die Klasse Contact, Datenstruktur für das Kontakt Business Objekt.
+ * Die Klasse Contact, Datenstruktur fï¿½r das Kontakt Business Objekt.
  */
 
 public class Post extends BusinessObject {
@@ -15,15 +15,15 @@ public class Post extends BusinessObject {
 	private String content;
 		
 	/** Der Besitzer des Kontakts. */
-	private int ownerid;
+	private int ownerId;
 		
 	/** Modifikationsdatum des Kontakts. */
-	private Timestamp mod_date;
+	private Timestamp modDate;
 	
 	/**
 	 * Auslesen des Vornamens. 
 	 * 
-	 * @return String, welcher den Vornamen des Kontakts repräsentiert. 
+	 * @return String, welcher den Vornamen des Kontakts reprï¿½sentiert. 
 	 */
 	public String getContent() {
 		return content;
@@ -32,7 +32,7 @@ public class Post extends BusinessObject {
 	/**
 	 * Setzen des Vornamens. 
 	 * 
-	 * @param firstname String, welcher den Vornamen des Kontakts repräsentiert. 
+	 * @param firstname String, welcher den Vornamen des Kontakts reprï¿½sentiert. 
 	 */
 	public void setContent(String content) {
 		this.content = content;
@@ -40,37 +40,37 @@ public class Post extends BusinessObject {
 	
 
 	public int getOwnerId() {
-		return ownerid;
+		return ownerId;
 	}
 	
 	/**
 	 *Setzen des Owners. 
 	 *
-	 *@param owner Integer, welcher den Eigentümer des Kontakts repräsentiert.
+	 *@param owner Integer, welcher den Eigentï¿½mer des Kontakts reprï¿½sentiert.
 	 */
 
-	public void setOwnerId(int ownerid) {
-		this.ownerid = ownerid;
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
 	}
 		
 	/**
 	 *Auslesen des Modifikationsdatums. 
 	 *
-	 *@return Timestamp, welcher das Modifiktaionsdatum des Kontakts respräsentiert.
+	 *@return Timestamp, welcher das Modifiktaionsdatum des Kontakts resprï¿½sentiert.
 	 */
 		
-	public Timestamp getModificationDate(){
-		return mod_date;
+	public Timestamp getModDate(){
+		return modDate;
 	}
 	
 	/**
 	 *Setzen des Modifikationsdatums. 
 	 *
-	 *@param modificationdate Timestamp, welcher das Modifiktaionsdatum des Kontakts respräsentiert. 
+	 *@param modificationdate Timestamp, welcher das Modifiktaionsdatum des Kontakts resprï¿½sentiert. 
 	 */
 	
-	public void setModificationDate(Timestamp mod_date){
-		this.mod_date = mod_date;
+	public void setModDate(Timestamp modDate){
+		this.modDate = modDate;
 	}
 
 	
