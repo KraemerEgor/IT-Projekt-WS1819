@@ -4,13 +4,51 @@ public class Like extends BusinessObject {
 
 	
 	/**
-	 * der aktuelle User
+	 * Benutzer, der den Like gesetzt hat
 	 */
-	private int currentUser;
+	private int ownerId;
 	
 	/**
-	 * der User, der abonniert wird
+	 * Post, auf den sich der Like bezieht
 	 */
-	private int targetUser;
+	private int postId;
+
+	
+	/**
+	 * Auslesen des Benutzers, der den Like gesetzt hat
+	 * @return ownerId, die den Benutzer eindeutig identifiziert
+	 */
+	public int getOwnerId() {
+		return ownerId;
+	}
+
+	
+	/**
+	 * Setzen des Benutzers, der den Like setzt
+	 * @param ownerId, die den Benutzer eindeutig identifiziert
+	 */
+	public void setOwnerId(int ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	/**
+	 * Auslesen des Posts, auf den sich der Like bezieht
+	 * @return postId, die den Post eindeutig identifiziert
+	 */
+	public int getPostId() {
+		return postId;
+	}
+
+	/**
+	 * Setzen des Posts, auf den sich der Like bezieht
+	 * @param postId, die den Post eindeutig identifiziert
+	 */
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
+	
+	
+	
+	
 	
 }
