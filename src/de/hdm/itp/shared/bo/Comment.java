@@ -27,7 +27,7 @@ public class Comment extends BusinessObject {
 	 * 
 	 * @return String, welcher den Text des Kommentars enthält
 	 */
-	public String getText () {
+	public String getText() {
 		return text;
 	}
 	
