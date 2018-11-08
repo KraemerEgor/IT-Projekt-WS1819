@@ -42,13 +42,13 @@ public class PostMapper {
 	 * 
 	 * @author Egor Krämer
 	 */
-	public Post findByID(int pid){
+	public Post findByID(Post post){
 		Connection con = DBConnection.connection();
 		Post p = new Post();
 		
 		try{
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT P_ID, creator, content, createDate, modDate FROM T_Post WHERE P_ID ="+ pid + " ORDER BY modDate");
+			ResultSet rs = stmt.executeQuery("SELECT P_ID, creator, content, createDate, modDate FROM T_Post WHERE P_ID ="+ post.getId() + " ORDER BY modDate");
 			
 			if (rs.next()){
 				
@@ -56,7 +56,7 @@ public class PostMapper {
 				p.setOwnerId(rs.getInt("creator"));
 				p.setContent(rs.getString("content"));
 				p.setCreateDate(rs.getTimestamp("createDate"));
-				p.setModificationDate(rs.getTimestamp("modDate"));
+				p.setModDate(rs.getTimestamp("modDate"));
 				
 				return p;	
 			}
@@ -71,7 +71,7 @@ public class PostMapper {
 	}
 	/**
 	 * Gibt alle Post Objekte zur�ck welche mit P_ID, creator, cintent, createDate und modDate bef�llt sind von einem spezifischen User
-	 * Hierf�r holen wir P_ID, creator, cintent, create_date und mod_date aus der T_Post Tabelle, die dem User mit der id zugeteilt sind, und speichern diese in einem Post Objekt ab und f�gen diese dem Vector hinzu
+	 * Hierf�r holen wir P_ID, creator, cintent, createDate und modDate aus der T_Post Tabelle, die dem User mit der id zugeteilt sind, und speichern diese in einem Post Objekt ab und f�gen diese dem Vector hinzu
 	 * Diesen Vector bef�llt mit Posts geben wir zur�ck
 	 * 
 	 * @return Ein Vector voller Post Objekte welche bef�llt sind
@@ -92,7 +92,7 @@ Vector<Post> result = new Vector<Post>();
 				p.setOwnerId(rs.getInt("creator"));
 				p.setContent(rs.getString("content"));
 				p.setCreateDate(rs.getTimestamp("createDate"));
-				p.setModificationDate(rs.getTimestamp("modDate"));
+				p.setModDate(rs.getTimestamp("modDate"));
 				result.addElement(p);
 			}		
 		}catch(SQLException e2){
@@ -123,7 +123,7 @@ Vector<Post> result = new Vector<Post>();
 					p.setOwnerId(rs.getInt("creator"));
 					p.setContent(rs.getString("content"));
 					p.setCreateDate(rs.getTimestamp("createDate"));
-					p.setModificationDate(rs.getTimestamp("modDate"));
+					p.setModDate(rs.getTimestamp("modDate"));
 					result.addElement(p);
 				}		
 			}catch(SQLException e2){
@@ -146,7 +146,7 @@ Vector<Post> result = new Vector<Post>();
 			
 			try{
 				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery("SELECT MAX(P_ID) AS maxuid FROM T_Post");
+				ResultSet rs = stmt.executeQuery("SELECT MAX(P_ID) AS maxpid FROM T_Post");
 				if (rs.next()){
 					
 					post.setId(rs.getInt("maxpid")+1);
@@ -161,7 +161,7 @@ Vector<Post> result = new Vector<Post>();
 					+ "', " 
 					+ post.getCreateDate() 
 					+ ", " 
-					+ post.getModificationDate()
+					+ post.getModDate()
 					+ ")") ;
 							
 					return post;	
@@ -178,8 +178,8 @@ Vector<Post> result = new Vector<Post>();
 		 *  Befüllt T_Post mit P_ID, creator, content, createDate und modDate, falls sich was geändert hat
 		 * Ein Post Objekt wird zurückgegeben
 		 * 
-		 * @param property übergebenes Property Objekt mit Attributen P_ID und type
-		 * @return Ein vollständiges Property Objekt
+		 * @param post übergebenes Post Objekt mit Attributen P_ID und type
+		 * @return Ein vollständiges Post Objekt
 		 * 
 		 * @author Egor Krämer
 		 */
@@ -191,14 +191,14 @@ Vector<Post> result = new Vector<Post>();
 				Statement stmt = con.createStatement();
 				stmt.executeUpdate("UPDATE T_Post SET P_ID ="
 				+post.getId()
-				+", creator ='" 
+				+", creator =" 
 				+ post.getOwnerId()
-				+ "', content='" 
+				+ ", content='" 
 				+ post.getContent() 
 				+"', createDate="
 				+ post.getCreateDate() 
 				+", modDate="
-				+ post.getModificationDate() 
+				+ post.getModDate() 
 				+ " WHERE P_ID=" 
 				+ post.getId());
 			}
