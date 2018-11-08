@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import de.hdm.itp.shared.bo.User;
+
 public class UserMapper {
 
 	/**
@@ -229,7 +231,6 @@ public class UserMapper {
 	 * @param user übergebenes User Objekt mit Attribut U_ID
 	 * 
 	 * @author Egor Krämer
-	 * @author Robert Mattheis
 	 */
 	public void delete (User user){
 		Connection con = DBConnection.connection();
