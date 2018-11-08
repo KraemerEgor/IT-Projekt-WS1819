@@ -28,7 +28,7 @@ public class PostMapper {
 	 * 
 	 * @author Egor Kr�mer
 	 */
-	public static PostMapper contactMapper() {
+	public static PostMapper postMapper() {
 		if (postmapper == null){
 			postmapper = new PostMapper();
 		}

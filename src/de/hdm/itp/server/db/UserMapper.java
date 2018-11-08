@@ -149,15 +149,15 @@ public class UserMapper {
 	 * 
 	 * @author Egor Krämer
 	 */
-	public User findByNickname(String nickname){
+	public Vector<User> findByNickname(String nickname){
 		Connection con = DBConnection.connection();
-		User u = new User();
+		Vector<User> result = new Vector<User>();
 		
 		try{
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT U_ID, firstname, lastname, nickname, email, gender, createDate FROM T_User WHERE nickname ='"+ nickname + "' ORDER BY U_ID");
 			if (rs.next()){
-				
+				User u = new User();
 				u.setId(rs.getInt("U_ID"));
 				u.setFirstname(rs.getString("firstname"));
 				u.setLastname(rs.getString("lastname"));
@@ -165,16 +165,16 @@ public class UserMapper {
 				u.setEmail(rs.getString("email"));
 				u.setGender(rs.getString("gender"));
 				u.setCreateDate(rs.getTimestamp("createDate"));
-	
-				return u;	
+				result.addElement(u);
+				
 			}
+			return result;	
 		}
 		catch (SQLException e){
 			e.printStackTrace();
-		return u;
+		return result;
 		}
 		
-		return u;
 	}
 	/**
 	 * Sucht nach der höchsten U_ID um diese um eins zu erhöhen und als neue U_ID zu nutzen
