@@ -345,6 +345,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * Ende der Like-Methoden
 	 * ***********************
 	 */
+
 	
 	/**
 	 * *******************************
@@ -353,6 +354,85 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	
 	
+	/**
+	 * Methode zum Erstellen eines Kommentars
+	 * @param p enthält den Post, zu dem der Kommentar erstellt wird
+	 * @param text definiert den Inhalt des Kommentars als String
+	 * @return ein Objekt vom Typ Comment, das vom Mapper zurückgegeben wird
+	 * @throws IllegalArgumentException
+	 */
+	public Comment createComment(Post p, String text) throws IllegalArgumentException {
+		
+		Comment c = new Comment();
+		c.setPostId(p.getId());
+		c.setText(text);
+		
+		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		long time = date.getTime();
+		
+		c.setCreateDate(new Timestamp(time));
+		
+		return cMapper.insert(c);
+		
+	}
+	
+	
+	/**
+	 * Methode zum Löschen eines Kommentars
+	 * @param c ist das Kommentarobjekt, das aus der Datenbank gelöscht werden soll
+	 * @throws IllegalArgumentException
+	 */
+	public void deleteComment(Comment c) throws IllegalArgumentException {
+		
+		cMapper.delete(c);
+		
+	}
+	
+	
+	/**
+	 * Methode zum Ausgeben eines Kommentars anhand seiner Id
+	 * @param commentId übergibt die Id des Kommentars, der zurückgegeben werden soll
+	 * @return ein Objekt vom Typ Kommentar, das vom Mapper zurückgegeben wird
+	 * @throws IllegalArgumentException
+	 */
+	public Comment getCommentById(int commentId) throws IllegalArgumentException {
+		
+		//TODO: Mapper anpassen, dass in der Datenbank nach id gesucht wird, nicht nach Objekt
+		return cMapper.findByID(commentId);
+		
+	}
+	
+	
+	/**
+	 * Methode zum Ausgeben aller Kommentare eines Posts
+	 * @param p definiert den Post, dessen Kommentare angezeigt werden sollen
+	 * @return ein Vektor-Objekt mit Kommentaren des Posts
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Comment> getCommentsOfPost(Post p) throws IllegalArgumentException {
+		
+		return cMapper.findAllByPID(p);
+		
+	}
+	
+	/**
+	 * Methode zum Ausgeben aller Kommentare, die ein Nutzer verfasst hat
+	 * @param u definiert den User, dessen Kommentare angezeigt werden sollen
+	 * @return ein Vektor-Objekt mit den Kommentaren
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Comment> getCommentsOfUser (User u) throws IllegalArgumentException {
+		
+		return cMapper.findAllByUID(u);
+		
+	}
+	
+	public Vector<Comment> getAllComments () throws IllegalArgumentException {
+		
+		return cMapper.findAll();
+		
+	}
 	
 	
 }
