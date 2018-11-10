@@ -157,15 +157,200 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * **************************
 	 */
 	
-	public Post createPost(String content, Timestamp createDate) throws IllegalArgumentException{
+	
+	/**
+	 * Methode zum Erstellen eines Posts
+	 * @param content enthält den Text eines Posts
+	 * @return gibt den Post zurück, der mit Hilfe des Mappers in der Datenbank gespeichert wird
+	 * @throws IllegalArgumentException
+	 */
+	public Post createPost(String content) throws IllegalArgumentException{
 		
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		long time = date.getTime();
 		
 		
 		Post p = new Post();
 		p.setContent(content);
-		//p.setCreateDate(new Timestamp());
+		p.setCreateDate(new Timestamp(time));
+		
+		return pMapper.insert(p);
 	}
+	
+	/**
+	 * Methode, die einen Post modifiziert und wieder in der Datenbank speichert
+	 * @param p enthält den Post, der dem Mapper übergeben wird
+	 * @param content enthält den String, der als neuer Text im Post gespeichert werden soll
+	 * @return gibt den aktualisierten Post zurück, der vom Mapper in der Datenbank gespeichert wird
+	 * @throws IllegalArgumentException
+	 */
+	
+	public Post updatePost (Post p, String content) throws IllegalArgumentException{
+		
+		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		long time = date.getTime();
+		
+		pMapper.findByID(p);
+		p.setContent(content);
+		p.setModDate(new Timestamp(time));
+		
+		return pMapper.update(p);
+		
+	}
+	
+	/**
+	 * Methode zum Löschen eines Posts. Zunächst werden alle Likes und Kommentare, die zu diesem Post
+	 * gehören, gelöscht, bevor der eigentliche Post an sich gelöscht wird
+	 * @param p enthält den Post, der gelöscht werden soll
+	 * @throws IllegalArgumentException
+	 */
+	
+	public void deletePost (Post p) throws IllegalArgumentException{
+		
+		Vector<Like> likesOfPost = liMapper.findAllByPID(p);
+		for (Like l :likesOfPost) {
+			liMapper.delete(l);
+		}
+		
+		Vector<Comment> commentsOfPost = cMapper.findAllByPID(p);
+		for (Comment c : commentsOfPost) {
+			cMapper.delete(c);
+		}
+		
+		pMapper.delete(p);
+	}
+	
+	public Post getPostById(int id) throws IllegalArgumentException{
+	
+		//TODO: Übergabewert in pMapper von Post zu int ändern
+		return pMapper.findByID(id);
+		
+	}
+	
+	/**
+	 * Methode zum Abrufen aller Posts, die von einem User erstellt wurden
+	 * @param u enthält den User, dessen Posts abgerufen werden sollen und der an den Mapper
+	 * übergeben wird
+	 * @return einen Vektor, der alle Posts enthält, die vom Mapper zurückgegeben werden
+	 * @throws IllegalArgumentException
+	 */
+	
+	public Vector<Post> getAllPostsOfUser(User u) throws IllegalArgumentException{
+		
+		return pMapper.findAllByUID(u);
+		
+	}
+	
+	
+	/**
+	 * Methode zum Abrufen aller Posts aus der Datenbank
+	 * @return einen Vektor, der alle Posts enthält, die vom Mapper zurückgegeben werden
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Post> getAllPosts() throws IllegalArgumentException{
+		
+		return pMapper.findAll();
+		
+	}
+	
+	/**
+	 * ****************************
+	 * Ende der Post-Methoden
+	 * ****************************
+	 */
+	/**
+	 * ****************************
+	 * Anfang der Like-Methoden
+	 * ****************************
+	 */
+	
+	
+	/**
+	 * Methode zum Erstellen eines Likes
+	 * @param p enthält den Post, bei dem der Like gesetzt wird
+	 * @return das Like-Objekt, das vom Mapper zurückgegeben wird
+	 */
+	public Like createLike (Post p) throws IllegalArgumentException{
+		
+		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		long time = date.getTime();
+		
+		Like l = new Like();
+		l.setPostId(p.getId());
+		l.setCreateDate(new Timestamp(time));
+		
+		return liMapper.insert(l);
+		
+	}
+	
+	
+	/**
+	 * Methode zum Löschen eines Likes
+	 * @param l definiert den Like, der aus der Datenbank gelöscht werden soll
+	 * @throws IllegalArgumentException
+	 */
+	public void deleteLike(Like l) throws IllegalArgumentException{
+		
+		liMapper.delete(l);
+		
+	}
+	
+	public Like getLikeById() throws IllegalArgumentException{
+		
+		//TODO
+		return new Like();
+		
+	}
+	
+	/**
+	 * Methode zum Auslesen aller Likes, die ein Beitrag erhalten hat
+	 * @param p enthält den Post, dessen Likes zurückgegeben werden sollen
+	 * @return ein Vektor-Objekt, das alle Likes von p enthält
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Like> getAllLikesOfPost(Post p) throws IllegalArgumentException{
+		
+		return liMapper.findAllByPID(p);
+		
+	}
+	
+	/**
+	 * Methode zum Ausgeben aller Likes, die ein Nutzer gesetzt hat
+	 * @param u definiert den Nutzer, dessen Likes angezeigt werden sollen
+	 * @return ein Vektor-Objekt, das alle Likes des Nutzers enthält
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Like> getAllLikesOfUser(User u) throws IllegalArgumentException{
+		
+		return liMapper.findAllByUID(u);
+		
+	}
+	
+	/**
+	 * Methode zum Ausgeben aller Likes, die gesetzt wurden
+	 * @return ein Vektor-Objekt, das alle Likes enthält
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Like> getAllLikes() throws IllegalArgumentException{
+		
+		return liMapper.findAll();
+		
+	}
+	
+	/**
+	 * ***********************
+	 * Ende der Like-Methoden
+	 * ***********************
+	 */
+	
+	/**
+	 * *******************************
+	 * Anfang der Kommentar-Methoden
+	 * *******************************
+	 */
 	
 	
 	
