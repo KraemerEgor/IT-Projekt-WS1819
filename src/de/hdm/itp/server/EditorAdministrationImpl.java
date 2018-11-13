@@ -434,11 +434,95 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		
 	}
 	
+	
+	/**
+	 * Methode zum Ausgeben aller Kommentare
+	 * @return ein Vektor-Objekt, das alle Kommentare enthält
+	 * @throws IllegalArgumentException
+	 */
 	public Vector<Comment> getAllComments () throws IllegalArgumentException {
 		
 		return cMapper.findAll();
 		
 	}
 	
+	/**
+	 * *******************************
+	 * Ende der Comment-Methoden
+	 * *******************************
+	 */
+	/**
+	 * *******************************
+	 * Anfang der Subs-Methoden
+	 * *******************************
+	 */
 	
+	/**
+	 * Methode zum Erstellen eines Abonnements
+	 * @param currentUser definiert den im System angemeldeten User
+	 * @param targetUser definiert den User, der abonniert werden soll
+	 * @return das Abonnement, das vom vom Mapper zurückgeliefert wird
+	 * @throws IllegalArgumentException
+	 */
+	public Subs createSubs(int currentUser, int targetUser) throws IllegalArgumentException {
+		
+		Subs s = new Subs();
+		s.setCurrentUser(currentUser);
+		s.setTargetUser(targetUser);
+		
+		return sMapper.insert(s);
+		
+	}
+	
+	/**
+	 * Methode zum Löschen eines Abonnements
+	 * @param s definiert das Abonnement, das gelöscht werden soll
+	 * @throws IllegalArgumentException
+	 */
+	public void deleteSubs(Subs s) throws IllegalArgumentException {
+		
+		sMapper.delete(s);
+		
+	}
+	
+	/**
+	 * Methode zum Auslesen aller Abonnements des aktuellen Benutzers
+	 * @param u definiert den Benutzer, dessen Abonnements ausgelesen werden sollen
+	 * @return ein Vektor-Objekt, das die Abonnements enthält
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Subs> getSubsOfCurrentUser (User u) throws IllegalArgumentException {
+		
+		return sMapper.findAllByCurrentUserId(u);
+		
+	}
+	
+	/**
+	 * Methode zum Auslesen aller Abonnements, bei denen der aktuelle Benutzer abonniert wurde
+	 * @param u definiert den aktuellen Benutzer als Target-User
+	 * @return ein Vektor-Objekt, das alle Abonnements enthält
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Subs> getSubsOfTargetUser (User u) throws IllegalArgumentException {
+		
+		return sMapper.findAllByTargetUserId(u);
+		
+	}
+	
+	/**
+	 * Methode zum Auslesen aller vorhandenen Abonnements
+	 * @return ein Vektor-Objekt, das alle Abonnements enthält
+	 * @throws IllegalArgumentException
+	 */
+	public Vector<Subs> getAllSubs() throws IllegalArgumentException {
+		
+		return sMapper.findAll();
+		
+	}
+	
+	/**
+	 * ****************************
+	 * Ende der Subs-Methoden
+	 * ****************************
+	 */
 }
