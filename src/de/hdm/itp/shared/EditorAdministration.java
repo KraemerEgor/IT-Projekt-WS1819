@@ -2,13 +2,17 @@ package de.hdm.itp.shared;
 
 import java.util.Vector;
 
+import com.google.gwt.user.client.rpc.RemoteService;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+
 import de.hdm.itp.shared.bo.Comment;
 import de.hdm.itp.shared.bo.Like;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.User;
 
-public interface EditorAdministration {
+@RemoteServiceRelativePath("editoradministration")
+public interface EditorAdministration extends RemoteService {
 
 	/**
 	 * Initialisierungsmethode
