@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.Vector;
 
 /**
- * The class <code>Column</code> forms a column of a row object. Columns objects implement
- * the serializable interface and can therefore be 
- * transferred between client and server.
+ * 
  */
 
 public class Column implements Serializable{
@@ -19,15 +17,13 @@ public class Column implements Serializable{
 
 	
 	/** 
-	 * The value corresponds to the entry of a cell in a table
+	 * 
 	 */
 	private String value = "";
 	
 	
 	/**
 	 *
-	 * Serializable classes that are to be transported using GWT-RPC require a no-argument constructor.
-	 * This must be explicitly implemented.
 	 * 
 	 */
 	public Column(){
@@ -40,44 +36,43 @@ public class Column implements Serializable{
 	
 	private Vector<Row> subRow = new Vector<Row>();
 	
-	
+	                                                                                                               
 	/** 
-	 * During initialization, this constructor forces a "v" = column value
+	 * 
 	 */
 	public Column(String v){
 		this.value=v;
 	}
 	
-	/**Read out of the column value.
+	/**
+	 * Auslesen des column Werts.
 	 */
 	public String getValue() {
 		return value;
 	}
 	
-	/** Set of the column value.
+	/** Setzen des column Werts.
 	 */
 	public void setValue(String value){
 		this.value= value;
 	}
 	
 	/**
-	 * Read out of a vector of Row objects which in this case are handled as sub rows for the values of the properties.
-	 * @return subRow
+	 * 
 	 */
 	public Vector<Row> getSubRow() {
 		return subRow;
 	}
 
 	/**
-	 * Set of a vector of Row objects which in this case are handled as sub rows for the values of the properties.
-	 * @param subRow
+	 * S
 	 */
 	public void setSubRow(Vector<Row> subRow) {
 		this.subRow = subRow;
 	}
 	
 	/**
-	 * Addition of rows.
+	 * Zeilen hinzufügen.
 	 * @param r
 	 */
 	public void addRow(Row r){
@@ -85,7 +80,7 @@ public class Column implements Serializable{
 	}
 	
 	/**
-	 * Removing rows.
+	 * Zeilen entfernen..
 	 * @param r
 	 */
 	public void removeRow(Row r){
@@ -93,7 +88,7 @@ public class Column implements Serializable{
 	}
 
 	/**
-	 * Transform column object into a string
+	 * Umwandlung des Column Objekts in einen String.
 	 */
 	public String toString(){
 		return this.value;
