@@ -127,10 +127,13 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * @return das Userobjekt, das vom Mapper aus der Datenbank übergeben wird
 	 * @throws IllegalArgumentException
 	 */
-	public User getUserById (int id)
+	public User getUserById (int userId)
 	throws IllegalArgumentException {
 		
-		return this.uMapper.findByID(id);
+		User u = new User();
+		
+		u.setId(userId);
+		return this.uMapper.findByID(u);
 	}
 	
 	
@@ -222,10 +225,11 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		pMapper.delete(p);
 	}
 	
-	public Post getPostById(int id) throws IllegalArgumentException{
+	public Post getPostById(int postId) throws IllegalArgumentException{
 	
-		//TODO: Übergabewert in pMapper von Post zu int ändern
-		return pMapper.findByID(id);
+		Post p = new Post();
+		p.setId(postId);
+		return pMapper.findByID(p);
 		
 	}
 	
@@ -398,8 +402,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	public Comment getCommentById(int commentId) throws IllegalArgumentException {
 		
+		Comment c = new Comment();
+		c.setId(commentId);
 		//TODO: Mapper anpassen, dass in der Datenbank nach id gesucht wird, nicht nach Objekt
-		return cMapper.findByID(commentId);
+		return cMapper.findByID(c);
 		
 	}
 	
