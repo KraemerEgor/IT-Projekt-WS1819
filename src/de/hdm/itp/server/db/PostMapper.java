@@ -163,11 +163,11 @@ Vector<Post> result = new Vector<Post>();
 					+ post.getOwnerId()
 					+ ", '" 
 					+ post.getContent() 
-					+ "', " 
+					+ "', '" 
 					+ s 
-					+ ", " 
+					+ "', '" 
 					+ s
-					+ ")") ;
+					+ "')") ;
 							
 					return post;	
 					

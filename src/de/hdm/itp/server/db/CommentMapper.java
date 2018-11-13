@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import de.hdm.itp.shared.bo.Comment;
@@ -177,6 +179,9 @@ Vector<Comment> result = new Vector<Comment>();
 	 */
 	public Comment insert(Comment comment){
 		Connection con = DBConnection.connection();
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		
+		String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 		
 		try{
 			Statement stmt = con.createStatement();
@@ -194,11 +199,11 @@ Vector<Comment> result = new Vector<Comment>();
 				+ comment.getPostId()
 				+ ", '" 
 				+ comment.getText() 
-				+ "', " 
-				+ comment.getCreateDate() 
-				+ ", " 
-				+ comment.getModDate()
-				+ ")") ;
+				+ "', '" 
+				+ s
+				+ "', '" 
+				+ s
+				+ "')") ;
 						
 				return comment;	
 				
@@ -222,6 +227,9 @@ Vector<Comment> result = new Vector<Comment>();
 
 	public Comment update(Comment comment){
 		Connection con = DBConnection.connection();
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		
+		String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 		
 		try{
 			Statement stmt = con.createStatement();
@@ -235,9 +243,9 @@ Vector<Comment> result = new Vector<Comment>();
 			+ comment.getText() 
 			+"', createDate="
 			+ comment.getCreateDate() 
-			+", modDate="
-			+ comment.getModDate() 
-			+ " WHERE C_ID=" 
+			+", modDate='"
+			+ s
+			+ "' WHERE C_ID=" 
 			+ comment.getId());
 		}
 

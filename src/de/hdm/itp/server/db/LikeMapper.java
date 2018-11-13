@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import de.hdm.itp.shared.bo.Comment;
@@ -134,6 +136,9 @@ Vector<Like> result = new Vector<Like>();
 	 */
 	public Like insert(Like like){
 		Connection con = DBConnection.connection();
+		Timestamp ts = new Timestamp(System.currentTimeMillis());
+		
+		String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 		
 		try{
 			
@@ -143,9 +148,9 @@ Vector<Like> result = new Vector<Like>();
 				+ like.getPostId()
 				+ ", " 
 				+ like.getOwnerId()
-				+ ", " 
-				+ like.getCreateDate() 	
-				+ ")") ;
+				+ ", '" 
+				+ s	
+				+ "')") ;
 						
 				return like;	
 				
