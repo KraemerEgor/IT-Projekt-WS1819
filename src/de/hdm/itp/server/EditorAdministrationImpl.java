@@ -53,6 +53,13 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	
 	private static EditorAdministrationImpl editorAdministrationImpl = null;
 	
+	public static EditorAdministrationImpl editorAdministrationImpl() {
+		if(editorAdministrationImpl == null) {
+			editorAdministrationImpl = new EditorAdministrationImpl();
+		}
+		return editorAdministrationImpl;
+	}
+	
 	/**
 	 * No-Arguments-Constructor
 	 */
