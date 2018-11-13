@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * Basisklasse für alle Business Objekte.
+ * Basisklasse fï¿½r alle Business Objekte.
  */
 
 public abstract class BusinessObject implements Serializable {
@@ -14,7 +14,7 @@ public abstract class BusinessObject implements Serializable {
 	
 	
 	/**
-	 * Eindeutige Identifikationsnummer einer Instanz dieser Klasse und Möglichkeit zur Indetifizierung, 
+	 * Eindeutige Identifikationsnummer einer Instanz dieser Klasse und Mï¿½glichkeit zur Indetifizierung, 
 	 * welche Rolle dieses Objekt in der DB hat.
 	 */
 	
@@ -24,7 +24,7 @@ public abstract class BusinessObject implements Serializable {
 	 */		
 	private Timestamp create_date;
 	/**
-	 * Setter für die ID.
+	 * Setter fï¿½r die ID.
 	 *
 	 * @param new_id die neue ID des BO
 	 */
@@ -34,7 +34,7 @@ public abstract class BusinessObject implements Serializable {
 	}
 	
 	/**
-	 * Getter für die ID.
+	 * Getter fï¿½r die ID.
 	 *
 	 * @return id
 	 */
@@ -46,7 +46,7 @@ public abstract class BusinessObject implements Serializable {
 	/**
 	 *Auslesen des Erstelldatums. 
 	 *
-	 *@return Timestamp, welcher das Erstelldatum des BOs respräsentiert.
+	 *@return Timestamp, welcher das Erstelldatum des BOs resprï¿½sentiert.
 	 */
 		
 	public Timestamp getCreateDate(){
@@ -56,15 +56,15 @@ public abstract class BusinessObject implements Serializable {
 	/**
 	 *Setzen des Erstelldatums. 
 	 *
-	 *@param modificationdate Timestamp, welcher das Erstelldatum des BOs respräsentiert. 
+	 *@param modificationdate Timestamp, welcher das Erstelldatum des BOs resprï¿½sentiert. 
 	 */
 	
-	public void setCreateDate(Timestamp create_date){
-		this.create_date = create_date;
+	public void setCreateDate(Timestamp ts){
+		this.create_date = ts;
 	}
 	
 	/**
-	 * Überprüft die inhaltliche Gleichheit zweier BusinessObject Objekte (die ID).
+	 * ï¿½berprï¿½ft die inhaltliche Gleichheit zweier BusinessObject Objekte (die ID).
 	 *
 	 * @param object das zu vergleichende Objekt
 	 * @return true, wenn inhaltlich gleich

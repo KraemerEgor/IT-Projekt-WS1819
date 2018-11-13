@@ -85,7 +85,7 @@ public class DBConnection {
                 	// Local MySQL Driver
                 	Class.forName("com.mysql.jdbc.Driver");
                 	//dieser Link baut die DB Verbindung zu einer lokalen Datenbank auf anhand des Instanznamen, des Usernames und des Passwords -> Erleichtert das Testen
-                	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test_schema", "root", "itprojekt");
+                	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/itpdb", "root", "root");
                                   
                 }
                 

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import de.hdm.itp.shared.bo.User;
@@ -74,13 +76,13 @@ public class UserMapper {
 	 * 
 	 * @author Egor Krämer
 	 */
-	public User findByID(int uid){
+	public User findByID(User user){
 		Connection con = DBConnection.connection();
 		User u = new User();
 		
 		try{
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT U_ID, firstname, lastname, nickname, email, gender, createDate FROM T_User WHERE U_ID ="+ uid + " ORDER BY U_ID");
+			ResultSet rs = stmt.executeQuery("SELECT U_ID, firstname, lastname, nickname, email, gender, createDate FROM T_User WHERE U_ID ="+ user.getId() + " ORDER BY U_ID");
 			
 			if (rs.next()){
 				
@@ -188,6 +190,8 @@ public class UserMapper {
 	 */
 	public User insert(User user){
 		Connection con = DBConnection.connection();
+			Timestamp ts = new Timestamp(System.currentTimeMillis());	
+		String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 		
 		try{
 			Statement stmt = con.createStatement();
@@ -209,9 +213,9 @@ public class UserMapper {
 				+ user.getEmail()
 				+ "', '" 
 				+ user.getGender() 
-				+ "', " 
-				+ user.getCreateDate() 
-				+ ")") ;
+				+ "', '" 
+				+ s
+				+ "')") ;
 						
 				return user;	
 				
