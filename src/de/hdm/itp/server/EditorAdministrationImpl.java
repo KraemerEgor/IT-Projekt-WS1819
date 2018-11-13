@@ -51,6 +51,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	private UserMapper uMapper = null;
 	
+	private static EditorAdministrationImpl editorAdministrationImpl = null;
 	
 	/**
 	 * No-Arguments-Constructor
