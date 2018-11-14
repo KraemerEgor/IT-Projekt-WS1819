@@ -16,9 +16,13 @@
     <url-pattern>/it_projekt_gruppe4_2/greet</url-pattern>
   </servlet-mapping>
   
+  
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>IT_Projekt_Gruppe4_2.html</welcome-file>
+    <welcome-file>FeedReport.html</welcome-file>
+    
   </welcome-file-list>
 
 </web-app>
