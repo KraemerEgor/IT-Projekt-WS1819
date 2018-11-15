@@ -23,7 +23,7 @@ public interface EditorAdministration extends RemoteService {
 	 * Erstellen eines Users, der dann mit Hilfe des entsprechenden Mappers in der Datenbank gespeichert wird
 	 */
 
-	User createUser(String email, String firstname, String lastname, String nickname, String gender);
+	User createUser(String email, String firstname, String lastname, String nickname, String gender) throws IllegalArgumentException;
 
 	/**
 	 * Methode, die einen User anhand des Nicknames in der Datenbank sucht
@@ -204,13 +204,7 @@ public interface EditorAdministration extends RemoteService {
 	 */
 	void deleteSubs(Subs s) throws IllegalArgumentException;
 
-	/**
-	 * Methode zum Auslesen aller Abonnements des aktuellen Benutzers
-	 * @param u definiert den Benutzer, dessen Abonnements ausgelesen werden sollen
-	 * @return ein Vektor-Objekt, das die Abonnements enthält
-	 * @throws IllegalArgumentException
-	 */
-	Vector<Subs> getSubsOfCurrentUser(User u) throws IllegalArgumentException;
+	Vector<Subs> getSubsOfCurrentUser(User u);
 
 	/**
 	 * Methode zum Auslesen aller Abonnements, bei denen der aktuelle Benutzer abonniert wurde
