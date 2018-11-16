@@ -3,6 +3,8 @@ package de.hdm.itp.server.db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.sql.Connection;
 import java.util.Vector;
 
@@ -143,6 +145,9 @@ Vector<Post> result = new Vector<Post>();
 		 */
 		public Post insert(Post post){
 			Connection con = DBConnection.connection();
+			Timestamp ts = new Timestamp(System.currentTimeMillis());
+			
+			String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 			
 			try{
 				Statement stmt = con.createStatement();
@@ -158,11 +163,11 @@ Vector<Post> result = new Vector<Post>();
 					+ post.getOwnerId()
 					+ ", '" 
 					+ post.getContent() 
-					+ "', " 
-					+ post.getCreateDate() 
-					+ ", " 
-					+ post.getModDate()
-					+ ")") ;
+					+ "', '" 
+					+ s 
+					+ "', '" 
+					+ s
+					+ "')") ;
 							
 					return post;	
 					
@@ -186,6 +191,9 @@ Vector<Post> result = new Vector<Post>();
 
 		public Post update(Post post){
 			Connection con = DBConnection.connection();
+			Timestamp ts = new Timestamp(System.currentTimeMillis());
+			
+			String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 			
 			try{
 				Statement stmt = con.createStatement();
@@ -198,7 +206,7 @@ Vector<Post> result = new Vector<Post>();
 				+"', createDate="
 				+ post.getCreateDate() 
 				+", modDate="
-				+ post.getModDate() 
+				+ s 
 				+ " WHERE P_ID=" 
 				+ post.getId());
 			}

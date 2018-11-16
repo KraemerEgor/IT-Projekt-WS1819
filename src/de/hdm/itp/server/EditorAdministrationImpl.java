@@ -51,6 +51,14 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	private UserMapper uMapper = null;
 	
+	private static EditorAdministration editorAdministrationImpl = null;
+	
+	public static EditorAdministration editorAdministrationImpl() {
+		if(editorAdministrationImpl == null) {
+			editorAdministrationImpl = new EditorAdministrationImpl();
+		}
+		return editorAdministrationImpl;
+	}
 	
 	/**
 	 * No-Arguments-Constructor
@@ -59,9 +67,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		
 	}
 	
-	/**
-	 * Initialisierungsmethode
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#init()
 	 */
+	@Override
 	public void init() throws IllegalArgumentException{
 		
 		this.cMapper = CommentMapper.commentMapper();
@@ -77,10 +86,11 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 
 	
-	/**
-	 * Erstellen eines Users, der dann mit Hilfe des entsprechenden Mappers in der Datenbank gespeichert wird
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#createUser(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
 	
+	@Override
 	public User createUser(String email, String firstname, String lastname, String nickname, String gender) {
 		
 		User u = new User();
@@ -96,23 +106,19 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		return u;
 	}
 	
-	/**
-	 * Methode, die einen User anhand des Nicknames in der Datenbank sucht
-	 * @param nickname, nach dem in der Datenbank gesucht wird
-	 * @return einen Vector, der alle Userobjekte enthält, die vom Mapper aus der Datenbank übergeben werden
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getUserByNickname(java.lang.String)
 	 */
+	@Override
 	public Vector<User> getUserByNickname (String nickname) throws IllegalArgumentException{
 		
 		return this.uMapper.findByNickname(nickname);
 	}
 	
-	/**
-	 * Methode, die den User anhand seiner Email in der Datenbank sucht
-	 * @param email, die den User eindeutig in der Datenbank identifiziert
-	 * @return den User, der vom Mapper aus der Datenbank übergeben wird
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getUserByEmail(java.lang.String)
 	 */
+	@Override
 	public User getUserByEmail (String email)
 	throws IllegalArgumentException {
 		
@@ -121,12 +127,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 	
 	
-	/**
-	 * Methode, die einen Benutzer anhand seiner Id in der Datenbank sucht
-	 * @param id, die den User eindeutig in der Datenbank identifiziert
-	 * @return das Userobjekt, das vom Mapper aus der Datenbank übergeben wird
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getUserById(int)
 	 */
+	@Override
 	public User getUserById (int userId)
 	throws IllegalArgumentException {
 		
@@ -137,11 +141,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 	
 	
-	/**
-	 * Methode, die alle Benutzerobjekte ausgibt
-	 * @return alle Benutzerobjekte aus der Datenbank, die vom Mapper übergeben werden
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllUser()
 	 */
+	@Override
 	public Vector<User> getAllUser()
 	throws IllegalArgumentException {
 		
@@ -161,12 +164,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	
 	
-	/**
-	 * Methode zum Erstellen eines Posts
-	 * @param content enthält den Text eines Posts
-	 * @return gibt den Post zurück, der mit Hilfe des Mappers in der Datenbank gespeichert wird
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#createPost(java.lang.String)
 	 */
+	@Override
 	public Post createPost(String content) throws IllegalArgumentException{
 		
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -181,14 +182,11 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		return pMapper.insert(p);
 	}
 	
-	/**
-	 * Methode, die einen Post modifiziert und wieder in der Datenbank speichert
-	 * @param p enthält den Post, der dem Mapper übergeben wird
-	 * @param content enthält den String, der als neuer Text im Post gespeichert werden soll
-	 * @return gibt den aktualisierten Post zurück, der vom Mapper in der Datenbank gespeichert wird
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#updatePost(de.hdm.itp.shared.bo.Post, java.lang.String)
 	 */
 	
+	@Override
 	public Post updatePost (Post p, String content) throws IllegalArgumentException{
 		
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -203,13 +201,11 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		
 	}
 	
-	/**
-	 * Methode zum Löschen eines Posts. Zunächst werden alle Likes und Kommentare, die zu diesem Post
-	 * gehören, gelöscht, bevor der eigentliche Post an sich gelöscht wird
-	 * @param p enthält den Post, der gelöscht werden soll
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#deletePost(de.hdm.itp.shared.bo.Post)
 	 */
 	
+	@Override
 	public void deletePost (Post p) throws IllegalArgumentException{
 		
 		Vector<Like> likesOfPost = liMapper.findAllByPID(p);
@@ -225,6 +221,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		pMapper.delete(p);
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getPostById(int)
+	 */
+	@Override
 	public Post getPostById(int postId) throws IllegalArgumentException{
 	
 		Post p = new Post();
@@ -233,14 +233,11 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		
 	}
 	
-	/**
-	 * Methode zum Abrufen aller Posts, die von einem User erstellt wurden
-	 * @param u enthält den User, dessen Posts abgerufen werden sollen und der an den Mapper
-	 * übergeben wird
-	 * @return einen Vektor, der alle Posts enthält, die vom Mapper zurückgegeben werden
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllPostsOfUser(de.hdm.itp.shared.bo.User)
 	 */
 	
+	@Override
 	public Vector<Post> getAllPostsOfUser(User u) throws IllegalArgumentException{
 		
 		return pMapper.findAllByUID(u);
@@ -248,11 +245,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 	
 	
-	/**
-	 * Methode zum Abrufen aller Posts aus der Datenbank
-	 * @return einen Vektor, der alle Posts enthält, die vom Mapper zurückgegeben werden
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllPosts()
 	 */
+	@Override
 	public Vector<Post> getAllPosts() throws IllegalArgumentException{
 		
 		return pMapper.findAll();
@@ -271,11 +267,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	
 	
-	/**
-	 * Methode zum Erstellen eines Likes
-	 * @param p enthält den Post, bei dem der Like gesetzt wird
-	 * @return das Like-Objekt, das vom Mapper zurückgegeben wird
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#createLike(de.hdm.itp.shared.bo.Post)
 	 */
+	@Override
 	public Like createLike (Post p) throws IllegalArgumentException{
 		
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -291,17 +286,20 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 	
 	
-	/**
-	 * Methode zum Löschen eines Likes
-	 * @param l definiert den Like, der aus der Datenbank gelöscht werden soll
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#deleteLike(de.hdm.itp.shared.bo.Like)
 	 */
+	@Override
 	public void deleteLike(Like l) throws IllegalArgumentException{
 		
 		liMapper.delete(l);
 		
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getLikeById()
+	 */
+	@Override
 	public Like getLikeById() throws IllegalArgumentException{
 		
 		//TODO
@@ -309,35 +307,30 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		
 	}
 	
-	/**
-	 * Methode zum Auslesen aller Likes, die ein Beitrag erhalten hat
-	 * @param p enthält den Post, dessen Likes zurückgegeben werden sollen
-	 * @return ein Vektor-Objekt, das alle Likes von p enthält
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllLikesOfPost(de.hdm.itp.shared.bo.Post)
 	 */
+	@Override
 	public Vector<Like> getAllLikesOfPost(Post p) throws IllegalArgumentException{
 		
 		return liMapper.findAllByPID(p);
 		
 	}
 	
-	/**
-	 * Methode zum Ausgeben aller Likes, die ein Nutzer gesetzt hat
-	 * @param u definiert den Nutzer, dessen Likes angezeigt werden sollen
-	 * @return ein Vektor-Objekt, das alle Likes des Nutzers enthält
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllLikesOfUser(de.hdm.itp.shared.bo.User)
 	 */
+	@Override
 	public Vector<Like> getAllLikesOfUser(User u) throws IllegalArgumentException{
 		
 		return liMapper.findAllByUID(u);
 		
 	}
 	
-	/**
-	 * Methode zum Ausgeben aller Likes, die gesetzt wurden
-	 * @return ein Vektor-Objekt, das alle Likes enthält
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllLikes()
 	 */
+	@Override
 	public Vector<Like> getAllLikes() throws IllegalArgumentException{
 		
 		return liMapper.findAll();
@@ -358,13 +351,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	
 	
-	/**
-	 * Methode zum Erstellen eines Kommentars
-	 * @param p enthält den Post, zu dem der Kommentar erstellt wird
-	 * @param text definiert den Inhalt des Kommentars als String
-	 * @return ein Objekt vom Typ Comment, das vom Mapper zurückgegeben wird
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#createComment(de.hdm.itp.shared.bo.Post, java.lang.String)
 	 */
+	@Override
 	public Comment createComment(Post p, String text) throws IllegalArgumentException {
 		
 		Comment c = new Comment();
@@ -382,11 +372,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 	
 	
-	/**
-	 * Methode zum Löschen eines Kommentars
-	 * @param c ist das Kommentarobjekt, das aus der Datenbank gelöscht werden soll
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#deleteComment(de.hdm.itp.shared.bo.Comment)
 	 */
+	@Override
 	public void deleteComment(Comment c) throws IllegalArgumentException {
 		
 		cMapper.delete(c);
@@ -394,12 +383,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 	
 	
-	/**
-	 * Methode zum Ausgeben eines Kommentars anhand seiner Id
-	 * @param commentId übergibt die Id des Kommentars, der zurückgegeben werden soll
-	 * @return ein Objekt vom Typ Kommentar, das vom Mapper zurückgegeben wird
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getCommentById(int)
 	 */
+	@Override
 	public Comment getCommentById(int commentId) throws IllegalArgumentException {
 		
 		Comment c = new Comment();
@@ -410,35 +397,105 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 	
 	
-	/**
-	 * Methode zum Ausgeben aller Kommentare eines Posts
-	 * @param p definiert den Post, dessen Kommentare angezeigt werden sollen
-	 * @return ein Vektor-Objekt mit Kommentaren des Posts
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getCommentsOfPost(de.hdm.itp.shared.bo.Post)
 	 */
+	@Override
 	public Vector<Comment> getCommentsOfPost(Post p) throws IllegalArgumentException {
 		
 		return cMapper.findAllByPID(p);
 		
 	}
 	
-	/**
-	 * Methode zum Ausgeben aller Kommentare, die ein Nutzer verfasst hat
-	 * @param u definiert den User, dessen Kommentare angezeigt werden sollen
-	 * @return ein Vektor-Objekt mit den Kommentaren
-	 * @throws IllegalArgumentException
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getCommentsOfUser(de.hdm.itp.shared.bo.User)
 	 */
+	@Override
 	public Vector<Comment> getCommentsOfUser (User u) throws IllegalArgumentException {
 		
 		return cMapper.findAllByUID(u);
 		
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllComments()
+	 */
+	@Override
 	public Vector<Comment> getAllComments () throws IllegalArgumentException {
 		
 		return cMapper.findAll();
 		
 	}
 	
+	/**
+	 * *******************************
+	 * Ende der Comment-Methoden
+	 * *******************************
+	 */
+	/**
+	 * *******************************
+	 * Anfang der Subs-Methoden
+	 * *******************************
+	 */
 	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#createSubs(int, int)
+	 */
+	@Override
+	public Subs createSubs(int currentUser, int targetUser) throws IllegalArgumentException {
+		
+		Subs s = new Subs();
+		s.setCurrentUser(currentUser);
+		s.setTargetUser(targetUser);
+		
+		return sMapper.insert(s);
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#deleteSubs(de.hdm.itp.shared.bo.Subs)
+	 */
+	@Override
+	public void deleteSubs(Subs s) throws IllegalArgumentException {
+		
+		sMapper.delete(s);
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getSubsOfCurrentUser(de.hdm.itp.shared.bo.User)
+	 */
+	@Override
+	public Vector<Subs> getSubsOfCurrentUser (User u) throws IllegalArgumentException {
+		
+		return sMapper.findAllByCurrentUserId(u);
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getSubsOfTargetUser(de.hdm.itp.shared.bo.User)
+	 */
+	@Override
+	public Vector<Subs> getSubsOfTargetUser (User u) throws IllegalArgumentException {
+		
+		return sMapper.findAllByTargetUserId(u);
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.server.EditorAdministration#getAllSubs()
+	 */
+	@Override
+	public Vector<Subs> getAllSubs() throws IllegalArgumentException {
+		
+		return sMapper.findAll();
+		
+	}
+	
+	/**
+	 * ****************************
+	 * Ende der Subs-Methoden
+	 * ****************************
+	 */
 }
