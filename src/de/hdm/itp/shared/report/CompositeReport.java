@@ -27,7 +27,7 @@ package de.hdm.itp.shared.report;
 		/**
 		 * Entfernen eines Teil-Reports
 		 */
-		public void removeSuReport (Report r){
+		public void removeSubReport (Report r){
 			this.subReports.remove(r);
 		}
 		

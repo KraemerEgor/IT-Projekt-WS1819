@@ -12,17 +12,17 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import java.util.logging.Logger;
 
-import de.hdm.itp.client.ClientsideSettings;
 import de.hdm.itp.shared.ReportGeneratorAsync;
+import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.*;
 
 public class ReportMenue implements EntryPoint{
-	
+
 	private static ReportGeneratorAsync reportGenerator = null;
 
-	if (reportGenerator == null) {
-		reportGenerator = ClientsideSettings.getReportGenerator();
-	}
+	
+	private int userID;
+	private int postID;
 	
 	/* 
 	 * 5 button erstellen in einem drop down menue 
@@ -37,6 +37,11 @@ public class ReportMenue implements EntryPoint{
 
 	
 	public void onModuleLoad() {
+		
+	/*	if (reportGenerator == null) {
+			reportGenerator = ClientsideSettings.getReportGenerator();
+		}
+	*/	
 		
 		final ListBox lb = new ListBox();
 		
@@ -73,7 +78,7 @@ public class ReportMenue implements EntryPoint{
 
 			}
 			else if (lbIndex == 4) {
-				reportGenerator.createAllPostsFromUserReport(new createAllPostsFromUserReportCallback());
+			//	reportGenerator.createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
 				
 			}
 			else {
@@ -88,9 +93,9 @@ public class ReportMenue implements EntryPoint{
 
 		
 		
-	}
+	}}
 	
-}
+
 
 	
 	class createAllPostsFromUserReportCallback implements AsyncCallback<AllPostsFromUserReport> {
@@ -117,4 +122,4 @@ public class ReportMenue implements EntryPoint{
 	
 	
 }
-}
+
