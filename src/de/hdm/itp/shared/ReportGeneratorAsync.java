@@ -1,5 +1,35 @@
 package de.hdm.itp.shared;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import de.hdm.itp.shared.bo.User;
+import de.hdm.itp.shared.report.AllCommentsFromUserReport;
+import de.hdm.itp.shared.report.AllLikesFromUserReport;
+import de.hdm.itp.shared.report.AllPostsFromUserReport;
+import de.hdm.itp.shared.report.AllSubsFromUserReport;
+import de.hdm.itp.shared.report.AllSubsOfUserReport;
+
 public interface ReportGeneratorAsync {
+	
+	  void init(AsyncCallback<Void> callback);
+
+	
+	void createAllLikesFromUserReport(User u,
+			AsyncCallback<AllLikesFromUserReport> callback);
+	
+	void createAllSubsFromUserReport(User u,
+			AsyncCallback<AllSubsFromUserReport> callback);
+	
+	void createAllSubsOfUserReport(User u,
+			AsyncCallback<AllSubsOfUserReport> callback);
+	
+	void createAllCommentsFromUserReport(User u,
+			AsyncCallback<AllCommentsFromUserReport> callback);
+	
+	void createAllPostsFromUserReport(int postID, User u,
+			AsyncCallback<AllPostsFromUserReport> callback);
+	
+	void setUser(int userId, AsyncCallback<Void> callback);
+
 
 }
