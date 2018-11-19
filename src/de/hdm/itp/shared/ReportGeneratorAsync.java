@@ -1,6 +1,7 @@
 package de.hdm.itp.shared;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.AllCommentsFromUserReport;
@@ -9,10 +10,14 @@ import de.hdm.itp.shared.report.AllPostsFromUserReport;
 import de.hdm.itp.shared.report.AllSubsFromUserReport;
 import de.hdm.itp.shared.report.AllSubsOfUserReport;
 
+
+@RemoteServiceRelativePath("reportgenerator")
+
 public interface ReportGeneratorAsync {
 	
-	  void init(AsyncCallback<Void> callback);
+	void init(AsyncCallback<Void> callback);
 
+	void setUser(User u, AsyncCallback<Void> callback);
 	
 	void createAllLikesFromUserReport(User u,
 			AsyncCallback<AllLikesFromUserReport> callback);
@@ -26,10 +31,7 @@ public interface ReportGeneratorAsync {
 	void createAllCommentsFromUserReport(User u,
 			AsyncCallback<AllCommentsFromUserReport> callback);
 	
-	void createAllPostsFromUserReport(int postID, User u,
+	void createAllPostsFromUserReport(User u,
 			AsyncCallback<AllPostsFromUserReport> callback);
 	
-	void setUser(int userId, AsyncCallback<Void> callback);
-
-
 }
