@@ -1,8 +1,9 @@
 package de.hdm.itp.client;
 
-import com.google.gwt.core.client.impl.AsyncFragmentLoader.Logger;
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import java.util.logging.Logger;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.hdm.itp.shared.ReportGenerator;
 import de.hdm.itp.shared.ReportGeneratorAsync;
 
