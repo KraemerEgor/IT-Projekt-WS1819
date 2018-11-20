@@ -64,6 +64,9 @@ public class ITProjektWS1819 implements EntryPoint {
 	    });
 		
 	}
+	
+	
+	
 	private void loadLogin() {
 		  
 		signInLink.setHref(loginInfo.getLoginUrl());
