@@ -9,12 +9,17 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
 import de.hdm.itp.client.ClientsideFunctions;
 import de.hdm.itp.client.ClientsideSettings;
+import de.hdm.itp.client.HeaderPanel;
 import de.hdm.itp.client.LoginInfo;
 import de.hdm.itp.client.LoginService;
 import de.hdm.itp.client.LoginServiceAsync;
+import de.hdm.itp.client.MainPanel;
+import de.hdm.itp.client.NavPanel;
+import de.hdm.itp.client.SearchPanel;
+import de.hdm.itp.client.SubsPanel;
+import de.hdm.itp.client.SubsTreeViewModel;
 import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.User;
 
@@ -44,6 +49,13 @@ public class ITProjektWS1819 implements EntryPoint {
 	/** Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint */
 	ClientsideFunctions.InputDialogBox createAccountBox = null;
 	
+	SubsTreeViewModel stvm = new SubsTreeViewModel();
+	SubsPanel sp = new SubsPanel();
+	SearchPanel sep = new SearchPanel();
+	NavPanel np = new NavPanel();
+	MainPanel mp = new MainPanel();
+	HeaderPanel hp = new HeaderPanel();
+	
 	public void onModuleLoad() {
 		
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
@@ -55,8 +67,7 @@ public class ITProjektWS1819 implements EntryPoint {
 		    public void onSuccess(LoginInfo result) {
 		    	loginInfo = result;
 		    	if(loginInfo.isLoggedIn()) {
-		    		//ist der Benutzer mit seinem Google Account im Browser eingeloggt, wird die Methode loadUserInformatino() aufgerufen
-		    		//TODO hier starte ich unsere GUI
+		    		loadUserInformation();
 		    		
 		    		
 		    	}
@@ -169,6 +180,9 @@ public class ITProjektWS1819 implements EntryPoint {
 		
 		//das loginPanel wird dem div mit der id "Login" hinzugefügt
 		RootPanel.get("Login").add(loginPanel);
+		RootPanel.get("Navi").add(np);
+		RootPanel.get("Main").add(mp);
+		
 
 	  }
 	
