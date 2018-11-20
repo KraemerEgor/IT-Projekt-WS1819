@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.itp.client.ClientsideFunctions;
 import de.hdm.itp.client.ClientsideSettings;
 import de.hdm.itp.client.LoginInfo;
 import de.hdm.itp.client.LoginService;
@@ -40,6 +41,8 @@ public class ITProjektWS1819 implements EntryPoint {
 	
 	User user = null;
 	EditorAdministrationAsync editorAdministration = null;
+	/** Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint */
+	ClientsideFunctions.InputDialogBox createAccountBox = null;
 	
 	public void onModuleLoad() {
 		
@@ -105,38 +108,26 @@ public class ITProjektWS1819 implements EntryPoint {
 					createAccountBox.getOKButton().addClickHandler(new ClickHandler() {
 						
 						public void onClick(ClickEvent arg0) {
-							if(ClientsideFunctions.checkName(createAccountBox.getMultiUseTextBox().getText()) && ClientsideFunctions.checkName(createAccountBox.getNameTextBox().getText())) {
-								//wenn für Vor- und Nachname gültige Werte eingetragen wurden, wird ein Kontakt-Objekt erstellt, welches den Nutzer verkörpert
-								editorAdministration.createUserContact(createAccountBox.getMultiUseTextBox().getText(), createAccountBox.getNameTextBox().getText(), createAccountBox.getListBox().getSelectedItemText(), loginInfo.getEmailAddress(), new AsyncCallback<User>() {
+															editorAdministration.createUser(createAccountBox.getMultiUseTextBox().getText(), createAccountBox.getNameTextBox().getText(), createAccountBox.getNickNameTextBox().getText(), createAccountBox.getListBox().getSelectedItemText(), loginInfo.getEmailAddress(), new AsyncCallback<User>() {
 									public void onFailure(Throwable t) {
 										System.out.println(t.getMessage());
 										createAccountBox.hide();
 									}
 									public void onSuccess(User arg0) {
-										if(arg0 != null) {
-										
-										//nach erfolgreichen Anlegen des Nutzer-Kontakts wird der neue Nutzer im System willkommen geheißen
-										final ClientsideFunctions.popUpBox welcome = new ClientsideFunctions.popUpBox("Herzlich Willkommen!", new ClientsideFunctions.OkButton());
-										welcome.getOkButton().addCloseDBClickHandler(welcome);
+										if(arg0 != null) {										
+		
 										createAccountBox.hide();
 										//das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt und in einer Instanzenvariable gespeichert.
 										ClientsideSettings.setUser(arg0);
 										user = arg0;
 										//danach wird für den neu registrierten Nutzer ebenfalls die Applikation geladen
 										loadApplication();
-										}
-									}
-								});
-							}
-							else {
-								createAccountBox.hide();
-							}
-						}
-					});
-				}
-			}
-	    });
-  	}
+	}}});
+														}
+					});}}
+ });
+ }		
+			
 	
 	public void loadApplication(){
 	 		
