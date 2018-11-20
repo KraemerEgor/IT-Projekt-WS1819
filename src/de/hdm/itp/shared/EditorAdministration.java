@@ -220,5 +220,24 @@ public interface EditorAdministration extends RemoteService {
 	 * @throws IllegalArgumentException
 	 */
 	Vector<Subs> getAllSubs() throws IllegalArgumentException;
+	
+	/**
+	 * Holt die Information ob der Nutzer bereits aus der Datenbank.
+	 * Identifiziert wird dies über einen boolschen Rückgabewert, true wenn Nutzer bereits existiert, sonst false.
+	 * 
+	 * @param email Email des Nutzers
+	 * @return boolscher Wert
+	 * @throws IllegalArgumentException
+	 */
+	public boolean isUserKnown (String email) throws IllegalArgumentException;
+	
+	/**
+	 * Holt Klarnamen eines Nutzers aus der Datenbank.
+	 * 
+	 * @param user Nutzer
+	 * @return Klarname des Nutzers
+	 * @throws IllegalArgumentException
+	 */
+	public String getFullNameOfUser(User user) throws IllegalArgumentException;
 
 }

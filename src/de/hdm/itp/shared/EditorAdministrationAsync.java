@@ -69,5 +69,9 @@ public interface EditorAdministrationAsync {
 	void getSubsOfTargetUser(User u, AsyncCallback<Vector<Subs>> callback);
 	
 	void getAllSubs(AsyncCallback<Vector<Subs>> callback);
+	
+	void isUserKnown(String email, AsyncCallback<Boolean> callback);
+	
+	void getFullNameOfUser(User user, AsyncCallback<String> callback);
 
 }

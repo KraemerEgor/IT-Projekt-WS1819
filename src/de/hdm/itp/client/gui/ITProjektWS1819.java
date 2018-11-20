@@ -2,6 +2,8 @@ package de.hdm.itp.client.gui;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Label;
@@ -64,6 +66,121 @@ public class ITProjektWS1819 implements EntryPoint {
 	    });
 		
 	}
+	
+	public void loadUserInformation() {
+    	
+		if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getEditorAdministration();
+	    }
+
+	    
+	    editorAdministration.isUserKnown(loginInfo.getEmailAddress(), new AsyncCallback<Boolean>() {
+			
+	    	public void onFailure(Throwable t) {
+	    		System.out.println(t.getMessage());	
+			}
+
+			public void onSuccess(Boolean result) {
+				if (result) {
+					//Der Nutzer konnte in der Datenbank gefunden werden und ist somit bereits bestehender Nutzer der Applikation
+					editorAdministration.getUserByEmail(loginInfo.getEmailAddress(), new AsyncCallback<User>() {
+						public void onFailure(Throwable t) {
+							System.out.println(t.getMessage());
+						}
+						public void onSuccess(User arg0) {
+							//das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt und in einer Instanzenvariable gespeichert.
+							ClientsideSettings.setUser(arg0);
+							user = arg0;
+							//da der Nutzer bereits bekannt ist, wird für ihn im Folgenden die Applikation geladen
+							loadApplication();
+						}
+					});
+				}
+				
+				else {
+					/*Wenn kein Nutzer mit dieser e-Mail in der Datenbank gefunden wurde, wird die DialogBox für die erstmalige Registrierung 
+					 * aufgebaut. In diese muss der Nutzer seinen Vor- und Nachnamen eintragen und sein Geschlecht auswählen. */
+					createAccountBox = new ClientsideFunctions.InputDialogBox(loginInfo.getEmailAddress());
+					
+					createAccountBox.getOKButton().addClickHandler(new ClickHandler() {
+						
+						public void onClick(ClickEvent arg0) {
+							if(ClientsideFunctions.checkName(createAccountBox.getMultiUseTextBox().getText()) && ClientsideFunctions.checkName(createAccountBox.getNameTextBox().getText())) {
+								//wenn für Vor- und Nachname gültige Werte eingetragen wurden, wird ein Kontakt-Objekt erstellt, welches den Nutzer verkörpert
+								editorAdministration.createUserContact(createAccountBox.getMultiUseTextBox().getText(), createAccountBox.getNameTextBox().getText(), createAccountBox.getListBox().getSelectedItemText(), loginInfo.getEmailAddress(), new AsyncCallback<User>() {
+									public void onFailure(Throwable t) {
+										System.out.println(t.getMessage());
+										createAccountBox.hide();
+									}
+									public void onSuccess(User arg0) {
+										if(arg0 != null) {
+										
+										//nach erfolgreichen Anlegen des Nutzer-Kontakts wird der neue Nutzer im System willkommen geheißen
+										final ClientsideFunctions.popUpBox welcome = new ClientsideFunctions.popUpBox("Herzlich Willkommen!", new ClientsideFunctions.OkButton());
+										welcome.getOkButton().addCloseDBClickHandler(welcome);
+										createAccountBox.hide();
+										//das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt und in einer Instanzenvariable gespeichert.
+										ClientsideSettings.setUser(arg0);
+										user = arg0;
+										//danach wird für den neu registrierten Nutzer ebenfalls die Applikation geladen
+										loadApplication();
+										}
+									}
+								});
+							}
+							else {
+								createAccountBox.hide();
+							}
+						}
+					});
+				}
+			}
+	    });
+  	}
+	
+	public void loadApplication(){
+	 		
+		/*
+		 * Das loginPanel wird aufgebaut
+		 */
+	    VerticalPanel loginPanel = new VerticalPanel();
+	    
+	    /*
+	     * Der signOutLink wird dem loginPanel hinzugefügt
+	     */
+	    signOutLink.setHref(loginInfo.getLogoutUrl());
+	    signOutLink.addStyleName("signout");
+		signInLink.addStyleName("reportbutton");
+		
+		
+		loginPanel.add(signOutLink);
+		
+		
+		/*
+		 * Die Information über den aktuell angemeldeten Nutzer wird ebenfalls dem loginPanel hinzugefügt
+		 */
+	    signedInUser = new Label();
+	    signedInUser.addStyleName("signedInUser");
+	    	    
+	    editorAdministration.getFullNameOfUser(user, new AsyncCallback<String>(){
+	    	public void onFailure(Throwable t) {
+	    		System.out.println(t.getMessage());
+	    		
+	    	}
+	    	public void onSuccess(String result) {
+	    		
+	    		signedInUser.setText("Angemeldet als: " +result);
+	    	}
+	    });
+	    
+		loginPanel.add(signedInUser);
+		
+		
+		//das loginPanel wird dem div mit der id "Login" hinzugefügt
+		RootPanel.get("Login").add(loginPanel);
+
+	  }
+	
 	private void loadLogin() {
 		  
 		signInLink.setHref(loginInfo.getLoginUrl());
