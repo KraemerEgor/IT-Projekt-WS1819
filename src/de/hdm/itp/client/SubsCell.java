@@ -2,7 +2,6 @@ package de.hdm.itp.client;
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
-
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.User;
 

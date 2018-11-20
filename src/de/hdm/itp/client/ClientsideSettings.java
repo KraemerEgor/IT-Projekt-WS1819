@@ -6,9 +6,11 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import de.hdm.itp.shared.ReportGenerator;
 import de.hdm.itp.shared.ReportGeneratorAsync;
+import de.hdm.itp.shared.bo.User;
 
 public class ClientsideSettings {
 	
+	private static User user = null;
 	
 	private static ReportGeneratorAsync reportGenerator = null;
 	
@@ -19,6 +21,7 @@ public class ClientsideSettings {
 
 	public static Logger getLogger() {
 		return log;
+		
 	}
 	
 	public static ReportGeneratorAsync getReportGenerator() {
@@ -44,6 +47,23 @@ public class ClientsideSettings {
 
 		return reportGenerator;
 	}
-
+	/**
+	 * Setter für das Nutzer-Objekt.
+	 *
+	 * @param u neuer Nutzer
+	 */
+	public static void setUser(User u) {
+		user = u;
+	}
+	
+	/**
+	 * Getter für das Nutzer-Objekt.
+	 *
+	 * @return Nutzer-Object
+	 */
+	public static User getUser() {
+		return user;	
+		
+	}
 
 }
