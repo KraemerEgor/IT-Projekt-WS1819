@@ -67,6 +67,7 @@ public class ITProjektWS1819 implements EntryPoint {
 		
 	}
 	
+
 	public void loadUserInformation() {
     	
 		if(editorAdministration == null) {

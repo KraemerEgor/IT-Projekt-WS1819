@@ -32,8 +32,7 @@ public class SubsTreeViewModel implements TreeViewModel {
 					}
 
 					public void onSuccess(User result) {
-						//TODO: hier stecke ich den User irgendwie in eine cell	
-											
+						valueResults.add(result);										
 									
 					}	
 				});}
@@ -41,7 +40,7 @@ public class SubsTreeViewModel implements TreeViewModel {
 							
 			}	
 		});
-		// TODO Auto-generated method stub
+		// TODO Node wiedergeben
 		return null;
 	}
 
