@@ -1,3 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app id="WebApp_ID" version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+<servlet>
+		<servlet-name>loginService</servlet-name>
+		<servlet-class>de.hdm.itp.server.LoginServiceImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>loginService</servlet-name>
+		<url-pattern>/IT_Projekt_Gruppe4_2/login</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>reportGeneratorServlet</servlet-name>
+		<servlet-class>de.hdm.itp.server.ReportGeneratorImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>reportGeneratorServlet</servlet-name>
+		<url-pattern>/IT_Projekt_Gruppe4_2/reportgenerator</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>editorAdministrationServlet</servlet-name>
+		<servlet-class>de.hdm.itp.itProjekt.server.EditorAdministrationImpl</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>editorAdministrationServlet</servlet-name>
+		
+		<url-pattern>/IT_Projekt_Gruppe4_2/editoradministration</url-pattern>
+	</servlet-mapping>
+
+
+
+	<welcome-file-list>
+		<welcome-file>IT_Projekt_Gruppe4_2.html</welcome-file>
+		<welcome-file>ITProjekt_SS18_Gr_10_Report.html</welcome-file>
+	</welcome-file-list>
+
 </web-app>

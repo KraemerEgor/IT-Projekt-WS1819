@@ -62,6 +62,18 @@ public class TestMapper {
 		
 		
 		//report.getAllPostsOfUser(u6);
+		u.setId(10000001);
+		Vector<Post> result = pMapper.findAllByUID(u);
+		for(Post p : result) {
+		System.out.println(p.getContent());}
+		
+		
+		u.setId(10000001);
+		Vector<Post> result = pMapper.findAllByUID(u);
+		for(Post p : result) {
+		System.out.println(p.getContent());}
+		
+		
 			
 
 	}

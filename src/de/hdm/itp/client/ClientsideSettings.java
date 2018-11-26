@@ -9,9 +9,15 @@ import de.hdm.itp.shared.EditorAdministration;
 import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.ReportGenerator;
 import de.hdm.itp.shared.ReportGeneratorAsync;
+import de.hdm.itp.shared.bo.User;
 
 public class ClientsideSettings {
 	
+	/** Remote Service Proxy zur Verbindungsaufnahme mit dem Server-seitgen 
+	 * Dienst namens editorAdministration. */
+	private static EditorAdministrationAsync editorAdministration = null;
+	
+	private static User user = null;
 	
 	private static ReportGeneratorAsync reportGenerator = null;
 	
@@ -25,6 +31,7 @@ public class ClientsideSettings {
 
 	public static Logger getLogger() {
 		return log;
+		
 	}
 	
 	public static EditorAdministrationAsync getAdministration() {
@@ -75,6 +82,37 @@ public class ClientsideSettings {
 
 		return reportGenerator;
 	}
-
+	/**
+	 * Setter für das Nutzer-Objekt.
+	 *
+	 * @param u neuer Nutzer
+	 */
+	public static void setUser(User u) {
+		user = u;
+	}
+	
+	/**
+	 * Getter für das Nutzer-Objekt.
+	 *
+	 * @return Nutzer-Object
+	 */
+	public static User getUser() {
+		return user;	
+		
+	}
+	/**
+	 * Anlegen und Auslesen der applikationsweit eindeutigen EditorAdministration. Diese
+     * Methode erstellt die EditorAdministration, sofern sie noch nicht existiert. Bei
+     * wiederholtem Aufruf dieser Methode wird das bereits zuvor angelegte Objekt zurückgegeben.
+	 *
+	 * @return eindeutige Instanz des Typs EditorAdministrationAsync
+	 */
+	public static EditorAdministrationAsync getEditorAdministration() {
+	   
+	    if (editorAdministration == null) {
+	     editorAdministration = GWT.create(EditorAdministration.class);
+	    }
+	    return editorAdministration;
+	  }
 
 }
