@@ -3,8 +3,9 @@ package de.hdm.itp.server.db;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Vector;
 
-
+import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.server.db.*;
 
@@ -15,6 +16,7 @@ public class TestMapper {
 		
 		
 		final UserMapper uMapper = UserMapper.userMapper();
+		final PostMapper pMapper = PostMapper.postMapper();
 		
 		
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
@@ -31,7 +33,7 @@ public class TestMapper {
 		System.out.println(s);
 		
 		
-		uMapper.insert(u);
+		//uMapper.insert(u);
 		
 		User u2 = new User();
 		u2.setId(10000002);
@@ -39,6 +41,10 @@ public class TestMapper {
 		u3 = uMapper.findByID(u2);
 		System.out.println(u3.toString());
 		System.out.println(u3.getFirstname());
+		u.setId(10000001);
+		Vector<Post> result = pMapper.findAllByUID(u);
+		for(Post p : result) {
+		System.out.println(p.getContent());}
 			
 
 	}
