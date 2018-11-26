@@ -46,7 +46,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
  */
 
 	public void init() throws IllegalArgumentException{
+		
 		this.admin = EditorAdministrationImpl.editorAdministrationImpl();
+		this.admin.init();
 	}
 
 	/**
@@ -110,7 +112,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		result.addRow(headline);
 
-		Vector<Comment> comments = this.administration.getCommentsOf(u);
+		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
 
 		for (Comment c: comments){
 			Row commentRow = new Row();
@@ -152,13 +154,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		result.addRow(headline);
 
-		Vector<Like> like = this.administration.getLikesOf(u);
+		Vector<Like> like = this.admin.getAllLikesOfUser(u);
 
 		for (Like l: like){
 			Row likesRow = new Row();
 
 			likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
-			likesRow.addColumn(new Column(String.valueOf(l.getContent())));
+			likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
 			likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
 
 			result.addRow(likesRow);
@@ -200,12 +202,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		result.addRow(headline);
 
-		Vector<Post> post = this.administration.getPostsOf(u);
+		Vector<Post> post = this.admin.getAllPostsOfUser(u);
 
 		for (Post p: post){
 			Row postRow = new Row();
 
-			postRow.addColumn(new Column(String.valueOf(p.getPostId())));
+			postRow.addColumn(new Column(String.valueOf(p.getId())));
 			postRow.addColumn(new Column(String.valueOf(p.getContent())));
 			postRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
 			postRow.addColumn(new Column(String.valueOf(p.getModDate())));
@@ -244,7 +246,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		result.addRow(headline);
 
-		Vector<Subs> subs = this.administration.getSubsOf(u);
+		Vector<Subs> subs = this.admin.getSubsOfTargetUser(u);
 
 		for (Subs s: subs){
 			Row subsRow = new Row();
@@ -285,7 +287,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		result.addRow(headline);
 
-		Vector<Subs> subs = this.administration.getSubsOf(u);
+		Vector<Subs> subs = this.admin.getSubsOfCurrentUser(u);
 
 		for (Subs s: subs){
 			Row subsRow = new Row();
@@ -305,6 +307,5 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		createDate
 		*/
 	}
-	
 
 }
