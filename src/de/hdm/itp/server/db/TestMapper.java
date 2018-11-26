@@ -58,24 +58,11 @@ public class TestMapper {
 		
 		SimpleReport r = report.createAllPostsFromUserReport(u6);
 		
-		System.out.println();
+		System.out.println(r.getRows());
 		
 		
-		//report.getAllPostsOfUser(u6);
-		u.setId(10000001);
-		Vector<Post> result = pMapper.findAllByUID(u);
-		for(Post p : result) {
-		System.out.println(p.getContent());}
+		//report.getAllPostsOfUser(u6)		
 		
-		
-		u.setId(10000001);
-		Vector<Post> result = pMapper.findAllByUID(u);
-		for(Post p : result) {
-		System.out.println(p.getContent());}
-		
-		
-			
-
 	}
 
 	

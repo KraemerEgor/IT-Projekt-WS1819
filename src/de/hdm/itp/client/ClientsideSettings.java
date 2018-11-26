@@ -21,9 +21,6 @@ public class ClientsideSettings {
 	
 	private static ReportGeneratorAsync reportGenerator = null;
 	
-	private static EditorAdministrationAsync editorAdministration = null;
-
-	
 	private static final String LOGGER_NAME = "";
 
 	
@@ -35,7 +32,7 @@ public class ClientsideSettings {
 	}
 	
 	public static EditorAdministrationAsync getAdministration() {
-
+		
 		if (editorAdministration == null) {
 
 			editorAdministration = GWT.create(EditorAdministration.class);

@@ -32,12 +32,6 @@ public class ReportMenue implements EntryPoint{
 
 	private static ReportGeneratorAsync reportGenerator = null;
 	
-		
-	
-
-	
-	private int userID;
-	private int postID;
 	
 	private User u = new User();
 	
@@ -62,7 +56,7 @@ public class ReportMenue implements EntryPoint{
 			reportGenerator = ClientsideSettings.getReportGenerator();
 		}
 	
-		
+	  reportGenerator.setUser(u,new setUserCallback());
 		
 		
 		final ListBox listBox = new ListBox();
@@ -143,7 +137,7 @@ public class ReportMenue implements EntryPoint{
 				
 				Window.alert("???");	
 
-				reportGenerator.createAllPostsFromUserReport(u, new createAllPostsFromUserReportCallback());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
+				reportGenerator.createAllCommentsFromUserReport(u, new createAllCommentsFromUserReportCallback());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
 				
 				Window.alert("???");	
 
@@ -178,9 +172,61 @@ public class ReportMenue implements EntryPoint{
 		
 		
 	}}
+class setUserCallback implements AsyncCallback<Void> {
+
+	
+	public void onFailure(Throwable caught) {
+		/*
+		 * Wenn ein Fehler auftritt, dann geben wir eine kurze Log Message
+		 * aus.
+		 */
+		ClientsideSettings.getLogger().severe(
+				"Setzen der Bank fehlgeschlagen!");
+	}
+
+	@Override
+	public void onSuccess(Void result) {
+		/*
+		 * Wir erwarten diesen Ausgang, wollen aber keine Notifikation
+		 * ausgeben.
+		 */
+		Window.alert("hier in der set Bank Classe");
+
+	}
+
+}
+
+class createAllCommentsFromUserReportCallback implements AsyncCallback<AllCommentsFromUserReport> {
+
 	
 
+	@Override
+	public void onFailure(Throwable caught) {
+		
+		ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
+		Window.alert("Fehlgeschlagen");
+		
+	}
 
+	public void onSuccess(AllCommentsFromUserReport report) {
+		
+		Window.alert("Klappt");
+
+		if(report != null) {
+			
+			HTMLReportWriter writer = new HTMLReportWriter();
+			writer.process(report);
+			RootPanel.get().clear();
+			RootPanel.get().add(new HTML(writer.getReportText()));
+			
+			Window.alert("Klappt");
+
+			
+		
+	}
+}
+
+}
 	
 	class createAllPostsFromUserReportCallback implements AsyncCallback<AllPostsFromUserReport> {
 
@@ -189,7 +235,7 @@ public class ReportMenue implements EntryPoint{
 		@Override
 		public void onFailure(Throwable caught) {
 			
-			caught.getMessage();
+			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
 			Window.alert("Fehlgeschlagen");
 			
 		}
@@ -212,7 +258,6 @@ public class ReportMenue implements EntryPoint{
 			
 		}
 	}
-	
-	
-}
-
+		
+		
+		}
