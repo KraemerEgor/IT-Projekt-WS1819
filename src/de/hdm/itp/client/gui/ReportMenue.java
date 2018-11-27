@@ -198,13 +198,12 @@ class setUserCallback implements AsyncCallback<Void> {
 
 class createAllCommentsFromUserReportCallback implements AsyncCallback<AllCommentsFromUserReport> {
 
-	
-
 	@Override
 	public void onFailure(Throwable caught) {
 		
 		ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
 		Window.alert("Fehlgeschlagen");
+		Window.alert(caught.getMessage());
 		
 	}
 
