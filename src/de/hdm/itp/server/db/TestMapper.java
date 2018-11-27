@@ -61,7 +61,7 @@ public class TestMapper {
 		System.out.println(r.getRows());
 		
 		
-		//report.getAllPostsOfUser(u6)		
+		//report.getAllPostsOfUser(u6)	
 		
 	}
 
