@@ -42,25 +42,45 @@ h1 {
 div#Login {
 	float: right;
 	padding: 5px;
-	background-color: #D7E6E0;
+	background-color: #00ff40;
+	border-right: 3px solid #00868B;
+}
+div#Head {
+	float: top;
+	background-color: #ff0000;
 	border-right: 3px solid #00868B;
 }
 div#Nav {
 	float: left;
 	clear: left;
-    width: 414px;
-    height: 25em;
+    width: 30%;
+    height: auto;
 	padding: 5px;
-	background-color: #D7E6E0;
+	background-color: #8080ff;
+	border-right: 3px solid #00868B;
+}
+div#Subs {
+
+    width: 95%;
+    height: 30em;
+	padding: 5px;
+	background-color: #800080;
+	border-right: 3px solid #00868B;
+}
+div#Search {
+    width: 95%;
+    height: 15em;
+	padding: 5px;
+	background-color: #804000;
 	border-right: 3px solid #00868B;
 }
 div#Main {
 	float: right;
-	clear: left;
-    width: 414px;
+	clear: right;
+    width: 64%;
     height: 25em;
 	padding: 5px;
-	background-color: #D7E6E0;
+	background-color: #000080;
 	border-right: 3px solid #00868B;
 }
 /*Signout Button*/
@@ -109,4 +129,8 @@ div#Main {
 }
 .signout:hover {
 	background-color: #c05c5f;
+}
+.label_test{
+	width: 225px;
+    font-size: 14px;
 }
