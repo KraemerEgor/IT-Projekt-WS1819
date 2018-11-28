@@ -25,6 +25,7 @@ public class SubsPanel extends VerticalPanel {
 		
 		super.onLoad();		
 		this.addStyleName("Subs");
+		this.setStyleName("Subs");
 		NewCHtest n = new NewCHtest();
 		btn_test.addClickHandler(n);
 		//this.add(stvm);

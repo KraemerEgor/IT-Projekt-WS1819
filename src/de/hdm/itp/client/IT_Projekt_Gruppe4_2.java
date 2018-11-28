@@ -61,6 +61,8 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	NavPanel np = new NavPanel();
 	MainPanel mp = new MainPanel();
 	HeaderPanel hp = new HeaderPanel();
+	SubsPanel sup = new SubsPanel();
+	SearchPanel sp = new SearchPanel();
 	
 	
 	
@@ -69,11 +71,11 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	
 	public void onModuleLoad() {
 
-		
 
-		RootPanel.get().add(hp);
-		RootPanel.get().add(np);
-		RootPanel.get().add(mp);
+		RootPanel.get("Head").add(hp);
+		RootPanel.get("Nav").add(np);
+		RootPanel.get("Main").add(mp);
+
 		
 		
 	}
