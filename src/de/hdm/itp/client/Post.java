@@ -16,44 +16,44 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class Post {
 	
 	
-	public void onLoad() {
-		
-		super.onLoad();
-		
-		/**
-		 * Das Grid-Widget erlaubt die Anordnung der Interaktionsformen im Gitter
-		 */
-		Grid postGrid = new Grid(6, 2);
-		this.add(postGrid);
-
-		postGrid.setWidget(1, 0, idValueLabel);
-		
-		deleteButton.addClickHandler(new DeleteClickHandler());
-		deleteButton.setEnabled(false);
-		postGrid.setWidget(1, 1, deleteButton);
-
-		newButton.addClickHandler(new NewClickHandler());
-		newButton.setEnabled(true);
-		postGrid.setWidget(2, 1, newButton);
-
-		Label likeLabel = new Label("Post liken");
-		postGrid.setWidget(3, 0, likeLabel);
-		postGrid.setWidget(3, 1, likeLabel);
-
-		Label deleteLabel = new Label("Post löschen");
-		postGrid.setWidget(4, 0, deleteLabel);
-		postGrid.setWidget(4, 1, deleteLabel);
-		
-		Label commentLabel = new Label("Post kommentieren");
-		postGrid.setWidget(4, 0, commentLabel);
-		postGrid.setWidget(4, 1, commentLabel);
-
-
-	}
-
-	/*
-	 * Click handlers und abhängige AsyncCallback Klassen.
-	 */
+//	public void onLoad() {
+//		
+//		super.onLoad();
+//		
+//		/**
+//		 * Das Grid-Widget erlaubt die Anordnung der Interaktionsformen im Gitter
+//		 */
+//		Grid postGrid = new Grid(6, 2);
+//		this.add(postGrid);
+//
+//		postGrid.setWidget(1, 0, idValueLabel);
+//		
+//		deleteButton.addClickHandler(new DeleteClickHandler());
+//		deleteButton.setEnabled(false);
+//		postGrid.setWidget(1, 1, deleteButton);
+//
+//		newButton.addClickHandler(new NewClickHandler());
+//		newButton.setEnabled(true);
+//		postGrid.setWidget(2, 1, newButton);
+//
+//		Label likeLabel = new Label("Post liken");
+//		postGrid.setWidget(3, 0, likeLabel);
+//		postGrid.setWidget(3, 1, likeLabel);
+//
+//		Label deleteLabel = new Label("Post lï¿½schen");
+//		postGrid.setWidget(4, 0, deleteLabel);
+//		postGrid.setWidget(4, 1, deleteLabel);
+//		
+//		Label commentLabel = new Label("Post kommentieren");
+//		postGrid.setWidget(4, 0, commentLabel);
+//		postGrid.setWidget(4, 1, commentLabel);
+//
+//
+//	}
+//
+//	/*
+//	 * Click handlers und abhï¿½ngige AsyncCallback Klassen.
+//	 */
 
 }
 
