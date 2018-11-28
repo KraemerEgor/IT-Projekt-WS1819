@@ -82,7 +82,7 @@ public class ReportMenue implements EntryPoint{
 		checkBoxShowAll.setValue(true);
 		//checkBox.
 		
-		Button btn1 = new Button("Search");
+		Button searchButton = new Button("Search");
 		
 		
 		
@@ -111,36 +111,41 @@ public class ReportMenue implements EntryPoint{
 		    });
 		
 		//button
-		btn1.addClickHandler(new ClickHandler(){
+		searchButton.addClickHandler(new ClickHandler(){
 			
 		public void onClick (ClickEvent event) {
 			final int lbIndex =listBox.getSelectedIndex();
 			if(lbIndex == 0) {
 				Window.alert("This is 0");
+				reportGenerator.createAllSubsFromUserReport(u, new createAllSubsFromUserReportCallback());
 				
 	
 			}
 			else if (lbIndex == 1) {
 				Window.alert("This is 1");
+				reportGenerator.createAllSubsOfUserReport(u, new createAllSubsOfUserReportCallback());
 				
 
 			}
 			else if (lbIndex == 2) {
 				Window.alert("This is 2");
+				reportGenerator.createAllCommentsFromUserReport(u, new createAllCommentsFromUserReportCallback());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
+
 
 			}
 			else if (lbIndex == 3) {
 				Window.alert("This is 3");
+				
+				reportGenerator.createAllLikesFromUserReport(u, new createAllLikesFromUserReportCallback());
+
 
 			}
 			else if (lbIndex == 4) {
 				
-				Window.alert("???");	
+				reportGenerator.createAllPostsFromUserReport(u, new createAllPostsFromUserReportCallback());
 
-				reportGenerator.createAllCommentsFromUserReport(u, new createAllCommentsFromUserReportCallback());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
-				
-				Window.alert("???");	
 
+			
 			}
 			else {
 				Window.alert("still not");	
@@ -157,7 +162,7 @@ public class ReportMenue implements EntryPoint{
 		RootPanel.get().add(HorizontalPanel);
 		HorizontalPanel.add(listBox);
 
-		HorizontalPanel.add(btn1);
+		HorizontalPanel.add(searchButton);
 		
 
 		HorizontalPanel.add(checkBoxShowAll);
@@ -234,8 +239,6 @@ class createAllCommentsFromUserReportCallback implements AsyncCallback<AllCommen
 		@Override
 		public void onFailure(Throwable caught) {
 			
-			Window.alert(caught.getMessage());
-
 			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
 			Window.alert(caught.getMessage());
 			
@@ -262,3 +265,103 @@ class createAllCommentsFromUserReportCallback implements AsyncCallback<AllCommen
 		
 		
 		}
+	class createAllSubsFromUserReportCallback implements AsyncCallback<AllSubsFromUserReport> {
+
+		
+
+		@Override
+		public void onFailure(Throwable caught) {
+			
+			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
+			Window.alert(caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(AllSubsFromUserReport report) {
+			
+			Window.alert("Klappt");
+
+			if(report != null) {
+				
+				HTMLReportWriter writer = new HTMLReportWriter();
+				writer.process(report);
+				RootPanel.get().clear();
+				RootPanel.get().add(new HTML(writer.getReportText()));
+				
+				Window.alert("Klappt");
+
+				
+			
+		}
+	}
+		
+		
+		}
+	class createAllSubsOfUserReportCallback implements AsyncCallback<AllSubsOfUserReport> {
+
+		
+
+		@Override
+		public void onFailure(Throwable caught) {
+			
+			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
+			Window.alert(caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(AllSubsOfUserReport report) {
+			
+			Window.alert("Klappt");
+
+			if(report != null) {
+				
+				HTMLReportWriter writer = new HTMLReportWriter();
+				writer.process(report);
+				RootPanel.get().clear();
+				RootPanel.get().add(new HTML(writer.getReportText()));
+				
+				Window.alert("Klappt");
+
+				
+			
+		}
+	}
+		
+		
+		}
+	class createAllLikesFromUserReportCallback implements AsyncCallback<AllLikesFromUserReport> {
+
+		
+
+		@Override
+		public void onFailure(Throwable caught) {
+			
+			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
+			Window.alert(caught.getMessage());
+			
+		}
+
+		@Override
+		public void onSuccess(AllLikesFromUserReport report) {
+			
+			Window.alert("Klappt");
+
+			if(report != null) {
+				
+				HTMLReportWriter writer = new HTMLReportWriter();
+				writer.process(report);
+				RootPanel.get().clear();
+				RootPanel.get().add(new HTML(writer.getReportText()));
+				
+				Window.alert("Klappt");
+
+				
+			
+		}
+	}
+		
+		
+		}
+	

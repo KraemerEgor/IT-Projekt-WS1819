@@ -111,13 +111,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		headline.addColumn(new Column("Änderungsdatum"));
 
 		result.addRow(headline);
-		System.out.println("111111111111111111111111111111111111111111");
 		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
-		System.out.println("2222222222222222222222222222222222222222222");
 
 		for (Comment c: comments){
 			Row commentRow = new Row();
 
+			System.out.println(c.getText());
 			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
 			commentRow.addColumn(new Column(String.valueOf(c.getText())));
 			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));

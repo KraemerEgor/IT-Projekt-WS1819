@@ -3,7 +3,7 @@ package de.hdm.itp.server.db;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-
+import java.util.Vector;
 
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.SimpleReport;
@@ -11,14 +11,19 @@ import de.hdm.itp.server.EditorAdministrationImpl;
 import de.hdm.itp.server.ReportGeneratorImpl;
 import de.hdm.itp.server.db.*;
 
+import de.hdm.itp.shared.bo.Post;
+
 public class TestMapper {
 
 	//@SuppressWarnings("null")
 	public static void main(String[] args) {
 		
+		final PostMapper pMapper = PostMapper.postMapper();
+
 		
-	/*
-	 * 	final UserMapper uMapper = UserMapper.userMapper();
+		
+	
+	 final UserMapper uMapper = UserMapper.userMapper();
 	 
 		
 		
@@ -46,20 +51,26 @@ public class TestMapper {
 		System.out.println(u3.toString());
 		System.out.println(u3.getFirstname());
 		
-		*/
+		
 		ReportGeneratorImpl report =  new ReportGeneratorImpl();
 		
 		 //ReportAdministrationImpl();
 		report.init();
 		
-		User u6 = new User();
-		
-		u6.setId(10000001);
+	/*
+	 * 	User u6 = new User();
+	 * u6.setId(10000001);
 		
 		SimpleReport r = report.createAllPostsFromUserReport(u6);
 		
-		System.out.println(r.getRows());
+		System.out.println(r);
 		
+	 */
+		
+		
+		Vector<Post> result = pMapper.findAllByUID(u);
+		for(Post p : result) {
+		System.out.println(p.getContent());}
 		
 		//report.getAllPostsOfUser(u6)	
 		
