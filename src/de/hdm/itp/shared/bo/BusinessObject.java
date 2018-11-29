@@ -22,7 +22,7 @@ public abstract class BusinessObject implements Serializable {
 	/**
 	 * Erstellungsdatum des Objektes
 	 */		
-	private Timestamp create_date;
+	private Timestamp createDate;
 	/**
 	 * Setter f�r die ID.
 	 *
@@ -50,7 +50,7 @@ public abstract class BusinessObject implements Serializable {
 	 */
 		
 	public Timestamp getCreateDate(){
-		return create_date;
+		return createDate;
 	}
 	
 	/**
@@ -60,7 +60,7 @@ public abstract class BusinessObject implements Serializable {
 	 */
 	
 	public void setCreateDate(Timestamp ts){
-		this.create_date = ts;
+		this.createDate = ts;
 	}
 	
 	/**
