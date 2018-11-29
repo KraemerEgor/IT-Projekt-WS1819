@@ -3,26 +3,19 @@ package de.hdm.itp.client.gui;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.i18n.client.DateTimeFormat;
+
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
-import com.google.gwt.user.datepicker.client.DatePicker;
+
 import com.google.gwt.user.client.ui.ListBox;
 
 import java.util.Date;
-import java.util.logging.Logger;
-
-import de.hdm.itp.shared.*;
 
 import de.hdm.itp.client.ClientsideSettings;
 import de.hdm.itp.client.gui.report.AllCommentsFromUserReportForm;
@@ -32,7 +25,6 @@ import de.hdm.itp.client.gui.report.AllSubsFromUserReportForm;
 import de.hdm.itp.client.gui.report.AllSubsOfUserReportForm;
 import de.hdm.itp.shared.ReportGeneratorAsync;
 import de.hdm.itp.shared.bo.User;
-import de.hdm.itp.shared.report.*;
 
 public class ReportMenue implements EntryPoint {
 
@@ -40,19 +32,10 @@ public class ReportMenue implements EntryPoint {
 
 	private User u = new User();
 
-	/*
-	 * 5 button erstellen in einem drop down menue AllSubsFromUserReport
-	 * AllSubsOfUserReport AllCommentsFromUserReport AllLikesFromUserReport
-	 * AllPostsFromUserReport
-	 */
-
 	public void onModuleLoad() {
 
 		u.setId(10000001);
 
-		/*	
-		 * 
-		 */
 		if (reportGenerator == null) {
 
 			reportGenerator = ClientsideSettings.getReportGenerator();
@@ -60,20 +43,28 @@ public class ReportMenue implements EntryPoint {
 
 		reportGenerator.setUser(u, new setUserCallback());
 
-		final ListBox listBox = new ListBox();
+		final ListBox searchAllListBox = new ListBox();
+		final ListBox pickDateListBox = new ListBox();
+		
 		final VerticalPanel VerticalPanel = new VerticalPanel();
+		final VerticalPanel resultPanel = new VerticalPanel();
+
 		final Label text = new Label();
 
 		final CheckBox checkBoxShowAll = new CheckBox("ShowAll");
 		final CheckBox checkBoxPickDate = new CheckBox("PickDate");
 
-		final DatePicker datePicker = new DatePicker();
-
-		listBox.addItem("AllSubsFromUserReport0");
-		listBox.addItem("AllSubsOfUserReport01");
-		listBox.addItem("AllCommentsFromUserReport02");
-		listBox.addItem("AllLikesFromUserReport03");
-		listBox.addItem("AllPostsFromUserReport04");
+		searchAllListBox.addItem("AllSubsFromUserReport0");
+		searchAllListBox.addItem("AllSubsOfUserReport01");
+		searchAllListBox.addItem("AllCommentsFromUserReport02");
+		searchAllListBox.addItem("AllLikesFromUserReport03");
+		searchAllListBox.addItem("AllPostsFromUserReport04");
+		
+		pickDateListBox.addItem("AllSubsFromUserReportBetween");
+		pickDateListBox.addItem("AllSubsOfUserReportBetween");
+		pickDateListBox.addItem("AllCommentsFromUserReportBetween");
+		pickDateListBox.addItem("AllLikesFromUserReportBetween");
+		pickDateListBox.addItem("AllPostsFromUserReportBetween");
 
 		checkBoxShowAll.setValue(true);
 		// checkBox.
@@ -88,19 +79,40 @@ public class ReportMenue implements EntryPoint {
 		dateTill.setValue(new Date());
 
 		// checkbox
+
 		checkBoxShowAll.addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
-				boolean checked = ((CheckBox) event.getSource()).getValue();
 
-				Window.alert("It is " + (checked ? "" : "not ") + "checked");
+				checkBoxShowAll.setValue(true);
+				pickDateListBox.setVisible(false);
+				searchAllListBox.setVisible(true);
+				
+				if (checkBoxPickDate.getValue() == true) {
+					checkBoxPickDate.setValue(false);
+
+				} else {
+					Window.alert("You can just enable one Checkbox");
+
+				}
 			}
 		});
 		checkBoxPickDate.addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
-				boolean checked = ((CheckBox) event.getSource()).getValue();
-				Window.alert("It is " + (checked ? "" : "not ") + "checked");
+								
+				checkBoxPickDate.setValue(true);
+				pickDateListBox.setVisible(true);
+				searchAllListBox.setVisible(false);
+				VerticalPanel.add(pickDateListBox);
+
+				if (checkBoxShowAll.getValue() == true) {
+					checkBoxShowAll.setValue(false); 
+
+				} else {
+					Window.alert("You can just enable one Checkbox");
+
+				}
 			}
 		});
 
@@ -108,25 +120,33 @@ public class ReportMenue implements EntryPoint {
 		searchButton.addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
-				final int lbIndex = listBox.getSelectedIndex();
+				final int lbIndex = searchAllListBox.getSelectedIndex();
 				if (lbIndex == 0) {
 
-					VerticalPanel.add(new AllSubsFromUserReportForm(u));
+					resultPanel.clear();
+					resultPanel.add(new AllSubsFromUserReportForm(u));
+					RootPanel.get().add(resultPanel);
 
 				} else if (lbIndex == 1) {
+					resultPanel.clear();
+					resultPanel.add(new AllSubsOfUserReportForm(u));
 
-					VerticalPanel.add(new AllSubsOfUserReportForm(u));
+					RootPanel.get().add(resultPanel);
 
 				} else if (lbIndex == 2) {
-
-					VerticalPanel.add(new AllCommentsFromUserReportForm(u));
+					resultPanel.clear();
+					resultPanel.add(new AllCommentsFromUserReportForm(u));
+					RootPanel.get().add(resultPanel);
 
 				} else if (lbIndex == 3) {
-					VerticalPanel.add(new AllLikesFromUserReportForm(u));
+					resultPanel.clear();
+					resultPanel.add(new AllLikesFromUserReportForm(u));
+					RootPanel.get().add(resultPanel);
 
 				} else if (lbIndex == 4) {
-
-					VerticalPanel.add(new AllPostsFromUserReportForm(u));
+					resultPanel.clear();
+					resultPanel.add(new AllPostsFromUserReportForm(u));
+					RootPanel.get().add(resultPanel);
 
 				} else {
 					Window.alert("non of the selected ones");
@@ -139,13 +159,13 @@ public class ReportMenue implements EntryPoint {
 		 * RootPanel.get("content").add(resultPanel);
 		 */
 
-		RootPanel.get().add(VerticalPanel);
-		VerticalPanel.add(listBox);
-
-		VerticalPanel.add(searchButton);
-
 		VerticalPanel.add(checkBoxShowAll);
 		VerticalPanel.add(checkBoxPickDate);
+
+		RootPanel.get().add(VerticalPanel);
+		VerticalPanel.add(searchAllListBox);
+
+		VerticalPanel.add(searchButton);
 
 		RootPanel.get().add(text);
 

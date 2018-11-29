@@ -117,6 +117,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 			System.out.println(c.getText());
 			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+			commentRow.addColumn(new Column(String.valueOf(c.getText())));
 			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
 			commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
 
