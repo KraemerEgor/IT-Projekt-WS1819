@@ -18,7 +18,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.datepicker.client.DatePicker;
 import com.google.gwt.user.client.ui.ListBox;
-import de.hdm.itp.shared.report.AllPostsFromUserReport;
 
 import java.util.Date;
 import java.util.logging.Logger;
@@ -62,7 +61,7 @@ public class ReportMenue implements EntryPoint {
 		reportGenerator.setUser(u, new setUserCallback());
 
 		final ListBox listBox = new ListBox();
-		final HorizontalPanel HorizontalPanel = new HorizontalPanel();
+		final VerticalPanel VerticalPanel = new VerticalPanel();
 		final Label text = new Label();
 
 		final CheckBox checkBoxShowAll = new CheckBox("ShowAll");
@@ -111,26 +110,23 @@ public class ReportMenue implements EntryPoint {
 			public void onClick(ClickEvent event) {
 				final int lbIndex = listBox.getSelectedIndex();
 				if (lbIndex == 0) {
-					// Window.alert("This is 0");
-					reportGenerator.createAllSubsFromUserReport(u, new AllSubsFromUserReportForm());
-					// Window.alert();
+
+					VerticalPanel.add(new AllSubsFromUserReportForm(u));
 
 				} else if (lbIndex == 1) {
-					// Window.alert("This is 1");
-					reportGenerator.createAllSubsOfUserReport(u, new AllSubsOfUserReportForm());
+
+					VerticalPanel.add(new AllSubsOfUserReportForm(u));
 
 				} else if (lbIndex == 2) {
-					// Window.alert("This is 2");
-					reportGenerator.createAllCommentsFromUserReport(u, new AllCommentsFromUserReportForm());
+
+					VerticalPanel.add(new AllCommentsFromUserReportForm(u));
 
 				} else if (lbIndex == 3) {
-					// Window.alert("This is 3");
-
-					reportGenerator.createAllLikesFromUserReport(u, new AllLikesFromUserReportForm());
+					VerticalPanel.add(new AllLikesFromUserReportForm(u));
 
 				} else if (lbIndex == 4) {
 
-					reportGenerator.createAllPostsFromUserReport(u, new AllPostsFromUserReportForm());
+					VerticalPanel.add(new AllPostsFromUserReportForm(u));
 
 				} else {
 					Window.alert("non of the selected ones");
@@ -143,19 +139,19 @@ public class ReportMenue implements EntryPoint {
 		 * RootPanel.get("content").add(resultPanel);
 		 */
 
-		RootPanel.get().add(HorizontalPanel);
-		HorizontalPanel.add(listBox);
+		RootPanel.get().add(VerticalPanel);
+		VerticalPanel.add(listBox);
 
-		HorizontalPanel.add(searchButton);
+		VerticalPanel.add(searchButton);
 
-		HorizontalPanel.add(checkBoxShowAll);
-		HorizontalPanel.add(checkBoxPickDate);
+		VerticalPanel.add(checkBoxShowAll);
+		VerticalPanel.add(checkBoxPickDate);
 
 		RootPanel.get().add(text);
 
-		HorizontalPanel.add(dateFrom);
+		VerticalPanel.add(dateFrom);
 
-		HorizontalPanel.add(dateTill);
+		VerticalPanel.add(dateTill);
 
 	}
 }
