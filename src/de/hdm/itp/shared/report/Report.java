@@ -35,7 +35,7 @@ public class Report implements Serializable{
 	 * @return titel
 	 */
 	public String getTitel(){
-		return titel;
+		return this.titel;
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Report implements Serializable{
 	 * @return createDate
 	 */
 	public Date getCreateDate(){
-		return createDate;
+		return this.createDate;
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class Report implements Serializable{
 	 * @return
 	 */
 	public Paragraph getHeader(){
-		return header;
+		return this.header;
 	}
 	
 	/**

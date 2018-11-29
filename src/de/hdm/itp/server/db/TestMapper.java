@@ -10,8 +10,7 @@ import de.hdm.itp.shared.report.SimpleReport;
 import de.hdm.itp.server.EditorAdministrationImpl;
 import de.hdm.itp.server.ReportGeneratorImpl;
 import de.hdm.itp.server.db.*;
-
-import de.hdm.itp.shared.bo.Post;
+import de.hdm.itp.shared.bo.*;
 
 public class TestMapper {
 
@@ -21,7 +20,8 @@ public class TestMapper {
 		final PostMapper pMapper = PostMapper.postMapper();
 
 		
-		
+		final CommentMapper cMapper = CommentMapper.commentMapper();
+
 	
 	 final UserMapper uMapper = UserMapper.userMapper();
 	 
@@ -32,6 +32,8 @@ public class TestMapper {
 		String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 		
 		User u = new User();
+		u.setId(10000001);
+	/*	User u = new User();
 		u.setId(10000002);
 		u.setEmail("test2@test.de");
 		u.setFirstname("Nieeels");
@@ -50,7 +52,7 @@ public class TestMapper {
 		u3 = uMapper.findByID(u2);
 		System.out.println(u3.toString());
 		System.out.println(u3.getFirstname());
-		
+	*/	
 		
 		ReportGeneratorImpl report =  new ReportGeneratorImpl();
 		
@@ -67,13 +69,38 @@ public class TestMapper {
 		
 	 */
 		
+	/*	 final LikeMapper lMapper = LikeMapper.likeMapper();
+
 		
+		Vector<Like> result = lMapper.findAllByUID(u);
+		for(Like l : result) {
+		System.out.println(l.getOwnerId());
+		System.out.println(l.getCreateDate());
+		
+		
+		}
+		
+	*/	
+		 final SubsMapper sMapper = SubsMapper.subsMapper();
+
+			
+			Vector<Subs> result = sMapper.findAllByCurrentUserId(u);
+			for(Subs su : result) {
+			System.out.println(su.getCurrentUser());
+			System.out.println(su.getCreateDate());
+
+			
+			
+			}
+		/*
 		Vector<Post> result = pMapper.findAllByUID(u);
 		for(Post p : result) {
-		System.out.println(p.getContent());}
+		System.out.println(p.getContent());
+		System.out.println(p.getCreateDate());
+		}
 		
 		//report.getAllPostsOfUser(u6)	
-		
+		*/
 	}
 
 	

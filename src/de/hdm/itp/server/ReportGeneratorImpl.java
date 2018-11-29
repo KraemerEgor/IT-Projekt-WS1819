@@ -1,5 +1,6 @@
 package de.hdm.itp.server;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
@@ -163,6 +164,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
 			likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
 
+			
 			result.addRow(likesRow);
 		}
 
@@ -293,7 +295,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			Row subsRow = new Row();
 
 			subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
-			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate()))); 
 			
 			result.addRow(subsRow);
 		}

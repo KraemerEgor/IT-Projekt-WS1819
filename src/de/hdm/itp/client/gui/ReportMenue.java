@@ -121,25 +121,25 @@ public class ReportMenue implements EntryPoint{
 		public void onClick (ClickEvent event) {
 			final int lbIndex =listBox.getSelectedIndex();
 			if(lbIndex == 0) {
-				Window.alert("This is 0");
+			//	Window.alert("This is 0");
 				reportGenerator.createAllSubsFromUserReport(u, new AllSubsFromUserReportForm());
 				
 	
 			}
 			else if (lbIndex == 1) {
-				Window.alert("This is 1");
+				//	Window.alert("This is 1");
 				reportGenerator.createAllSubsOfUserReport(u, new AllSubsOfUserReportForm());
 				
 
 			}
 			else if (lbIndex == 2) {
-				Window.alert("This is 2");
+				//	Window.alert("This is 2");
 				reportGenerator.createAllCommentsFromUserReport(u, new AllCommentsFromUserReportForm());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
 
 
 			}
 			else if (lbIndex == 3) {
-				Window.alert("This is 3");
+				//		Window.alert("This is 3");
 				
 				reportGenerator.createAllLikesFromUserReport(u, new AllLikesFromUserReportForm());
 
@@ -153,7 +153,7 @@ public class ReportMenue implements EntryPoint{
 			
 			}
 			else {
-				Window.alert("still not");	
+				Window.alert("non of the selected ones");	
 			}
 		}
 		});

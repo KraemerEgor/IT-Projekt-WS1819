@@ -24,7 +24,6 @@ public class AllLikesFromUserReportForm implements AsyncCallback<AllLikesFromUse
 	@Override
 	public void onSuccess(AllLikesFromUserReport report) {
 		
-		Window.alert("Klappt");
 
 		if(report != null) {
 			

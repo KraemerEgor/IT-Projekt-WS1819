@@ -24,17 +24,12 @@ public class AllSubsOfUserReportForm implements AsyncCallback<AllSubsOfUserRepor
 	@Override
 	public void onSuccess(AllSubsOfUserReport report) {
 		
-		Window.alert("Klappt");
-
 		if(report != null) {
 			
 			HTMLReportWriter writer = new HTMLReportWriter();
 			writer.process(report);
 			RootPanel.get().clear();
 			RootPanel.get().add(new HTML(writer.getReportText()));
-			
-			Window.alert("Klappt");
-
 			
 		
 	}

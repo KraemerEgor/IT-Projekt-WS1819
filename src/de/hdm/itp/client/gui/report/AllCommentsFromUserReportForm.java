@@ -22,7 +22,6 @@ public class AllCommentsFromUserReportForm implements AsyncCallback<AllCommentsF
 
 	public void onSuccess(AllCommentsFromUserReport report) {
 		
-		Window.alert("Klappt");
 
 		if(report != null) {
 			
@@ -30,9 +29,6 @@ public class AllCommentsFromUserReportForm implements AsyncCallback<AllCommentsF
 			writer.process(report);
 			RootPanel.get().clear();
 			RootPanel.get().add(new HTML(writer.getReportText()));
-			
-			Window.alert("Klappt");
-
 			
 		
 	}

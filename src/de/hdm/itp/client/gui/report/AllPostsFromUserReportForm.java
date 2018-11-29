@@ -24,8 +24,6 @@ public class AllPostsFromUserReportForm implements AsyncCallback<AllPostsFromUse
 	@Override
 	public void onSuccess(AllPostsFromUserReport report) {
 		
-		Window.alert("Klappt");
-
 		if(report != null) {
 			
 			HTMLReportWriter writer = new HTMLReportWriter();
@@ -33,8 +31,6 @@ public class AllPostsFromUserReportForm implements AsyncCallback<AllPostsFromUse
 			RootPanel.get().clear();
 			RootPanel.get().add(new HTML(writer.getReportText()));
 			
-			Window.alert("Klappt");
-
 			
 		
 	}
