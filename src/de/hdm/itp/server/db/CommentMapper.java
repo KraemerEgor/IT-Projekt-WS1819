@@ -102,7 +102,75 @@ Vector<Comment> result = new Vector<Comment>();
 			e2.printStackTrace();
 		}
 		return result;
-	}
+	} 
+	
+	/*
+	 * edited by Leo for findBetweenDates in the report generator begins in the DataBase ,
+	 *  the Comment Object comes from the ReportMenue when the user Selects date From when and Till when he wants to select Comments
+	 *  this will be needed for
+	 *  Like 
+	 *  Post
+	 *  SubsFrom
+	 *  SubsOf
+	 *  (comment) 
+	 *  
+	 *  #### This method findAllByUIDandDate is not working for now ####
+	 *  
+	 *  ERROR
+	 *  You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '10:10:10.0 AND 2020-09-23 10:10:10.0 ORDER BY modDate' at line 1
+	 *  
+	 *  you can test it in the testMapper 
+	 *  
+	 *  like this
+	 *  
+	 *   		final CommentMapper cMapper = CommentMapper.commentMapper();
+
+	 *  
+	 *  	User u = new User();
+		Comment c = new Comment();
+	 *  
+	 *  java.sql.Timestamp createdate = java.sql.Timestamp.valueOf("2007-09-23 10:10:10.0");
+		java.sql.Timestamp moddate = java.sql.Timestamp.valueOf("2020-09-23 10:10:10.0");
+
+		c.setCreateDate(createdate);
+		c.setModDate(moddate);
+		
+		System.out.println(ts);
+
+		Vector<Comment> result = cMapper.findAllByUIDandDate(u, c);
+		for (Comment c1 : result) {
+			System.out.println(c1.getPostId());
+			System.out.println(c1.getOwnerId());
+			System.out.println(c1.getModDate());
+
+		}
+
+	 */
+	
+	public Vector<Comment> findAllByUIDandDate(User u , Comment cDate){
+		Connection con = DBConnection.connection();
+		Vector<Comment> result = new Vector<Comment>();
+				
+				try{
+					Statement stmt = con.createStatement();
+					ResultSet rs = stmt.executeQuery("SELECT C_ID, currentUser, post, text, createDate, modDate FROM T_Comment WHERE currentUser =" +u.getId()+" BETWEEN " + cDate.getCreateDate()+ " AND " +cDate.getModDate()+ " ORDER BY modDate");
+					
+					while (rs.next()){
+						Comment c = new Comment();
+						c.setId(rs.getInt("C_ID"));
+						c.setOwnerId(rs.getInt("currentUser"));
+						c.setPostId(rs.getInt("post"));
+						c.setText(rs.getString("text"));
+						c.setCreateDate(rs.getTimestamp("createDate"));
+						c.setModDate(rs.getTimestamp("modDate"));
+						result.addElement(c);
+					}		
+				}catch(SQLException e2){
+					e2.printStackTrace();
+				}
+				return result;
+			}
+	
 	/**
 	 * Gibt alle Comment Objekte zur�ck welche mit C_ID, currentUser, post, text, createDate, modDate bef�llt sind von einem spezifischen Post
 	 * Hierf�r holen wir C_ID, currentUser, post, text, createDate, modDate aus der T_Comment Tabelle, die dem Post mit der id zugeteilt sind, und speichern diese in einem Comment Objekt ab und f�gen diese dem Vector hinzu

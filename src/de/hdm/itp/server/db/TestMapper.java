@@ -27,6 +27,7 @@ public class TestMapper {
 		String s = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
 
 		User u = new User();
+		Comment c = new Comment();
 		u.setId(10000001);
 		/*
 		 * User u = new User(); u.setId(10000002); u.setEmail("test2@test.de");
@@ -69,12 +70,20 @@ public class TestMapper {
 		 * 
 		 */
 
-		final SubsMapper sMapper = SubsMapper.subsMapper();
+		
+		java.sql.Timestamp createdate = java.sql.Timestamp.valueOf("2007-09-23 10:10:10.0");
+		java.sql.Timestamp moddate = java.sql.Timestamp.valueOf("2020-09-23 10:10:10.0");
 
-		Vector<Subs> result = sMapper.findAllByCurrentUserId(u);
-		for (Subs su : result) {
-			System.out.println(su.getCurrentUser());
-			System.out.println(su.getCreateDate());
+		c.setCreateDate(createdate);
+		c.setModDate(moddate);
+		
+		System.out.println(ts);
+
+		Vector<Comment> result = cMapper.findAllByUIDandDate(u, c);
+		for (Comment c1 : result) {
+			System.out.println(c1.getPostId());
+			System.out.println(c1.getOwnerId());
+			System.out.println(c1.getModDate());
 
 		}
 

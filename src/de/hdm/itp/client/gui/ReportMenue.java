@@ -3,7 +3,8 @@ package de.hdm.itp.client.gui;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -45,7 +46,7 @@ public class ReportMenue implements EntryPoint {
 
 		final ListBox searchAllListBox = new ListBox();
 		final ListBox pickDateListBox = new ListBox();
-		
+
 		final VerticalPanel VerticalPanel = new VerticalPanel();
 		final VerticalPanel resultPanel = new VerticalPanel();
 
@@ -59,7 +60,7 @@ public class ReportMenue implements EntryPoint {
 		searchAllListBox.addItem("AllCommentsFromUserReport02");
 		searchAllListBox.addItem("AllLikesFromUserReport03");
 		searchAllListBox.addItem("AllPostsFromUserReport04");
-		
+
 		pickDateListBox.addItem("AllSubsFromUserReportBetween");
 		pickDateListBox.addItem("AllSubsOfUserReportBetween");
 		pickDateListBox.addItem("AllCommentsFromUserReportBetween");
@@ -72,11 +73,23 @@ public class ReportMenue implements EntryPoint {
 		Button searchButton = new Button("Search");
 
 		// datebox
-		DateBox dateFrom = new DateBox();
+		final DateBox dateFrom = new DateBox();
 		dateFrom.setValue(new Date());
+
+		dateFrom.addValueChangeHandler(new ValueChangeHandler<Date>() {
+			public void onValueChange(ValueChangeEvent<Date> event) {
+//			        Window.alert(dateFrom.getValue().toString());
+			}
+		});
 
 		DateBox dateTill = new DateBox();
 		dateTill.setValue(new Date());
+
+		dateTill.addValueChangeHandler(new ValueChangeHandler<Date>() {
+			public void onValueChange(ValueChangeEvent<Date> event) {
+//		        Window.alert(dateTill.getValue().toString());
+			}
+		});
 
 		// checkbox
 
@@ -87,7 +100,7 @@ public class ReportMenue implements EntryPoint {
 				checkBoxShowAll.setValue(true);
 				pickDateListBox.setVisible(false);
 				searchAllListBox.setVisible(true);
-				
+
 				if (checkBoxPickDate.getValue() == true) {
 					checkBoxPickDate.setValue(false);
 
@@ -100,14 +113,14 @@ public class ReportMenue implements EntryPoint {
 		checkBoxPickDate.addClickHandler(new ClickHandler() {
 
 			public void onClick(ClickEvent event) {
-								
+
 				checkBoxPickDate.setValue(true);
 				pickDateListBox.setVisible(true);
 				searchAllListBox.setVisible(false);
 				VerticalPanel.add(pickDateListBox);
 
 				if (checkBoxShowAll.getValue() == true) {
-					checkBoxShowAll.setValue(false); 
+					checkBoxShowAll.setValue(false);
 
 				} else {
 					Window.alert("You can just enable one Checkbox");
