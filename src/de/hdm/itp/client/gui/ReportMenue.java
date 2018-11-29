@@ -24,6 +24,11 @@ import java.util.Date;
 import java.util.logging.Logger;
 
 import de.hdm.itp.client.ClientsideSettings;
+import de.hdm.itp.client.gui.report.AllCommentsFromUserReportForm;
+import de.hdm.itp.client.gui.report.AllLikesFromUserReportForm;
+import de.hdm.itp.client.gui.report.AllPostsFromUserReportForm;
+import de.hdm.itp.client.gui.report.AllSubsFromUserReportForm;
+import de.hdm.itp.client.gui.report.AllSubsOfUserReportForm;
 import de.hdm.itp.shared.ReportGeneratorAsync;
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.*;
@@ -117,32 +122,32 @@ public class ReportMenue implements EntryPoint{
 			final int lbIndex =listBox.getSelectedIndex();
 			if(lbIndex == 0) {
 				Window.alert("This is 0");
-				reportGenerator.createAllSubsFromUserReport(u, new createAllSubsFromUserReportCallback());
+				reportGenerator.createAllSubsFromUserReport(u, new AllSubsFromUserReportForm());
 				
 	
 			}
 			else if (lbIndex == 1) {
 				Window.alert("This is 1");
-				reportGenerator.createAllSubsOfUserReport(u, new createAllSubsOfUserReportCallback());
+				reportGenerator.createAllSubsOfUserReport(u, new AllSubsOfUserReportForm());
 				
 
 			}
 			else if (lbIndex == 2) {
 				Window.alert("This is 2");
-				reportGenerator.createAllCommentsFromUserReport(u, new createAllCommentsFromUserReportCallback());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
+				reportGenerator.createAllCommentsFromUserReport(u, new AllCommentsFromUserReportForm());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
 
 
 			}
 			else if (lbIndex == 3) {
 				Window.alert("This is 3");
 				
-				reportGenerator.createAllLikesFromUserReport(u, new createAllLikesFromUserReportCallback());
+				reportGenerator.createAllLikesFromUserReport(u, new AllLikesFromUserReportForm());
 
 
 			}
 			else if (lbIndex == 4) {
 				
-				reportGenerator.createAllPostsFromUserReport(u, new createAllPostsFromUserReportCallback());
+				reportGenerator.createAllPostsFromUserReport(u, new AllPostsFromUserReportForm());
 
 
 			
@@ -186,7 +191,7 @@ class setUserCallback implements AsyncCallback<Void> {
 		 * aus.
 		 */
 		ClientsideSettings.getLogger().severe(
-				"Setzen der Bank fehlgeschlagen!");
+				"User wurde nicht gesetzt, etwas mit der DB stimmt nicht !");
 	}
 
 	@Override
@@ -195,173 +200,16 @@ class setUserCallback implements AsyncCallback<Void> {
 		 * Wir erwarten diesen Ausgang, wollen aber keine Notifikation
 		 * ausgeben.
 		 */
-		Window.alert("hier in der set Bank Classe");
+		Window.alert("User gesetzt und DB funktioniert!");
 
 	}
 
 }
 
-class createAllCommentsFromUserReportCallback implements AsyncCallback<AllCommentsFromUserReport> {
 
-	@Override
-	public void onFailure(Throwable caught) {
-		
-		ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
-		Window.alert("Fehlgeschlagen");
-		Window.alert(caught.getMessage());
-		
-	}
-
-	public void onSuccess(AllCommentsFromUserReport report) {
-		
-		Window.alert("Klappt");
-
-		if(report != null) {
-			
-			HTMLReportWriter writer = new HTMLReportWriter();
-			writer.process(report);
-			RootPanel.get().clear();
-			RootPanel.get().add(new HTML(writer.getReportText()));
-			
-			Window.alert("Klappt");
-
-			
-		
-	}
-}
-
-}
 	
-	class createAllPostsFromUserReportCallback implements AsyncCallback<AllPostsFromUserReport> {
+	
+	
 
-		
 
-		@Override
-		public void onFailure(Throwable caught) {
-			
-			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
-			Window.alert(caught.getMessage());
-			
-		}
-
-		@Override
-		public void onSuccess(AllPostsFromUserReport report) {
-			
-			Window.alert("Klappt");
-
-			if(report != null) {
-				
-				HTMLReportWriter writer = new HTMLReportWriter();
-				writer.process(report);
-				RootPanel.get().clear();
-				RootPanel.get().add(new HTML(writer.getReportText()));
-				
-				Window.alert("Klappt");
-
-				
-			
-		}
-	}
-		
-		
-		}
-	class createAllSubsFromUserReportCallback implements AsyncCallback<AllSubsFromUserReport> {
-
-		
-
-		@Override
-		public void onFailure(Throwable caught) {
-			
-			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
-			Window.alert(caught.getMessage());
-			
-		}
-
-		@Override
-		public void onSuccess(AllSubsFromUserReport report) {
-			
-			Window.alert("Klappt");
-
-			if(report != null) {
-				
-				HTMLReportWriter writer = new HTMLReportWriter();
-				writer.process(report);
-				RootPanel.get().clear();
-				RootPanel.get().add(new HTML(writer.getReportText()));
-				
-				Window.alert("Klappt");
-
-				
-			
-		}
-	}
-		
-		
-		}
-	class createAllSubsOfUserReportCallback implements AsyncCallback<AllSubsOfUserReport> {
-
-		
-
-		@Override
-		public void onFailure(Throwable caught) {
-			
-			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
-			Window.alert(caught.getMessage());
-			
-		}
-
-		@Override
-		public void onSuccess(AllSubsOfUserReport report) {
-			
-			Window.alert("Klappt");
-
-			if(report != null) {
-				
-				HTMLReportWriter writer = new HTMLReportWriter();
-				writer.process(report);
-				RootPanel.get().clear();
-				RootPanel.get().add(new HTML(writer.getReportText()));
-				
-				Window.alert("Klappt");
-
-				
-			
-		}
-	}
-		
-		
-		}
-	class createAllLikesFromUserReportCallback implements AsyncCallback<AllLikesFromUserReport> {
-
-		
-
-		@Override
-		public void onFailure(Throwable caught) {
-			
-			ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
-			Window.alert(caught.getMessage());
-			
-		}
-
-		@Override
-		public void onSuccess(AllLikesFromUserReport report) {
-			
-			Window.alert("Klappt");
-
-			if(report != null) {
-				
-				HTMLReportWriter writer = new HTMLReportWriter();
-				writer.process(report);
-				RootPanel.get().clear();
-				RootPanel.get().add(new HTML(writer.getReportText()));
-				
-				Window.alert("Klappt");
-
-				
-			
-		}
-	}
-		
-		
-		}
 	

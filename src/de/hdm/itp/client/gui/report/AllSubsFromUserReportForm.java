@@ -6,10 +6,10 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.hdm.itp.client.ClientsideSettings;
-import de.hdm.itp.shared.report.AllPostsFromUserReport;
+import de.hdm.itp.shared.report.AllSubsFromUserReport;
 import de.hdm.itp.shared.report.HTMLReportWriter;
 
-public class AllPostsFromUserReportForm implements AsyncCallback<AllPostsFromUserReport> {
+public class AllSubsFromUserReportForm implements AsyncCallback<AllSubsFromUserReport> {
 
 	
 
@@ -22,7 +22,7 @@ public class AllPostsFromUserReportForm implements AsyncCallback<AllPostsFromUse
 	}
 
 	@Override
-	public void onSuccess(AllPostsFromUserReport report) {
+	public void onSuccess(AllSubsFromUserReport report) {
 		
 		Window.alert("Klappt");
 

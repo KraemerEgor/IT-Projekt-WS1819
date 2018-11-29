@@ -6,10 +6,10 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.hdm.itp.client.ClientsideSettings;
-import de.hdm.itp.shared.report.AllPostsFromUserReport;
+import de.hdm.itp.shared.report.AllLikesFromUserReport;
 import de.hdm.itp.shared.report.HTMLReportWriter;
 
-public class AllPostsFromUserReportForm implements AsyncCallback<AllPostsFromUserReport> {
+public class AllLikesFromUserReportForm implements AsyncCallback<AllLikesFromUserReport> {
 
 	
 
@@ -22,7 +22,7 @@ public class AllPostsFromUserReportForm implements AsyncCallback<AllPostsFromUse
 	}
 
 	@Override
-	public void onSuccess(AllPostsFromUserReport report) {
+	public void onSuccess(AllLikesFromUserReport report) {
 		
 		Window.alert("Klappt");
 
@@ -32,13 +32,9 @@ public class AllPostsFromUserReportForm implements AsyncCallback<AllPostsFromUse
 			writer.process(report);
 			RootPanel.get().clear();
 			RootPanel.get().add(new HTML(writer.getReportText()));
-			
-			Window.alert("Klappt");
 
 			
 		
 	}
 }
-	
-	
-	}
+}
