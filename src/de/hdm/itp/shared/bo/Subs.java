@@ -3,6 +3,10 @@ package de.hdm.itp.shared.bo;
 
 public class Subs extends BusinessObject {
 	
+	
+	private static final long serialVersionUID = 1L;
+
+	
 	/**
 	 * der aktuelle User
 	 */

@@ -1,6 +1,9 @@
 package de.hdm.itp.shared.bo;
 
 public class Like extends BusinessObject {
+	
+	private static final long serialVersionUID = 1L;
+
 
 	
 	/**
