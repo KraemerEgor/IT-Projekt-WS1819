@@ -31,6 +31,7 @@ public class AllSubsFromUserReportForm implements AsyncCallback<AllSubsFromUserR
 			RootPanel.get().clear();
 			RootPanel.get().add(new HTML(writer.getReportText()));
 			
+			
 		
 	}
 }

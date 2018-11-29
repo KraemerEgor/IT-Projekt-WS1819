@@ -90,7 +90,7 @@ public class HTMLReportWriter extends ReportWriter {
 	}
 
 	/**
-	 *	 * @param r processing Report
+	 * * @param r processing Report
 	 * 
 	 */
 	public void process(AllSubsFromUserReport r) {
@@ -118,14 +118,7 @@ public class HTMLReportWriter extends ReportWriter {
 							"<td style=\"background:silver;font-weight:bold\">" + row.getColumnByIndex(k) + "</td>");
 				} else {
 					if (i >= 1) {
-						if (k == 1) {
-							Column col = row.getColumnByIndex(k);
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + this.processSubTable(col) + "</td>");
-						} else {
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
-						}
+						result.append("<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
 					} else {
 						result.append("<td valign=\"top\">" + row.getColumnByIndex(k) + "</td>");
 
@@ -169,14 +162,9 @@ public class HTMLReportWriter extends ReportWriter {
 							"<td style=\"background:silver;font-weight:bold\">" + row.getColumnByIndex(k) + "</td>");
 				} else {
 					if (i >= 1) {
-						if (k == 1) {
-							Column col = row.getColumnByIndex(k);
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + this.processSubTable(col) + "</td>");
-						} else {
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
-						}
+
+						result.append("<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
+
 					} else {
 						result.append("<td valign=\"top\">" + row.getColumnByIndex(k) + "</td>");
 
@@ -210,14 +198,9 @@ public class HTMLReportWriter extends ReportWriter {
 							"<td style=\"background:silver;font-weight:bold\">" + row.getColumnByIndex(k) + "</td>");
 				} else {
 					if (i >= 1) {
-						if (k == 1) {
-							Column col = row.getColumnByIndex(k);
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + this.processSubTable(col) + "</td>");
-						} else {
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
-						}
+
+						result.append("<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
+
 					} else {
 						result.append("<td valign=\"top\">" + row.getColumnByIndex(k) + "</td>");
 
@@ -257,14 +240,9 @@ public class HTMLReportWriter extends ReportWriter {
 							"<td style=\"background:silver;font-weight:bold\">" + row.getColumnByIndex(k) + "</td>");
 				} else {
 					if (i >= 1) {
-						if (k == 1) {
-							Column col = row.getColumnByIndex(k);
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + this.processSubTable(col) + "</td>");
-						} else {
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
-						}
+
+						result.append("<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
+
 					} else {
 						result.append("<td valign=\"top\">" + row.getColumnByIndex(k) + "</td>");
 
@@ -304,14 +282,9 @@ public class HTMLReportWriter extends ReportWriter {
 							"<td style=\"background:silver;font-weight:bold\">" + row.getColumnByIndex(k) + "</td>");
 				} else {
 					if (i >= 1) {
-						if (k == 1) {
-							Column col = row.getColumnByIndex(k);
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + this.processSubTable(col) + "</td>");
-						} else {
-							result.append(
-									"<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
-						}
+
+						result.append("<td style=\"border-top:1px solid silver\">" + row.getColumnByIndex(k) + "</td>");
+
 					} else {
 						result.append("<td valign=\"top\">" + row.getColumnByIndex(k) + "</td>");
 

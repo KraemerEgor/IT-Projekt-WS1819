@@ -1,6 +1,5 @@
 package de.hdm.itp.server;
 
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Vector;
 
@@ -25,29 +24,29 @@ import de.hdm.itp.shared.report.Row;
  * Die ReportGeneratorImpl Klasse.
  */
 @SuppressWarnings("serial")
-public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator{
-	
+public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
+
 	/** Die Instanz der Klasse der Editor Administration . */
 	private EditorAdministration admin = null;
-	
+
 	/**
 	 * Der Konstruktor für der ReportGeneratorImpl.
 	 *
 	 * @throws IllegalArgumentException the illegal argument exception
 	 */
-	public ReportGeneratorImpl () throws IllegalArgumentException {
+	public ReportGeneratorImpl() throws IllegalArgumentException {
 	}
 
-	
-/**
- * Initiiert die EditorAdministrationImpl, damit man auf die Funktionen der EditorAdministration Impl zugreifen kann.
- *
- * @throws IllegalArgumentException the illegal argument exception
- * @see javax.servlet.GenericServlet#init()
- */
+	/**
+	 * Initiiert die EditorAdministrationImpl, damit man auf die Funktionen der
+	 * EditorAdministration Impl zugreifen kann.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
+	 * @see javax.servlet.GenericServlet#init()
+	 */
 
-	public void init() throws IllegalArgumentException{
-		
+	public void init() throws IllegalArgumentException {
+
 		this.admin = EditorAdministrationImpl.editorAdministrationImpl();
 		this.admin.init();
 	}
@@ -59,8 +58,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 	protected EditorAdministration getEditorAdministration() {
 		return this.admin;
-	}	
-	
+	}
+
 	/**
 	 * Identifizierung des angemeldeten Users.
 	 *
@@ -68,35 +67,33 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * @return the user information
 	 * @throws IllegalArgumentException the illegal argument exception
 	 */
-	
-	public User getUserInformation (String email) throws IllegalArgumentException{
-		
+
+	public User getUserInformation(String email) throws IllegalArgumentException {
+
 		return this.admin.getUserByEmail(email);
 	}
 
 	public void setUser(User u) throws IllegalArgumentException {
-		
+
 	}
 
+	/*
+	 * ***************************************************************************
+	 * Abschnitt: Erstellen der Reports
+	 * ***************************************************************************
+	 */
 
-		/*
-	   * ***************************************************************************
-	   * Abschnitt: Erstellen der Reports
-	   * ***************************************************************************
-	   */
-	
 	/**
-	*  Erstellen des Reports aller Kontakte, die der angemeldete Nutzer besitzt 
-	*  und mit diesem geteilt wurden.
-	*
-	* @return the all contacts of user report
-	*/
-
+	 * Erstellen des Reports aller Kontakte, die der angemeldete Nutzer besitzt und
+	 * mit diesem geteilt wurden.
+	 *
+	 * @return the all contacts of user report
+	 */
 
 	@Override
 	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u) throws IllegalArgumentException {
-		
-		//if this.getAdministration(== null){return null;}
+
+		// if this.getAdministration(== null){return null;}
 
 		AllCommentsFromUserReport result = new AllCommentsFromUserReport();
 
@@ -112,14 +109,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		headline.addColumn(new Column("Änderungsdatum"));
 
 		result.addRow(headline);
+
 		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
 
-		for (Comment c: comments){
+		for (Comment c : comments) {
 			Row commentRow = new Row();
 
 			System.out.println(c.getText());
 			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
-			commentRow.addColumn(new Column(String.valueOf(c.getText())));
 			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
 			commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
 
@@ -129,17 +126,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 
 		/*
-			amount of comments
-		*/
-		
-	}
+		 * amount of comments
+		 */
 
-	
+	}
 
 	public AllLikesFromUserReport createAllLikesFromUserReport(User u) throws IllegalArgumentException {
 
-				//if this.getAdministration(== null){return null;}
-
+		// if this.getAdministration(== null){return null;}
 
 		AllLikesFromUserReport result = new AllLikesFromUserReport();
 
@@ -157,37 +151,27 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Vector<Like> like = this.admin.getAllLikesOfUser(u);
 
-		for (Like l: like){
+		for (Like l : like) {
 			Row likesRow = new Row();
 
 			likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
 			likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
 			likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
 
-			
 			result.addRow(likesRow);
 		}
 
 		return result;
 
-
 		/*
-
-		amount of likes
-		postID
-		createDate
-		*/
+		 * 
+		 * amount of likes postID createDate
+		 */
 	}
-
-
-
-
-
 
 	public AllPostsFromUserReport createAllPostsFromUserReport(User u) throws IllegalArgumentException {
 
-				//if this.getAdministration(== null){return null;}
-
+		// if this.getAdministration(== null){return null;}
 
 		AllPostsFromUserReport result = new AllPostsFromUserReport();
 
@@ -198,42 +182,34 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		Row headline = new Row();
 
 		headline.addColumn(new Column("Beitragsnummer"));
-		headline.addColumn(new Column("Beitragstext"));
 		headline.addColumn(new Column("Erstellungsdatum"));
 		headline.addColumn(new Column("Änderungsdatum"));
+		headline.addColumn(new Column("Beitragstext"));
 
 		result.addRow(headline);
 
 		Vector<Post> post = this.admin.getAllPostsOfUser(u);
 
-		for (Post p: post){
+		for (Post p : post) {
 			Row postRow = new Row();
 
 			postRow.addColumn(new Column(String.valueOf(p.getId())));
-			postRow.addColumn(new Column(String.valueOf(p.getContent())));
 			postRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
 			postRow.addColumn(new Column(String.valueOf(p.getModDate())));
-			
+			postRow.addColumn(new Column(String.valueOf(p.getContent())));
+
 			result.addRow(postRow);
 		}
 
-
 		return result;
 		/*
-		amount of posts
-		postId
-		createDate
-		getContent
-		getModDate
-		*/
+		 * amount of posts postId createDate getContent getModDate
+		 */
 	}
 
-
-	
 	public AllSubsFromUserReport createAllSubsFromUserReport(User u) throws IllegalArgumentException {
-		
-				//if this.getAdministration(== null){return null;}
 
+		// if this.getAdministration(== null){return null;}
 
 		AllSubsFromUserReport result = new AllSubsFromUserReport();
 
@@ -250,35 +226,29 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Vector<Subs> subs = this.admin.getSubsOfTargetUser(u);
 
-		for (Subs s: subs){
+		for (Subs s : subs) {
 			Row subsRow = new Row();
 
 			subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
 			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
-			
+
 			result.addRow(subsRow);
 		}
 
-
 		return result;
 		/*
-
-		//TODO ?? targetUserID ? TargetUser nickname ?
-		amount of Subs
-		getTargetUser
-		getCreateDate
-		*/
+		 * 
+		 * //TODO ?? targetUserID ? TargetUser nickname ? amount of Subs getTargetUser
+		 * getCreateDate
+		 */
 	}
 
-
-	
 	public AllSubsOfUserReport createAllSubsOfUserReport(User u) throws IllegalArgumentException {
-				//if this.getAdministration(== null){return null;}
-
+		// if this.getAdministration(== null){return null;}
 
 		AllSubsOfUserReport result = new AllSubsOfUserReport();
 
-		result.setTitel("All Ihre Abonnenten"); // amountOfPosts
+		result.setTitel("All Ihre Abonnenten");
 
 		result.setCreateDate(new Date());
 
@@ -291,23 +261,20 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Vector<Subs> subs = this.admin.getSubsOfCurrentUser(u);
 
-		for (Subs s: subs){
+		for (Subs s : subs) {
 			Row subsRow = new Row();
 
 			subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
-			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate()))); 
-			
+			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+
 			result.addRow(subsRow);
 		}
-
 
 		return result;
 
 		/*
-		amount of subs
-		getTargetUser
-		createDate
-		*/
+		 * amount of subs getTargetUser createDate
+		 */
 	}
 
 }

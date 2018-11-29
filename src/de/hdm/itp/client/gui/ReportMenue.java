@@ -1,4 +1,5 @@
 package de.hdm.itp.client.gui;
+
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -19,9 +20,10 @@ import com.google.gwt.user.datepicker.client.DatePicker;
 import com.google.gwt.user.client.ui.ListBox;
 import de.hdm.itp.shared.report.AllPostsFromUserReport;
 
-
 import java.util.Date;
 import java.util.logging.Logger;
+
+import de.hdm.itp.shared.*;
 
 import de.hdm.itp.client.ClientsideSettings;
 import de.hdm.itp.client.gui.report.AllCommentsFromUserReportForm;
@@ -33,183 +35,147 @@ import de.hdm.itp.shared.ReportGeneratorAsync;
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.*;
 
-public class ReportMenue implements EntryPoint{
+public class ReportMenue implements EntryPoint {
 
 	private static ReportGeneratorAsync reportGenerator = null;
-	
-	
+
 	private User u = new User();
-	
-	/* 
-	 * 5 button erstellen in einem drop down menue 
-	 * AllSubsFromUserReport
-	 * AllSubsOfUserReport
-	 * AllCommentsFromUserReport
-	 * AllLikesFromUserReport
+
+	/*
+	 * 5 button erstellen in einem drop down menue AllSubsFromUserReport
+	 * AllSubsOfUserReport AllCommentsFromUserReport AllLikesFromUserReport
 	 * AllPostsFromUserReport
 	 */
-	
+
 	public void onModuleLoad() {
-		
+
 		u.setId(10000001);
-		
-	/*	
-	 * 
-	 */
-	  if (reportGenerator == null) {
-	 
+
+		/*	
+		 * 
+		 */
+		if (reportGenerator == null) {
+
 			reportGenerator = ClientsideSettings.getReportGenerator();
 		}
-	
-	  reportGenerator.setUser(u,new setUserCallback());
-		
-		
+
+		reportGenerator.setUser(u, new setUserCallback());
+
 		final ListBox listBox = new ListBox();
 		final HorizontalPanel HorizontalPanel = new HorizontalPanel();
-	    final Label text = new Label();
-
-
+		final Label text = new Label();
 
 		final CheckBox checkBoxShowAll = new CheckBox("ShowAll");
 		final CheckBox checkBoxPickDate = new CheckBox("PickDate");
-		
+
 		final DatePicker datePicker = new DatePicker();
-
-
 
 		listBox.addItem("AllSubsFromUserReport0");
 		listBox.addItem("AllSubsOfUserReport01");
 		listBox.addItem("AllCommentsFromUserReport02");
 		listBox.addItem("AllLikesFromUserReport03");
 		listBox.addItem("AllPostsFromUserReport04");
-		
-		
+
 		checkBoxShowAll.setValue(true);
-		//checkBox.
-		
+		// checkBox.
+
 		Button searchButton = new Button("Search");
-		
-		
-		
-		//datebox
+
+		// datebox
 		DateBox dateFrom = new DateBox();
 		dateFrom.setValue(new Date());
-		
+
 		DateBox dateTill = new DateBox();
 		dateTill.setValue(new Date());
-		
-		//checkbox
+
+		// checkbox
 		checkBoxShowAll.addClickHandler(new ClickHandler() {
-		      
-		      public void onClick(ClickEvent event) {
-		        boolean checked = ((CheckBox) event.getSource()).getValue();
-		        
-		        Window.alert("It is " + (checked ? "" : "not ") + "checked");
-		      }
-		    });
-		checkBoxPickDate.addClickHandler(new ClickHandler() {
-			
-		      public void onClick(ClickEvent event) {
-		        boolean checked = ((CheckBox) event.getSource()).getValue();
-		        Window.alert("It is " + (checked ? "" : "not ") + "checked");
-		      }
-		    });
-		
-		//button
-		searchButton.addClickHandler(new ClickHandler(){
-			
-		public void onClick (ClickEvent event) {
-			final int lbIndex =listBox.getSelectedIndex();
-			if(lbIndex == 0) {
-			//	Window.alert("This is 0");
-				reportGenerator.createAllSubsFromUserReport(u, new AllSubsFromUserReportForm());
-				
-	
+
+			public void onClick(ClickEvent event) {
+				boolean checked = ((CheckBox) event.getSource()).getValue();
+
+				Window.alert("It is " + (checked ? "" : "not ") + "checked");
 			}
-			else if (lbIndex == 1) {
-				//	Window.alert("This is 1");
-				reportGenerator.createAllSubsOfUserReport(u, new AllSubsOfUserReportForm());
-				
-
-			}
-			else if (lbIndex == 2) {
-				//	Window.alert("This is 2");
-				reportGenerator.createAllCommentsFromUserReport(u, new AllCommentsFromUserReportForm());// .createAllPostsFromUserReport(postID, userID, new createAllPostsFromUserReportCallback());
-
-
-			}
-			else if (lbIndex == 3) {
-				//		Window.alert("This is 3");
-				
-				reportGenerator.createAllLikesFromUserReport(u, new AllLikesFromUserReportForm());
-
-
-			}
-			else if (lbIndex == 4) {
-				
-				reportGenerator.createAllPostsFromUserReport(u, new AllPostsFromUserReportForm());
-
-
-			
-			}
-			else {
-				Window.alert("non of the selected ones");	
-			}
-		}
 		});
-	
+		checkBoxPickDate.addClickHandler(new ClickHandler() {
+
+			public void onClick(ClickEvent event) {
+				boolean checked = ((CheckBox) event.getSource()).getValue();
+				Window.alert("It is " + (checked ? "" : "not ") + "checked");
+			}
+		});
+
+		// button
+		searchButton.addClickHandler(new ClickHandler() {
+
+			public void onClick(ClickEvent event) {
+				final int lbIndex = listBox.getSelectedIndex();
+				if (lbIndex == 0) {
+					// Window.alert("This is 0");
+					reportGenerator.createAllSubsFromUserReport(u, new AllSubsFromUserReportForm());
+					// Window.alert();
+
+				} else if (lbIndex == 1) {
+					// Window.alert("This is 1");
+					reportGenerator.createAllSubsOfUserReport(u, new AllSubsOfUserReportForm());
+
+				} else if (lbIndex == 2) {
+					// Window.alert("This is 2");
+					reportGenerator.createAllCommentsFromUserReport(u, new AllCommentsFromUserReportForm());
+
+				} else if (lbIndex == 3) {
+					// Window.alert("This is 3");
+
+					reportGenerator.createAllLikesFromUserReport(u, new AllLikesFromUserReportForm());
+
+				} else if (lbIndex == 4) {
+
+					reportGenerator.createAllPostsFromUserReport(u, new AllPostsFromUserReportForm());
+
+				} else {
+					Window.alert("non of the selected ones");
+				}
+			}
+		});
+
 		/*
-		 * RootPanel.get().add(lb);
-		 * RootPanel.get().add(btn1);
+		 * RootPanel.get().add(lb); RootPanel.get().add(btn1);
 		 * RootPanel.get("content").add(resultPanel);
 		 */
-		
+
 		RootPanel.get().add(HorizontalPanel);
 		HorizontalPanel.add(listBox);
 
 		HorizontalPanel.add(searchButton);
-		
 
 		HorizontalPanel.add(checkBoxShowAll);
 		HorizontalPanel.add(checkBoxPickDate);
-		
-	    RootPanel.get().add(text);
-	    
-	    HorizontalPanel.add(dateFrom);
-	    
-	    HorizontalPanel.add(dateTill);
-	
-		
-		
-	}}
+
+		RootPanel.get().add(text);
+
+		HorizontalPanel.add(dateFrom);
+
+		HorizontalPanel.add(dateTill);
+
+	}
+}
+
 class setUserCallback implements AsyncCallback<Void> {
 
-	
 	public void onFailure(Throwable caught) {
 		/*
-		 * Wenn ein Fehler auftritt, dann geben wir eine kurze Log Message
-		 * aus.
+		 * Wenn ein Fehler auftritt, dann geben wir eine kurze Log Message aus.
 		 */
-		ClientsideSettings.getLogger().severe(
-				"User wurde nicht gesetzt, etwas mit der DB stimmt nicht !");
+		ClientsideSettings.getLogger().severe("User wurde nicht gesetzt, etwas mit der DB stimmt nicht !");
 	}
 
 	@Override
 	public void onSuccess(Void result) {
 		/*
-		 * Wir erwarten diesen Ausgang, wollen aber keine Notifikation
-		 * ausgeben.
+		 * Wir erwarten diesen Ausgang, wollen aber keine Notifikation ausgeben.
 		 */
 		Window.alert("User gesetzt und DB funktioniert!");
 
 	}
 
 }
-
-
-	
-	
-	
-
-
-	
