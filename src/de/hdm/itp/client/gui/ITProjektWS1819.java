@@ -55,11 +55,15 @@ public class ITProjektWS1819 implements EntryPoint {
 	NavPanel np = new NavPanel();
 	MainPanel mp = new MainPanel();
 	HeaderPanel hp = new HeaderPanel();
+	Label hs = new Label();
+
 	
 	public void onModuleLoad() {
 		
+		loadApplication();
+		
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
-	    loginService.login("https://it-projekt-gruppe-10-203610.appspot.com/ITProjekt_SS18_Gr_10.html", new AsyncCallback<LoginInfo>() {
+	    loginService.login("https://it-projekt-gruppe4.appspot.com/IT_Projekt_Gruppe4_2.html", new AsyncCallback<LoginInfo>() {
 		    public void onFailure(Throwable t) {
 		    	System.out.println(t.getMessage());
 		    }
@@ -179,9 +183,12 @@ public class ITProjektWS1819 implements EntryPoint {
 		
 		
 		//das loginPanel wird dem div mit der id "Login" hinzugefügt
+		np.add(hs);
 		RootPanel.get("Login").add(loginPanel);
 		RootPanel.get("Navi").add(np);
 		RootPanel.get("Main").add(mp);
+		RootPanel.get().add(hs);
+		
 		
 
 	  }
