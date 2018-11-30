@@ -59,7 +59,8 @@ public class LikeMapper {
 
 			while (rs.next()) {
 				Like l = new Like();
-				l.setId(rs.getInt("currentUser") + rs.getInt("post"));
+				l.setOwnerId(rs.getInt("currentUser"));
+				l.setPostId(rs.getInt("post"));
 				l.setCreateDate(rs.getTimestamp("createDate"));
 				result.addElement(l);
 			}
@@ -91,8 +92,6 @@ public class LikeMapper {
 
 			while (rs.next()) {
 				Like l = new Like();
-				// TODO: check if this works
-				l.setId(rs.getInt("currentUser") * 100000000 + rs.getInt("post"));
 				l.setOwnerId(rs.getInt("currentUser"));
 				l.setPostId(rs.getInt("post"));
 				l.setCreateDate(rs.getTimestamp("createDate"));
@@ -123,9 +122,7 @@ public class LikeMapper {
 			ResultSet rs = stmt.executeQuery("SELECT post, currentUser, createDate FROM T_Like ORDER BY createDate");
 
 			while (rs.next()) {
-				Like l = new Like();
-				// TODO: check if this works
-				l.setId(rs.getInt("currentUser") * 100000000 + rs.getInt("post"));
+				Like l = new Like();		
 				l.setOwnerId(rs.getInt("currentUser"));
 				l.setPostId(rs.getInt("post"));
 				l.setCreateDate(rs.getTimestamp("createDate"));
@@ -203,7 +200,7 @@ public class LikeMapper {
 		try {
 
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate("DELETE FROM T_Comment WHERE post =" + post.getId());
+			stmt.executeUpdate("DELETE FROM T_Like WHERE post =" + post.getId());
 		}
 
 		catch (SQLException e2) {

@@ -21,6 +21,8 @@ public class TestMapper {
 		final CommentMapper cMapper = CommentMapper.commentMapper();
 
 		final UserMapper uMapper = UserMapper.userMapper();
+		
+		final LikeMapper lMapper = LikeMapper.likeMapper();
 
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 
@@ -29,6 +31,16 @@ public class TestMapper {
 		User u = new User();
 		Comment c = new Comment();
 		u.setId(10000001);
+		
+		Vector<Like> result = new Vector<Like>();
+		result = lMapper.findAll();
+		for (Like l : result) {
+			System.out.println(l.getId());
+			System.out.println(l.getOwnerId());
+			System.out.println(l.getPostId());
+			System.out.println(l.getCreateDate());
+		}
+		
 		/*
 		 * User u = new User(); u.setId(10000002); u.setEmail("test2@test.de");
 		 * u.setFirstname("Nieeels"); u.setLastname("Kapperer"); u.setGender("m");
@@ -44,10 +56,10 @@ public class TestMapper {
 		 * System.out.println(u3.getFirstname());
 		 */
 
-		ReportGeneratorImpl report = new ReportGeneratorImpl();
+		//ReportGeneratorImpl report = new ReportGeneratorImpl();
 
 		// ReportAdministrationImpl();
-		report.init();
+		//report.init();
 
 		/*
 		 * User u6 = new User(); u6.setId(10000001);
@@ -71,21 +83,21 @@ public class TestMapper {
 		 */
 
 		
-		java.sql.Timestamp createdate = java.sql.Timestamp.valueOf("2007-09-23 10:10:10.0");
-		java.sql.Timestamp moddate = java.sql.Timestamp.valueOf("2020-09-23 10:10:10.0");
-
-		c.setCreateDate(createdate);
-		c.setModDate(moddate);
-		
-		System.out.println(ts);
-
-		Vector<Comment> result = cMapper.findAllByUIDandDate(u, c);
-		for (Comment c1 : result) {
-			System.out.println(c1.getPostId());
-			System.out.println(c1.getOwnerId());
-			System.out.println(c1.getModDate());
-
-		}
+//		java.sql.Timestamp createdate = java.sql.Timestamp.valueOf("2007-09-23 10:10:10.0");
+//		java.sql.Timestamp moddate = java.sql.Timestamp.valueOf("2020-09-23 10:10:10.0");
+//
+//		c.setCreateDate(createdate);
+//		c.setModDate(moddate);
+//		
+//		System.out.println(ts);
+//
+//		Vector<Comment> result = cMapper.findAllByUIDandDate(u, c);
+//		for (Comment c1 : result) {
+//			System.out.println(c1.getPostId());
+//			System.out.println(c1.getOwnerId());
+//			System.out.println(c1.getModDate());
+//
+//		}
 
 		/*
 		 * Vector<Post> result = pMapper.findAllByUID(u); for(Post p : result) {
