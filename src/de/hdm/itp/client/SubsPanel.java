@@ -1,8 +1,6 @@
 package de.hdm.itp.client;
 
 import java.util.Vector;
-
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
@@ -10,9 +8,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
-
-import de.hdm.itp.server.EditorAdministrationImpl;
-import de.hdm.itp.shared.EditorAdministration;
 import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.User;
 
@@ -26,21 +21,10 @@ public class SubsPanel extends VerticalPanel {
 	
 	public void onLoad() {
 		super.onLoad();	
-//		if(editorAdministration == null) {
-//			
-//			editorAdministration.init(new AsyncCallback<Void>() {
-//				public void onFailure(Throwable t) {
-//					Window.alert(t.getMessage());}		
-//				@Override
-//				public void onSuccess(Void result) {
-//					
-//				}});
-//	    }
 		  
-	    if (editorAdministration == null) {
-	     editorAdministration = GWT.create(EditorAdministration.class);
+	    if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
 	    }
-	    
 	  
 
 		
