@@ -34,7 +34,7 @@
 	<servlet-mapping>
 		<servlet-name>editorAdministrationServlet</servlet-name>
 		
-		<url-pattern>/IT_Projekt_Gruppe4_2/editoradministration</url-pattern>
+		<url-pattern>/it_projekt_gruppe4_2/administration</url-pattern>
 	</servlet-mapping>
   
   

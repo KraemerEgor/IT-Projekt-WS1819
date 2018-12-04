@@ -11,7 +11,7 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.User;
 
-@RemoteServiceRelativePath("editoradministration")
+@RemoteServiceRelativePath("administration")
 public interface EditorAdministration extends RemoteService {
 
 	/**

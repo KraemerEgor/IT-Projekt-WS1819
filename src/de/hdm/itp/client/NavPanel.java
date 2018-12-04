@@ -6,7 +6,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class NavPanel extends VerticalPanel {
 	Label header_lbl = new Label("Jonger bei mir läuft, mies Nav");
-	VerticalPanel vp = new VerticalPanel();
 	
 	
 	public void onLoad() {
@@ -15,7 +14,7 @@ public class NavPanel extends VerticalPanel {
 		SearchPanel sp = new SearchPanel();
 		SubsPanel sup = new SubsPanel();
 		sp.addStyleName("Search");
-		sup.setStyleName("Subs");
+		sup.addStyleName("Subs");
 			
 		
 		header_lbl.addStyleName("label_test");
@@ -23,10 +22,9 @@ public class NavPanel extends VerticalPanel {
 		this.add(header_lbl);
 		this.add(header_lbl);
 		
-//		this.add(sp);
-//		this.add(sup);
-		vp.add(sp);
-		vp.add(sup);
+		this.add(sp);
+		this.add(sup);
+		
 		
 		
 		

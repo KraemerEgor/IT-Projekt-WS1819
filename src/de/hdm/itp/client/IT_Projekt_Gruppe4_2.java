@@ -61,12 +61,6 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	NavPanel np = new NavPanel();
 	MainPanel mp = new MainPanel();
 	HeaderPanel hp = new HeaderPanel();
-	SubsPanel sup = new SubsPanel();
-	SearchPanel sp = new SearchPanel();
-	
-	
-	
-
 	
 	
 	public void onModuleLoad() {
