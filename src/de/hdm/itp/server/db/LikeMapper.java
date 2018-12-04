@@ -87,7 +87,7 @@ public class LikeMapper {
 
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT post, currentUser, createDate FROM T_Like WHERE post ="
+			ResultSet rs = stmt.executeQuery("SELECT post, currentUser, createDate FROM T_Like WHERE currentUser ="
 					+ user.getId() + " ORDER BY createDate");
 
 			while (rs.next()) {

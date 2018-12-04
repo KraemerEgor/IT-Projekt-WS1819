@@ -38,25 +38,20 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
 	
-//	/** Die Instanzenvariablen, die mit dem Login-Service zusammenhängen. */
-//	private LoginInfo loginInfo = null;
-//	private VerticalPanel loginPanel = new VerticalPanel();
-//	private Label loginLabel = new Label(
-//	      "Bitte loggen Sie sich mit ihrem Google-Account ein, um die Anwendung zu nutzen.");
-//	private Anchor signInLink = new Anchor("Sign In");
-//	private Anchor signOutLink = new Anchor("Sign Out");
-//	private Label signedInUser = null;
-//	
-//	/** Der aktuelle User. */
-//	User user = null;
-//	EditorAdministrationAsync editorAdministration = null;
-//	/** Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint */
-//	ClientsideFunctions.InputDialogBox createAccountBox = null;
+	/** Die Instanzenvariablen, die mit dem Login-Service zusammenhängen. */
+	private LoginInfo loginInfo = null;
+	private VerticalPanel loginPanel = new VerticalPanel();
+	private Label loginLabel = new Label(
+	      "Bitte loggen Sie sich mit ihrem Google-Account ein, um die Anwendung zu nutzen.");
+	private Anchor signInLink = new Anchor("Sign In");
+	private Anchor signOutLink = new Anchor("Sign Out");
+	private Label signedInUser = null;
 	
 	
-	//gehört das hier rein?
-	/** Das TreeviewModel für das Navpanel */
-	//SubsTreeViewModel stvm = new SubsTreeViewModel();
+	User user = null;
+	EditorAdministrationAsync editorAdministration = null;
+	/** Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint */
+	ClientsideFunctions.InputDialogBox createAccountBox = null;
 	
 	NavPanel np = new NavPanel();
 	MainPanel mp = new MainPanel();
@@ -64,6 +59,8 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	
 	
 	public void onModuleLoad() {
+		
+		
 
 
 		RootPanel.get("Head").add(hp);

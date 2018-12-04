@@ -12,7 +12,6 @@ import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.User;
 
 public class SubsPanel extends VerticalPanel {
-	SubsTreeViewModel stvm = null;
 	private EditorAdministrationAsync editorAdministration = null;
 	VerticalPanel vp = new VerticalPanel();
 	Label header_lbl = new Label("Subs Panel:");
@@ -26,14 +25,10 @@ public class SubsPanel extends VerticalPanel {
 			editorAdministration = ClientsideSettings.getAdministration();
 	    }
 	  
-
-		
-		
 		this.addStyleName("Subs");
 		this.setStyleName("Subs");
 		NewCHtest n = new NewCHtest();
 		btn_test.addClickHandler(n);
-		//this.add(stvm);
 		this.add(btn_test);
 		vp.add(header_lbl);
 		this.add(vp);
@@ -60,7 +55,6 @@ public class SubsPanel extends VerticalPanel {
 			});
 			
 		}
-		
 		
 	}
 	

@@ -33,7 +33,7 @@ public class TestMapper {
 		u.setId(10000001);
 		
 		Vector<Like> result = new Vector<Like>();
-		result = lMapper.findAll();
+		result = lMapper.findAllByUID(u);
 		for (Like l : result) {
 			System.out.println(l.getId());
 			System.out.println(l.getOwnerId());
