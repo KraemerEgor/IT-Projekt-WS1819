@@ -60,8 +60,6 @@ public class ITProjektWS1819 implements EntryPoint {
 	
 	public void onModuleLoad() {
 		
-		loadApplication();
-		
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
 	    loginService.login("https://it-projekt-gruppe4.appspot.com/IT_Projekt_Gruppe4_2.html", new AsyncCallback<LoginInfo>() {
 		    public void onFailure(Throwable t) {
