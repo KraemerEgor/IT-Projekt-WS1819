@@ -23,8 +23,8 @@ public class NavPanel extends VerticalPanel {
 		this.add(header_lbl);
 		this.add(header_lbl);
 		
-//		this.add(sp);
-//		this.add(sup);
+		this.add(sp);
+		this.add(sup);
 		vp.add(sp);
 		vp.add(sup);
 		
