@@ -29,9 +29,9 @@ public class PinboardPanel extends ScrollPanel {
 		
 		boolean own = false;
 		
-		if (u == currentUser) {
+		//if (u == currentUser) {
 			own = true;
-		}
+		//}
 		
 	}
 
