@@ -59,17 +59,51 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	
 	
 	public void onModuleLoad() {
+		LoginServiceAsync loginService = GWT.create(LoginService.class);
+	    loginService.login("https://it-projekt-gruppe4.appspot.com/IT_Projekt_Gruppe4_2.html", new AsyncCallback<LoginInfo>() {
+		    public void onFailure(Throwable t) {
+		    	System.out.println(t.getMessage());
+		    }
+	
+		    public void onSuccess(LoginInfo result) {
+		    	loginInfo = result;
+		    	if(loginInfo.isLoggedIn()) {
+		    		loadUserInformation();
+		    		
+		    		
+		    	}
+		    	else {
+		    		//ist der Benutzer nicht eingeloggt, so wird er auf die LoginSeite weitergeleitet 
+		    		//TODO
+		    		loadLogin();
+		    	}
+		    }
+	    });
+		loadUserInformation();
+				
+	}
+	
+	public void loadUserInformation() {
 		
+		loadApplication();
 		
-
-
+	}
+	
+	public void loadApplication(){
 		RootPanel.get("Head").add(hp);
 		RootPanel.get("Nav").add(np);
 		RootPanel.get("Main").add(mp);
-
-		
 		
 	}
+	
+	private void loadLogin() {
+		  
+		signInLink.setHref(loginInfo.getLoginUrl());
+	    loginPanel.add(loginLabel);
+	    loginPanel.add(signInLink);
+	    RootPanel.get("Login").add(loginPanel);
+	}
+	
 	}
 
 

@@ -16,6 +16,10 @@ public class SubsPanel extends VerticalPanel {
 	VerticalPanel vp = new VerticalPanel();
 	Label header_lbl = new Label("Subs Panel:");
 	Button btn_test = new Button("Test DB");
+
+	SubsTreeViewModel stvm = new SubsTreeViewModel();
+	User u = new User();
+	
 	
 	
 	public void onLoad() {
@@ -32,7 +36,13 @@ public class SubsPanel extends VerticalPanel {
 		this.add(btn_test);
 		vp.add(header_lbl);
 		this.add(vp);
-		Window.alert("Subs geladen");
+		
+		u.setId(10000001);
+		u.setFirstname("egor");
+		u.setLastname("krämer");
+		u.setNickname("kulak");
+		u.setGender("m");
+		stvm.getNodeInfo(u);
 		
 	}
 

@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.Label;
 
 public class HeaderPanel extends HorizontalPanel {
 	
-	Label header_lbl = new Label("Jonger bei mir läuft, mies Head");
+	Label header_lbl = new Label("Das ist ein Label vom HeaderPanel");
 	
 	public void onLoad() {
 		
