@@ -24,14 +24,18 @@ import de.hdm.itp.client.gui.report.AllLikesFromUserReportForm;
 import de.hdm.itp.client.gui.report.AllPostsFromUserReportForm;
 import de.hdm.itp.client.gui.report.AllSubsFromUserReportForm;
 import de.hdm.itp.client.gui.report.AllSubsOfUserReportForm;
+import de.hdm.itp.client.gui.report.ReportResultPanel;
 import de.hdm.itp.shared.ReportGeneratorAsync;
 import de.hdm.itp.shared.bo.User;
+import de.hdm.itp.shared.report.AllCommentsFromUserReport;
+import de.hdm.itp.shared.report.HTMLReportWriter;
 
 public class ReportMenue implements EntryPoint {
 
 	private static ReportGeneratorAsync reportGenerator = null;
 
 	private User u = new User();
+
 
 	public void onModuleLoad() {
 
@@ -166,6 +170,34 @@ public class ReportMenue implements EntryPoint {
 				}
 			}
 		});
+		
+		
+		//pickDateListBox
+		searchButton.addClickHandler(new ClickHandler() {
+
+			public void onClick(ClickEvent event) {
+				final int lbIndex = pickDateListBox.getSelectedIndex();
+				if (lbIndex == 0) {
+
+					resultPanel.clear();
+//					resultPanel.add(new AllCommentsFromUserReportBetweenDatesForm(u, dateFrom.getValue(),dateTill.getValue()));
+					RootPanel.get().add(resultPanel);
+					Window.alert(dateFrom.getValue().toString());
+
+				} else if (lbIndex == 1) {
+					Window.alert("nothing here yet, try it later again!");
+
+				} else if (lbIndex == 2) {
+					Window.alert("nothing here yet, try it later again!");
+				} else if (lbIndex == 3) {
+					Window.alert("nothing here yet, try it later again!");
+				} else if (lbIndex == 4) {
+					Window.alert("nothing here yet, try it later again!");
+				} else {
+					Window.alert("non of the selected ones");
+				}
+			}
+		});
 
 		/*
 		 * RootPanel.get().add(lb); RootPanel.get().add(btn1);
@@ -188,6 +220,44 @@ public class ReportMenue implements EntryPoint {
 
 	}
 }
+ class AllCommentsFromUserBetweenDatesReportForm extends ReportResultPanel {
+
+	private User u;
+
+	public AllCommentsFromUserBetweenDatesReportForm(User u) {
+		this.u = u;
+		run();
+	}
+
+	protected void run() {
+
+		ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();
+
+		reportGenerator.createAllCommentsFromUserReport(u, new AsyncCallback<AllCommentsFromUserReport>() {
+
+			public void onFailure(Throwable caught) {
+
+				ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
+				Window.alert("Fehlgeschlagen");
+				Window.alert(caught.getMessage());
+
+			}
+
+			public void onSuccess(AllCommentsFromUserReport report) {
+
+				if (report != null) {
+
+					HTMLReportWriter writer = new HTMLReportWriter();
+					writer.process(report);
+					append(writer.getReportText());
+
+				}
+			}
+
+		});
+	}
+}
+
 
 class setUserCallback implements AsyncCallback<Void> {
 

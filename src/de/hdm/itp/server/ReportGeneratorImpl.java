@@ -91,6 +91,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 
 	@Override
+	
+	//TODO dateFrom DateTill übergeben
 	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u) throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
@@ -112,6 +114,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
 
+		//wenn date übergeben wir und nicht null ist dann filter nach date from till
+		
 		for (Comment c : comments) {
 			Row commentRow = new Row();
 

@@ -20,6 +20,6 @@ public interface ReportGenerator extends RemoteService {
 
 	public abstract AllSubsFromUserReport createAllSubsFromUserReport(User u) throws IllegalArgumentException;
 
-	public abstract AllSubsOfUserReport createAllSubsOfUserReport(User u) throws IllegalArgumentException;	
+	public abstract AllSubsOfUserReport createAllSubsOfUserReport(User u) throws IllegalArgumentException;
 
 }
