@@ -94,6 +94,12 @@ public class ReportMenue implements EntryPoint {
 //		        Window.alert(dateTill.getValue().toString());
 			}
 		});
+		
+		dateFrom.setVisible(false);
+		dateTill.setVisible(false);
+		
+		dateFrom.setValue(null);
+		dateTill.setValue(null);
 
 		// checkbox
 
@@ -104,7 +110,11 @@ public class ReportMenue implements EntryPoint {
 				checkBoxShowAll.setValue(true);
 				pickDateListBox.setVisible(false);
 				searchAllListBox.setVisible(true);
-
+				dateFrom.setVisible(false);
+				dateTill.setVisible(false);
+				dateFrom.setValue(null);
+				dateTill.setValue(null);
+				
 				if (checkBoxPickDate.getValue() == true) {
 					checkBoxPickDate.setValue(false);
 
@@ -122,7 +132,10 @@ public class ReportMenue implements EntryPoint {
 				pickDateListBox.setVisible(true);
 				searchAllListBox.setVisible(false);
 				VerticalPanel.add(pickDateListBox);
-
+				dateFrom.setVisible(true);
+				dateTill.setVisible(true);
+	
+				
 				if (checkBoxShowAll.getValue() == true) {
 					checkBoxShowAll.setValue(false);
 
@@ -143,6 +156,9 @@ public class ReportMenue implements EntryPoint {
 					resultPanel.clear();
 					resultPanel.add(new AllSubsFromUserReportForm(u));
 					RootPanel.get().add(resultPanel);
+					
+					
+					Window.alert(dateFrom.getValue() + "dateFrom hat folgenden Wert");
 
 				} else if (lbIndex == 1) {
 					resultPanel.clear();
@@ -173,31 +189,31 @@ public class ReportMenue implements EntryPoint {
 		
 		
 		//pickDateListBox
-		searchButton.addClickHandler(new ClickHandler() {
-
-			public void onClick(ClickEvent event) {
-				final int lbIndex = pickDateListBox.getSelectedIndex();
-				if (lbIndex == 0) {
-
-					resultPanel.clear();
-//					resultPanel.add(new AllCommentsFromUserReportBetweenDatesForm(u, dateFrom.getValue(),dateTill.getValue()));
-					RootPanel.get().add(resultPanel);
-					Window.alert(dateFrom.getValue().toString());
-
-				} else if (lbIndex == 1) {
-					Window.alert("nothing here yet, try it later again!");
-
-				} else if (lbIndex == 2) {
-					Window.alert("nothing here yet, try it later again!");
-				} else if (lbIndex == 3) {
-					Window.alert("nothing here yet, try it later again!");
-				} else if (lbIndex == 4) {
-					Window.alert("nothing here yet, try it later again!");
-				} else {
-					Window.alert("non of the selected ones");
-				}
-			}
-		});
+//		searchButton.addClickHandler(new ClickHandler() {
+//
+//			public void onClick(ClickEvent event) {
+//				final int lbIndex = pickDateListBox.getSelectedIndex();
+//				if (lbIndex == 0) {
+//
+//					resultPanel.clear();
+////					resultPanel.add(new AllCommentsFromUserReportBetweenDatesForm(u, dateFrom.getValue(),dateTill.getValue()));
+//					RootPanel.get().add(resultPanel);
+//					Window.alert(dateFrom.getValue().toString());
+//
+//				} else if (lbIndex == 1) {
+//					Window.alert("nothing here yet, try it later again!");
+//
+//				} else if (lbIndex == 2) {
+//					Window.alert("nothing here yet, try it later again!");
+//				} else if (lbIndex == 3) {
+//					Window.alert("nothing here yet, try it later again!");
+//				} else if (lbIndex == 4) {
+//					Window.alert("nothing here yet, try it later again!");
+//				} else {
+//					Window.alert("non of the selected ones");
+//				}
+//			}
+//		});
 
 		/*
 		 * RootPanel.get().add(lb); RootPanel.get().add(btn1);
