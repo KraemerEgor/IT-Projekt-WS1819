@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class NavPanel extends VerticalPanel {
-	Label header_lbl = new Label("Jonger bei mir läuft, mies Nav");
+	Label header_lbl = new Label("Label vom NavigationsPanel");
 	VerticalPanel vp = new VerticalPanel();
 	SearchPanel sp = new SearchPanel();
 	SubsPanel sup = new SubsPanel();

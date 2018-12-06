@@ -1,8 +1,13 @@
 package de.hdm.itp.client;
 
-import java.io.Serializable;
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class LoginInfo implements Serializable {
+/*
+ * Das Ergebnis des Login-Dienstes ist eine Instanz der Klasse "LoginInfo" mit
+ * verschiedenen Informationen über den angemeldeten Nutzer.
+ */
+
+public class LoginInfo implements IsSerializable {
 
   private boolean loggedIn = false;
   private String loginUrl;
