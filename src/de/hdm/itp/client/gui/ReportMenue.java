@@ -152,7 +152,7 @@ public class ReportMenue implements EntryPoint {
 
 				} else if (lbIndex == 2) {
 					resultPanel.clear();
-					resultPanel.add(new AllCommentsFromUserReportForm(u));
+			//		resultPanel.add(new AllCommentsFromUserReportForm(u));
 					RootPanel.get().add(resultPanel);
 
 				} else if (lbIndex == 3) {
@@ -220,43 +220,9 @@ public class ReportMenue implements EntryPoint {
 
 	}
 }
- class AllCommentsFromUserBetweenDatesReportForm extends ReportResultPanel {
 
-	private User u;
 
-	public AllCommentsFromUserBetweenDatesReportForm(User u) {
-		this.u = u;
-		run();
-	}
-
-	protected void run() {
-
-		ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();
-
-		reportGenerator.createAllCommentsFromUserReport(u, new AsyncCallback<AllCommentsFromUserReport>() {
-
-			public void onFailure(Throwable caught) {
-
-				ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
-				Window.alert("Fehlgeschlagen");
-				Window.alert(caught.getMessage());
-
-			}
-
-			public void onSuccess(AllCommentsFromUserReport report) {
-
-				if (report != null) {
-
-					HTMLReportWriter writer = new HTMLReportWriter();
-					writer.process(report);
-					append(writer.getReportText());
-
-				}
-			}
-
-		});
-	}
-}
+	
 
 
 class setUserCallback implements AsyncCallback<Void> {

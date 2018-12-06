@@ -93,7 +93,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	@Override
 	
 	//TODO dateFrom DateTill übergeben
-	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u) throws IllegalArgumentException {
+	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 

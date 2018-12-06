@@ -1,5 +1,7 @@
 package de.hdm.itp.shared;
 
+import java.util.Date;
+
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -28,8 +30,7 @@ public interface ReportGeneratorAsync {
 	void createAllSubsOfUserReport(User u,
 			AsyncCallback<AllSubsOfUserReport> callback);
 	
-	void createAllCommentsFromUserReport(User u,
-			AsyncCallback<AllCommentsFromUserReport> callback);
+	void createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllCommentsFromUserReport> callback);
 	
 	void createAllPostsFromUserReport(User u,
 			AsyncCallback<AllPostsFromUserReport> callback);

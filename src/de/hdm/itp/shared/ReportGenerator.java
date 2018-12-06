@@ -1,5 +1,7 @@
 package de.hdm.itp.shared;
 
+import java.util.Date;
+
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import de.hdm.itp.shared.bo.*;
@@ -12,7 +14,7 @@ public interface ReportGenerator extends RemoteService {
 
 	public void setUser(User u) throws IllegalArgumentException;
 
-	public abstract AllCommentsFromUserReport createAllCommentsFromUserReport(User u) throws IllegalArgumentException; 
+	public abstract AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException; 
 
 	public abstract AllLikesFromUserReport createAllLikesFromUserReport(User u) throws IllegalArgumentException;
 
