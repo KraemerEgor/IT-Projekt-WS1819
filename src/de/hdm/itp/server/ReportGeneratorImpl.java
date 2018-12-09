@@ -3,6 +3,8 @@ package de.hdm.itp.server;
 import java.util.Date;
 import java.util.Vector;
 
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.itp.shared.EditorAdministration;
@@ -113,6 +115,15 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		result.addRow(headline);
 
 		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
+		
+		if(dateFrom != null) {
+			
+			System.out.println("###################");
+			Window.alert("date select working");
+		}else {
+			Window.alert("date not working");
+		}
+		
 
 		//wenn date übergeben wir und nicht null ist dann filter nach date from till
 		
@@ -281,5 +292,4 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 * amount of subs getTargetUser createDate
 		 */
 	}
-
 }
