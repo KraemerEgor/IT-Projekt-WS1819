@@ -1,33 +1,41 @@
 /** Add css rules here for your application. */
+*, body, html{
+	margin-top: 0px;
+	padding: 0px;
+	
+}
+
+html {
+	min-width: 100%;
+}
+
 
 div#Login {
 	float: right;
 	padding: 5px;
 	background-color: #00ff40;
-	border-right: 3px solid #00868B;
+	
 }
-div#Head {
-	float: top;
-	background-color: #ff0000;
-	border-right: 3px solid #00868B;
+#Head {
+	margin-top: 0px!important;
+	background-color: #39cccc;
+	padding: 14px;
 }
-div#Main {
+
+#Main {
 	float: right;
-	clear: right;
+	padding: 14px;
     width: 66%;
-    height: auto;
-	padding: 5px;
-	background-color: #000080;
-	border-right: 3px solid #00868B;
+    min-height: 700px;
+	background-color: rgb(204, 111, 57);
+	
 }
-div#Nav {
+#Nav {
 	float: left;
-	clear: left;
+	padding: 14px;
     width: 30%;
-    height: auto;
-	padding: 5px;
-	background-color: #8080ff;
-	border-right: 3px solid #00868B;
+    min-height: 700px;
+	background-color: #177f7f;
 }
 div#Subs {
 
