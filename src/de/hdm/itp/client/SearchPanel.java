@@ -18,6 +18,8 @@ import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 public class SearchPanel extends FlowPanel {
 	
 	private Anchor reportLink = new Anchor("Report");
+	private Button reportBtn = new Button("Zum Report-Generator");
+
 
 	
 	Label header_lbl = new Label("Test"); 
@@ -32,24 +34,26 @@ public class SearchPanel extends FlowPanel {
 			}
 		});
 
-	Button reportBtn = new Button("Add", new ClickHandler() {
-		public void onClick(ClickEvent event) {
-			reportLink.setHref(GWT.getHostPageBaseURL() + "FeedRepots.html");
-			Window.open(reportLink.getHref(), "_self", "");
-			}
-		});
+	
 	
 	
 	
 	public void onLoad() {
 		
 		super.onLoad();
+		
+		reportBtn.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				reportLink.setHref(GWT.getHostPageBaseURL() + "FeedReports.html");
+				Window.open(reportLink.getHref(), "_self", "");
+				}
+			});
 		this.addStyleName("Search");			
 			header_lbl.addStyleName("label_test");
 		this.add(header_lbl);
 		this.add(profile_btn);
 		this.add(add_btn);
-		this.add(reportLink);
+		this.add(reportBtn);
 		
 		MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 		SuggestBox suggestbox = new SuggestBox(oracle);	
