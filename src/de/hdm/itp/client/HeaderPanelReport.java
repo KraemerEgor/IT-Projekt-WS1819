@@ -13,7 +13,6 @@ public class HeaderPanelReport  extends HorizontalPanel {
 		this.addStyleName("Header_Report");
 		
 		this.setWidth("100%");
-		this.setBorderWidth(2);
 		this.setHeight("220px");
 		this.getElement().getStyle().setBackgroundColor("grey");
 		
