@@ -5,8 +5,8 @@ import com.google.gwt.user.client.ui.Label;
 
 public class MainPanel extends HorizontalPanel {
 	
-	Label header_lbl = new Label("Jonger bei mir läuft, mies Main");
-	PinboardPanel content = new PinboardPanel();
+	Label header_lbl = new Label("MainPanel");
+	
 	
 public void onLoad() {
 		
@@ -15,7 +15,9 @@ public void onLoad() {
 		
 		
 		
-		this.add(content);
+		header_lbl.addStyleName("label_test");
+		header_lbl.setWidth("210px");
+		this.add(header_lbl);
 		
 }
 

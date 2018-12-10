@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.hdm.itp.client.ClientsideSettings;
 import de.hdm.itp.shared.ReportGeneratorAsync;
@@ -31,6 +32,9 @@ public class AllCommentsFromUserReportForm extends ReportResultPanel {
 		reportGenerator.createAllCommentsFromUserReport(u, dateFrom, dateTill,  new AsyncCallback<AllCommentsFromUserReport>() {
 
 			public void onFailure(Throwable caught) {
+				
+				Window.alert(dateFrom.toString());
+
 
 				ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
 				Window.alert("Fehlgeschlagen");
@@ -38,6 +42,7 @@ public class AllCommentsFromUserReportForm extends ReportResultPanel {
 
 			}
 
+			
 			public void onSuccess(AllCommentsFromUserReport report) {
 
 				if (report != null) {
