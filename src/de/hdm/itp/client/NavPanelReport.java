@@ -95,11 +95,11 @@ public class NavPanelReport extends VerticalPanel {
 
 		checkBoxShowAll.setValue(true);
 		
-		dateFrom.setFormat(new DateBox.DefaultFormat (DateTimeFormat.getFormat(" dd. MMMM. yyyy"))); 
-		dateTill.setFormat(new DateBox.DefaultFormat (DateTimeFormat.getFormat(" dd. MMMM. yyyy"))); 
+		//setting date Format
+		
+		dateFrom.setFormat(new DateBox.DefaultFormat (DateTimeFormat.getFormat("dd.MM.yyyy"))); 
+		dateTill.setFormat(new DateBox.DefaultFormat (DateTimeFormat.getFormat("dd.MM.yyyy"))); 
 
-
-		dateFrom.setValue(new Date());
 
 		dateFrom.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			public void onValueChange(ValueChangeEvent<Date> event) {
@@ -107,7 +107,6 @@ public class NavPanelReport extends VerticalPanel {
 			}
 		});
 
-		dateTill.setValue(new Date());
 
 		dateTill.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			public void onValueChange(ValueChangeEvent<Date> event) {
@@ -171,6 +170,9 @@ public class NavPanelReport extends VerticalPanel {
 				dateFrom.setVisible(true);
 				dateTill.setVisible(true);
 				
+				
+				// setting default value for DateFrom and DateTill
+
 				dateFrom.setValue(new Date());
 				dateTill.setValue(new Date());
 				
@@ -226,7 +228,7 @@ public class NavPanelReport extends VerticalPanel {
 				resultPanel.clear();
 				
 				 		//TODO Comment methode mit date schreiben 
-						resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));	// dateFrom.getValue(), dateTill.getValue()));
+						resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
 						
 						Window.alert(dateTill.getValue().toString());
 						RootPanel.get().add(resultPanel);
@@ -279,6 +281,10 @@ public class NavPanelReport extends VerticalPanel {
 				
 				resultPanel.clear();
 				//		resultPanel.add(new AllCommentsFromUserReportForm(u));
+				
+				
+				
+				/// date implementation
 						resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));	// dateFrom.getValue(), dateTill.getValue()));
 						
 						Window.alert(dateTill.getValue().toString());
