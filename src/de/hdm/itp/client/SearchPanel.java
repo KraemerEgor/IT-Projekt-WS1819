@@ -8,8 +8,14 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
+
+
+import de.hdm.itp.client.gui.report.AllPostsFromUserReportForm;
+import de.hdm.itp.shared.bo.User;
+
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.RootPanel;
 
 
 
@@ -17,23 +23,20 @@ import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 
 public class SearchPanel extends FlowPanel {
 	
+	FlowPanel resultPanel = new FlowPanel();
+	
 	private Anchor reportLink = new Anchor("Report");
 	private Button reportBtn = new Button("Zum Report-Generator");
-
+	private User u = new User();
 
 	
 	Label header_lbl = new Label("Test"); 
-	Button profile_btn = new Button("My Profile", new ClickHandler() {
-		public void onClick(ClickEvent event) {
-			Window.alert("Funktioniert!");
-			}
-		});
-	Button add_btn = new Button("Add", new ClickHandler() {
-		public void onClick(ClickEvent event) {
-			Window.alert("Klappt!");
-			}
-		});
-
+	
+	private Button profileBtn = new Button("My Profile");
+	private Button addBtn = new Button("Add");
+	
+	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
+	SuggestBox suggestbox = new SuggestBox(oracle);	
 	
 	
 	
@@ -48,21 +51,41 @@ public class SearchPanel extends FlowPanel {
 				Window.open(reportLink.getHref(), "_self", "");
 				}
 			});
+		profileBtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {		
+				resultPanel.clear();
+				resultPanel.add(new AllPostsFromUserReportForm(u));
+				RootPanel.get().add(resultPanel);
+				}
+			});
+			
+		addBtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				Window.alert("Klappt!");
+				}
+			});
+			
 		this.addStyleName("Search");			
 			header_lbl.addStyleName("label_test");
 		this.add(header_lbl);
-		this.add(profile_btn);
-		this.add(add_btn);
+			profileBtn.setStylePrimaryName("test_btn");
+		this.add(profileBtn);
+			addBtn.setStylePrimaryName("test_btn");
+		this.add(addBtn);
+		this.add(suggestbox);
 		this.add(reportBtn);
 		
-		MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
-		SuggestBox suggestbox = new SuggestBox(oracle);	
-			oracle.add("John");
-			oracle.add("Lisa");
-			oracle.add("Kevin");
-			oracle.add("Sarafina");
 		
-		this.add(suggestbox);
+				
+		
+		
+		
+
 	}
+		
+	
 	
 }
+
+
+

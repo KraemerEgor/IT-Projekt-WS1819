@@ -143,3 +143,11 @@ h1 {
 	width: 225px;
     font-size: 14px;
 }
+.test_btn{
+	width: 200px;
+	padding: 20px;
+	background-color: orange;
+ 	white-space:nowrap;
+ 	before: before;
+}
+}
