@@ -27,11 +27,7 @@ public class PinboardPanel extends ScrollPanel {
 	
 	public void createPinboard(User u) {
 		
-		boolean own = false;
-		
-		//if (u == currentUser) {
-			own = true;
-		//}
+
 		
 	}
 
