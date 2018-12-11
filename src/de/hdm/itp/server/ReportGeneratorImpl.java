@@ -95,7 +95,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	@Override
 	
 	//TODO dateFrom DateTill übergeben
-	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
+	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u) throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 
@@ -116,21 +116,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
 		
-		if(dateFrom != null) {
-			
-			System.out.println("###################");
-			Window.alert("date select working");
-		}else {
-			Window.alert("date not working");
-		}
-		
 
 		//wenn date übergeben wir und nicht null ist dann filter nach date from till
 		
 		for (Comment c : comments) {
 			Row commentRow = new Row();
 
-			System.out.println(c.getText());
 			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
 			commentRow.addColumn(new Column(String.valueOf(c.getText())));
 			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));

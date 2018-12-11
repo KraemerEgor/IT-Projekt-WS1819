@@ -90,6 +90,7 @@ public class NavPanelReport extends VerticalPanel {
 		
 		u.setId(10000001);
 		
+		
 		reportGenerator.setUser(u, new setUserCallback());
 
 
@@ -227,16 +228,18 @@ public class NavPanelReport extends VerticalPanel {
 				
 				resultPanel.clear();
 				
+				// DAS IST NICH PICK DATE
 				 		//TODO Comment methode mit date schreiben 
-						resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
+				//		resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
 						
-						Window.alert(dateTill.getValue().toString());
 						RootPanel.get().add(resultPanel);
 				
 			}
 		});
 		AllLikesFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				
+			
 				
 				resultPanel.clear();
 				resultPanel.add(new AllLikesFromUserReportForm(u));
@@ -280,15 +283,8 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				//		resultPanel.add(new AllCommentsFromUserReportForm(u));
-				
-				
-				
-				/// date implementation
-						resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));	// dateFrom.getValue(), dateTill.getValue()));
-						
-						Window.alert(dateTill.getValue().toString());
-						RootPanel.get().add(resultPanel);
+				resultPanel.add(new AllCommentsFromUserReportForm(u));
+				RootPanel.get().add(resultPanel);
 				
 			}
 		});

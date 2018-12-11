@@ -2,6 +2,7 @@ package de.hdm.itp.shared.bo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Basisklasse f�r alle Business Objekte.
@@ -18,6 +19,11 @@ public abstract class BusinessObject implements Serializable {
 	 * welche Rolle dieses Objekt in der DB hat.
 	 */
 	
+	
+	private Date dateFrom = null;
+	
+	private Date dateTill = null;
+
 	private int id = 0;
 	/**
 	 * Erstellungsdatum des Objektes
@@ -93,6 +99,22 @@ public abstract class BusinessObject implements Serializable {
 	
 	public String toString() {
 		return this.getClass().getName() + "ID:" + this.getId();
+	}
+
+	public Date getDateFrom() {
+		return dateFrom;
+	}
+
+	public void setDateFrom(Date dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+
+	public Date getDateTill() {
+		return dateTill;
+	}
+
+	public void setDateTill(Date dateTill) {
+		this.dateTill = dateTill;
 	}
 	
 }
