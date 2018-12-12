@@ -36,6 +36,7 @@ public class NavPanelReport extends VerticalPanel {
 	private User u = new User();
 	
 	
+	
 	final Button AllSubsFromUserReportBtn = new Button("AllSubsFromUserReport");
 	final Button AllSubsOfUserReportBtn = new Button("AllSubsOfUserReport");
 	final Button AllCommentsFromUserReportBtn = new Button("AllCommentsFromUserReport");
@@ -90,7 +91,6 @@ public class NavPanelReport extends VerticalPanel {
 		
 		u.setId(10000001);
 		
-		
 		reportGenerator.setUser(u, new setUserCallback());
 
 
@@ -138,6 +138,9 @@ public class NavPanelReport extends VerticalPanel {
 				checkBoxShowAll.setValue(true);
 				dateFrom.setVisible(false);
 				dateTill.setVisible(false);
+				
+				u.setDateFrom(null);
+				u.setDateTill(null);
 				
 				AllSubsFromUserReportBtn.setVisible(true);
 				AllSubsOfUserReportBtn.setVisible(true);
@@ -189,8 +192,6 @@ public class NavPanelReport extends VerticalPanel {
 				AllCommentsFromUserReportBtn.setVisible(false);
 				AllLikesFromUserReportBtn.setVisible(false);
 				AllPostsFromUserReportBtn.setVisible(false);
-
-
 				
 				if (checkBoxShowAll.getValue() == true) {
 					checkBoxShowAll.setValue(false);
@@ -227,12 +228,8 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				
-				// DAS IST NICH PICK DATE
-				 		//TODO Comment methode mit date schreiben 
-				//		resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
-						
-						RootPanel.get().add(resultPanel);
+				resultPanel.add(new AllCommentsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
+				RootPanel.get().add(resultPanel);	
 				
 			}
 		});
@@ -282,8 +279,11 @@ public class NavPanelReport extends VerticalPanel {
 		AllCommentsFromUserBetweenDatesReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
+//				u.setDateFrom(dateFrom.getValue());
+//				u.setDateTill(dateTill.getValue());
+				
 				resultPanel.clear();
-				resultPanel.add(new AllCommentsFromUserReportForm(u));
+				resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}

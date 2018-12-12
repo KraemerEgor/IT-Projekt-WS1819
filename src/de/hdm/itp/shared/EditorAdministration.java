@@ -1,5 +1,7 @@
 package de.hdm.itp.shared;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -180,6 +182,8 @@ public interface EditorAdministration extends RemoteService {
 	 * @throws IllegalArgumentException
 	 */
 	Vector<Comment> getCommentsOfUser(User u) throws IllegalArgumentException;
+	
+	Vector<Comment> getCommentsOfUserBetweenDates(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
 
 	/**
 	 * Methode zum Ausgeben aller Kommentare

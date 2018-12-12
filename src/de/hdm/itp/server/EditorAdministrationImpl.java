@@ -532,4 +532,13 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 				result = user.getFirstname() + " " + user.getLastname();
 				return result;
 	}
+
+	
+	
+	@Override
+	public Vector<Comment> getCommentsOfUserBetweenDates(User u, Date dateFrom, Date dateTill)
+			throws IllegalArgumentException {
+		// TODO Auto-generated method stub wirten by leo
+		return null;
+	}
 }

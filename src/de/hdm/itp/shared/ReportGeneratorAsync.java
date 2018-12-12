@@ -31,7 +31,7 @@ public interface ReportGeneratorAsync {
 	void createAllSubsOfUserReport(User u,
 			AsyncCallback<AllSubsOfUserReport> callback);
 	
-	void createAllCommentsFromUserReport(User u, AsyncCallback<AllCommentsFromUserReport> callback);
+	void createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllCommentsFromUserReport> callback);
 	
 	void createAllPostsFromUserReport(User u,
 			AsyncCallback<AllPostsFromUserReport> callback);

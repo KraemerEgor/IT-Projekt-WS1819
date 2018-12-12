@@ -1,5 +1,6 @@
 package de.hdm.itp.shared;
 
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -73,5 +74,7 @@ public interface EditorAdministrationAsync {
 	void isUserKnown(String email, AsyncCallback<Boolean> callback);
 	
 	void getFullNameOfUser(User user, AsyncCallback<String> callback);
+
+	void getCommentsOfUserBetweenDates(User u, Date dateFrom, Date dateTill, AsyncCallback<Vector<Comment>> callback);
 
 }

@@ -3,9 +3,11 @@ package de.hdm.itp.server;
 import java.util.Date;
 import java.util.Vector;
 
+import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.ibm.icu.text.SimpleDateFormat;
 
 import de.hdm.itp.shared.EditorAdministration;
 import de.hdm.itp.shared.ReportGenerator;
@@ -95,16 +97,21 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	@Override
 	
 	//TODO dateFrom DateTill übergeben
-	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u) throws IllegalArgumentException {
+	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
-
+		
 		AllCommentsFromUserReport result = new AllCommentsFromUserReport();
+		
+		System.out.println(String.valueOf(dateFrom) + "this is date from in the report impls");
+		System.out.println(String.valueOf(dateTill) + "this is date till in the report impls");
 
+		
 		result.setTitel("All Ihre Kommentare");
 
 		result.setCreateDate(new Date());
 
+	
 		Row headline = new Row();
 
 		headline.addColumn(new Column("Post des Kommentars"));
@@ -113,24 +120,97 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		headline.addColumn(new Column("Änderungsdatum"));
 
 		result.addRow(headline);
-
-		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
 		
+		Vector<Comment> comments = this.admin.getCommentsOfUser(u);	
 
-		//wenn date übergeben wir und nicht null ist dann filter nach date from till
 		
+//		if(dateFrom == null) {
+//			comments = this.admin.getCommentsOfUser(u);	
+//			System.out.println("this is not date ");
+//
+//			
+//		}else {
+//			comments = this.admin.getCommentsOfUserBetweenDates(u, dateFrom, dateTill);
+//			System.out.println("this is date ");
+//
+//		}
+		
+//		Vector<Comment> comments = this.admin.getCommentsOfUser(u);	
+//		
+//		Vector<Comment> commentsBW = this.admin.getCommentsOfUserBetweenDates(u, dateFrom, dateTill);
+		
+	//	Vector<Comment> comments = this.admin.getCommentsOfUserBetweenDates(u, modDate);	
+
+
+	 
+//		Date uFrom = u.getDateFrom();
+//		Date uTill = u.getDateTill();
+//		Comment com = null;
+//		Date cMod = com.getModDate();
+//		
+		
+		
+//		 System.out.println(cMod.after(uFrom) && cMod.before(uTill));
+		
+//		if(u.getDateFrom() == null) {
+			
+//			Date min, max;   // assume these are set to something // dateFrome dateTill
+//			Date d;          // the date in question // modDate
+//
+//			return d.after(min) && d.before(max);
+
+//			System.out.println("date ist wohl nulls");
+//		}else {
+//			System.out.println("date ist wohl nicht null");
+//		}
+			
+		
+			
 		for (Comment c : comments) {
 			Row commentRow = new Row();
+			
+			Date modDateToDate = c.getModDate();
+
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+			sdf.format(modDateToDate);
+			
+
 
 			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
 			commentRow.addColumn(new Column(String.valueOf(c.getText())));
 			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
-			commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+			commentRow.addColumn(new Column(String.valueOf(modDateToDate)));
+
+//			if(modDateToDate.before(dateTill) && modDateToDate.after(dateFrom)) {
+//				commentRow.addColumn(new Column(String.valueOf(modDateToDate)));
+//			}
+//
+//			
+////			if(modDateToDate.after(dateFrom) && modDateToDate.before(dateTill)) {
+////				commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+////				commentRow.addColumn(new Column(String.valueOf(c.getText())));
+////				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+////				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+////
+////				
+////			
+////			}
+//			else {
+//				System.out.println("this date is not in between the two pick dates");
+//			}
+//		
 
 			result.addRow(commentRow);
-		}
+			
 
+			
+		}
+		
+		
+		
 		return result;
+
 
 		/*
 		 * amount of comments
