@@ -98,15 +98,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	
 	//TODO dateFrom DateTill übergeben
 	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
-
-		// if this.getAdministration(== null){return null;}
 		
 		AllCommentsFromUserReport result = new AllCommentsFromUserReport();
 		
-		System.out.println(String.valueOf(dateFrom) + "this is date from in the report impls");
-		System.out.println(String.valueOf(dateTill) + "this is date till in the report impls");
-
-		
+	
 		result.setTitel("All Ihre Kommentare");
 
 		result.setCreateDate(new Date());
@@ -122,6 +117,31 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		result.addRow(headline);
 		
 		Vector<Comment> comments = this.admin.getCommentsOfUser(u);	
+		
+			
+		for (Comment c : comments) {
+				Row commentRow = new Row();
+				
+		  if(dateFrom == null) {
+			  	commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+				commentRow.addColumn(new Column(String.valueOf(c.getText())));
+				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+			  
+		  }else {
+			  if(c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
+		  
+				commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+				commentRow.addColumn(new Column(String.valueOf(c.getText())));
+				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+
+				result.addRow(commentRow);
+			  }
+				
+		  }
+			
+		}
 
 		
 //		if(dateFrom == null) {
@@ -163,49 +183,46 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 //		}else {
 //			System.out.println("date ist wohl nicht null");
 //		}
-			
+//		Date modDateToDate = c.getModDate();
+		//
+//					
+//					SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+//					sdf.format(modDateToDate);
+//		if(modDateToDate.before(dateTill) && modDateToDate.after(dateFrom)) {
+//			commentRow.addColumn(new Column(String.valueOf(modDateToDate)));
+//		}
+//
+//		
+////		if(modDateToDate.after(dateFrom) && modDateToDate.before(dateTill)) {
+////			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+////			commentRow.addColumn(new Column(String.valueOf(c.getText())));
+////			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+////			commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+////
+////			
+////		
+////		}
+//		else {
+//			System.out.println("this date is not in between the two pick dates");
+//		}
+//	
 		
+		//richtes code stück
 			
-		for (Comment c : comments) {
-			Row commentRow = new Row();
-			
-			Date modDateToDate = c.getModDate();
-
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-			sdf.format(modDateToDate);
-			
-
-
-			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
-			commentRow.addColumn(new Column(String.valueOf(c.getText())));
-			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
-			commentRow.addColumn(new Column(String.valueOf(modDateToDate)));
-
-//			if(modDateToDate.before(dateTill) && modDateToDate.after(dateFrom)) {
-//				commentRow.addColumn(new Column(String.valueOf(modDateToDate)));
-//			}
+//		for (Comment c : comments) {
+//			Row commentRow = new Row();
+//			
+//		
+//			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+//			commentRow.addColumn(new Column(String.valueOf(c.getText())));
+//			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+//			commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+//
+//			result.addRow(commentRow);
+//			
 //
 //			
-////			if(modDateToDate.after(dateFrom) && modDateToDate.before(dateTill)) {
-////				commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
-////				commentRow.addColumn(new Column(String.valueOf(c.getText())));
-////				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
-////				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
-////
-////				
-////			
-////			}
-//			else {
-//				System.out.println("this date is not in between the two pick dates");
-//			}
-//		
-
-			result.addRow(commentRow);
-			
-
-			
-		}
+//		}
 		
 		
 		
