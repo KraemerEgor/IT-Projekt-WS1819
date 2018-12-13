@@ -139,8 +139,9 @@ public class NavPanelReport extends VerticalPanel {
 				dateFrom.setVisible(false);
 				dateTill.setVisible(false);
 				
-				u.setDateFrom(null);
-				u.setDateTill(null);
+				dateFrom.setValue(null);
+				dateTill.setValue(null);
+
 				
 				AllSubsFromUserReportBtn.setVisible(true);
 				AllSubsOfUserReportBtn.setVisible(true);
@@ -226,7 +227,6 @@ public class NavPanelReport extends VerticalPanel {
 		});
 		AllCommentsFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				
 				resultPanel.clear();
 				resultPanel.add(new AllCommentsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);	

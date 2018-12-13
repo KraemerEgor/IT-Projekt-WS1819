@@ -183,8 +183,6 @@ public interface EditorAdministration extends RemoteService {
 	 */
 	Vector<Comment> getCommentsOfUser(User u) throws IllegalArgumentException;
 	
-	Vector<Comment> getCommentsOfUserBetweenDates(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
-
 	/**
 	 * Methode zum Ausgeben aller Kommentare
 	 * @return ein Vektor-Objekt, das alle Kommentare enthält

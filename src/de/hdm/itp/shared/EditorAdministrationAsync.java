@@ -75,6 +75,4 @@ public interface EditorAdministrationAsync {
 	
 	void getFullNameOfUser(User user, AsyncCallback<String> callback);
 
-	void getCommentsOfUserBetweenDates(User u, Date dateFrom, Date dateTill, AsyncCallback<Vector<Comment>> callback);
-
 }
