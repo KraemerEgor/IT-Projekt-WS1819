@@ -95,18 +95,17 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 
 	@Override
-	
-	//TODO dateFrom DateTill übergeben
-	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
-		
+
+	// TODO dateFrom DateTill übergeben
+	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill)
+			throws IllegalArgumentException {
+
 		AllCommentsFromUserReport result = new AllCommentsFromUserReport();
-		
-	
+
 		result.setTitel("All Ihre Kommentare");
 
 		result.setCreateDate(new Date());
 
-	
 		Row headline = new Row();
 
 		headline.addColumn(new Column("Post des Kommentars"));
@@ -115,42 +114,37 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		headline.addColumn(new Column("Änderungsdatum"));
 
 		result.addRow(headline);
-		
-		Vector<Comment> comments = this.admin.getCommentsOfUser(u);	
-		
-			
-		System.out.println(dateFrom);
+
+		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
+
 		for (Comment c : comments) {
-				Row commentRow = new Row();
-				
-				
-		
-		  if(dateFrom == null) {
-			  	commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
-				commentRow.addColumn(new Column(String.valueOf(c.getText())));
-				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
-				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
-				
-				result.addRow(commentRow);
-			  
-		  }else {
-			  if(c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
-		  
+			Row commentRow = new Row();
+
+			if (dateFrom == null) {
 				commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
 				commentRow.addColumn(new Column(String.valueOf(c.getText())));
 				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
 				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
 
 				result.addRow(commentRow);
-			  }
-			  System.out.println("Sorry there was no comment made in between the dates you have choosen");
-				
-		  }
-			
+
+			} else {
+				if (c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
+
+					commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+					commentRow.addColumn(new Column(String.valueOf(c.getText())));
+					commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+					commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+
+					result.addRow(commentRow);
+				}
+				System.out.println("Sorry there was no comment made in between the dates you have choosen");
+
+			}
+
 		}
 
 		return result;
-
 
 		/*
 		 * amount of comments
@@ -158,7 +152,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	}
 
-	public AllLikesFromUserReport createAllLikesFromUserReport(User u) throws IllegalArgumentException {
+	public AllLikesFromUserReport createAllLikesFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 
@@ -178,16 +172,32 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Vector<Like> like = this.admin.getAllLikesOfUser(u);
 
+		
+
 		for (Like l : like) {
 			Row likesRow = new Row();
 
-			likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
-			likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
-			likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
+			if (dateFrom == null) {
+				likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
+				likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
+				likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
 
-			result.addRow(likesRow);
+				result.addRow(likesRow);
+
+			} else {
+				if (l.getCreateDate().after(dateFrom) && l.getCreateDate().before(dateTill)) {
+
+					likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
+					likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
+					likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
+
+					result.addRow(likesRow);
+				}
+				System.out.println("Sorry there was no comment made in between the dates you have choosen");
+
+			}
+
 		}
-
 		return result;
 
 		/*
@@ -196,7 +206,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 	}
 
-	public AllPostsFromUserReport createAllPostsFromUserReport(User u) throws IllegalArgumentException {
+	public AllPostsFromUserReport createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 
@@ -217,6 +227,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Vector<Post> post = this.admin.getAllPostsOfUser(u);
 
+		
 		for (Post p : post) {
 			Row postRow = new Row();
 
@@ -234,7 +245,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 	}
 
-	public AllSubsFromUserReport createAllSubsFromUserReport(User u) throws IllegalArgumentException {
+	public AllSubsFromUserReport createAllSubsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 
@@ -252,14 +263,29 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		result.addRow(headline);
 
 		Vector<Subs> subs = this.admin.getSubsOfTargetUser(u);
-
+		
 		for (Subs s : subs) {
 			Row subsRow = new Row();
 
-			subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
-			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+			if (dateFrom == null) {
 
-			result.addRow(subsRow);
+				subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+				subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+				result.addRow(subsRow);
+
+			} else {
+				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
+
+
+					subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+					subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+					
+					result.addRow(subsRow);
+				}
+				System.out.println("Sorry there was no comment made in between the dates you have choosen");
+
+			}
+
 		}
 
 		return result;
@@ -270,7 +296,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 	}
 
-	public AllSubsOfUserReport createAllSubsOfUserReport(User u) throws IllegalArgumentException {
+	public AllSubsOfUserReport createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
 		// if this.getAdministration(== null){return null;}
 
 		AllSubsOfUserReport result = new AllSubsOfUserReport();
@@ -291,10 +317,25 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		for (Subs s : subs) {
 			Row subsRow = new Row();
 
-			subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
-			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+			if (dateFrom == null) {
 
-			result.addRow(subsRow);
+				subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+				subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+				result.addRow(subsRow);
+
+			} else {
+				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
+
+
+					subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+					subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+					
+					result.addRow(subsRow);
+				}
+				System.out.println("Sorry there was no comment made in between the dates you have choosen");
+
+			}
+
 		}
 
 		return result;

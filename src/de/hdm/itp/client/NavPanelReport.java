@@ -210,7 +210,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsFromUserReportForm(u));
+				resultPanel.add(new AllSubsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -219,7 +219,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsOfUserReportForm(u));
+				resultPanel.add(new AllSubsOfUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 
 				RootPanel.get().add(resultPanel);
 				
@@ -239,7 +239,7 @@ public class NavPanelReport extends VerticalPanel {
 			
 				
 				resultPanel.clear();
-				resultPanel.add(new AllLikesFromUserReportForm(u));
+				resultPanel.add(new AllLikesFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -248,7 +248,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllPostsFromUserReportForm(u));
+				resultPanel.add(new AllPostsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 
 				
@@ -261,7 +261,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsFromUserReportForm(u));
+				resultPanel.add(new AllSubsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -270,7 +270,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsOfUserReportForm(u));
+				resultPanel.add(new AllSubsOfUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 
 				RootPanel.get().add(resultPanel);
 				
@@ -292,7 +292,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllLikesFromUserReportForm(u));
+				resultPanel.add(new AllLikesFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -301,7 +301,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllPostsFromUserReportForm(u));
+				resultPanel.add(new AllPostsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 
 				

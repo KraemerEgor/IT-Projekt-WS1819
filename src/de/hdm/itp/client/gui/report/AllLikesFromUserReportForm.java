@@ -1,5 +1,7 @@
 package de.hdm.itp.client.gui.report;
 
+import java.util.Date;
+
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -12,9 +14,14 @@ import de.hdm.itp.shared.report.HTMLReportWriter;
 public class AllLikesFromUserReportForm extends ReportResultPanel {
 
 	private User u;
+	private Date dateFrom;
+	private Date dateTill;
 
-	public AllLikesFromUserReportForm(User u) {
+	public AllLikesFromUserReportForm(User u, Date dateFrom, Date dateTill) {
 		this.u = u;
+		this.dateFrom = dateFrom;
+		this.dateTill = dateTill;
+		
 		run();
 	}
 
@@ -22,7 +29,7 @@ public class AllLikesFromUserReportForm extends ReportResultPanel {
 
 		ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();
 
-		reportGenerator.createAllLikesFromUserReport(u, new AsyncCallback<AllLikesFromUserReport>() {
+		reportGenerator.createAllLikesFromUserReport(u,  dateFrom, dateTill, new AsyncCallback<AllLikesFromUserReport>() {
 
 			public void onFailure(Throwable caught) {
 
