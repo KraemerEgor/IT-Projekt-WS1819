@@ -54,7 +54,6 @@ public class SearchPanel extends FlowPanel {
 		profileBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {		
 				resultPanel.clear();
-				resultPanel.add(new AllPostsFromUserReportForm(u));
 				RootPanel.get().add(resultPanel);
 				}
 			});
