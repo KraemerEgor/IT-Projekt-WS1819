@@ -36,6 +36,7 @@ public class NavPanelReport extends VerticalPanel {
 	private User u = new User();
 	
 	
+	
 	final Button AllSubsFromUserReportBtn = new Button("AllSubsFromUserReport");
 	final Button AllSubsOfUserReportBtn = new Button("AllSubsOfUserReport");
 	final Button AllCommentsFromUserReportBtn = new Button("AllCommentsFromUserReport");
@@ -138,6 +139,10 @@ public class NavPanelReport extends VerticalPanel {
 				dateFrom.setVisible(false);
 				dateTill.setVisible(false);
 				
+				dateFrom.setValue(null);
+				dateTill.setValue(null);
+
+				
 				AllSubsFromUserReportBtn.setVisible(true);
 				AllSubsOfUserReportBtn.setVisible(true);
 				AllCommentsFromUserReportBtn.setVisible(true);
@@ -188,8 +193,6 @@ public class NavPanelReport extends VerticalPanel {
 				AllCommentsFromUserReportBtn.setVisible(false);
 				AllLikesFromUserReportBtn.setVisible(false);
 				AllPostsFromUserReportBtn.setVisible(false);
-
-
 				
 				if (checkBoxShowAll.getValue() == true) {
 					checkBoxShowAll.setValue(false);
@@ -207,7 +210,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsFromUserReportForm(u));
+				resultPanel.add(new AllSubsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -216,7 +219,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsOfUserReportForm(u));
+				resultPanel.add(new AllSubsOfUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 
 				RootPanel.get().add(resultPanel);
 				
@@ -224,22 +227,19 @@ public class NavPanelReport extends VerticalPanel {
 		});
 		AllCommentsFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
-				
 				resultPanel.clear();
-				
-				 		//TODO Comment methode mit date schreiben 
-						resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
-						
-						Window.alert(dateTill.getValue().toString());
-						RootPanel.get().add(resultPanel);
+				resultPanel.add(new AllCommentsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
+				RootPanel.get().add(resultPanel);	
 				
 			}
 		});
 		AllLikesFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
+			
+				
 				resultPanel.clear();
-				resultPanel.add(new AllLikesFromUserReportForm(u));
+				resultPanel.add(new AllLikesFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -248,7 +248,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllPostsFromUserReportForm(u));
+				resultPanel.add(new AllPostsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 
 				
@@ -261,7 +261,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsFromUserReportForm(u));
+				resultPanel.add(new AllSubsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -270,7 +270,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllSubsOfUserReportForm(u));
+				resultPanel.add(new AllSubsOfUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 
 				RootPanel.get().add(resultPanel);
 				
@@ -279,16 +279,12 @@ public class NavPanelReport extends VerticalPanel {
 		AllCommentsFromUserBetweenDatesReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
+//				u.setDateFrom(dateFrom.getValue());
+//				u.setDateTill(dateTill.getValue());
+				
 				resultPanel.clear();
-				//		resultPanel.add(new AllCommentsFromUserReportForm(u));
-				
-				
-				
-				/// date implementation
-						resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));	// dateFrom.getValue(), dateTill.getValue()));
-						
-						Window.alert(dateTill.getValue().toString());
-						RootPanel.get().add(resultPanel);
+				resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
+				RootPanel.get().add(resultPanel);
 				
 			}
 		});
@@ -296,7 +292,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllLikesFromUserReportForm(u));
+				resultPanel.add(new AllLikesFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
@@ -305,7 +301,7 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 				
 				resultPanel.clear();
-				resultPanel.add(new AllPostsFromUserReportForm(u));
+				resultPanel.add(new AllPostsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 
 				

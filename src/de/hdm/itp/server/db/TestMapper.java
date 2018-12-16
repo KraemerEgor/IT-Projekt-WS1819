@@ -39,7 +39,11 @@ public class TestMapper {
 			System.out.println(l.getOwnerId());
 			System.out.println(l.getPostId());
 			System.out.println(l.getCreateDate());
+			
+			
 		}
+		
+		
 		
 		/*
 		 * User u = new User(); u.setId(10000002); u.setEmail("test2@test.de");

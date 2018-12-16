@@ -18,12 +18,12 @@ public interface ReportGenerator extends RemoteService {
 
 	public abstract AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException; 
 
-	public abstract AllLikesFromUserReport createAllLikesFromUserReport(User u) throws IllegalArgumentException;
+	public abstract AllLikesFromUserReport createAllLikesFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
 
-	public abstract AllPostsFromUserReport createAllPostsFromUserReport(User u) throws IllegalArgumentException;
+	public abstract AllPostsFromUserReport createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
 
-	public abstract AllSubsFromUserReport createAllSubsFromUserReport(User u) throws IllegalArgumentException;
+	public abstract AllSubsFromUserReport createAllSubsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
 
-	public abstract AllSubsOfUserReport createAllSubsOfUserReport(User u) throws IllegalArgumentException;
+	public abstract AllSubsOfUserReport createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
 
 }

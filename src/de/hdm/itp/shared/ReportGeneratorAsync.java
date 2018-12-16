@@ -22,18 +22,14 @@ public interface ReportGeneratorAsync {
 
 	void setUser(User u, AsyncCallback<Void> callback);
 	
-	void createAllLikesFromUserReport(User u,
-			AsyncCallback<AllLikesFromUserReport> callback);
+	void createAllLikesFromUserReport(User u,Date dateFrom, Date dateTill, AsyncCallback<AllLikesFromUserReport> callback);
 	
-	void createAllSubsFromUserReport(User u,
-			AsyncCallback<AllSubsFromUserReport> callback);
+	void createAllSubsFromUserReport(User u,Date dateFrom, Date dateTill, AsyncCallback<AllSubsFromUserReport> callback);
 	
-	void createAllSubsOfUserReport(User u,
-			AsyncCallback<AllSubsOfUserReport> callback);
+	void createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllSubsOfUserReport> callback);
 	
 	void createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllCommentsFromUserReport> callback);
 	
-	void createAllPostsFromUserReport(User u,
-			AsyncCallback<AllPostsFromUserReport> callback);
+	void createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllPostsFromUserReport> callback);
 	
 }
