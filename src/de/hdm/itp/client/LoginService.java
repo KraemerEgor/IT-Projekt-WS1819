@@ -3,7 +3,7 @@ package de.hdm.itp.client;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
-@RemoteServiceRelativePath("login")
+@RemoteServiceRelativePath("LoginService")
 public interface LoginService extends RemoteService {
   public LoginInfo login(String requestUri);
-}
+} 

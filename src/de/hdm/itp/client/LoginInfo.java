@@ -7,13 +7,9 @@ import java.io.Serializable;
  * verschiedenen Informationen über den angemeldeten Nutzer.
  */
 
+@SuppressWarnings("serial")
 public class LoginInfo implements Serializable {
-
-	/**
-	 * 
-	 */
-//	private static final long serialVersionUID = 1L;
-
+	
 	private boolean loggedIn = false;
 	private String loginUrl;
 	private String logoutUrl;
