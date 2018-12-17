@@ -24,22 +24,30 @@ public class PinboardPanel extends ScrollPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
 	
+	ScrollPanel pinboard = new ScrollPanel();
+	VerticalPanel post = new VerticalPanel();
+	Label lbl = new Label("HulapaluHulapaluHulapalu");
+
 	
 	public void onLoad() {
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
-		
-		
-		
+		//this.clear();
 		super.onLoad();
+		
+		pinboard.add(lbl);
+			
+		
+		
 		this.addStyleName("Pinboard");
-		this.add(name_lbl);
 		this.getElement().getStyle().setBackgroundColor("red");
 		this.setHeight("400px");
-		name_lbl.addStyleName("TestLabel");
+		this.add(pinboard);
 		
 	}
+
+	
 	
 	
 	/* Pinboard-Schema (TODO später löschen):
@@ -74,8 +82,6 @@ public class PinboardPanel extends ScrollPanel {
 	
 	public void createPinboard(User u) {
 		
-		ScrollPanel pinboard = new ScrollPanel();
-		
 		editorAdministration.getAllPostsOfUser(u, new AsyncCallback<Vector<Post>>() {
 			public void onFailure(Throwable t) {
 				Window.alert(t.getMessage());}		
@@ -89,14 +95,7 @@ public class PinboardPanel extends ScrollPanel {
 	}
 		
 		
-				
-
-		
-	
-	
 	private void createPost(Post p) {
-		
-		VerticalPanel post = new VerticalPanel();
 		String text = new String (p.getContent());
 		Label content = new Label(text);
 		
@@ -128,34 +127,51 @@ public class PinboardPanel extends ScrollPanel {
 		      // handle the click event
 		    }
 		});
-		options.add(dislike);
+		options.add(comment);
 		
-		/* Abfrage ob currentUser = PinboardOwner -> falls ja, Möglichkeit zum Löschen */
+		if (permissionCheck()) {
+		Button delete = new Button("Löschen");
+		delete.addClickHandler(new ClickHandler() {
+		    public void onClick(ClickEvent event) {
+		      // handle the click event
+		    }
+		});
+		options.add(delete);
+		}
+		
 		
 		post.add(options);
 		
-		
-		AsyncCallback callback = new AsyncCallback() {
-		    public void onSuccess(Object result) {
-		      
-				Vector<Comment> comment = new Vector<Comment>();
-				comment = this.getCommentsOfPost(p);
-				
-				for (Comment com : comment) {
-				    
-					VerticalPanel comments = new VerticalPanel();
-					post.add(comments);
-					
-				}
-		    	
-		}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
-				
+		editorAdministration.getCommentsOfPost(p, new AsyncCallback<Vector<Comment>>() {
+			public void onFailure(Throwable t) {
+				Window.alert(t.getMessage());}		
+			
+			public void onSuccess(Vector<Comment> result) {
+					for(Comment c: result) {
+					createComment(c);
+					}
+			
 			}
-	}
 
 
-}
+		});
+		
+		pinboard.add(post);
+		
+};
+
+
+
+		private void createComment(Comment c) {
+			Label comnt = new Label(c.getText());
+			post.add(comnt);
+		}
+		
+		
+		private Boolean permissionCheck() {
+			/* "if User u == currentUser then
+			return true else return false"*/
+			return true;
+		}
+		
+};
