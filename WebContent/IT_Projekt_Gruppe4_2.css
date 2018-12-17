@@ -1,34 +1,50 @@
 /** Add css rules here for your application. */
+*, body, html{
+	margin-top: 0px;
+	padding: 0px;
+	
+}
+
+html {
+	min-width: 100%;
+}
+
 
 div#Login {
 	float: right;
 	padding: 5px;
 	background-color: #00ff40;
-	border-right: 3px solid #00868B;
+	
 }
-div#Head {
-	float: top;
-	background-color: #ff0000;
-	border-right: 3px solid #00868B;
+#Head {
+	margin-top: 0px!important;
+	background-color: #39cccc;
+	padding: 14px;
 }
-div#Main {
+
+#Main {
 	float: right;
-	clear: right;
-    width: 66%;
-    height: auto;
-	padding: 5px;
-	background-color: #000080;
-	border-right: 3px solid #00868B;
+	padding: 14px;
+    width: calc(70% - 56px);
+    min-height: 700px;
+	background-color: rgb(204, 111, 57);
+	
 }
-div#Nav {
+#Nav {
 	float: left;
-	clear: left;
+	padding: 14px;
     width: 30%;
-    height: auto;
-	padding: 5px;
-	background-color: #8080ff;
-	border-right: 3px solid #00868B;
+    min-height: 700px;
+	background-color: #177f7f;
 }
+
+.Header{
+	text-align: left!important;
+	color: white;
+	margin-bottom: 10px!important;
+	margin-top: 20px;
+}
+
 div#Subs {
 
     width: 95%;
@@ -134,6 +150,13 @@ h1 {
 .label_test{
 	width: 225px;
     font-size: 14px;
+}
+.test_btn{
+	width: 200px;
+	padding: 20px;
+	background-color: orange;
+ 	white-space:nowrap;
+ 	before: before;
 }
 .cellList{
 	font-family: 'Lato', sans-serif;
