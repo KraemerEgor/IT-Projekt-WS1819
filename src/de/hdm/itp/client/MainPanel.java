@@ -13,6 +13,7 @@ public class MainPanel extends ScrollPanel {
 	
 	protected HeadingElement mainHeader = Document.get().createHElement(1);
 	Label header_lbl = new Label("MainPanel");
+	PinboardPanel pp = new PinboardPanel();
 	
 	
 public void onLoad() {
@@ -24,6 +25,8 @@ public void onLoad() {
 		mainHeader.setInnerHTML("My Profile");
 		mainHeader.setClassName("Header");
 		DOM.getElementById("mainHeader").appendChild(mainHeader);
+		
+		this.add(pp);
 }
 
 }
