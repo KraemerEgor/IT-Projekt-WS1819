@@ -5,6 +5,7 @@ import de.hdm.itp.server.EditorAdministrationImpl;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -14,15 +15,21 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.Comment;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
 public class PinboardPanel extends ScrollPanel {
 	
-	Label name_lbl = new Label("Nils Kaper");
+	private EditorAdministrationAsync editorAdministration = null;
+	
 	
 	public void onLoad() {
+		if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+		}
+		
 		
 		
 		super.onLoad();
@@ -69,28 +76,23 @@ public class PinboardPanel extends ScrollPanel {
 		
 		ScrollPanel pinboard = new ScrollPanel();
 		
-		AsyncCallback callback = new AsyncCallback() {
-		    public void onSuccess(Object result) {
-		      
-				Vector<Post> vector = new Vector<Post>();
-				vector = this.getAllPostsOfUser(u);
-				
-				for (Post post : vector) {
-				    
-					createPost(post);
-					
-				}
-		    	
-		    }
-
-		    public void onFailure(Throwable caught) {
-		      // do some UI stuff to show failure
-		    }
-		  };
+		editorAdministration.getAllPostsOfUser(u, new AsyncCallback<Vector<Post>>() {
+			public void onFailure(Throwable t) {
+				Window.alert(t.getMessage());}		
+			
+			public void onSuccess(Vector<Post> result) {
+					for(Post p: result) {
+					createPost(p);
+					}}
+		});
+		
+	}
+		
+		
 				
 
 		
-	}
+	
 	
 	private void createPost(Post p) {
 		
