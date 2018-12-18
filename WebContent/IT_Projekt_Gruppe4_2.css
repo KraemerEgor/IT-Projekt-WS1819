@@ -10,7 +10,7 @@ html {
 }
 
 
-div#Login {
+#Login {
 	float: right;
 	padding: 5px;
 	background-color: #00ff40;

@@ -58,7 +58,6 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	NavPanel np = new NavPanel();
 	MainPanel mp = new MainPanel();
 	HeaderPanel hp = new HeaderPanel();
-	private int userId;
 
 	public void onModuleLoad() {
 		
@@ -82,6 +81,11 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				if(loginInfo.isLoggedIn()) {
 					Window.alert("loggedin");
 				}
+				else {
+					Window.alert("else");
+
+					loadLogin();
+				}
 			}	
 	
 	});
@@ -92,7 +96,72 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	}
 	public void loadUserInformation() {
 		
-		loadApplication();
+		
+		
+		if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getEditorAdministration();
+	    }
+
+	    
+	    editorAdministration.isUserKnown(loginInfo.getEmailAddress(), new AsyncCallback<Boolean>() {
+			
+	    	public void onFailure(Throwable t) {
+	    		System.out.println(t.getMessage());	
+			}
+
+			public void onSuccess(Boolean result) {
+				Window.alert("KnownUserSuccess");
+
+				if (result) {
+					Window.alert("UserisKnown");
+
+					//Der Nutzer konnte in der Datenbank gefunden werden und ist somit bereits bestehender Nutzer der Applikation
+					editorAdministration.getUserByEmail(loginInfo.getEmailAddress(), new AsyncCallback<User>() {
+						public void onFailure(Throwable t) {
+							System.out.println(t.getMessage());
+						}
+						public void onSuccess(User arg0) {
+
+							//das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt und in einer Instanzenvariable gespeichert.
+							ClientsideSettings.setUser(arg0);
+							user = arg0;
+							Window.alert("UserWurdegesetzt");
+
+							//da der Nutzer bereits bekannt ist, wird für ihn im Folgenden die Applikation geladen
+							loadApplication();
+						}
+					});
+				}
+				
+				else {
+					Window.alert("Userisunknown");
+
+					/*Wenn kein Nutzer mit dieser e-Mail in der Datenbank gefunden wurde, wird die DialogBox für die erstmalige Registrierung 
+					 * aufgebaut. In diese muss der Nutzer seinen Vor- und Nachnamen eintragen und sein Geschlecht auswählen. */
+					createAccountBox = new ClientsideFunctions.InputDialogBox(loginInfo.getEmailAddress());
+					
+					createAccountBox.getOKButton().addClickHandler(new ClickHandler() {
+						
+						public void onClick(ClickEvent arg0) {
+															editorAdministration.createUser(createAccountBox.getMultiUseTextBox().getText(), createAccountBox.getNameTextBox().getText(), createAccountBox.getNickNameTextBox().getText(), createAccountBox.getListBox().getSelectedItemText(), loginInfo.getEmailAddress(), new AsyncCallback<User>() {
+									public void onFailure(Throwable t) {
+										System.out.println(t.getMessage());
+										createAccountBox.hide();
+									}
+									public void onSuccess(User arg0) {
+										
+										if(arg0 != null) {										
+		
+										createAccountBox.hide();
+										//das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt und in einer Instanzenvariable gespeichert.
+										ClientsideSettings.setUser(arg0);
+										user = arg0;
+										//danach wird für den neu registrierten Nutzer ebenfalls die Applikation geladen
+										loadApplication();
+	}}});
+														}
+					});}}
+ });
 		
 	}
 	
@@ -101,16 +170,56 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		RootPanel.get("Nav").add(np);
 		RootPanel.get("Main").add(mp);
 		
+		Window.alert("Main panels are loaded");
+		
 	}
 	
 	private void loadLogin() {
-		  
-		signInLink.setHref(loginInfo.getLoginUrl());
-	    loginPanel.add(loginLabel);
-	    loginPanel.add(signInLink);
-	    RootPanel.get("Login").add(loginPanel);
-	}
+		
+		/*
+		 * Das loginPanel wird aufgebaut
+		 */
+	    VerticalPanel loginPanel = new VerticalPanel();
+	    
+	    /*
+	     * Der signOutLink wird dem loginPanel hinzugefügt
+	     */
+	    signOutLink.setHref(loginInfo.getLogoutUrl());
+	    signOutLink.addStyleName("signout");
+		signInLink.addStyleName("reportbutton");
+		
+		
+		loginPanel.add(signOutLink);
+		
+		
+		/*
+		 * Die Information über den aktuell angemeldeten Nutzer wird ebenfalls dem loginPanel hinzugefügt
+		 */
+	    signedInUser = new Label();
+	    signedInUser.addStyleName("signedInUser");
+	    	    
+	    editorAdministration.getFullNameOfUser(user, new AsyncCallback<String>(){
+	    	public void onFailure(Throwable t) {
+	    		System.out.println(t.getMessage());
+	    		
+	    	}
+	    	public void onSuccess(String result) {
+	    		
+	    		signedInUser.setText("Angemeldet als: " +result);
+	    	}
+	    });
+	    
+		loginPanel.add(signedInUser);
+		
+		
+		//das loginPanel wird dem div mit der id "Login" hinzugefügt
+
+		RootPanel.get("Login").add(loginPanel);
+		RootPanel.get("Navi").add(np);
+		RootPanel.get("Main").add(mp);
+		
 	}	
+}
 //		Window.alert("loginTesting");
 //		
 //		LoginServiceAsync loginService = GWT.create(LoginService.class);
@@ -182,3 +291,97 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 //	}
 
 //	}
+
+//
+//
+//public class RegisterForm extends VerticalPanel {
+//
+//	private LoginInfo localLoginInfo = loginInfo;
+//
+//	/**
+//	 * Instantiation of panels, tables, text boxes, buttons and lables.
+//	 */
+//	VerticalPanel vPanel = new VerticalPanel();
+//	HorizontalPanel btnPanel = new HorizontalPanel();
+//	FlexTable ft_register = new FlexTable();
+//
+//	TextBox box_user = new TextBox();
+//
+//	Button btn_register = new Button("Registrieren");
+//	Button btn_cancel = new Button("Abbrechen");
+//
+//	Label lbl_headLine = new Label("Registrieren");
+//
+//	/**
+//	 * Method enables the registering.
+//	 */
+//	public void onLoad() {
+//		// Styling
+//		btn_register.setStylePrimaryName("myButton");
+//		lbl_headLine.addStyleName("formHeader");
+//		this.setStylePrimaryName("pnl-border");
+//
+//		// Assemble GUI elements
+//		this.add(lbl_headLine);
+//		btnPanel.add(btn_register);
+//		// btnPanel.add(btn_cancel);
+//
+//		ft_register.setText(0, 0, "Benutzer Name:");
+//		ft_register.setWidget(0, 1, box_user);
+//
+//		vPanel.add(ft_register);
+//		vPanel.add(btnPanel);
+//		this.setSpacing(8);
+//		this.add(vPanel);
+//
+//		// Clickhandler
+//		btn_register.addClickHandler(new ClickHandler() {
+//			@Override
+//			public void onClick(ClickEvent event) {
+//				if (box_user.getText() != null) {
+//					admin.createUser(localLoginInfo.getEmailAddress(), box_user.getText(),
+//							new AsyncCallback<User>() {
+//								@Override
+//								public void onFailure(Throwable caught) {
+//									Window.alert("Benutzer registrieren fehlgeschlagen!");
+//								}
+//
+//								@Override
+//								public void onSuccess(User result) {
+//									if (result != null) {
+//										Window.alert("Glückwunsch " + result.getName()
+//												+ " sie sind jetzt Teilnehmer von SharedContacts");
+//										userId = result.getId();
+//										RootPanel.get("content").clear();
+//										loadSharedContacts();
+//									} else {
+//										Window.alert("Dieser Benutzername ist leider schon vergeben");
+//									}
+//								}
+//							});
+//				} else {
+//					Window.alert("Bitte geben Sie einen Benutzername ein");
+//				}
+//			}
+//
+//		});
+//
+//		btn_cancel.addClickHandler(new ClickHandler() {
+//			@Override
+//			public void onClick(ClickEvent event) {
+//			}
+//
+//		});
+//		
+//		// Keydown
+//		box_user.addKeyDownHandler(new KeyDownHandler() {
+//			public void onKeyDown(KeyDownEvent event) {
+//				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+//					btn_register.click();
+//				}
+//			}
+//		});
+//
+//	}
+//
+//}
