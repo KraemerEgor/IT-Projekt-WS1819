@@ -31,6 +31,27 @@ div#Login {
 	background-color: rgb(204, 111, 57);
 	
 }
+
+.userProfile{
+	background-color: white;
+}
+
+.avatar {
+	
+	height: 60px;
+	display: block;
+	margin-top: 30px;
+	margin-left: 30px;
+	padding: 5px;
+	border: 1px solid rgb(204,111,57);
+	border-radius: 100px;
+	
+}
+
+.label{
+	color: black;
+}
+
 #Nav {
 	float: left;
 	padding: 14px;
@@ -44,6 +65,7 @@ div#Login {
 	color: white;
 	margin-bottom: 10px!important;
 	margin-top: 20px;
+	font-size: 20pt;
 }
 
 div#Subs {
