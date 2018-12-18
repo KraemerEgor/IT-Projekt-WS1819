@@ -36,7 +36,8 @@ public class SubsPanel extends VerticalPanel {
 		      "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
 	
 	TextCell textCell = new TextCell();
-	CellList<String> cellList = new CellList<String>(textCell);	
+	SubscCell subscCell = new SubscCell();
+	CellList<User> cellList = new CellList<User>(subscCell);	
 	
 	
 	public void onLoad() {
@@ -52,25 +53,27 @@ public class SubsPanel extends VerticalPanel {
 			
 			public void onSuccess(Vector<User> result) {				
 				for(User u: result) {
-					users.add(u.getFirstname()+" "+u.getNickname()+" "+u.getLastname());
+					//users.add(u.getFirstname()+" "+u.getNickname()+" "+u.getLastname());
+					
 					cellList.addStyleDependentName("cellList");
 					cellList.addStyleName("cellList");
 					
-					final ListDataProvider<String> dataProvider = new ListDataProvider<String>();
+					final ListDataProvider<User> dataProvider = new ListDataProvider<User>();
 					dataProvider.addDataDisplay(cellList);
 				    cellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
-				    final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
+				    final SingleSelectionModel<User> selectionModel = new SingleSelectionModel<User>();
 				    cellList.setSelectionModel(selectionModel);
 				    selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 				      public void onSelectionChange(SelectionChangeEvent event) {
-				    	  String selected = selectionModel.getSelectedObject();
+				    	  User selected = selectionModel.getSelectedObject();
 				        if (selected != null) {
 				          Window.alert("Hier sollte der Aufruf der Main passieren für die Posts von: " + selected);
+				          //PinboardPanel.createPost(selected);
 				        }
 				      }
 				    });
-				    cellList.setRowCount(users.size(), true);
-				    cellList.setRowData(0, users);
+				    cellList.setRowCount(result.size(), true);
+				    cellList.setRowData(0, result);
 			
 				   vp.add(cellList);
 					}
