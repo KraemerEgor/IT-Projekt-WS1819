@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
-
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.itp.client.gui.report.AllPostsFromUserReportForm;
 import de.hdm.itp.shared.bo.User;
@@ -23,20 +23,14 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class SearchPanel extends FlowPanel {
 	
-	FlowPanel resultPanel = new FlowPanel();
+	VerticalPanel resultPanel = new VerticalPanel();
 	
 	private Anchor reportLink = new Anchor("Report");
 	private Button reportBtn = new Button("Zum Report-Generator");
 	private User u = new User();
-
-	
-	Label header_lbl = new Label("Test"); 
-	
+	private Label header_lbl = new Label("Navigation"); 
 	private Button profileBtn = new Button("My Profile");
 	private Button addBtn = new Button("Add");
-	
-	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
-	SuggestBox suggestbox = new SuggestBox(oracle);	
 	
 	
 	
@@ -54,6 +48,7 @@ public class SearchPanel extends FlowPanel {
 		profileBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {		
 				resultPanel.clear();
+				
 				RootPanel.get().add(resultPanel);
 				}
 			});
@@ -63,16 +58,34 @@ public class SearchPanel extends FlowPanel {
 				Window.alert("Klappt!");
 				}
 			});
-			
-		this.addStyleName("Search");			
-			header_lbl.addStyleName("label_test");
+		
+		MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
+		SuggestBox suggestbox = new SuggestBox(oracle);	
+		   oracle.add("John");
+		   oracle.add("Kevin");
+		   oracle.add("Lisa");
+		   oracle.add("Anna");
+		   
+		   
+		this.setStylePrimaryName("Search");
+		
+		header_lbl.setStylePrimaryName("search_lbl");
 		this.add(header_lbl);
-			profileBtn.setStylePrimaryName("test_btn");
-		this.add(profileBtn);
-			addBtn.setStylePrimaryName("test_btn");
-		this.add(addBtn);
-		this.add(suggestbox);
+		
+		reportBtn.setStylePrimaryName("report_btn");
 		this.add(reportBtn);
+		
+		profileBtn.setStylePrimaryName("sp_profile_btn");
+		this.add(profileBtn);
+		
+		suggestbox.setStylePrimaryName("suggestbox");
+		this.add(suggestbox);
+		
+		addBtn.setStylePrimaryName("sp_add_btn");
+		this.add(addBtn);
+		
+		
+		
 		
 		
 				

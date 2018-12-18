@@ -28,7 +28,7 @@ div#Login {
 	padding: 14px;
     width: calc(70% - 56px);
     min-height: 700px;
-	background-color: rgb(204, 111, 57);
+	background-color: #39cccc;
 	
 }
 
@@ -77,11 +77,14 @@ div#Subs {
 	border-right: 3px solid #00868B;
 }
 div#Search {
-    width: 95%;
+    width: 80%;
     height: 15em;
-	padding: 5px;
+	padding: 70px;
 	background-color: #804000;
 	border-right: 3px solid #00868B;
+	min-height: 700px;
+	padding: 20px;
+	margin-top: 200px
 }
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -174,12 +177,52 @@ h1 {
 	width: 225px;
     font-size: 14px;
 }
-.test_btn{
-	width: 200px;
-	padding: 20px;
+/** Labels for SearchPanel **/ 
+.sp_profile_btn{
+	width:38%;
+	margin-right: 2%;
+	margin-bottom: 10px;
+	padding: 10px;
 	background-color: orange;
  	white-space:nowrap;
- 	before: before;
+ 	border-radius:8px;
+}
+.sp_add_btn{
+	padding: 10px;
+	background-color: orange;
+ 	white-space:nowrap;
+ 	margin-bottom: 10px;
+ 	margin-right: 2%;
+ 	width:18%;
+ 	border-radius:8px;
+ 	padding: 10px;
+}
+.suggestbox{
+   margin-right: 2%;
+   width: 52%;
+   color: yellow;
+   padding: 10px;
+   margin-bottom:10px;
+   background-color:black;
+   border-radius: 4px;
+   background-text:"Search";
+}
+.report_btn{
+	width: 38%;
+	padding: 10px;
+	background-color: yellow;
+ 	margin-bottom: 10px;
+ 	margin-right: 2%;
+ 	border-radius:8px;
+}
+.search_lbl{
+	width: 100%;
+	padding: 10px;
+	font-color: black;
+	font-size: 20px;
+ 	margin-bottom: 10px;
+ 	margin-right: 10px;
+ 	padding: 10px;
 }
 .report{
 	width: 200px;
