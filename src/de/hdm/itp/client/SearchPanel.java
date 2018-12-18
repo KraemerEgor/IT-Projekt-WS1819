@@ -48,6 +48,7 @@ public class SearchPanel extends FlowPanel {
 		profileBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {		
 				resultPanel.clear();
+				
 				RootPanel.get().add(resultPanel);
 				}
 			});

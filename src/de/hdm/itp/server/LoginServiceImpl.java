@@ -14,11 +14,13 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * User Objekt befüllt und "setLoggedIn" auf true gesetzt. 
  * 
  */
-
+@SuppressWarnings("serial")
 public class LoginServiceImpl extends RemoteServiceServlet implements
     LoginService {
 
-  public LoginInfo login(String requestUri) {
+
+
+public LoginInfo login(String requestUri) {
     UserService userService = UserServiceFactory.getUserService();
     User user = userService.getCurrentUser();
     LoginInfo loginInfo = new LoginInfo();

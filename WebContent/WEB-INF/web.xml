@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
-         
+
     <servlet>
 		<servlet-name>reportGeneratorServlet</servlet-name>
 		<servlet-class>de.hdm.itp.server.ReportGeneratorImpl</servlet-class>
@@ -14,18 +14,18 @@
 		<servlet-name>reportGeneratorServlet</servlet-name>
 		<url-pattern>/report/report</url-pattern>
 	</servlet-mapping>
-         
-  
+
+
   <servlet>
     <servlet-name>LoginService</servlet-name>
     <servlet-class>de.hdm.itp.server.LoginServiceImpl</servlet-class>
   </servlet>
-  
+
   <servlet-mapping>
     <servlet-name>LoginService</servlet-name>
     <url-pattern>/it_projekt_gruppe4_2/login</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
 		<servlet-name>editorAdministrationServlet</servlet-name>
 		<servlet-class>de.hdm.itp.server.EditorAdministrationImpl</servlet-class>
@@ -33,17 +33,16 @@
 
 	<servlet-mapping>
 		<servlet-name>editorAdministrationServlet</servlet-name>
-		
 		<url-pattern>/it_projekt_gruppe4_2/administration</url-pattern>
 	</servlet-mapping>
-  
-  
-  
+
+
+
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>IT_Projekt_Gruppe4_2.html</welcome-file>
     <welcome-file>FeedReport.html</welcome-file>
-    
+
   </welcome-file-list>
 
 </web-app>

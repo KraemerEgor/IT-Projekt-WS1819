@@ -1,57 +1,63 @@
 package de.hdm.itp.client;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+import java.io.Serializable;
 
 /*
  * Das Ergebnis des Login-Dienstes ist eine Instanz der Klasse "LoginInfo" mit
  * verschiedenen Informationen über den angemeldeten Nutzer.
  */
 
-public class LoginInfo implements IsSerializable {
+public class LoginInfo implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	
+	private boolean loggedIn = false;
+	private String loginUrl;
+	private String logoutUrl;
+	private String emailAddress;
+	private String nickname;
+	
+	public LoginInfo() {
+		
+	}
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
 
-  private boolean loggedIn = false;
-  private String loginUrl;
-  private String logoutUrl;
-  private String emailAddress;
-  private String nickname;
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
 
-  public boolean isLoggedIn() {
-    return loggedIn;
-  }
+	public String getLoginUrl() {
+		return loginUrl;
+	}
 
-  public void setLoggedIn(boolean loggedIn) {
-    this.loggedIn = loggedIn;
-  }
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
 
-  public String getLoginUrl() {
-    return loginUrl;
-  }
+	public String getLogoutUrl() {
+		return logoutUrl;
+	}
 
-  public void setLoginUrl(String loginUrl) {
-    this.loginUrl = loginUrl;
-  }
+	public void setLogoutUrl(String logoutUrl) {
+		this.logoutUrl = logoutUrl;
+	}
 
-  public String getLogoutUrl() {
-    return logoutUrl;
-  }
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
-  public void setLogoutUrl(String logoutUrl) {
-    this.logoutUrl = logoutUrl;
-  }
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
 
-  public String getEmailAddress() {
-    return emailAddress;
-  }
+	public String getNickname() {
+		return nickname;
+	}
 
-  public void setEmailAddress(String emailAddress) {
-    this.emailAddress = emailAddress;
-  }
-
-  public String getNickname() {
-    return nickname;
-  }
-
-  public void setNickname(String nickname) {
-    this.nickname = nickname;
-  }
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 }
