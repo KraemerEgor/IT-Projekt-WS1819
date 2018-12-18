@@ -65,6 +65,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
 		
+		Window.alert("hier gehts noch ");
 
 		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
 			
@@ -75,12 +76,16 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 			@Override
 			public void onSuccess(LoginInfo result) {
 				loginInfo = result;
+				
+				Window.alert("Webcontent der hrnshn");
 				if(loginInfo.isLoggedIn()) {
 					Window.alert("loggedin");
 				}
 			}	
 	
 	});
+		loadUserInformation();
+
 	
 //		LoginServiceAsync loginService = GWT.create(LoginService.class);
 //	    loginService.login("https://it-projekt-gruppe4.appspot.com/IT_Projekt_Gruppe4_2.html", new AsyncCallback<LoginInfo>() {
@@ -106,18 +111,18 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 //				
 	}
 //	
-//	public void loadUserInformation() {
-//		
-//		loadApplication();
-//		
-//	}
-//	
-//	public void loadApplication(){
-//		RootPanel.get("Head").add(hp);
-//		RootPanel.get("Nav").add(np);
-//		RootPanel.get("Main").add(mp);
-//		
-//	}
+	public void loadUserInformation() {
+		
+		loadApplication();
+		
+	}
+	
+	public void loadApplication(){
+		RootPanel.get("Head").add(hp);
+		RootPanel.get("Nav").add(np);
+		RootPanel.get("Main").add(mp);
+		
+	}
 //	
 //	private void loadLogin() {
 //		  
