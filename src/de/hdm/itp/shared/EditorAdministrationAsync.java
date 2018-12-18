@@ -1,5 +1,6 @@
 package de.hdm.itp.shared;
 
+import java.util.Date;
 import java.util.Vector;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;

@@ -16,6 +16,7 @@ import de.hdm.itp.client.LoginInfo;
 import de.hdm.itp.client.LoginService;
 import de.hdm.itp.client.LoginServiceAsync;
 import de.hdm.itp.client.MainPanel;
+import de.hdm.itp.client.PinboardPanel;
 import de.hdm.itp.client.NavPanel;
 import de.hdm.itp.client.SearchPanel;
 import de.hdm.itp.client.SubsPanel;
@@ -54,8 +55,10 @@ public class ITProjektWS1819 implements EntryPoint {
 	SearchPanel sep = new SearchPanel();
 	NavPanel np = new NavPanel();
 	MainPanel mp = new MainPanel();
+	PinboardPanel pp = new PinboardPanel();
 	HeaderPanel hp = new HeaderPanel();
 	Label hs = new Label();
+	
 
 	
 	public void onModuleLoad() {
@@ -185,6 +188,7 @@ public class ITProjektWS1819 implements EntryPoint {
 		RootPanel.get("Login").add(loginPanel);
 		RootPanel.get("Navi").add(np);
 		RootPanel.get("Main").add(mp);
+		RootPanel.get("Pinboard").add(pp);
 		RootPanel.get().add(hs);
 		
 		

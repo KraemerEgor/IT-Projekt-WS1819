@@ -1,5 +1,7 @@
 package de.hdm.itp.client.gui.report;
 
+import java.util.Date;
+
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -12,9 +14,14 @@ import de.hdm.itp.shared.report.HTMLReportWriter;
 public class AllSubsFromUserReportForm extends ReportResultPanel {
 
 	private User u;
+	private Date dateFrom;
+	private Date dateTill;
 
-	public AllSubsFromUserReportForm(User u) {
+	public AllSubsFromUserReportForm(User u, Date dateFrom, Date dateTill) {
 		this.u = u;
+		this.dateFrom = dateFrom;
+		this.dateTill = dateTill;
+		
 		run();
 	}
 
@@ -22,7 +29,7 @@ public class AllSubsFromUserReportForm extends ReportResultPanel {
 
 		ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();
 
-		reportGenerator.createAllSubsFromUserReport(u, new AsyncCallback<AllSubsFromUserReport>() {
+		reportGenerator.createAllSubsFromUserReport(u, dateFrom, dateTill, new AsyncCallback<AllSubsFromUserReport>() {
 
 			public void onFailure(Throwable caught) {
 

@@ -3,8 +3,6 @@ package de.hdm.itp.server;
 import java.util.Date;
 import java.util.Vector;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.datepicker.client.DateBox;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import de.hdm.itp.shared.EditorAdministration;
@@ -93,15 +91,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 */
 
 	@Override
-	
-	//TODO dateFrom DateTill übergeben
-	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException {
 
-		// if this.getAdministration(== null){return null;}
+	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill)
+			throws IllegalArgumentException {
 
 		AllCommentsFromUserReport result = new AllCommentsFromUserReport();
 
-		result.setTitel("All Ihre Kommentare");
+		int i = 0;
 
 		result.setCreateDate(new Date());
 
@@ -115,45 +111,55 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		result.addRow(headline);
 
 		Vector<Comment> comments = this.admin.getCommentsOfUser(u);
-		
-		if(dateFrom != null) {
-			
-			System.out.println("###################");
-			Window.alert("date select working");
-		}else {
-			Window.alert("date not working");
-		}
-		
 
-		//wenn date übergeben wir und nicht null ist dann filter nach date from till
-		
 		for (Comment c : comments) {
 			Row commentRow = new Row();
 
-			System.out.println(c.getText());
-			commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
-			commentRow.addColumn(new Column(String.valueOf(c.getText())));
-			commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
-			commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+			if (dateFrom == null) {
+				i++;
+				commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+				commentRow.addColumn(new Column(String.valueOf(c.getText())));
+				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
 
-			result.addRow(commentRow);
+				result.addRow(commentRow);
+
+				result.setTitel("All Ihre Kommentare\n " + " Anzahl Ihrer kommentare " + i);
+
+			} else {
+				if (c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
+					i++;
+					commentRow.addColumn(new Column(String.valueOf(c.getPostId())));
+					commentRow.addColumn(new Column(String.valueOf(c.getText())));
+					commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
+					commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+
+					result.addRow(commentRow);
+
+					result.setTitel(" Anzahl Ihrer Kommentaren in dem ausgewählten Zeitraum " + i);
+
+				} else if (i >= 1) {
+					result.setTitel(" Anzahl Ihrer Kommentaren in dem ausgewählten Zeitraum " + i);
+
+				} else {
+					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum wurden keine Kommentare erstellt");
+				}
+			}
+
 		}
 
 		return result;
 
-		/*
-		 * amount of comments
-		 */
-
 	}
 
-	public AllLikesFromUserReport createAllLikesFromUserReport(User u) throws IllegalArgumentException {
+	public AllLikesFromUserReport createAllLikesFromUserReport(User u, Date dateFrom, Date dateTill)
+			throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 
 		AllLikesFromUserReport result = new AllLikesFromUserReport();
 
-		result.setTitel("All Ihre likes"); // amountOfLikes
+		int i = 0;
 
 		result.setCreateDate(new Date());
 
@@ -170,13 +176,37 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		for (Like l : like) {
 			Row likesRow = new Row();
 
-			likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
-			likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
-			likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
+			if (dateFrom == null) {
+				i++;
+				likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
+				likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
+				likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
 
-			result.addRow(likesRow);
+				result.addRow(likesRow);
+
+				result.setTitel("All Ihre Likes\n " + " Anzahl Ihrer Likes " + i);
+
+			} else {
+				if (l.getCreateDate().after(dateFrom) && l.getCreateDate().before(dateTill)) {
+					i++;
+					likesRow.addColumn(new Column(String.valueOf(l.getPostId())));
+					likesRow.addColumn(new Column(String.valueOf(l.getOwnerId())));
+					likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
+
+					result.addRow(likesRow);
+					
+					result.setTitel("All Ihre Likes\n " + " Anzahl Ihrer Likes " + i);
+
+				} else if (i >= 1) {
+					result.setTitel(" Anzahl Ihrer Likes in dem ausgewählten Zeitraum " + i);
+
+				} else {
+					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum wurden keine Likes erstellt");
+				}
+
+			}
+
 		}
-
 		return result;
 
 		/*
@@ -185,13 +215,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 	}
 
-	public AllPostsFromUserReport createAllPostsFromUserReport(User u) throws IllegalArgumentException {
+	public AllPostsFromUserReport createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill)
+			throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 
 		AllPostsFromUserReport result = new AllPostsFromUserReport();
 
-		result.setTitel("All Ihre Beiträge"); // amountOfPosts
+		int i = 0;
 
 		result.setCreateDate(new Date());
 
@@ -209,12 +240,38 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		for (Post p : post) {
 			Row postRow = new Row();
 
-			postRow.addColumn(new Column(String.valueOf(p.getId())));
-			postRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
-			postRow.addColumn(new Column(String.valueOf(p.getModDate())));
-			postRow.addColumn(new Column(String.valueOf(p.getContent())));
+			if (dateFrom == null) {
+				i++;
+				postRow.addColumn(new Column(String.valueOf(p.getId())));
+				postRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
+				postRow.addColumn(new Column(String.valueOf(p.getModDate())));
+				postRow.addColumn(new Column(String.valueOf(p.getContent())));
 
-			result.addRow(postRow);
+				result.addRow(postRow);
+
+				result.setTitel("All Ihre Posts\n " + " Anzahl Ihrer Posts " + i);
+
+			} else {
+				if (p.getModDate().after(dateFrom) && p.getModDate().before(dateTill)) {
+					i++;
+					postRow.addColumn(new Column(String.valueOf(p.getId())));
+					postRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
+					postRow.addColumn(new Column(String.valueOf(p.getModDate())));
+					postRow.addColumn(new Column(String.valueOf(p.getContent())));
+
+					result.addRow(postRow);
+					
+					result.setTitel("All Ihre Posts\n " + " Anzahl Ihrer Posts " + i);
+
+				} else if (i >= 1) {
+					result.setTitel(" Anzahl Ihrer Posts in dem ausgewählten Zeitraum " + i);
+
+				} else {
+					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum wurden keine Posts erstellt");
+				}
+
+			}
+
 		}
 
 		return result;
@@ -223,13 +280,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 	}
 
-	public AllSubsFromUserReport createAllSubsFromUserReport(User u) throws IllegalArgumentException {
+	public AllSubsFromUserReport createAllSubsFromUserReport(User u, Date dateFrom, Date dateTill)
+			throws IllegalArgumentException {
 
 		// if this.getAdministration(== null){return null;}
 
 		AllSubsFromUserReport result = new AllSubsFromUserReport();
 
-		result.setTitel("Alle von Ihnen abonnierten Benutzer"); // amountOfPosts
+		int i = 0;
 
 		result.setCreateDate(new Date());
 
@@ -245,10 +303,35 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		for (Subs s : subs) {
 			Row subsRow = new Row();
 
-			subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
-			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+			if (dateFrom == null) {
+				i++;
+				subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+				subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+				result.addRow(subsRow);
 
-			result.addRow(subsRow);
+				result.setTitel("All Ihrer Abonnements\n " + " Anzahl Ihrer Abonnements " + i);
+
+			} else {
+				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
+					i++;
+					subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+					subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+
+					result.addRow(subsRow);
+					
+					result.setTitel("All Ihrer Abonnements\n " + " Anzahl Ihrer Abonnements " + i);
+
+
+				} else if (i >= 1) {
+					result.setTitel(" Anzahl Ihrer Abonnenten in dem ausgewählten Zeitraum " + i);
+
+				} else {
+					result.setTitel(
+							"Tut uns leid in dem Ausgewählten Zeitraum wurden kein Abonnement von Ihnen vergeben");
+				}
+
+			}
+
 		}
 
 		return result;
@@ -259,12 +342,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		 */
 	}
 
-	public AllSubsOfUserReport createAllSubsOfUserReport(User u) throws IllegalArgumentException {
+	public AllSubsOfUserReport createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill)
+			throws IllegalArgumentException {
 		// if this.getAdministration(== null){return null;}
 
 		AllSubsOfUserReport result = new AllSubsOfUserReport();
 
-		result.setTitel("All Ihre Abonnenten");
+		int i = 0;
 
 		result.setCreateDate(new Date());
 
@@ -280,16 +364,36 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		for (Subs s : subs) {
 			Row subsRow = new Row();
 
-			subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
-			subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+			if (dateFrom == null) {
+				i++;
+				subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+				subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+				result.addRow(subsRow);
 
-			result.addRow(subsRow);
+				result.setTitel("All Ihre Abonnenten\n " + " Anzahl Ihrer Abonnenten " + i);
+
+			} else {
+				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
+					i++;
+					subsRow.addColumn(new Column(String.valueOf(s.getTargetUser())));
+					subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+
+					result.addRow(subsRow);
+					
+					result.setTitel("All Ihre Abonnenten\n " + " Anzahl Ihrer Abonnenten " + i);
+
+				} else if (i >= 1) {
+					result.setTitel(" Anzahl Ihrer Abonnenten in dem ausgewählten Zeitraum " + i);
+
+				} else {
+					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum hat Sie keiner Abonniert");
+				}
+
+			}
+
 		}
 
 		return result;
 
-		/*
-		 * amount of subs getTargetUser createDate
-		 */
 	}
 }

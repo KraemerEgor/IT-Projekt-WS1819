@@ -25,7 +25,7 @@ div#Login {
 #Main {
 	float: right;
 	padding: 14px;
-    width: 66%;
+    width: calc(70% - 56px);
     min-height: 700px;
 	background-color: rgb(204, 111, 57);
 	
@@ -37,6 +37,14 @@ div#Login {
     min-height: 700px;
 	background-color: #177f7f;
 }
+
+.Header{
+	text-align: left!important;
+	color: white;
+	margin-bottom: 10px!important;
+	margin-top: 20px;
+}
+
 div#Subs {
 
     width: 95%;
@@ -193,4 +201,9 @@ h1 {
  	margin-right: 10px;
  	padding: 10px;
 }
+.cellList{
+	font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    color: red;
+	
 }

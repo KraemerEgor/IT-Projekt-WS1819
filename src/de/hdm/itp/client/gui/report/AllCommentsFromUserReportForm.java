@@ -17,11 +17,13 @@ public class AllCommentsFromUserReportForm extends ReportResultPanel {
 	private User u;
 	private Date dateFrom;
 	private Date dateTill;
+	
 
 	public AllCommentsFromUserReportForm(User u, Date dateFrom, Date dateTill) {
 		this.u = u;
 		this.dateFrom = dateFrom;
 		this.dateTill = dateTill;
+		
 		run();
 	}
 
@@ -29,12 +31,10 @@ public class AllCommentsFromUserReportForm extends ReportResultPanel {
 
 		ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();
 
-		reportGenerator.createAllCommentsFromUserReport(u, dateFrom, dateTill,  new AsyncCallback<AllCommentsFromUserReport>() {
+		reportGenerator.createAllCommentsFromUserReport(u,  dateFrom, dateTill, new AsyncCallback<AllCommentsFromUserReport>() {
 
 			public void onFailure(Throwable caught) {
-				
-				Window.alert(dateFrom.toString());
-
+			
 
 				ClientsideSettings.getLogger().severe("Erzeugen des Reports fehlgeschlagen!");
 				Window.alert("Fehlgeschlagen");
