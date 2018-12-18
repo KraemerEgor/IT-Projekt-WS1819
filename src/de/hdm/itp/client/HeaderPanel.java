@@ -23,11 +23,6 @@ public class HeaderPanel extends HorizontalPanel {
 		super.onLoad();
 		this.addStyleName("Head");
 		
-		header_lbl.addStyleName("label_test");
-		header_lbl.setWidth("210px");
-		this.add(header_lbl);
-		this.add(header_lbl);
-		
 		RootPanel.get("Head").add(reportBtn);
 		reportBtn.setStylePrimaryName("report");
 		
@@ -37,6 +32,13 @@ public class HeaderPanel extends HorizontalPanel {
 				Window.open(reportLink.getHref(), "_blank", "");
 				}
 			});
+		
+		header_lbl.addStyleName("label_test");
+		header_lbl.setWidth("210px");
+		this.add(header_lbl);
+		this.add(header_lbl);
+		
+		
 	
 		
 	

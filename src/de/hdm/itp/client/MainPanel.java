@@ -23,7 +23,7 @@ public class MainPanel extends ScrollPanel {
 	
 	
 	private EditorAdministrationAsync editorAdministration = null;
-	private Label header_lbl = new Label("MainPanel");
+	private Label header_lbl = new Label("My Profile");
 	private PinboardPanel pp = new PinboardPanel();
 	private HorizontalPanel userProfile = new HorizontalPanel();
 	private User user = new User();

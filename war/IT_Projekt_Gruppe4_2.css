@@ -185,8 +185,10 @@ h1 {
 	width: 200px;
 	padding: 20px;
 	background-color: orange;
- 	white-space:nowrap;
- 	before: before;
+ 	
+ 	position: absolute;
+ 	margin-left: 80%;
+ 	margin-top: -80px;
 }
 
 

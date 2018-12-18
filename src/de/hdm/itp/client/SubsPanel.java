@@ -111,7 +111,7 @@ public class SubsPanel extends VerticalPanel {
 				
 				public void onSuccess(Vector<User> result) {
 					for(User u: result) {
-						Window.alert(u.getFirstname()+" "+u.getNickname()+" "+u.getLastname()+" der Lappen aus der Datenbank");
+						Window.alert(u.getFirstname()+" "+u.getNickname()+" "+u.getLastname()+" aus der Datenbank");
 						}}
 			});
 			
