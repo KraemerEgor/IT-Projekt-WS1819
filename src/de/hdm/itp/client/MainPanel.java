@@ -3,6 +3,7 @@ package de.hdm.itp.client;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
@@ -27,6 +28,8 @@ public void onLoad() {
 		DOM.getElementById("mainHeader").appendChild(mainHeader);
 		
 		this.add(pp);
+		
+		Window.alert("Test");
 }
 
 }
