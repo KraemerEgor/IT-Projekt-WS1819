@@ -27,9 +27,13 @@ public class PinboardPanel extends ScrollPanel {
 	ScrollPanel pinboard = new ScrollPanel();
 	VerticalPanel post = new VerticalPanel();
 	Label lbl = new Label("HulapaluHulapaluHulapalu");
+	
+	User currentUser;
 
 	
 	public void onLoad() {
+		currentUser.setId(10000001);
+		
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
@@ -96,14 +100,23 @@ public class PinboardPanel extends ScrollPanel {
 		
 		
 	private void createPost(Post p) {
-		String text = new String (p.getContent());
-		Label content = new Label(text);
 		
+		/*
+		 * Post-Text-Teil 
+		 * */
+		Label ueberschrift = new Label("Post:");
+		post.add(ueberschrift);
+		
+		Label content = new Label(p.getContent());
 		post.add(content);
 		
-		HorizontalPanel options = new HorizontalPanel();
 		
-		/* In options: Liken, Disliken, Löschen (falls berechtigt)*/
+		/*
+		 * Optionen-Teil 
+		 * */
+		
+		
+		HorizontalPanel options = new HorizontalPanel();
 		
 		Button like = new Button("Like");
 		like.addClickHandler(new ClickHandler() {
@@ -129,7 +142,7 @@ public class PinboardPanel extends ScrollPanel {
 		});
 		options.add(comment);
 		
-		if (permissionCheck()) {
+		if (permissionCheck(currentUser)) {
 		Button delete = new Button("Löschen");
 		delete.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
@@ -139,8 +152,13 @@ public class PinboardPanel extends ScrollPanel {
 		options.add(delete);
 		}
 		
-		
 		post.add(options);
+		
+		
+		/*
+		 * Kommentar-Teil 
+		 * */
+		
 		
 		editorAdministration.getCommentsOfPost(p, new AsyncCallback<Vector<Comment>>() {
 			public void onFailure(Throwable t) {
@@ -168,9 +186,10 @@ public class PinboardPanel extends ScrollPanel {
 		}
 		
 		
-		private Boolean permissionCheck() {
-			/* "if User u == currentUser then
-			return true else return false"*/
+		private Boolean permissionCheck(User u) {
+			/*if (u == currentUser)
+			return true;
+			else return false;*/
 			return true;
 		}
 		
