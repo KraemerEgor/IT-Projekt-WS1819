@@ -1,21 +1,26 @@
 package de.hdm.itp.client;
 
+import java.util.Arrays;
+import java.util.Vector;
+import java.util.regex.Pattern;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
-import de.hdm.itp.client.gui.report.AllPostsFromUserReportForm;
+import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.User;
 
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
-import com.google.gwt.user.client.ui.RootPanel;
+
 
 
 
@@ -23,14 +28,16 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 public class SearchPanel extends FlowPanel {
 	
+	private EditorAdministrationAsync admin = null;
 	VerticalPanel resultPanel = new VerticalPanel();
-	
 	private Anchor reportLink = new Anchor("Report");
 	private Button reportBtn = new Button("Zum Report-Generator");
-	private User u = new User();
 	private Label header_lbl = new Label("Navigation"); 
 	private Button profileBtn = new Button("My Profile");
 	private Button addBtn = new Button("Add");
+	public Vector<User> box = new Vector<User>();
+	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
+	SuggestBox suggestbox = new SuggestBox(oracle);
 	
 	
 	
@@ -38,33 +45,10 @@ public class SearchPanel extends FlowPanel {
 	public void onLoad() {
 		
 		super.onLoad();
+		 if(admin == null) {
+				admin = ClientsideSettings.getAdministration();
+		    }		
 		
-		reportBtn.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event) {
-				reportLink.setHref(GWT.getHostPageBaseURL() + "FeedReports.html");
-				Window.open(reportLink.getHref(), "_self", "");
-				}
-			});
-		profileBtn.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {		
-				resultPanel.clear();
-				
-				RootPanel.get().add(resultPanel);
-				}
-			});
-			
-		addBtn.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				Window.alert("Klappt!");
-				}
-			});
-		
-		MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
-		SuggestBox suggestbox = new SuggestBox(oracle);	
-		   oracle.add("John");
-		   oracle.add("Kevin");
-		   oracle.add("Lisa");
-		   oracle.add("Anna");
 		   
 		   
 		this.setStylePrimaryName("Search");
@@ -78,15 +62,69 @@ public class SearchPanel extends FlowPanel {
 		profileBtn.setStylePrimaryName("sp_profile_btn");
 		this.add(profileBtn);
 		
-		suggestbox.setStylePrimaryName("suggestbox");
-		this.add(suggestbox);
 		
 		addBtn.setStylePrimaryName("sp_add_btn");
 		this.add(addBtn);
 		
 		
+		admin.getAllUser(new AsyncCallback<Vector<User>>() {
+			public void onFailure(Throwable t) {
+				
+				Window.alert(t.getMessage());}		
+			
+			public void onSuccess(Vector<User> result) {
+				
+				for(User u: result) {
+					oracle.add(u.getFirstname()+" ' "+u.getNickname()+" ' "+u.getLastname()+" - "+u.getEmail());
+					}
+				suggestbox.setStylePrimaryName("suggestbox");
+				resultPanel.add(suggestbox);}
+			
+		});
+		
+		this.add(resultPanel);
 		
 		
+		reportBtn.addClickHandler(new ClickHandler(){
+			public void onClick(ClickEvent event) {
+				reportLink.setHref(GWT.getHostPageBaseURL() + "FeedReports.html");
+				Window.open(reportLink.getHref(), "_self", "");
+				}
+			});
+		profileBtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {		
+				resultPanel.clear();
+				
+				
+				}
+			});
+			
+		addBtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				String inhalt = suggestbox.getValue();
+				String[] split = inhalt.split("- ");						
+				Window.alert(split[1]);
+				admin.getUserByEmail(split[1], new AsyncCallback<User>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());						
+					}
+
+					@Override
+					public void onSuccess(User result) {
+						Window.alert(result.getFirstname());
+						SubsPanel sp = new SubsPanel();
+						sp.addSub(result);
+						
+					}
+					
+				});
+				
+				
+				
+				}
+			});
 		
 				
 		
