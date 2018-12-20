@@ -81,8 +81,7 @@ public class SubsPanel extends VerticalPanel {
 			}
 		});
 	  
-		this.addStyleName("Subs");
-		this.setStyleName("Subs");
+		this.setStylePrimaryName("subsPanel");
 		NewCHtest n = new NewCHtest();
 		btn_test.addClickHandler(n);
 		this.add(btn_test);

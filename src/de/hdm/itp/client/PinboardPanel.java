@@ -20,30 +20,30 @@ import de.hdm.itp.shared.bo.Comment;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
-public class PinboardPanel extends ScrollPanel {
+public class PinboardPanel extends VerticalPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
 	
-	ScrollPanel pinboard = new ScrollPanel();
 	VerticalPanel post = new VerticalPanel();
 	Label lbl = new Label("HulapaluHulapaluHulapalu");
 
 	
 	public void onLoad() {
+		super.onLoad();
+		this.setStylePrimaryName("Pinboard");
+		
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
 		//this.clear();
-		super.onLoad();
 		
-		pinboard.add(lbl);
-			
+		this.add(lbl);
+		this.add(new Label("hello"));	
 		
 		
-		this.addStyleName("Pinboard");
-		this.getElement().getStyle().setBackgroundColor("red");
-		this.setHeight("400px");
-		this.add(pinboard);
+		
+//		this.getElement().getStyle().setBackgroundColor("red");
+//		this.setHeight("400px");
 		
 	}
 
@@ -156,9 +156,9 @@ public class PinboardPanel extends ScrollPanel {
 
 		});
 		
-		pinboard.add(post);
+		this.add(post);
 		
-};
+}
 
 
 
@@ -174,4 +174,4 @@ public class PinboardPanel extends ScrollPanel {
 			return true;
 		}
 		
-};
+}
