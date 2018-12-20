@@ -24,7 +24,6 @@ public class PinboardPanel extends ScrollPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
 	
-	ScrollPanel pinboard = new ScrollPanel();
 	VerticalPanel post = new VerticalPanel();
 	Label lbl = new Label("HulapaluHulapaluHulapalu");
 	
@@ -32,23 +31,24 @@ public class PinboardPanel extends ScrollPanel {
 
 	
 	public void onLoad() {
-		currentUser.setId(10000001);
 		
+		
+		
+		//this.clear();
+		super.onLoad();
+		this.add(lbl);
+		currentUser.setId(10000001);
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
-		//this.clear();
-		super.onLoad();
 		
-		pinboard.add(lbl);
 			
 		
 		
 		this.addStyleName("Pinboard");
-		this.getElement().getStyle().setBackgroundColor("red");
-		this.setHeight("400px");
-		this.add(pinboard);
-		
+		//this.getElement().getStyle().setBackgroundColor("red");
+		//this.setHeight("400px");
+				
 	}
 
 	
@@ -174,7 +174,7 @@ public class PinboardPanel extends ScrollPanel {
 
 		});
 		
-		pinboard.add(post);
+		this.add(post);
 		
 };
 
