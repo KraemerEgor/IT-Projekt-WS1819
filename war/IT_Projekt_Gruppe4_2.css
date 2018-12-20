@@ -32,22 +32,29 @@ div#Login {
 	
 }
 
+#Main table{
+	width: 100%;
+}
+
 .Pinboard{
 	height: 300px;
 	background-color: white;
 	width: 100%;
 }
 
-.userProfile{
+.profile{
 	background-color: white;
+	color: black;
+	width: 100%!important;
+	height: 150px!important;
+	margin-bottom: 30px;
+	padding: 30px;
 }
 
 .avatar {
 	
-	height: 60px;
-	display: block;
-	margin-top: 30px;
-	margin-left: 30px;
+	height: 40px;
+	width: 40px;
 	padding: 5px;
 	border: 1px solid rgb(204,111,57);
 	border-radius: 100px;
@@ -233,7 +240,10 @@ h1 {
 <<<<<<< HEAD
 .cellList *{
 =======
+}
+
 .report{
+
 	width: 200px;
 	padding: 20px;
 	background-color: orange;

@@ -53,6 +53,7 @@ public void onLoad() {
 		/**
 		 * Hinzufügen des User-Profils
 		 */
+		userProfile.setWidth("100%");
 		this.add(this.userProfile);
 		
 		this.add(this.pp);
