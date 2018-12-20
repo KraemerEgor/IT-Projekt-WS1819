@@ -22,14 +22,36 @@ div#Login {
 	padding: 14px;
 }
 
+
 #Main {
 	float: right;
 	padding: 14px;
     width: calc(70% - 56px);
     min-height: 700px;
-	background-color: #39cccc;
+	background-color: brown;
 	
 }
+
+.userProfile{
+	background-color: white;
+}
+
+.avatar {
+	
+	height: 60px;
+	display: block;
+	margin-top: 30px;
+	margin-left: 30px;
+	padding: 5px;
+	border: 1px solid rgb(204,111,57);
+	border-radius: 100px;
+	
+}
+
+.label{
+	color: black;
+}
+
 #Nav {
 	float: left;
 	padding: 14px;
@@ -43,6 +65,7 @@ div#Login {
 	color: white;
 	margin-bottom: 10px!important;
 	margin-top: 20px;
+	font-size: 20pt;
 }
 
 div#Subs {
@@ -201,7 +224,22 @@ h1 {
  	margin-right: 10px;
  	padding: 10px;
 }
+<<<<<<< HEAD
 .cellList *{
+=======
+.report{
+	width: 200px;
+	padding: 20px;
+	background-color: orange;
+ 	
+ 	position: absolute;
+ 	margin-left: 80%;
+ 	margin-top: -80px;
+}
+
+
+.cellList{
+
 	font-family: 'Lato', sans-serif;
     font-size: 12px;
 	

@@ -62,6 +62,10 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	public void onModuleLoad() {
 		loadApplication();
 		
+		loadApplication();
+		
+		
+		
 		Window.alert("loginTesting");
 		
 		LoginServiceAsync loginService = GWT.create(LoginService.class);

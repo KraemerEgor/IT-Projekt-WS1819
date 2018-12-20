@@ -106,9 +106,13 @@ public class SubsPanel extends VerticalPanel {
 		 
 		editorAdministration.createSubs(currentUser.getId(),u.getId(), new AsyncCallback<Subs>() {
 
+
 			public void onFailure(Throwable caught) {
 				Window.alert(caught.getMessage());						
 			}
+
+		
+
 			
 			public void onSuccess(Subs result) {
 				Window.alert("CurrentUser: "+result.getCurrentUser());
