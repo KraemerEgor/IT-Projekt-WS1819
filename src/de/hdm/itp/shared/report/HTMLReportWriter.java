@@ -186,7 +186,7 @@ public class HTMLReportWriter extends ReportWriter {
 		result.append("<H2>" + r.getTitel() + "</H2>");
 		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
 
-		Vector<Row> rows = r.getRows();
+		Vector<Row> rows = r .getRows();
 		result.append("<table style=\"width:auto\">");
 
 		for (int i = 0; i < rows.size(); i++) {
