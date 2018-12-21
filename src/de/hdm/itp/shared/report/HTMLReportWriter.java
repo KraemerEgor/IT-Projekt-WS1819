@@ -26,9 +26,9 @@ public class HTMLReportWriter extends ReportWriter {
 	 */
 	public String paragraph2HTML(Paragraph p) {
 		if (p instanceof CompositeParagraph) {
-			return this.paragraphToHTML((CompositeParagraph) p);
+			return this.paragraph2HTML((CompositeParagraph) p);
 		} else {
-			return this.paragraphToHTML((SimpleParagraph) p);
+			return this.paragraph2HTML((SimpleParagraph) p);
 		}
 	}
 
@@ -179,14 +179,77 @@ public class HTMLReportWriter extends ReportWriter {
 		this.reportText = result.toString();
 	}
 
-	public void process(AllCommentsFromUserReport r) {
+//	public void process(AllCommentsOfAllPostsFromUserReport r) {
+//		this.resetReportText();
+//
+//		StringBuffer result = new StringBuffer();
+//
+//		result.append("<H2>" + r.getTitel() + "</H2>");
+//		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
+//
+//		if (r.getHeader() != null) {
+//			result.append("<td>" + paragraph2HTML(r.getHeader()) + "</td>");
+//		}
+//
+////		    result.append("<td>" + paragraph2HTML(r.getTitel()) + "</td>");
+//		result.append("</tr><tr><td></td><td>" + r.getCreateDate().toString() + "</td></tr></table>");
+//
+//		for (int i = 0; i < r.getSubReportsSize(); i++) {
+//
+//			AllCommentsFromUserReport subReport = (AllCommentsFromUserReport) r.getSubReportByIndex(i);
+//
+//			this.process(subReport);
+//
+//			result.append(this.reportText + "\n");
+//
+//			this.resetReportText();
+//		}
+//
+//		this.reportText = result.toString();
+//	}
 
+	public void process(AllCommentsOfAllPostsFromUserReport r) {
+		this.resetReportText();
+
+		  StringBuffer result=new StringBuffer();
+
+		  result.append("<H1>" + r.getTitel() + "</H1>");
+		  
+		  result.append("<tr></tr><td>" + r.getCreateDate().toString()+ "</td></tr><tr></tr></table>");
+
+		  if(r.getSubReportsSize()!=0){
+		    AllPostsFromUserReport subReport2=(AllPostsFromUserReport) r.getSubReportByIndex(0);
+		    this.process(subReport2);
+		    result.append(this.reportText + "\n");
+		      this.resetReportText();
+
+		    for (int i = 1; i < r.getSubReportsSize(); i++) {
+		      if(r.getSubReportByIndex(i) instanceof AllPostsFromUserReport){
+		        result.append("<hr>");
+		        AllPostsFromUserReport subReport1=(AllPostsFromUserReport)
+		        r.getSubReportByIndex(i);
+		        this.process(subReport1);
+		      }
+		      else{
+		        AllCommentsFromUserReport subReport = (AllCommentsFromUserReport)
+		        r.getSubReportByIndex(i);
+		        this.process(subReport);
+		        }
+
+		      result.append(this.reportText + "\n");
+		        this.resetReportText();
+		      }
+		  }
+		  this.reportText=result.toString();
+		  }
+
+	public void process(AllCommentsFromUserReport r) {
 		StringBuffer result = new StringBuffer();
 
 		result.append("<H2>" + r.getTitel() + "</H2>");
 		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
 
-		Vector<Row> rows = r .getRows();
+		Vector<Row> rows = r.getRows();
 		result.append("<table style=\"width:auto\">");
 
 		for (int i = 0; i < rows.size(); i++) {
@@ -213,6 +276,7 @@ public class HTMLReportWriter extends ReportWriter {
 		result.append("</table>");
 
 		this.reportText = result.toString();
+
 	}
 
 	public void process(AllLikesFromUserReport r) {
