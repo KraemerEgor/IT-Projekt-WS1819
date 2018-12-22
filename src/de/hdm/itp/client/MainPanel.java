@@ -25,7 +25,7 @@ public class MainPanel extends VerticalPanel {
 	
 	
 	private EditorAdministrationAsync editorAdministration = null;
-	private Label header_lbl = new Label("My Profile");
+	private Label header_lbl = new Label("Mein Profil");
 	private PinboardPanel pp = new PinboardPanel();
 	private userProfilePanel userProfile = new userProfilePanel();
 	private User user = new User();
