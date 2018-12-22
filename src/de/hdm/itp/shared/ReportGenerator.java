@@ -4,8 +4,6 @@ import java.util.Date;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import com.google.gwt.user.datepicker.client.DateBox;
-
 import de.hdm.itp.shared.bo.*;
 import de.hdm.itp.shared.report.*;
 
@@ -25,5 +23,8 @@ public interface ReportGenerator extends RemoteService {
 	public abstract AllSubsFromUserReport createAllSubsFromUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
 
 	public abstract AllSubsOfUserReport createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill) throws IllegalArgumentException;
+
+	public abstract AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
+			Date dateTill) throws IllegalArgumentException;
 
 }
