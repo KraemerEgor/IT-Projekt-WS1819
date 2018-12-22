@@ -14,24 +14,54 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.User;
+import de.hdm.itp.client.*;
 
-public class MainPanel extends ScrollPanel {
+public class MainPanel extends VerticalPanel {
 	
 	
 	
 	private EditorAdministrationAsync editorAdministration = null;
-	private Label header_lbl = new Label("My Profile");
+	private Label header_lbl = new Label("Mein Profil");
 	private PinboardPanel pp = new PinboardPanel();
-	private HorizontalPanel userProfile = new HorizontalPanel();
+	private userProfilePanel userProfile = new userProfilePanel();
 	private User user = new User();
 	
 	
 	
 public void onLoad() {
+		super.onLoad();
 		
+		
+//		this.addStyleName("Main");
+		
+		
+		
+		
+		
+		
+		
+		
+		header_lbl.setStylePrimaryName("Header");
+		
+		
+		this.add(this.header_lbl);
+		
+		/**
+		 * Hinzufügen des User-Profils
+		 */
+		userProfile.setWidth("100%");
+		this.add(this.userProfile);
+		
+		this.add(this.pp);
+		
+
+		
+		
+
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
@@ -48,37 +78,7 @@ public void onLoad() {
 			}
 		});
 		
-		this.addStyleName("Main");
 		
-		
-		userProfile.setWidth("100%");
-		userProfile.setHeight("300px");
-		userProfile.setStylePrimaryName("userProfile");
-		
-		/**
-		 * Zusammenbauen des User-Profils
-		 */
-		Image avatar = new Image("man.png");
-		avatar.setStylePrimaryName("avatar");
-		
-		
-		Grid profileGrid = new Grid(4, 3);
-		profileGrid.setStylePrimaryName("profileGrid");
-		userProfile.add(profileGrid);
-		profileGrid.setWidget(0, 1, avatar);
-		
-		
-		Label firstname_lbl = new Label(user.getFirstname());
-		firstname_lbl.setStylePrimaryName("label");
-		profileGrid.setWidget(0, 2, firstname_lbl);
-		
-		RootPanel.get("Main").add(userProfile);
-		
-		header_lbl.setStylePrimaryName("Header");
-		this.add(header_lbl);
-		
-		
-		this.add(pp);
 }
 
 }

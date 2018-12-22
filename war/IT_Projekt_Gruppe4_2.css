@@ -29,23 +29,55 @@ div#Login {
     width: calc(70% - 56px);
     min-height: 700px;
 	background-color: brown;
+	color: grey;
 	
 }
 
-.userProfile{
+#Main table{
+	width: 100%;
+}
+
+.Pinboard{
+	height: 300px;
 	background-color: white;
+	width: 100%;
+}
+
+.profile{
+	background-color: white;
+	color: grey;
+	width: 100%!important;
+	height: 200px!important;
+	margin-bottom: 30px;
+	padding: 15px;
 }
 
 .avatar {
 	
-	height: 60px;
-	display: block;
-	margin-top: 30px;
-	margin-left: 30px;
-	padding: 5px;
-	border: 1px solid rgb(204,111,57);
+	height: 40px;
+	width: 40px;
+	padding: 2px;
+	border: 1px solid brown;
 	border-radius: 100px;
-	
+	margin-right: 50px;
+}
+
+.postInput{
+	width: 500px;
+	height: 80px;
+	text-align: top;
+	border-color: lightgrey;
+	padding: 10px;
+	margin-top: 15px;
+}
+
+.submit{
+	background-color: brown;
+	color: white;
+	width: 150px;
+	height: 35px;
+	padding: 5px;
+	border: none;
 }
 
 .label{
@@ -229,14 +261,19 @@ h1 {
 
 .cellList *{
 
+}
+
+
 .report{
+
 	width: 200px;
 	padding: 20px;
-	background-color: orange;
- 	
+	background-color: brown;
+ 	color: white;
  	position: absolute;
  	margin-left: 80%;
  	margin-top: -80px;
+ 	border: none;
 }
 
 

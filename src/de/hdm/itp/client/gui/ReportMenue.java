@@ -17,13 +17,10 @@ public class ReportMenue implements EntryPoint {
 		
 		
 		HeaderPanelReport headP = new HeaderPanelReport();
-		MainPanelReport mainP = new MainPanelReport();
 		NavPanelReport navP = new NavPanelReport();
 
 		
 		RootPanel.get().add(headP);
-
-		//RootPanel.get().add(mainP);
 
 		RootPanel.get().add(navP);
 
