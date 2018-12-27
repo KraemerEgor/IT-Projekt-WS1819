@@ -48,14 +48,7 @@ public void onLoad() {
 		this.add(vp);
 		
 		
-//		this.addStyleName("Main");
-		
-		
-		
-		
-		
-		
-		
+//		this.addStyleName("Main");		
 		
 		header_lbl.setStylePrimaryName("Header");
 		

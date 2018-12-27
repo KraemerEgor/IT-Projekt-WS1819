@@ -22,41 +22,50 @@ import de.hdm.itp.shared.bo.Comment;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
-public class DialogPanel implements ClickHandler {
+public class DialogPanel extends DialogBox implements ClickHandler {
 
-	  private static class MyDialog extends DialogBox {
-
-	    public MyDialog() {
-	      // Set the dialog box's caption.
-	      setText("My First Dialog");
-
-	      // Enable animation.
-	      setAnimationEnabled(true);
-
-	      // Enable glass background.
-	      setGlassEnabled(true);
-
-	      // DialogBox is a SimplePanel, so you have to set its widget property to
-	      // whatever you want its contents to be.
-	      Button ok = new Button("OK");
-	      ok.addClickHandler(new ClickHandler() {
-	        public void onClick(ClickEvent event) {
-	          MyDialog.this.hide();
-	        }
-	      });
-	      setWidget(ok);
+	    public String CommentDialog() {
+		      // Dialog-Name
+		      setText("Kommentar verfassen");
+			  new DialogPanel().show();
+		      
+		      Button ok = new Button("OK");
+		      ok.addClickHandler(new ClickHandler() {
+		        public void onClick(ClickEvent event) {
+		          DialogPanel.this.hide();
+		        }
+		      });
+		      setWidget(ok);
+		      
+		      return "Neuer Kommentar";
+		      
+		    }
+	
+	
+	    public String PostDialog() {
+		      // Dialog-Name
+		      setText("Post verfassen");
+			  new DialogPanel().show();
+		      
+		      Button ok = new Button("OK");
+		      ok.addClickHandler(new ClickHandler() {
+		        public void onClick(ClickEvent event) {
+		          DialogPanel.this.hide();
+		        }
+		      });
+		      setWidget(ok);
+		      
+		      return "Neuer Post";
+	      
 	    }
-	  }
+
 
 	  public void onModuleLoad() {
-	    Button b = new Button("Click me");
-	    b.addClickHandler(this);
-
-	    RootPanel.get("Main").add(b);
+		  super.onLoad();
 	  }
 
 	  public void onClick(ClickEvent event) {
 	    // Instantiate the dialog box and show it.
-	    new MyDialog().show();
+	    new DialogPanel().show();
 	  }
 	}
