@@ -94,7 +94,7 @@ public class PostPanel extends VerticalPanel {
 		Button like = new Button("Like");
 		like.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
-		    	editorAdministration.createLike(p, null);
+		    	editorAdministration.createLike(null, null);
 		    }
 		});
 		options.add(like);
@@ -110,7 +110,7 @@ public class PostPanel extends VerticalPanel {
 		Button comment = new Button("Kommentieren");
 		comment.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
-		      // handle the click event
+		    	editorAdministration.createComment(null, "Test", null);
 		    }
 		});
 		options.add(comment);
