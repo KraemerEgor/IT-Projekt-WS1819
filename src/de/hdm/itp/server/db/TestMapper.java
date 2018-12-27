@@ -23,6 +23,8 @@ public class TestMapper {
 		final UserMapper uMapper = UserMapper.userMapper();
 		
 		final LikeMapper lMapper = LikeMapper.likeMapper();
+		
+		final SubsMapper sMapper = SubsMapper.subsMapper();
 
 		Timestamp ts = new Timestamp(System.currentTimeMillis());
 
@@ -32,17 +34,12 @@ public class TestMapper {
 		Comment c = new Comment();
 		u.setId(10000001);
 		
-		Vector<Like> result = new Vector<Like>();
-		result = lMapper.findAllByUID(u);
-		for (Like l : result) {
-			System.out.println(l.getId());
-			System.out.println(l.getOwnerId());
-			System.out.println(l.getPostId());
-			System.out.println(l.getCreateDate());
-			
-			
-		}
+		Subs sub = new Subs();
+		sub.setCurrentUser(10000001);
+		sub.setTargetUser(10000002);
 		
+		
+		sMapper.insert(sub);
 		
 		
 		/*

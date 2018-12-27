@@ -8,6 +8,7 @@ import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.AllCommentsFromUserReport;
+import de.hdm.itp.shared.report.AllCommentsOfAllPostsFromUserReport;
 import de.hdm.itp.shared.report.AllLikesFromUserReport;
 import de.hdm.itp.shared.report.AllPostsFromUserReport;
 import de.hdm.itp.shared.report.AllSubsFromUserReport;
@@ -32,4 +33,5 @@ public interface ReportGeneratorAsync {
 	
 	void createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllPostsFromUserReport> callback);
 	
+	void createAllCommentsOfAllPostsFromUserReportForm (User u, Date dateFrom, Date dateTill, AsyncCallback<AllCommentsOfAllPostsFromUserReport> callback);
 }

@@ -70,6 +70,7 @@ public class ITProjektWS1819 implements EntryPoint {
 		    }
 	
 		    public void onSuccess(LoginInfo result) {
+		    	
 		    	loginInfo = result;
 		    	if(loginInfo.isLoggedIn()) {
 		    		loadUserInformation();
