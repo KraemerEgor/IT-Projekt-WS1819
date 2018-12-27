@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
 
 import de.hdm.itp.client.gui.report.AllCommentsFromUserReportForm;
+import de.hdm.itp.client.gui.report.AllCommentsOfAllPostsFromUserReportForm;
 import de.hdm.itp.client.gui.report.AllLikesFromUserReportForm;
 import de.hdm.itp.client.gui.report.AllPostsFromUserReportForm;
 import de.hdm.itp.client.gui.report.AllSubsFromUserReportForm;
@@ -228,7 +229,7 @@ public class NavPanelReport extends VerticalPanel {
 		AllCommentsFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				resultPanel.clear();
-				resultPanel.add(new AllCommentsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
+				resultPanel.add(new AllCommentsOfAllPostsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue())); //(new AllCommentsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
 				RootPanel.get().add(resultPanel);	
 				
 			}
@@ -315,7 +316,6 @@ public class NavPanelReport extends VerticalPanel {
 }
 
 
-
 class setUserCallback implements AsyncCallback<Void> {
 
 	public void onFailure(Throwable caught) {
@@ -330,7 +330,6 @@ class setUserCallback implements AsyncCallback<Void> {
 		/*
 		 * Wir erwarten diesen Ausgang, wollen aber keine Notifikation ausgeben.
 		 */
-		Window.alert("User gesetzt und DB funktioniert!");
 
 	}
 

@@ -22,17 +22,17 @@ import de.hdm.itp.shared.bo.User;
 	      sb.appendHtmlConstant("<div style=\"color:darkgrey;border: 1px solid #ccc;font-size:28px;font-family: 'Lato', sans-serif;\">");
 	      if(value.getGender()=="m") {
 				//wenn der User männlich ist
-				sb.appendHtmlConstant("<img src=\"user_Symbol_male.png\" height=\"28\" width=\"28\">");	
+				sb.appendHtmlConstant("<img src=\"man.png\" height=\"20\" width=\"20\">");	
 				
 			}
 			if(value.getGender()=="f") {
 				//wenn der User weiblich ist
-				sb.appendHtmlConstant("<img src=\"user_Symbol_female.png\" height=\"28\" width=\"28\">");	
+				sb.appendHtmlConstant("<img src=\"girl.png\" height=\"20\" width=\"20\">");	
 				
 			}
 			if(value.getGender()=="o") {
 				//wenn der User anders ist
-				sb.appendHtmlConstant("<img src=\"user_Symbol_other.png\" height=\"28\" width=\"28\">");	
+				sb.appendHtmlConstant("<img src=\"user_Symbol_other.png\" height=\"20\" width=\"08\">");	
 				
 			}
 	      sb.appendHtmlConstant(value.getFirstname()+" '"+value.getNickname()+"' "+value.getLastname());

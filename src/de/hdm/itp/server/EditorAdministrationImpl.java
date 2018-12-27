@@ -94,7 +94,11 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * @see de.hdm.itp.server.EditorAdministration#createUser(java.lang.String,
 	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
-
+	public void setUser(User u) {
+		
+	}
+	
+	
 	@Override
 	public User createUser(String email, String firstname, String lastname, String nickname, String gender) {
 

@@ -20,7 +20,7 @@ import de.hdm.itp.shared.bo.Comment;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
-public class PinboardPanel extends ScrollPanel {
+public class PinboardPanel extends VerticalPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
 	
@@ -31,6 +31,7 @@ public class PinboardPanel extends ScrollPanel {
 
 	
 	public void onLoad() {
+<<<<<<< HEAD
 		
 		
 		
@@ -49,6 +50,24 @@ public class PinboardPanel extends ScrollPanel {
 		//this.getElement().getStyle().setBackgroundColor("red");
 		//this.setHeight("400px");
 				
+=======
+		super.onLoad();
+		this.setStylePrimaryName("Pinboard");
+		
+		if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+		}
+		//this.clear();
+		
+		this.add(lbl);
+		this.add(new Label("hello"));	
+		
+		
+		
+//		this.getElement().getStyle().setBackgroundColor("red");
+//		this.setHeight("400px");
+		
+>>>>>>> master
 	}
 
 	
@@ -176,7 +195,7 @@ public class PinboardPanel extends ScrollPanel {
 		
 		this.add(post);
 		
-};
+}
 
 
 
@@ -193,4 +212,4 @@ public class PinboardPanel extends ScrollPanel {
 			return true;
 		}
 		
-};
+}
