@@ -121,7 +121,7 @@ public class PinboardPanel extends ScrollPanel {
 		Button like = new Button("Like");
 		like.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
-		      // handle the click event
+		    	editorAdministration.createLike(p, callback);
 		    }
 		});
 		options.add(like);
@@ -129,7 +129,7 @@ public class PinboardPanel extends ScrollPanel {
 		Button dislike = new Button("Dislike");
 		dislike.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
-		      // handle the click event
+		    	editorAdministration.deleteLike(l, callback);
 		    }
 		});
 		options.add(dislike);
