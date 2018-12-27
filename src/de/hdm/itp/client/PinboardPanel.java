@@ -23,6 +23,7 @@ import de.hdm.itp.shared.bo.User;
 public class PinboardPanel extends VerticalPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
+	private PostPanel postpanel;
 	
 	VerticalPanel post = new VerticalPanel();
 	Label lbl = new Label("HulapaluHulapaluHulapalu");
@@ -31,11 +32,9 @@ public class PinboardPanel extends VerticalPanel {
 
 	
 	public void onLoad() {
-<<<<<<< HEAD
+
 		
-		
-		
-		//this.clear();
+		this.clear();
 		super.onLoad();
 		this.add(lbl);
 		currentUser.setId(10000001);
@@ -50,7 +49,7 @@ public class PinboardPanel extends VerticalPanel {
 		//this.getElement().getStyle().setBackgroundColor("red");
 		//this.setHeight("400px");
 				
-=======
+
 		super.onLoad();
 		this.setStylePrimaryName("Pinboard");
 		
@@ -62,12 +61,11 @@ public class PinboardPanel extends VerticalPanel {
 		this.add(lbl);
 		this.add(new Label("hello"));	
 		
-		
+	
 		
 //		this.getElement().getStyle().setBackgroundColor("red");
 //		this.setHeight("400px");
-		
->>>>>>> master
+
 	}
 
 	
@@ -111,105 +109,10 @@ public class PinboardPanel extends VerticalPanel {
 			
 			public void onSuccess(Vector<Post> result) {
 					for(Post p: result) {
-					createPost(p);
+					postpanel.createPost(p);
 					}}
 		});
 		
 	}
-		
-		
-	private void createPost(Post p) {
-		
-		/*
-		 * Post-Text-Teil 
-		 * */
-		Label ueberschrift = new Label("Post:");
-		post.add(ueberschrift);
-		
-		Label content = new Label(p.getContent());
-		post.add(content);
-		
-		
-		/*
-		 * Optionen-Teil 
-		 * */
-		
-		
-		HorizontalPanel options = new HorizontalPanel();
-		
-		Button like = new Button("Like");
-		like.addClickHandler(new ClickHandler() {
-		    public void onClick(ClickEvent event) {
-		    	editorAdministration.createLike(p, callback);
-		    }
-		});
-		options.add(like);
-		
-		Button dislike = new Button("Dislike");
-		dislike.addClickHandler(new ClickHandler() {
-		    public void onClick(ClickEvent event) {
-		    	editorAdministration.deleteLike(l, callback);
-		    }
-		});
-		options.add(dislike);
-		
-		Button comment = new Button("Kommentieren");
-		comment.addClickHandler(new ClickHandler() {
-		    public void onClick(ClickEvent event) {
-		      // handle the click event
-		    }
-		});
-		options.add(comment);
-		
-		if (permissionCheck(currentUser)) {
-		Button delete = new Button("Löschen");
-		delete.addClickHandler(new ClickHandler() {
-		    public void onClick(ClickEvent event) {
-		      // handle the click event
-		    }
-		});
-		options.add(delete);
-		}
-		
-		post.add(options);
-		
-		
-		/*
-		 * Kommentar-Teil 
-		 * */
-		
-		
-		editorAdministration.getCommentsOfPost(p, new AsyncCallback<Vector<Comment>>() {
-			public void onFailure(Throwable t) {
-				Window.alert(t.getMessage());}		
-			
-			public void onSuccess(Vector<Comment> result) {
-					for(Comment c: result) {
-					createComment(c);
-					}
-			
-			}
-
-
-		});
-		
-		this.add(post);
-		
-}
-
-
-
-		private void createComment(Comment c) {
-			Label comnt = new Label(c.getText());
-			post.add(comnt);
-		}
-		
-		
-		private Boolean permissionCheck(User u) {
-			/*if (u == currentUser)
-			return true;
-			else return false;*/
-			return true;
-		}
 		
 }
