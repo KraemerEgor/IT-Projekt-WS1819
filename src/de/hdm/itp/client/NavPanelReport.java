@@ -11,6 +11,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -38,25 +39,27 @@ public class NavPanelReport extends VerticalPanel {
 	
 	
 	
-	final Button AllSubsFromUserReportBtn = new Button("AllSubsFromUserReport");
-	final Button AllSubsOfUserReportBtn = new Button("AllSubsOfUserReport");
-	final Button AllCommentsFromUserReportBtn = new Button("AllCommentsFromUserReport");
-	final Button AllLikesFromUserReportBtn = new Button("AllLikesFromUserReport");
-	final Button AllPostsFromUserReportBtn = new Button("AllPostsFromUserReport");
+	final Button AllSubsFromUserReportBtn = new Button("All Ihre Abonnements");
+	final Button AllSubsOfUserReportBtn = new Button("All Ihre Abonnenten");
+	final Button AllCommentsFromUserReportBtn = new Button("All Ihre Kommentare");
+	final Button AllLikesFromUserReportBtn = new Button("All Ihre Likes");
+	final Button AllPostsFromUserReportBtn = new Button("All Ihre Beiträge");
 
-	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("SubsFromUserBetweenDates");
-	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("SubsOfUserBetweenDates");
-	final Button AllCommentsFromUserBetweenDatesReportBtn = new Button("CommentsFromUserBetweenDates");
-	final Button AllLikesFromUserBetweenDatesReportBtn = new Button("LikesFromUserBetweenDates");
-	final Button AllPostsFromUserBetweenDatesReportBtn = new Button("PostsFromUserBetweenDates");
+	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("All Ihre Abonnements in dem Angegebenen Zeitraum");
+	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("All Ihre Abonnement in dem Angegebenen Zeitraum");
+	final Button AllCommentsFromUserBetweenDatesReportBtn = new Button("All Ihre Kommentare in dem Angegebenen Zeitraum");
+	final Button AllLikesFromUserBetweenDatesReportBtn = new Button("All Ihre Likes in dem Angegebenen Zeitraum");
+	final Button AllPostsFromUserBetweenDatesReportBtn = new Button("All Ihre Beiträge in dem Angegebenen Zeitraum\"");
 	
-	final CheckBox checkBoxShowAll = new CheckBox("ShowAll");
-	final CheckBox checkBoxPickDate = new CheckBox("PickDate");
+	final CheckBox checkBoxShowAll = new CheckBox("Suchanfrage Aller");
+	final CheckBox checkBoxPickDate = new CheckBox("Suchanfrage nach Zeitraum");
 	
 	final DateBox dateFrom = new DateBox();
 	final DateBox dateTill = new DateBox();
 	
-	
+	final Label lblFrom = new Label("Von");
+	final Label lblTill = new Label("Bis");
+
 	
 	public void onLoad() {
 		super.onLoad();
@@ -67,7 +70,9 @@ public class NavPanelReport extends VerticalPanel {
 		this.add(checkBoxShowAll);
 		this.add(checkBoxPickDate);
 		
+		this.add(lblFrom);
 		this.add(dateFrom);
+		this.add(lblTill);
 		this.add(dateTill);
 		
 		this.add(AllSubsFromUserReportBtn);
@@ -105,17 +110,17 @@ public class NavPanelReport extends VerticalPanel {
 
 		dateFrom.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			public void onValueChange(ValueChangeEvent<Date> event) {
-//			        Window.alert(dateFrom.getValue().toString());
 			}
 		});
 
 
 		dateTill.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			public void onValueChange(ValueChangeEvent<Date> event) {
-//		        Window.alert(dateTill.getValue().toString());
 			}
 		});
 		
+		lblFrom.setVisible(false);
+		lblTill.setVisible(false);
 		dateFrom.setVisible(false);
 		dateTill.setVisible(false);
 		
@@ -137,6 +142,8 @@ public class NavPanelReport extends VerticalPanel {
 			public void onClick(ClickEvent event) {
 
 				checkBoxShowAll.setValue(true);
+				lblFrom.setVisible(false);
+				lblTill.setVisible(false);
 				dateFrom.setVisible(false);
 				dateTill.setVisible(false);
 				
@@ -179,6 +186,8 @@ public class NavPanelReport extends VerticalPanel {
 				
 				// setting default value for DateFrom and DateTill
 
+				lblFrom.setVisible(true);
+				lblTill.setVisible(true);
 				dateFrom.setValue(new Date());
 				dateTill.setValue(new Date());
 				
@@ -229,7 +238,7 @@ public class NavPanelReport extends VerticalPanel {
 		AllCommentsFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				resultPanel.clear();
-				resultPanel.add(new AllCommentsOfAllPostsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue())); //(new AllCommentsFromUserReportForm(u,  dateFrom.getValue(),  dateTill.getValue()));
+				resultPanel.add(new AllCommentsOfAllPostsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue())); 
 				RootPanel.get().add(resultPanel);	
 				
 			}
@@ -280,11 +289,8 @@ public class NavPanelReport extends VerticalPanel {
 		AllCommentsFromUserBetweenDatesReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
-//				u.setDateFrom(dateFrom.getValue());
-//				u.setDateTill(dateTill.getValue());
-				
 				resultPanel.clear();
-				resultPanel.add(new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
+				resultPanel.add(new AllCommentsOfAllPostsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));  //new AllCommentsFromUserReportForm(u, dateFrom.getValue(), dateTill.getValue()));
 				RootPanel.get().add(resultPanel);
 				
 			}
