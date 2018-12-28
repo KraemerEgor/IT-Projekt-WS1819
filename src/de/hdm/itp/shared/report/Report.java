@@ -30,6 +30,8 @@ public class Report implements Serializable{
 	 */
 	private Paragraph header=null;
 	
+	private String Amount = "";
+	
 	/**
 	 * Auslesen des Report Titels.
 	 * @return titel
@@ -76,5 +78,13 @@ public class Report implements Serializable{
 	 */
 	public void setHeader (Paragraph header){
 		this.header = header;
+	}
+
+	public String getAmount() {
+		return Amount;
+	}
+
+	public void setAmount(String amount) {
+		Amount = amount;
 	}
 }

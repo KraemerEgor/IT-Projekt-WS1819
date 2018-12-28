@@ -1,6 +1,9 @@
 package de.hdm.itp.shared.report;
 
+
 import java.util.Vector;
+import com.google.gwt.i18n.client.DateTimeFormat;
+
 
 /**
  */
@@ -100,11 +103,16 @@ public class HTMLReportWriter extends ReportWriter {
 		/**
 		 */
 		StringBuffer result = new StringBuffer();
+		
+	    DateTimeFormat df = DateTimeFormat.getFormat("dd.MM.yyyy");
 
+		String HeadlineDate = df.format(r.getCreateDate());
 		/**
 		 */
 		result.append("<H2>" + r.getTitel() + "</H2>");
-		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
+		result.append("<H2>" + r.getAmount() + "</H2>");
+
+		result.append("<H3>" + HeadlineDate + "</H3>");
 
 		Vector<Row> rows = r.getRows();
 		result.append("<table style=\"width:auto\">");
@@ -143,12 +151,17 @@ public class HTMLReportWriter extends ReportWriter {
 		 * Step by step our results are written into this buffer
 		 */
 		StringBuffer result = new StringBuffer();
+		
+		 DateTimeFormat df = DateTimeFormat.getFormat("dd.MM.yyyy");
+
+		 String HeadlineDate = df.format(r.getCreateDate());
 
 		/**
 		 * The individual components of the Reports read and translated into HTML format
 		 */
 		result.append("<H2>" + r.getTitel() + "</H2>");
-		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
+		result.append("<H2>" + r.getAmount() + "</H2>");
+		result.append("<H3>" + HeadlineDate + "</H3>");
 
 		Vector<Row> rows = r.getRows();
 		result.append("<table style=\"width:auto\">");
@@ -212,11 +225,10 @@ public class HTMLReportWriter extends ReportWriter {
 		this.resetReportText();
 
 		  StringBuffer result=new StringBuffer();
-
-		  result.append("<H1>" + r.getTitel() + "</H1>");
 		  
-		  result.append("<tr></tr><td>" + r.getCreateDate().toString()+ "</td></tr><tr></tr></table>");
-
+		  result.append("<H1>" + r.getTitel() + "</H1>");
+		  result.append("<H2>" + r.getAmount() + "</H2>");
+		  
 		  if(r.getSubReportsSize()!=0){
 		    AllPostsFromUserReport subReport2=(AllPostsFromUserReport) r.getSubReportByIndex(0);
 		    this.process(subReport2);
@@ -245,9 +257,14 @@ public class HTMLReportWriter extends ReportWriter {
 
 	public void process(AllCommentsFromUserReport r) {
 		StringBuffer result = new StringBuffer();
+		
+		 DateTimeFormat df = DateTimeFormat.getFormat("dd.MM.yyyy");
+		 result.append("<H2>" + r.getAmount() + "</H2>");
+
+		 String HeadlineDate = df.format(r.getCreateDate());
 
 		result.append("<H2>" + r.getTitel() + "</H2>");
-		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
+		result.append("<H3>" + HeadlineDate + "</H3>");
 
 		Vector<Row> rows = r.getRows();
 		result.append("<table style=\"width:auto\">");
@@ -286,11 +303,17 @@ public class HTMLReportWriter extends ReportWriter {
 		/**
 		 */
 		StringBuffer result = new StringBuffer();
+		
+		 DateTimeFormat df = DateTimeFormat.getFormat("dd.MM.yyyy");
+
+		 String HeadlineDate = df.format(r.getCreateDate());
 
 		/**
 		 */
 		result.append("<H2>" + r.getTitel() + "</H2>");
-		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
+		result.append("<H2>" + r.getAmount() + "</H2>");
+
+		result.append("<H3>" + HeadlineDate + "</H3>");
 
 		Vector<Row> rows = r.getRows();
 		result.append("<table style=\"width:auto\">");
@@ -328,11 +351,16 @@ public class HTMLReportWriter extends ReportWriter {
 		/**
 		 */
 		StringBuffer result = new StringBuffer();
+		
+		 DateTimeFormat df = DateTimeFormat.getFormat("dd.MM.yyyy");
+
+		 String HeadlineDate = df.format(r.getCreateDate());
 
 		/**
 		 */
 		result.append("<H2>" + r.getTitel() + "</H2>");
-		result.append("<H3>" + r.getCreateDate().toString() + "</H3>");
+		result.append("<H2>" + r.getAmount() + "</H2>");
+		result.append("<H3>" + HeadlineDate + "</H3>");
 
 		Vector<Row> rows = r.getRows();
 		result.append("<table style=\"width:auto\">");

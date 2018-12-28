@@ -60,20 +60,17 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	HeaderPanel hp = new HeaderPanel();
 
 	public void onModuleLoad() {
+
 		loadApplication();
-		
-		loadApplication();
-		
-		
-		
+
 		Window.alert("loginTesting");
-		
+
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
-		
+
 		Window.alert("hier gehts noch ");
 
 		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
-			
+
 			public void onFailure(Throwable caught) {
 				Window.alert("Fehler: " + caught.toString());
 			}
@@ -81,37 +78,31 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 			@Override
 			public void onSuccess(LoginInfo result) {
 				loginInfo = result;
-				
-				Window.alert("Webcontent der hrnshn");
-				if(loginInfo.isLoggedIn()) {
+
+				if (loginInfo.isLoggedIn()) {
 					Window.alert("loggedin");
-				}
-				else {
+				} else {
 					Window.alert("else");
 
 					loadLogin();
 				}
-			}	
-	
-	});
+			}
+
+		});
 		loadUserInformation();
-		
-		
 
 	}
-	public void loadUserInformation() {
-		
-		
-		
-		if(editorAdministration == null) {
-			editorAdministration = ClientsideSettings.getEditorAdministration();
-	    }
 
-	    
-	    editorAdministration.isUserKnown(loginInfo.getEmailAddress(), new AsyncCallback<Boolean>() {
-			
-	    	public void onFailure(Throwable t) {
-	    		System.out.println(t.getMessage());	
+	public void loadUserInformation() {
+
+		if (editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getEditorAdministration();
+		}
+
+		editorAdministration.isUserKnown(loginInfo.getEmailAddress(), new AsyncCallback<Boolean>() {
+
+			public void onFailure(Throwable t) {
+				System.out.println(t.getMessage());
 			}
 
 			public void onSuccess(Boolean result) {
@@ -120,110 +111,127 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				if (result) {
 					Window.alert("UserisKnown");
 
-					//Der Nutzer konnte in der Datenbank gefunden werden und ist somit bereits bestehender Nutzer der Applikation
+					// Der Nutzer konnte in der Datenbank gefunden werden und ist somit bereits
+					// bestehender Nutzer der Applikation
 					editorAdministration.getUserByEmail(loginInfo.getEmailAddress(), new AsyncCallback<User>() {
 						public void onFailure(Throwable t) {
 							System.out.println(t.getMessage());
 						}
+
 						public void onSuccess(User arg0) {
 
-							//das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt und in einer Instanzenvariable gespeichert.
+							// das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt
+							// und in einer Instanzenvariable gespeichert.
 							ClientsideSettings.setUser(arg0);
 							user = arg0;
 							Window.alert("UserWurdegesetzt");
 
-							//da der Nutzer bereits bekannt ist, wird für ihn im Folgenden die Applikation geladen
+							// da der Nutzer bereits bekannt ist, wird für ihn im Folgenden die Applikation
+							// geladen
 							loadApplication();
 						}
 					});
 				}
-				
+
 				else {
 					Window.alert("Userisunknown");
 
-					/*Wenn kein Nutzer mit dieser e-Mail in der Datenbank gefunden wurde, wird die DialogBox für die erstmalige Registrierung 
-					 * aufgebaut. In diese muss der Nutzer seinen Vor- und Nachnamen eintragen und sein Geschlecht auswählen. */
+					/*
+					 * Wenn kein Nutzer mit dieser e-Mail in der Datenbank gefunden wurde, wird die
+					 * DialogBox für die erstmalige Registrierung aufgebaut. In diese muss der
+					 * Nutzer seinen Vor- und Nachnamen eintragen und sein Geschlecht auswählen.
+					 */
 					createAccountBox = new ClientsideFunctions.InputDialogBox(loginInfo.getEmailAddress());
-					
+
 					createAccountBox.getOKButton().addClickHandler(new ClickHandler() {
-						
+
 						public void onClick(ClickEvent arg0) {
-															editorAdministration.createUser(createAccountBox.getMultiUseTextBox().getText(), createAccountBox.getNameTextBox().getText(), createAccountBox.getNickNameTextBox().getText(), createAccountBox.getListBox().getSelectedItemText(), loginInfo.getEmailAddress(), new AsyncCallback<User>() {
-									public void onFailure(Throwable t) {
-										System.out.println(t.getMessage());
-										createAccountBox.hide();
-									}
-									public void onSuccess(User arg0) {
-										
-										if(arg0 != null) {										
-		
-										createAccountBox.hide();
-										//das zurückkommende Nutzer-Objekt wird in den ClientsideSettings hinterlegt und in einer Instanzenvariable gespeichert.
-										ClientsideSettings.setUser(arg0);
-										user = arg0;
-										//danach wird für den neu registrierten Nutzer ebenfalls die Applikation geladen
-										loadApplication();
-	}}});
-														}
-					});}}
- });
-		
+							editorAdministration.createUser(createAccountBox.getMultiUseTextBox().getText(),
+									createAccountBox.getNameTextBox().getText(),
+									createAccountBox.getNickNameTextBox().getText(),
+									createAccountBox.getListBox().getSelectedItemText(), loginInfo.getEmailAddress(),
+									new AsyncCallback<User>() {
+										public void onFailure(Throwable t) {
+											System.out.println(t.getMessage());
+											createAccountBox.hide();
+										}
+
+										public void onSuccess(User arg0) {
+
+											if (arg0 != null) {
+
+												createAccountBox.hide();
+												// das zurückkommende Nutzer-Objekt wird in den ClientsideSettings
+												// hinterlegt und in einer Instanzenvariable gespeichert.
+												ClientsideSettings.setUser(arg0);
+												user = arg0;
+												// danach wird für den neu registrierten Nutzer ebenfalls die
+												// Applikation geladen
+												loadApplication();
+											}
+										}
+									});
+						}
+					});
+				}
+			}
+		});
+
 	}
-	
-	public void loadApplication(){
+
+	public void loadApplication() {
 		RootPanel.get("Head").add(hp);
 		RootPanel.get("Nav").add(np);
 		RootPanel.get("Main").add(mp);
-		
+
 		Window.alert("Main panels are loaded");
-		
+
 	}
-	
+
 	private void loadLogin() {
-		
+
 		/*
 		 * Das loginPanel wird aufgebaut
 		 */
-	    VerticalPanel loginPanel = new VerticalPanel();
-	    
-	    /*
-	     * Der signOutLink wird dem loginPanel hinzugefügt
-	     */
-	    signOutLink.setHref(loginInfo.getLogoutUrl());
-	    signOutLink.addStyleName("signout");
-		signInLink.addStyleName("reportbutton");
-		
-		
-		loginPanel.add(signOutLink);
-		
-		
+		VerticalPanel loginPanel = new VerticalPanel();
+
 		/*
-		 * Die Information über den aktuell angemeldeten Nutzer wird ebenfalls dem loginPanel hinzugefügt
+		 * Der signOutLink wird dem loginPanel hinzugefügt
 		 */
-	    signedInUser = new Label();
-	    signedInUser.addStyleName("signedInUser");
-	    	    
-	    editorAdministration.getFullNameOfUser(user, new AsyncCallback<String>(){
-	    	public void onFailure(Throwable t) {
-	    		System.out.println(t.getMessage());
-	    		
-	    	}
-	    	public void onSuccess(String result) {
-	    		
-	    		signedInUser.setText("Angemeldet als: " +result);
-	    	}
-	    });
-	    
+		signOutLink.setHref(loginInfo.getLogoutUrl());
+		signOutLink.addStyleName("signout");
+		signInLink.addStyleName("reportbutton");
+
+		loginPanel.add(signOutLink);
+
+		/*
+		 * Die Information über den aktuell angemeldeten Nutzer wird ebenfalls dem
+		 * loginPanel hinzugefügt
+		 */
+		signedInUser = new Label();
+		signedInUser.addStyleName("signedInUser");
+
+		editorAdministration.getFullNameOfUser(user, new AsyncCallback<String>() {
+			public void onFailure(Throwable t) {
+				System.out.println(t.getMessage());
+
+			}
+
+			public void onSuccess(String result) {
+
+				signedInUser.setText("Angemeldet als: " + result);
+			}
+		});
+
 		loginPanel.add(signedInUser);
-		
-		
-		//das loginPanel wird dem div mit der id "Login" hinzugefügt
+
+		// das loginPanel wird dem div mit der id "Login" hinzugefügt
 
 		RootPanel.get("Login").add(loginPanel);
 		RootPanel.get("Navi").add(np);
 		RootPanel.get("Main").add(mp);
-		
-	}	
+
+	}
 }
 //		Window.alert("loginTesting");
 //		
