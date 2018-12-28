@@ -39,6 +39,7 @@ public class SearchPanel extends FlowPanel {
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	SuggestBox suggestbox = new SuggestBox(oracle);
 	SubsPanel sp = new SubsPanel();
+	PinboardPanel pp = new PinboardPanel();
 	
 	
 	
@@ -91,6 +92,10 @@ public class SearchPanel extends FlowPanel {
 			public void onClick(ClickEvent event) {		
 				//hier soll die eigene Pinnwand angezeigt werden
 				Window.alert("Show own Pinboard");
+				User currentUser = new User();
+				currentUser.setId(10000001);
+				pp.createPinboard(currentUser);
+				
 				
 				
 				}

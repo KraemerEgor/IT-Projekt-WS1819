@@ -28,6 +28,8 @@ public class SubsPanel extends VerticalPanel {
 	User selectedUser = new User();
 	User currentUser = new User();
 	
+	PinboardPanel pp = new PinboardPanel();
+	
 	public void onLoad() {
 		super.onLoad();	
 		//erstellen einer Insatnz des Asyncronen Interfaces, des Servlets
@@ -84,7 +86,7 @@ public class SubsPanel extends VerticalPanel {
 				        if (selected != null) {
 				        	Window.alert("die ID des Selected Users: "+selectedUser.getId());
 				          Window.alert("Show Pinboard of: " + selected);
-				          //PinboardPanel.createPost(selected);
+				          pp.createPinboard(selected);
 				        }
 					
 				}	
