@@ -61,7 +61,6 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	public void onModuleLoad() {
 
-		loadApplication();
 		
 		Window.alert("loginTesting");
 
@@ -146,10 +145,11 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 					createAccountBox.getOKButton().addClickHandler(new ClickHandler() {
 
 						public void onClick(ClickEvent arg0) {
-							editorAdministration.createUser(createAccountBox.getMultiUseTextBox().getText(),
+							editorAdministration.createUser(loginInfo.getEmailAddress(),
 									createAccountBox.getNameTextBox().getText(),
+									createAccountBox.getMultiUseTextBox().getText(),
 									createAccountBox.getNickNameTextBox().getText(),
-									createAccountBox.getListBox().getSelectedItemText(), loginInfo.getEmailAddress(),
+									createAccountBox.getListBox().getSelectedItemText(), 
 									new AsyncCallback<User>() {
 										public void onFailure(Throwable t) {
 											System.out.println(t.getMessage());
