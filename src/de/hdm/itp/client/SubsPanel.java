@@ -69,7 +69,7 @@ public class SubsPanel extends VerticalPanel {
 						      public void onSelectionChange(SelectionChangeEvent event) {
 						    	  User selected = selectionModel.getSelectedObject();
 						        if (selected != null) {
-						          Window.alert("Hier sollte der Aufruf der Main passieren für die Posts von: " + selected);
+						          Window.alert("Show Pinboard of: " + selected);
 						          //PinboardPanel.createPost(selected);
 						        }
 							
@@ -96,10 +96,7 @@ public class SubsPanel extends VerticalPanel {
 		//dummy current user
 		User currentUser = new User();
 		currentUser.setId(10000001);
-		
-		Window.alert("kommt in add");
-		Window.alert("ID vom currentUser: "+currentUser.getId());
-		Window.alert("ID vom targetUser: "+u.getId());
+	
 		 if(editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
 		    }
@@ -115,7 +112,6 @@ public class SubsPanel extends VerticalPanel {
 
 			
 			public void onSuccess(Subs result) {
-				Window.alert("CurrentUser: "+result.getCurrentUser());
 				editorAdministration.getUserById(result.getTargetUser(), new AsyncCallback<User>() {
 
 					@Override
@@ -126,7 +122,7 @@ public class SubsPanel extends VerticalPanel {
 
 					@Override
 					public void onSuccess(User result) {
-						Window.alert("der User heißt: "+result.getNickname());
+						Window.alert("der User: "+result.getNickname()+" wurde hinzugefügt");
 						//hier wird aber noch nciht automatisch in die Liste geschrieben
 						
 					}

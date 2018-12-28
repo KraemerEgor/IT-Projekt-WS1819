@@ -31,7 +31,6 @@ public class SearchPanel extends FlowPanel {
 	private EditorAdministrationAsync admin = null;
 	VerticalPanel resultPanel = new VerticalPanel();
 	private Anchor reportLink = new Anchor("Report");
-	private Button reportBtn = new Button("Zum Report-Generator");
 	private Label header_lbl = new Label("Navigation"); 
 	private Button profileBtn = new Button("My Profile");
 	private Button addBtn = new Button("Add");
@@ -55,10 +54,7 @@ public class SearchPanel extends FlowPanel {
 		
 		header_lbl.setStylePrimaryName("search_lbl");
 		this.add(header_lbl);
-		
-		reportBtn.setStylePrimaryName("report_btn");
-		this.add(reportBtn);
-		
+			
 		profileBtn.setStylePrimaryName("sp_profile_btn");
 		this.add(profileBtn);
 		
@@ -85,15 +81,11 @@ public class SearchPanel extends FlowPanel {
 		this.add(resultPanel);
 		
 		
-		reportBtn.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event) {
-				reportLink.setHref(GWT.getHostPageBaseURL() + "FeedReports.html");
-				Window.open(reportLink.getHref(), "_self", "");
-				}
-			});
+		
 		profileBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {		
-				resultPanel.clear();
+				//hier soll die eigene Pinnwand angezeigt werden
+				Window.alert("Show own Pinboard");
 				
 				
 				}
@@ -101,9 +93,9 @@ public class SearchPanel extends FlowPanel {
 			
 		addBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
+				if(!suggestbox.getValue().isEmpty()) {
 				String inhalt = suggestbox.getValue();
 				String[] split = inhalt.split("- ");						
-				Window.alert(split[1]);
 				admin.getUserByEmail(split[1], new AsyncCallback<User>() {
 
 					@Override
@@ -113,16 +105,22 @@ public class SearchPanel extends FlowPanel {
 
 					@Override
 					public void onSuccess(User result) {
-						Window.alert(result.getFirstname());
+						//TODO: hier funktioniert die IF nicht
+						if(result == null) {
+							Window.alert("ungültiger User");
+						}if(result != null) {
 						SubsPanel sp = new SubsPanel();
 						sp.addSub(result);
-						
+						}
 					}
 					
 				});
 				
 				
 				
+				}if(suggestbox.getValue().isEmpty()){
+				Window.alert("Bitte wähle ein Nutzer zum Abonieren aus");	
+				}
 				}
 			});
 		
