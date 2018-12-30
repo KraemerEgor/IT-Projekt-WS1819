@@ -39,10 +39,10 @@ public void onLoad() {
 		this.addStyleName("Main");
 		
 		
-		this.add(new HTMLPanel("<div id=\"mainHeader\"></div>"));
-		mainHeader.setInnerHTML("My Profile");
-		mainHeader.setClassName("Header");
-		DOM.getElementById("mainHeader").appendChild(mainHeader);
+//		this.add(new HTMLPanel("<div id=\"mainHeader\"></div>"));
+//		mainHeader.setInnerHTML("My Profile");
+//		mainHeader.setClassName("Header");
+//		DOM.getElementById("mainHeader").appendChild(mainHeader);
 		
 		//vp.add(pp);
 		//this.add(vp);

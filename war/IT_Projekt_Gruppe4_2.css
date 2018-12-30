@@ -80,6 +80,7 @@ div#Login {
 	height: 35px;
 	padding: 5px;
 	border: none;
+	margin: 5px;
 }
 
 .label{
@@ -92,6 +93,10 @@ div#Login {
     width: 30%;
     min-height: 700px;
 	background-color: #177f7f;
+}
+
+.btnPanel{
+	margin-bottom: 20px;
 }
 
 .Header{

@@ -68,9 +68,11 @@ public class userProfilePanel extends HorizontalPanel {
 				firstname_lbl = new Label("Vorname: " + u.getFirstname());
 				lastname_lbl = new Label("Nachname: " + u.getLastname());
 				email_lbl = new Label("Email: " + u.getEmail());
-				profile.setWidget(0, 1, firstname_lbl);
-				profile.setWidget(1, 1, lastname_lbl);
-				profile.setWidget(0, 2, email_lbl);
+				nickname_lbl = new Label("Nickname: " + u.getNickname());
+				profile.setWidget(0, 2, firstname_lbl);
+				profile.setWidget(1, 2, lastname_lbl);
+				profile.setWidget(1, 1, email_lbl);
+				profile.setWidget(0, 1, nickname_lbl);
 				
 				if (u.getGender() == "m") {
 					profile.setWidget(0, 0, avatar_man);
@@ -101,14 +103,14 @@ public class userProfilePanel extends HorizontalPanel {
 		postInput.setStylePrimaryName("postInput");
 		profile.getFlexCellFormatter().setColSpan(2, 1, 2);
 
-		
-		
-		//submitBtn.addClickHandler(publicPost);
-		
+			
 		submitBtn.setStylePrimaryName("submit");
 		profile.setWidget(2, 3, submitBtn);
 		
-		
+//		submitBtn.addClickHandler(new ClickHandler() {
+//			
+//		});
+//		
 		this.add(this.profile);
 		
 				

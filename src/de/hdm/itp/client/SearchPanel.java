@@ -32,14 +32,16 @@ public class SearchPanel extends FlowPanel {
 	VerticalPanel resultPanel = new VerticalPanel();
 	private Anchor reportLink = new Anchor("Report");
 	private Label header_lbl = new Label("Navigation"); 
-	private Button profileBtn = new Button("My Profile");
-	private Button addBtn = new Button("Add");
-	private Button dltBtn = new Button("Delete");
+	private Button profileBtn = new Button("Mein Profil");
+	private Button addBtn = new Button("Hinzufügen");
+	private Button dltBtn = new Button("Löschen");
 	public Vector<User> box = new Vector<User>();
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	SuggestBox suggestbox = new SuggestBox(oracle);
 	SubsPanel sp = new SubsPanel();
 	PinboardPanel pp = new PinboardPanel();
+	
+	private VerticalPanel btnPanel = new VerticalPanel();
 	
 	
 	
@@ -55,18 +57,21 @@ public class SearchPanel extends FlowPanel {
 		   
 		this.setStylePrimaryName("Search");
 		
-		header_lbl.setStylePrimaryName("search_lbl");
+		header_lbl.setStylePrimaryName("Header");
 		this.add(header_lbl);
 			
-		profileBtn.setStylePrimaryName("sp_profile_btn");
-		this.add(profileBtn);
+		profileBtn.setStylePrimaryName("submit");
+		btnPanel.add(profileBtn);
 		
 		
-		addBtn.setStylePrimaryName("sp_add_btn");
-		this.add(addBtn);
+		addBtn.setStylePrimaryName("submit");
+		btnPanel.add(addBtn);
 		
-		dltBtn.setStylePrimaryName("sp_add_btn");
-		this.add(dltBtn);
+		dltBtn.setStylePrimaryName("submit");
+		btnPanel.add(dltBtn);
+		
+		btnPanel.setStylePrimaryName("btnPanel");
+		this.add(btnPanel);
 		
 		
 		admin.getAllUser(new AsyncCallback<Vector<User>>() {
