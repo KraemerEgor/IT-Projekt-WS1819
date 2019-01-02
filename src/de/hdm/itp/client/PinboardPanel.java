@@ -29,7 +29,6 @@ public class PinboardPanel extends VerticalPanel {
 	Label lbl = new Label("HulapaluHulapaluHulapalu");
 	
 	User currentUser;
-
 	
 	public void onLoad() {
 

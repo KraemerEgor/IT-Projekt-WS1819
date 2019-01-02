@@ -26,7 +26,6 @@ public class PostPanel extends VerticalPanel {
 	private EditorAdministrationAsync editorAdministration = null;
 	
 	User currentUser;
-
 	
 	public void onLoad() {
 
@@ -75,6 +74,7 @@ public class PostPanel extends VerticalPanel {
 		/*
 		 * Post-Text-Teil 
 		 * */
+		
 		VerticalPanel vpost = new VerticalPanel();
 		Label ueberschrift = new Label("Post:");
 		vpost.add(ueberschrift);
