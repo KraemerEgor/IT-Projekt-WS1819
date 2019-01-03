@@ -36,12 +36,8 @@ public class SubsPanel extends VerticalPanel {
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 	    }
-		//dummy für currentUser
-				currentUser.setId(10000001);
-				currentUser.setFirstname("egor");
-				currentUser.setLastname("krämer");
-				currentUser.setNickname("kulak");
-				currentUser.setGender("m");
+				currentUser = ClientsideSettings.getUser();
+				
 				
 				 editorAdministration.getSubsOfCurrentUser(currentUser, new AsyncCallback<Vector<Subs>>() {
 						public void onFailure(Throwable t) {
