@@ -154,7 +154,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 						public void onClick(ClickEvent UserRegister) {
 
 							String getGender = createAccountBox.getListBox().getSelectedItemText();
-
+							
 							switch (getGender) {
 
 							case "Männlich":
@@ -162,14 +162,16 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 								break;
 
 							case "Weiblich":
-								getGender = "w";
+								getGender = "f";
 								break;
 
 							case "Divers":
 								getGender = "o";
 								break;
 							}
-							editorAdministration.createUser(createAccountBox.getEmailTextBox().getText(),
+							
+							Window.alert("after creatACCountBox switch case " + loginInfo.getEmailAddress());
+							editorAdministration.createUser(loginInfo.getEmailAddress(),
 									createAccountBox.getFirstnameTextBox().getText(),
 									createAccountBox.getLastnameTextBox().getText(),
 									createAccountBox.getNicknameTextBox().getText(), getGender,

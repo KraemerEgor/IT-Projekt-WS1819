@@ -59,9 +59,10 @@ public abstract class ClientsideFunctions {
 		 */
 		public InputDialogBox(String userEmail) {
 			
-			setEmailTextBox(new TextBox());
-			getEmailTextBox().getElement().setPropertyString("placeholder", "Email...");
-			
+//			setEmailTextBox(new TextBox());
+//			getEmailTextBox().getElement().setPropertyString("placeholder", "Email...");
+//
+//			
 			setFirstnameTextBox(new TextBox());
 			getFirstnameTextBox().getElement().setPropertyString("placeholder", "Vorname...");
 			getFirstnameTextBox().setText("");
@@ -99,7 +100,7 @@ public abstract class ClientsideFunctions {
 			
 			hpanel.add(close);
 	        hpanel.add(ok);
-	        panel.add(emailTextBox);
+//	        panel.add(emailTextBox);
 	        panel.add(firstnameTextBox);
 	        panel.add(lastnameTextBox);
 	        panel.add(nicknameTextBox);
