@@ -41,9 +41,11 @@ public abstract class ClientsideFunctions {
 		/** Diverse Attribute und GWT Elemente die zur Realisierung der InputDialogBox benötigt werden. */
 		private String input;
 		Label dialogBoxLabel = new Label();
-        private TextBox multiUseTextBox;
-        private TextBox nameTextBox;
+        private TextBox firstnameTextBox;
+        private TextBox lastnameTextBox;
         private TextBox nicknameTextBox;
+        private TextBox emailTextBox;
+
         private ListBox listBox;
         private SuggestBox sb;
         private MultiWordSuggestOracle oracle;
@@ -57,28 +59,31 @@ public abstract class ClientsideFunctions {
 		 */
 		public InputDialogBox(String userEmail) {
 			
-			setMultiUseTextBox(new TextBox());
-			getMultiUseTextBox().getElement().setPropertyString("placeholder", "Vorname...");
-			getMultiUseTextBox().setText("");
+			setEmailTextBox(new TextBox());
+			getEmailTextBox().getElement().setPropertyString("placeholder", "Email...");
 			
-			setNameTextBox(new TextBox());
-			getNameTextBox().getElement().setPropertyString("placeholder", "Nachname...");
-			getNameTextBox().setText("");
+			setFirstnameTextBox(new TextBox());
+			getFirstnameTextBox().getElement().setPropertyString("placeholder", "Vorname...");
+			getFirstnameTextBox().setText("");
 			
-			setNickNameTextBox(new TextBox());
-			getNameTextBox().getElement().setPropertyString("placeholder", "Nickname...");
-			getNameTextBox().setText("");
+			setLastnameTextBox(new TextBox());
+			getLastnameTextBox().getElement().setPropertyString("placeholder", "Nachname...");
+			getLastnameTextBox().setText("");
+			
+			setNicknameTextBox(new TextBox());
+			getNicknameTextBox().getElement().setPropertyString("placeholder", "Nickname...");
+			getNicknameTextBox().setText("");
 			
 			listBox = new ListBox();
-			listBox.addItem("männlich");
-			listBox.addItem("weiblich");
-			listBox.addItem("Sonstiges");
+			listBox.addItem("Männlich");
+			listBox.addItem("Weiblich");
+			listBox.addItem("Divers");
 			
 			ok.addStyleName("okbutton");
 	        close.addStyleName("closebutton");
 
 			setText("Eingabe");
-			setdialogBoxLabel(userEmail + " ist noch nicht registriert.\nBitte geben Sie Ihre Informationen an:");
+			setdialogBoxLabel("Sie sind noch nicht registriert.\n Bitte geben Sie Ihre Informationen an: ");
 			
 			setAnimationEnabled(true);
 			setGlassEnabled(true);
@@ -91,10 +96,13 @@ public abstract class ClientsideFunctions {
 	        panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 	        panel.add(dialogBoxLabel);
 			HorizontalPanel hpanel=new HorizontalPanel();
+			
 			hpanel.add(close);
 	        hpanel.add(ok);
-	        panel.add(multiUseTextBox);
-	        panel.add(nameTextBox);
+	        panel.add(emailTextBox);
+	        panel.add(firstnameTextBox);
+	        panel.add(lastnameTextBox);
+	        panel.add(nicknameTextBox);
 	        panel.add(listBox);
 	        panel.add(hpanel);
 
@@ -163,18 +171,7 @@ public abstract class ClientsideFunctions {
 		 *
 		 * @return MultiUseTextBox
 		 */
-		public TextBox getMultiUseTextBox() {
-			return this.multiUseTextBox;
-		}
 		
-		/**
-		 * Setter für MultiUseTextBox.
-		 *
-		 * @param tb neue MultiUseTextBox
-		 */
-		public void setMultiUseTextBox(TextBox tb) {
-			this.multiUseTextBox = tb;
-		}
 
 		/**
 		 * Getter für SuggestBox.
@@ -217,16 +214,14 @@ public abstract class ClientsideFunctions {
 		 *
 		 * @return NameTextBox
 		 */
-		public TextBox getNameTextBox() {
-			return nameTextBox;
-		}
+		
 
 		/**
 		 * Setter für NickNameTextBox.
 		 *
 		 * @param nameTextBox neue NameTextBox
 		 */
-		public void setNickNameTextBox(TextBox nicknameTextBox) {
+		public void setNicknameTextBox(TextBox nicknameTextBox) {
 			this.nicknameTextBox = nicknameTextBox;
 		}
 		
@@ -235,7 +230,7 @@ public abstract class ClientsideFunctions {
 		 *
 		 * @return NameTextBox
 		 */
-		public TextBox getNickNameTextBox() {
+		public TextBox getNicknameTextBox() {
 			return nicknameTextBox;
 		}
 
@@ -244,9 +239,6 @@ public abstract class ClientsideFunctions {
 		 *
 		 * @param nameTextBox neue NameTextBox
 		 */
-		public void setNameTextBox(TextBox nameTextBox) {
-			this.nameTextBox = nameTextBox;
-		}
 
 		/**
 		 * Getter für ListBox.
@@ -266,6 +258,30 @@ public abstract class ClientsideFunctions {
 			this.listBox = listBox;
 		}
 	
+	public TextBox getFirstnameTextBox() {
+			return firstnameTextBox;
+		}
+
+		public void setFirstnameTextBox(TextBox firstnameTextBox) {
+			this.firstnameTextBox = firstnameTextBox;
+		}
+
+	public TextBox getLastnameTextBox() {
+			return lastnameTextBox;
+		}
+
+		public void setLastnameTextBox(TextBox lastnameTextBox) {
+			this.lastnameTextBox = lastnameTextBox;
+		}
+
+	public TextBox getEmailTextBox() {
+			return emailTextBox;
+		}
+
+		public void setEmailTextBox(TextBox emailTextBox) {
+			this.emailTextBox = emailTextBox;
+		}
+
 	/**
 	 * Die Klasse popUpBox ersetzt Window.alert() und dient zusätzlich zur Sicherheitsabfrage beim löschen.
 	 */
