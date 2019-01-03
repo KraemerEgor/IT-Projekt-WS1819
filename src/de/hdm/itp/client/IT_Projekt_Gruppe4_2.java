@@ -215,10 +215,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	public void loadApplication() {
 		
 		signOutLink.setHref(loginInfo.getLogoutUrl());
-		signedInUser.setText("Eingeloggter User:" +ClientsideSettings.getUser().getFirstname()+" "+ClientsideSettings.getUser().getLastname() );
 		
-		
-		hp.add(signInLink);
 		hp.add(signOutLink);
 		
 		RootPanel.get("Head").add(hp);
