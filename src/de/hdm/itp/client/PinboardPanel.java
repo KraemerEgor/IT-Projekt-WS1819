@@ -26,7 +26,8 @@ public class PinboardPanel extends VerticalPanel {
 	private PostPanel postpanel;
 	
 	VerticalPanel post = new VerticalPanel();
-	Label lbl = new Label("HulapaluHulapaluHulapalu");
+	
+	Label lbl = new Label("HulapaluHulapaluHulapaluTeeeeeeesssssst");
 	
 	User currentUser;
 
@@ -34,32 +35,23 @@ public class PinboardPanel extends VerticalPanel {
 	public void onLoad() {
 
 		
-		this.clear();
 		super.onLoad();
 		this.add(lbl);
-		currentUser.setId(10000001);
-		if(editorAdministration == null) {
-			editorAdministration = ClientsideSettings.getAdministration();
-		}
+		//this.add(postpanel);	
+		this.add(post);	
+				
 		
-			
-		
-		
-		this.addStyleName("Pinboard");
+		//this.addStyleName("Pinboard");
 		//this.getElement().getStyle().setBackgroundColor("red");
 		//this.setHeight("400px");
 				
 
-		super.onLoad();
-		this.setStylePrimaryName("Pinboard");
 		
-		if(editorAdministration == null) {
-			editorAdministration = ClientsideSettings.getAdministration();
-		}
+		//this.setStylePrimaryName("Pinboard");
+		
 		//this.clear();
 		
-		this.add(lbl);
-		this.add(new Label("hello"));	
+		
 		
 	
 		
@@ -102,16 +94,24 @@ public class PinboardPanel extends VerticalPanel {
 	 * */
 	
 	public void createPinboard(User u) {
+		final Label lbl2 = new Label("Test");
+		
+		if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+		}		
 		
 		editorAdministration.getAllPostsOfUser(u, new AsyncCallback<Vector<Post>>() {
 			public void onFailure(Throwable t) {
 				Window.alert(t.getMessage());}		
-			
 			public void onSuccess(Vector<Post> result) {
 					for(Post p: result) {
-					postpanel.createPost(p);
+						Window.alert("der Post lautet: "+p.getContent());
+						lbl2.setText("jetzt steht hier was anderes: "+p.getContent());
+						post.add(postpanel.createPost(p));
+					
 					}}
 		});
+		this.add(lbl2);
 		
 	}
 		

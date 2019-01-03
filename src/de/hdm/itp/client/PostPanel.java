@@ -24,6 +24,9 @@ import de.hdm.itp.shared.bo.User;
 public class PostPanel extends VerticalPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
+	VerticalPanel vpost = new VerticalPanel();
+	HorizontalPanel options = new HorizontalPanel();
+	Label lbl = new Label("Post:");
 	
 	User currentUser;
 
@@ -31,19 +34,17 @@ public class PostPanel extends VerticalPanel {
 	public void onLoad() {
 
 		
-		this.clear();
+		//this.clear();
 		super.onLoad();
+		this.add(lbl);
 		
-		if(editorAdministration == null) {
-			editorAdministration = ClientsideSettings.getAdministration();
-		}
 		
 			
 		this.addStyleName("Post");
 		this.setStylePrimaryName("Post");
 		
-		Label lbl = new Label("Post:");
-		this.add(lbl);	
+		
+			
 		
 		
 		
@@ -70,12 +71,17 @@ public class PostPanel extends VerticalPanel {
 	 * 				|_______________________|
 	 * */
 	
-	public void createPost(Post p) {
+	public VerticalPanel createPost(Post p) {
+		Window.alert("kommt hier rein");
+		if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+		}
+		
 		
 		/*
 		 * Post-Text-Teil 
 		 * */
-		VerticalPanel vpost = new VerticalPanel();
+		
 		Label ueberschrift = new Label("Post:");
 		vpost.add(ueberschrift);
 		
@@ -88,7 +94,7 @@ public class PostPanel extends VerticalPanel {
 		 * */
 		
 		
-		HorizontalPanel options = new HorizontalPanel();
+		
 		
 		/*
 		 * Like setzen TODO Callback aussstehend
@@ -97,7 +103,8 @@ public class PostPanel extends VerticalPanel {
 		Button like = new Button("Like");
 		like.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
-		    	editorAdministration.createLike(p, null);;
+		    	//editorAdministration.createLike(p, null);
+		    	Window.alert("Hier soll ein Like gesetzt werden");
 		    }
 		});
 		options.add(like);
@@ -122,9 +129,10 @@ public class PostPanel extends VerticalPanel {
 		    public void onClick(ClickEvent event) {
 		    	Like like = new Like();
 		    	like.setOwnerId(currentUser.getId());
-		    	like.setPostId(p.getId());
+		    	//like.setPostId(p.getId());
 		    	
-		    	editorAdministration.deleteLike(like, null);
+		    	//editorAdministration.deleteLike(like, null);
+		    	Window.alert("Hier soll der Like von: "+like.getOwnerId()+" gelöscht werden");
 		    }
 		});
 		options.add(dislike);
@@ -143,7 +151,7 @@ public class PostPanel extends VerticalPanel {
 		    	DialogPanel neuerKommentar = new DialogPanel();
 		    	options.add(neuerKommentar);
 		    	
-		    	editorAdministration.createComment(p, neuerKommentar.CommentDialog(), null); //null = callback
+		    	//editorAdministration.createComment(p, neuerKommentar.CommentDialog(), null); //null = callback
 		    }
 		});
 		options.add(comment);
@@ -162,7 +170,7 @@ public class PostPanel extends VerticalPanel {
 		Button delete = new Button("Löschen");
 		delete.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
-		      editorAdministration.deletePost(p, null);
+		     // editorAdministration.deletePost(p, null);
 		    }
 		});
 		options.add(delete);
@@ -192,6 +200,7 @@ public class PostPanel extends VerticalPanel {
 		});
 		
 		this.add(vpost);
+		return vpost;
 		
 }
 	

@@ -34,9 +34,12 @@ public class SearchPanel extends FlowPanel {
 	private Label header_lbl = new Label("Navigation"); 
 	private Button profileBtn = new Button("My Profile");
 	private Button addBtn = new Button("Add");
+	private Button dltBtn = new Button("Delete");
 	public Vector<User> box = new Vector<User>();
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	SuggestBox suggestbox = new SuggestBox(oracle);
+	SubsPanel sp = new SubsPanel();
+	PinboardPanel pp = new PinboardPanel();
 	
 	
 	
@@ -62,6 +65,9 @@ public class SearchPanel extends FlowPanel {
 		addBtn.setStylePrimaryName("sp_add_btn");
 		this.add(addBtn);
 		
+		dltBtn.setStylePrimaryName("sp_add_btn");
+		this.add(dltBtn);
+		
 		
 		admin.getAllUser(new AsyncCallback<Vector<User>>() {
 			public void onFailure(Throwable t) {
@@ -86,6 +92,18 @@ public class SearchPanel extends FlowPanel {
 			public void onClick(ClickEvent event) {		
 				//hier soll die eigene Pinnwand angezeigt werden
 				Window.alert("Show own Pinboard");
+				User currentUser = new User();
+				currentUser.setId(10000001);
+				pp.createPinboard(currentUser);
+				
+				
+				
+				}
+			});
+		
+		dltBtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {		
+				sp.removeSub();
 				
 				
 				}
@@ -109,7 +127,6 @@ public class SearchPanel extends FlowPanel {
 						if(result == null) {
 							Window.alert("ungültiger User");
 						}if(result != null) {
-						SubsPanel sp = new SubsPanel();
 						sp.addSub(result);
 						}
 					}

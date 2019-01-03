@@ -44,8 +44,8 @@ public void onLoad() {
 		mainHeader.setClassName("Header");
 		DOM.getElementById("mainHeader").appendChild(mainHeader);
 		
-		vp.add(pp);
-		this.add(vp);
+		//vp.add(pp);
+		//this.add(vp);
 		
 		
 //		this.addStyleName("Main");		
