@@ -207,9 +207,19 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	public void loadApplication() {
 		Window.alert(ClientsideSettings.getUser().toString());
 
+		VerticalPanel loginPanel = new VerticalPanel();
+		
+		signOutLink.setHref(loginInfo.getLogoutUrl());
+		signedInUser.setText("Eingeloggter User:" +ClientsideSettings.getUser().getFirstname()+" "+ClientsideSettings.getUser().getLastname() );
+		loginPanel.add(signedInUser);
+		loginPanel.add(signOutLink);
+
+		
 		RootPanel.get("Head").add(hp);
+		RootPanel.get("Login").add(loginPanel);
 		RootPanel.get("Nav").add(np);
 		RootPanel.get("Main").add(mp);
+
 
 		Window.alert("Main panels are loaded");
 
