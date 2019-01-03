@@ -84,22 +84,22 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				loginInfo = result;
 
 				if (loginInfo.isLoggedIn()) {
-					Window.alert("loggedin");
-					Window.alert(ClientsideSettings.getUser().getNickname());
-					loadApplication();
+					Window.alert("if !!!loggedin and loadUserInformation");
+					loadUserInformation();
 					
 
 
 				} else {
-					Window.alert("else");
-					loadUserInformation();
-
-//					loadLogin();
+					Window.alert("else loadLogin");
+					
+					loadLogin();
+					
 				}
 			}
 
 		});
-		loadLogin();
+//		loadApplication();
+		
 
 	}
 
@@ -206,41 +206,51 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	private void loadLogin() {
 
-		/*
-		 * Das loginPanel wird aufgebaut
-		 */
-		VerticalPanel loginPanel = new VerticalPanel();
-
-		/*
-		 * Der signOutLink wird dem loginPanel hinzugefügt
-		 */
-		signOutLink.setHref(loginInfo.getLogoutUrl());
-		signOutLink.addStyleName("signout");
-		signInLink.addStyleName("reportbutton");
-
-		loginPanel.add(signOutLink);
-
-		/*
-		 * Die Information über den aktuell angemeldeten Nutzer wird ebenfalls dem
-		 * loginPanel hinzugefügt
-		 */
-		signedInUser = new Label();
-		signedInUser.addStyleName("signedInUser");
-
-		editorAdministration.getFullNameOfUser(user, new AsyncCallback<String>() {
-			public void onFailure(Throwable t) {
-				System.out.println(t.getMessage());
-
-			}
-
-			public void onSuccess(String result) {
-
-				signedInUser.setText("Angemeldet als: " + result);
-			}
-		});
-
-		loginPanel.add(signedInUser);
-
+		signInLink.setHref(loginInfo.getLoginUrl());
+	    loginPanel.add(loginLabel);
+	    loginPanel.add(signInLink);
+	    RootPanel.get("Login").add(loginPanel);
+		
+		
+//		/*
+//		 * Das loginPanel wird aufgebaut
+//		 */		
+//		Window.alert("loadLogin°!°");
+//		/*
+//		 * Der signOutLink wird dem loginPanel hinzugefügt
+//		 */
+//		signOutLink.setHref(loginInfo.getLogoutUrl());
+//		signOutLink.setStylePrimaryName("signout");
+//		signInLink.setStylePrimaryName("reportbutton");
+//
+//		loginPanel.add(loginLabel);
+//	    loginPanel.add(signInLink);
+//		loginPanel.add(signOutLink);
+//		
+//		Window.alert("loginpanel.add");
+//
+//		/*
+//		 * Die Information über den aktuell angemeldeten Nutzer wird ebenfalls dem
+//		 * loginPanel hinzugefügt
+//		 */
+//		signedInUser = new Label();
+//		signedInUser.addStyleName("signedInUser");
+//
+//		editorAdministration.getFullNameOfUser(user, new AsyncCallback<String>() {
+//			public void onFailure(Throwable t) {
+//				System.out.println(t.getMessage());
+//
+//			}
+//
+//			public void onSuccess(String result) {
+//
+//				signedInUser.setText("Angemeldet als: " + result);
+//			}
+//		});
+//
+//		loginPanel.add(signedInUser);
+//	    RootPanel.get("Login").add(loginPanel);
+	    
 		// das loginPanel wird dem div mit der id "Login" hinzugefügt
 
 	}
