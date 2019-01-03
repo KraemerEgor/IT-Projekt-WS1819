@@ -30,10 +30,10 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class IT_Projekt_Gruppe4_2 implements EntryPoint {
-	
-	//miro sign in button auf google verweis checken 
-	
-	//wo ist der signOut Button hin ?
+
+	// miro sign in button auf google verweis checken
+
+	// wo ist der signOut Button hin ?
 	// Logininfo schrieben wer angemeldet ist
 
 	/**
@@ -44,7 +44,6 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	private static final String SERVER_ERROR = "An error occurred while "
 			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
-	
 	/** Die Instanzenvariablen, die mit dem Login-Service zusammenhängen. */
 	private LoginInfo loginInfo = null;
 	private VerticalPanel loginPanel = new VerticalPanel();
@@ -66,7 +65,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	HeaderPanel hp = new HeaderPanel();
 
 	public void onModuleLoad() {
-		
+
 		Window.alert("loginTesting");
 
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
@@ -86,20 +85,17 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				if (loginInfo.isLoggedIn()) {
 					Window.alert("if !!!loggedin and loadUserInformation");
 					loadUserInformation();
-					
-
 
 				} else {
 					Window.alert("else loadLogin");
-					
+
 					loadLogin();
-					
+
 				}
 			}
 
 		});
 //		loadApplication();
-		
 
 	}
 
@@ -156,12 +152,27 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 					createAccountBox.getOKButton().addClickHandler(new ClickHandler() {
 
 						public void onClick(ClickEvent UserRegister) {
+
+							String getGender = createAccountBox.getListBox().getSelectedItemText();
+
+							switch (getGender) {
+
+							case "Männlich":
+								getGender = "m";
+								break;
+
+							case "Weiblich":
+								getGender = "w";
+								break;
+
+							case "Divers":
+								getGender = "o";
+								break;
+							}
 							editorAdministration.createUser(createAccountBox.getEmailTextBox().getText(),
 									createAccountBox.getFirstnameTextBox().getText(),
 									createAccountBox.getLastnameTextBox().getText(),
-									createAccountBox.getNicknameTextBox().getText(),
-
-									createAccountBox.getListBox().getSelectedItemText(), 
+									createAccountBox.getNicknameTextBox().getText(), getGender,
 									new AsyncCallback<User>() {
 										public void onFailure(Throwable t) {
 											Window.alert(t.getMessage());
@@ -199,7 +210,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		RootPanel.get("Main").add(mp);
 
 		Window.alert("Main panels are loaded");
-		
+
 		Window.alert(ClientsideSettings.getUser().getNickname());
 
 	}
@@ -207,11 +218,10 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	private void loadLogin() {
 
 		signInLink.setHref(loginInfo.getLoginUrl());
-	    loginPanel.add(loginLabel);
-	    loginPanel.add(signInLink);
-	    RootPanel.get("Login").add(loginPanel);
-		
-		
+		loginPanel.add(loginLabel);
+		loginPanel.add(signInLink);
+		RootPanel.get("Login").add(loginPanel);
+
 //		/*
 //		 * Das loginPanel wird aufgebaut
 //		 */		
@@ -250,7 +260,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 //
 //		loginPanel.add(signedInUser);
 //	    RootPanel.get("Login").add(loginPanel);
-	    
+
 		// das loginPanel wird dem div mit der id "Login" hinzugefügt
 
 	}
