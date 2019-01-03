@@ -65,6 +65,14 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	HeaderPanel hp = new HeaderPanel();
 
 	public void onModuleLoad() {
+		//Diese 7 Lines entkommentieren, um lokal auszuführen
+//		User test = new User();
+//		test.setId(10000004);
+//		test.setFirstname("Egor");
+//		test.setLastname("Kramu");
+//		test.setNickname("KK");
+//		ClientsideSettings.setUser(test);
+//		loadApplication();
 
 		Window.alert("loginTesting");
 

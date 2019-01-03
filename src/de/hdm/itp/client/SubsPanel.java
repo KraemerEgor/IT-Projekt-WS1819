@@ -29,6 +29,7 @@ public class SubsPanel extends VerticalPanel {
 	User currentUser = new User();
 	
 	PinboardPanel pp = new PinboardPanel();
+	boolean empty = false;
 	
 	public void onLoad() {
 		super.onLoad();	
@@ -46,6 +47,7 @@ public class SubsPanel extends VerticalPanel {
 						public void onSuccess(Vector<Subs> result) {
 							if(result.isEmpty()) {
 								Window.alert("du hast keine Subs, "+currentUser.getFirstname());
+								empty = true;
 							}
 							for(Subs s: result) {
 								editorAdministration.getUserById(s.getTargetUser(),new AsyncCallback<User>() {
@@ -54,6 +56,16 @@ public class SubsPanel extends VerticalPanel {
 
 									@Override
 									public void onSuccess(User result) {
+									
+										if(empty) {
+											//das was ich vor hatte funktioniert nicht... hat das Problem aber trotzdem irgendwie behoben
+											//Ursprüngliches Problem: Wenn Tree empty, konnte man niemanden hinzufügen
+											User emptyUser = new User();
+											emptyUser.setId(001);
+											emptyUser.setFirstname("Keine User");
+											emptyUser.setLastname("In deiner Liste");
+											cellSubs.add(emptyUser);
+										}
 										cellSubs.add(result);
 										cellList.setRowCount(cellSubs.size(), true);
 									    cellList.setRowData(0, cellSubs);
@@ -96,7 +108,7 @@ public class SubsPanel extends VerticalPanel {
 	public void addSub(User u) {
 		//dummy current user
 		User currentUser = new User();
-		currentUser.setId(10000001);
+		currentUser = ClientsideSettings.getUser();
 	
 		 if(editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
@@ -141,7 +153,7 @@ public class SubsPanel extends VerticalPanel {
 	}
 	public void removeSub() {
 		User currentUser = new User();
-		currentUser.setId(10000001);
+		currentUser = ClientsideSettings.getUser();
 	
 		 if(editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
