@@ -44,6 +44,9 @@ public class SubsPanel extends VerticalPanel {
 							Window.alert(t.getMessage());}		
 						
 						public void onSuccess(Vector<Subs> result) {
+							if(result.isEmpty()) {
+								Window.alert("du hast keine Subs, "+currentUser.getFirstname());
+							}
 							for(Subs s: result) {
 								editorAdministration.getUserById(s.getTargetUser(),new AsyncCallback<User>() {
 									public void onFailure(Throwable t) {
