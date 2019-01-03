@@ -66,10 +66,6 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	HeaderPanel hp = new HeaderPanel();
 
 	public void onModuleLoad() {
-<<<<<<< HEAD
-=======
-		loadApplication();
->>>>>>> refs/remotes/origin/master
 		
 		Window.alert("loginTesting");
 
@@ -159,19 +155,12 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 					createAccountBox.getOKButton().addClickHandler(new ClickHandler() {
 
-<<<<<<< HEAD
 						public void onClick(ClickEvent UserRegister) {
 							editorAdministration.createUser(createAccountBox.getEmailTextBox().getText(),
 									createAccountBox.getFirstnameTextBox().getText(),
 									createAccountBox.getLastnameTextBox().getText(),
 									createAccountBox.getNicknameTextBox().getText(),
-=======
-						public void onClick(ClickEvent arg0) {
-							editorAdministration.createUser(loginInfo.getEmailAddress(),
-									createAccountBox.getNameTextBox().getText(),
-									createAccountBox.getMultiUseTextBox().getText(),
-									createAccountBox.getNickNameTextBox().getText(),
->>>>>>> refs/remotes/origin/master
+
 									createAccountBox.getListBox().getSelectedItemText(), 
 									new AsyncCallback<User>() {
 										public void onFailure(Throwable t) {
