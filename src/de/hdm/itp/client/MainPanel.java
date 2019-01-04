@@ -71,17 +71,7 @@ public void onLoad() {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
 		
-		editorAdministration.getUserById(10000001, new AsyncCallback<User>() {
-			public void onFailure(Throwable t){
-				System.out.println("fail");
-				Window.alert(t.getMessage());
-			}
-			
-			public void onSuccess(User u) {
-				
-				user = u;
-			}
-		});
+		user = ClientsideSettings.getUser();
 		
 		
 }

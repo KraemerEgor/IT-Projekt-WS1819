@@ -40,6 +40,7 @@ public class SearchPanel extends FlowPanel {
 	SuggestBox suggestbox = new SuggestBox(oracle);
 	SubsPanel sp = new SubsPanel();
 	PinboardPanel pp = new PinboardPanel();
+	User currentUser = new User();
 	
 	private VerticalPanel btnPanel = new VerticalPanel();
 	
@@ -52,7 +53,7 @@ public class SearchPanel extends FlowPanel {
 		 if(admin == null) {
 				admin = ClientsideSettings.getAdministration();
 		    }		
-		
+		currentUser = ClientsideSettings.getUser();
 		   
 		   
 		this.setStylePrimaryName("Search");
@@ -97,8 +98,8 @@ public class SearchPanel extends FlowPanel {
 			public void onClick(ClickEvent event) {		
 				//hier soll die eigene Pinnwand angezeigt werden
 				Window.alert("Show own Pinboard");
-				User currentUser = new User();
-				currentUser.setId(10000001);
+				
+				currentUser = ClientsideSettings.getUser();
 				pp.createPinboard(currentUser);
 				
 				
