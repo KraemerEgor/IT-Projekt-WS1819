@@ -29,7 +29,7 @@ public class SubsPanel extends VerticalPanel {
 	User currentUser = new User();
 	
 	PinboardPanel pp = new PinboardPanel();
-	boolean empty = false;
+	
 	
 	public void onLoad() {
 		super.onLoad();	
@@ -38,72 +38,93 @@ public class SubsPanel extends VerticalPanel {
 			editorAdministration = ClientsideSettings.getAdministration();
 	    }
 				currentUser = ClientsideSettings.getUser();
-				
-				
 				 editorAdministration.getSubsOfCurrentUser(currentUser, new AsyncCallback<Vector<Subs>>() {
-						public void onFailure(Throwable t) {
-							Window.alert(t.getMessage());}		
-						
-						public void onSuccess(Vector<Subs> result) {
-							if(result.isEmpty()) {
+					 public void onFailure(Throwable t) {
+							Window.alert(t.getMessage());}	
+					 public void onSuccess(Vector<Subs> result) {
+						 if(result.isEmpty()) {
 								Window.alert("du hast keine Subs, "+currentUser.getFirstname());
-								empty = true;
+								buildEmptyList();
+								
+							}else {
+								buildList();
 							}
-							for(Subs s: result) {
-								editorAdministration.getUserById(s.getTargetUser(),new AsyncCallback<User>() {
-									public void onFailure(Throwable t) {
-										Window.alert(t.getMessage());}
-
-									@Override
-									public void onSuccess(User result) {
-									
-										if(empty) {
-											//das was ich vor hatte funktioniert nicht... hat das Problem aber trotzdem irgendwie behoben
-											//Ursprüngliches Problem: Wenn Tree empty, konnte man niemanden hinzufügen
-											User emptyUser = new User();
-											emptyUser.setId(001);
-											emptyUser.setFirstname("Keine User");
-											emptyUser.setLastname("In deiner Liste");
-											cellSubs.add(emptyUser);
-										}
-										cellSubs.add(result);
-										cellList.setRowCount(cellSubs.size(), true);
-									    cellList.setRowData(0, cellSubs);
-							      }
-									
-							    });
-							   
-								}
-							
-						    
-						    
-						   vp.add(cellList);
-							
-						}
-					});		
-				 cellList.addStyleDependentName("cellList");
-					//final ListDataProvider<User> dataProvider = new ListDataProvider<User>();
-				 dataProvider.setList(cellSubs);	
-				 dataProvider.addDataDisplay(cellList);
-			    cellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
-				    //final SingleSelectionModel<User> selectionModel = new SingleSelectionModel<User>();
-				    cellList.setSelectionModel(selectionModel);
-				//dem Selection Model einen Handler geben
-				selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-				      public void onSelectionChange(SelectionChangeEvent event) {
-				    	  User selected = selectionModel.getSelectedObject();
-				    	  selectedUser = selectionModel.getSelectedObject();
-				    	  
-				        if (selected != null) {
-				        	Window.alert("die ID des Selected Users: "+selectedUser.getId());
-				          Window.alert("Show Pinboard of: " + selected);
-				          pp.createPinboard(selected);
-				        }
-					
-				}	
-			});
+					 }	
+				 });
+				
+			
 			//dem Panel die ergebnisse hinzufügen	
 				this.add(vp);
+	}
+	private void buildEmptyList() {
+		User emptyUser = new User();
+		emptyUser.setId(1001);
+		emptyUser.setFirstname("Keine");
+		emptyUser.setNickname("Subs");
+		emptyUser.setLastname("verfügbar");
+		
+		cellSubs.add(emptyUser);
+		cellList.setRowCount(cellSubs.size(), true);
+	    cellList.setRowData(0, cellSubs);
+	    vp.add(cellList);
+		
+	}
+	private void buildList() {
+		if(editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+	    }
+		
+		
+		 editorAdministration.getSubsOfCurrentUser(currentUser, new AsyncCallback<Vector<Subs>>() {
+				public void onFailure(Throwable t) {
+					Window.alert(t.getMessage());}		
+				
+				public void onSuccess(Vector<Subs> result) {
+					for(Subs s: result) {
+						editorAdministration.getUserById(s.getTargetUser(),new AsyncCallback<User>() {
+							public void onFailure(Throwable t) {
+								Window.alert(t.getMessage());}
+
+							@Override
+							public void onSuccess(User result) {
+							
+								cellSubs.add(result);
+								cellList.setRowCount(cellSubs.size(), true);
+							    cellList.setRowData(0, cellSubs);
+					      }
+							
+					    });
+					   
+						}
+					
+				    
+				    
+				   vp.add(cellList);
+					
+				}
+			});		
+		 cellList.addStyleDependentName("cellList");
+			//final ListDataProvider<User> dataProvider = new ListDataProvider<User>();
+		 dataProvider.setList(cellSubs);	
+		 dataProvider.addDataDisplay(cellList);
+	    cellList.setKeyboardSelectionPolicy(KeyboardSelectionPolicy.ENABLED);
+		    //final SingleSelectionModel<User> selectionModel = new SingleSelectionModel<User>();
+		    cellList.setSelectionModel(selectionModel);
+		//dem Selection Model einen Handler geben
+		selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+		      public void onSelectionChange(SelectionChangeEvent event) {
+		    	  User selected = selectionModel.getSelectedObject();
+		    	  selectedUser = selectionModel.getSelectedObject();
+		    	  
+		        if (selected != null) {
+		        	Window.alert("die ID des Selected Users: "+selectedUser.getId());
+		          Window.alert("Show Pinboard of: " + selected);
+		          pp.createPinboard(selected);
+		        }
+			
+		}	
+	});
+		
 	}
 	public void addSub(User u) {
 		//dummy current user
