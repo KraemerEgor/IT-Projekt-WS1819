@@ -19,24 +19,27 @@ import de.hdm.itp.shared.bo.User;
 	        return;
 	      }
 	      
-	      sb.appendHtmlConstant("<div style=\"color:darkgrey;border: 1px solid #ccc;font-size:28px;font-family: 'Lato', sans-serif;\">");
+	      sb.appendHtmlConstant("<div class=\"subs\" style=\"background-color: white; padding: 5px; padding-right: 10px;  margin-top: 3px; color:brown ;border: none; font-size:16px;font-family: 'Arial', sans-serif;\">");
 	      if(value.getGender()=="m") {
 				//wenn der User männlich ist
-				sb.appendHtmlConstant("<img src=\"man.png\" height=\"20\" width=\"20\">");	
+				sb.appendHtmlConstant("<img src=\"man.png\" style=\"margin-right: 10px;\" height=\"20\" width=\"20\">");	
 				
 			}
 			if(value.getGender()=="f") {
 				//wenn der User weiblich ist
-				sb.appendHtmlConstant("<img src=\"girl.png\" height=\"20\" width=\"20\">");	
+				sb.appendHtmlConstant("<img src=\"girl.png\" style=\"margin-right: 10px;\" height=\"20\" width=\"20\">");	
 				
 			}
 			if(value.getGender()=="o") {
 				//wenn der User anders ist
-				sb.appendHtmlConstant("<img src=\"user_Symbol_other.png\" height=\"20\" width=\"08\">");	
+				sb.appendHtmlConstant("<img src=\"user_Symbol_other.png\" style=\"margin-right: 10px;\" height=\"20\" width=\"08\" >");	
 				
 			}
 	      sb.appendHtmlConstant(value.getFirstname()+" '"+value.getNickname()+"' "+value.getLastname());
 	      sb.appendHtmlConstant("</div>");
+	      
+	      
+	      
 	    }
 	}
 

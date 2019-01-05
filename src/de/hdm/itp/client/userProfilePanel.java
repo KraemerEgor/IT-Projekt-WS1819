@@ -1,6 +1,8 @@
 package de.hdm.itp.client;
 
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -17,6 +19,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 
 import de.hdm.itp.shared.EditorAdministrationAsync;
+import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.client.NavPanelReport;
 
@@ -107,10 +110,31 @@ public class userProfilePanel extends HorizontalPanel {
 		submitBtn.setStylePrimaryName("submit");
 		profile.setWidget(2, 3, submitBtn);
 		
-//		submitBtn.addClickHandler(new ClickHandler() {
-//			
-//		});
-//		
+		submitBtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				String inputText = postInput.getValue();
+				editorAdministration.createPost(inputText, new AsyncCallback<Post>() {
+					public void onFailure (Throwable caught) {
+						Window.alert(caught.getMessage());
+					}
+					
+					public void onSuccess(Post success) {
+						Window.alert("hat geklappt");
+						
+					}
+				});
+			profile.clearCell(2, 1);
+			TextArea input = new TextArea();
+			input.setStylePrimaryName("postInput");
+			profile.setWidget(2, 1, input);
+
+
+			
+					
+			}
+			
+		});
+		
 		this.add(this.profile);
 		
 				
