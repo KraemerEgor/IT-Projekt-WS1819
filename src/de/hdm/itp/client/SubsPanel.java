@@ -24,6 +24,7 @@ import de.hdm.itp.shared.bo.User;
 
 public class SubsPanel extends VerticalPanel {
 	Label header = new Label();
+	Label header_user = new Label();
 	
 	private EditorAdministrationAsync editorAdministration = null;
 	VerticalPanel vp = new VerticalPanel();	
@@ -71,9 +72,13 @@ public class SubsPanel extends VerticalPanel {
 							}
 					 }	
 				 });
-				 header.setText("Navigationsbereich von: "+currentUser.getFirstname()+" "+currentUser.getLastname());
+				 header.setText("Navigationsbereich von: ");
+				 header_user.setText(currentUser.getFirstname()+" "+currentUser.getLastname());
+				 
 				 header.setStylePrimaryName("Header");
+				 header_user.setStylePrimaryName("Header_user");
 				 btnPanel.add(header);
+				 btnPanel.add(header_user);
 				 //Buttons mit ClickHandlern ausstatten
 				 profileBtn.addClickHandler(new MyProfileClickHandler());
 				 addBtn.addClickHandler(new AddClickHandler());
@@ -294,6 +299,7 @@ public class SubsPanel extends VerticalPanel {
 						if(toAdd) {
 					addSub(result);}
 					}
+					suggestbox.setText(" ");
 				}
 				
 			});
