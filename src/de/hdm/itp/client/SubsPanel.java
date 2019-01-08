@@ -316,7 +316,7 @@ public class SubsPanel extends VerticalPanel {
 	private class MyProfileClickHandler implements ClickHandler{
 		public void onClick(ClickEvent event) {		
 			//hier soll die eigene Pinnwand angezeigt werden
-			Window.alert("Show own Pinboard of "+currentUser.getFirstname()+" "+currentUser.getLastname());
+			//Window.alert("Show own Pinboard of "+currentUser.getFirstname()+" "+currentUser.getLastname());
 			mainPanel.createPinnboard(currentUser);			
 			
 			}
