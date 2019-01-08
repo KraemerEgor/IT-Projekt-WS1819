@@ -39,10 +39,10 @@ public void onLoad() {
 		this.addStyleName("Main");
 		
 		
-		this.add(new HTMLPanel("<div id=\"mainHeader\"></div>"));
-		mainHeader.setInnerHTML("My Profile");
-		mainHeader.setClassName("Header");
-		DOM.getElementById("mainHeader").appendChild(mainHeader);
+//		this.add(new HTMLPanel("<div id=\"mainHeader\"></div>"));
+//		mainHeader.setInnerHTML("My Profile");
+//		mainHeader.setClassName("Header");
+//		DOM.getElementById("mainHeader").appendChild(mainHeader);
 		
 		//vp.add(pp);
 		//this.add(vp);
@@ -71,17 +71,7 @@ public void onLoad() {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
 		
-		editorAdministration.getUserById(10000001, new AsyncCallback<User>() {
-			public void onFailure(Throwable t){
-				System.out.println("fail");
-				Window.alert(t.getMessage());
-			}
-			
-			public void onSuccess(User u) {
-				
-				user = u;
-			}
-		});
+		user = ClientsideSettings.getUser();
 		
 		
 }

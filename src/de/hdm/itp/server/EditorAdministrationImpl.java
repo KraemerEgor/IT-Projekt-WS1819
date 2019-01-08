@@ -6,6 +6,7 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.Like;
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.Comment;
+import de.hdm.itp.client.ClientsideSettings;
 import de.hdm.itp.server.db.CommentMapper;
 import de.hdm.itp.server.db.LikeMapper;
 import de.hdm.itp.server.db.PostMapper;
@@ -187,6 +188,9 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		Post p = new Post();
 		p.setContent(content);
 		p.setCreateDate(new Timestamp(time));
+		
+		User currentUser = ClientsideSettings.getUser();
+		p.setOwnerId(currentUser.getId());
 
 		return pMapper.insert(p);
 	}

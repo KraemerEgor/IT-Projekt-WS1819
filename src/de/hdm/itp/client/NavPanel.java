@@ -27,12 +27,12 @@ public class NavPanel extends VerticalPanel {
 		super.onLoad();
 		this.addStyleName("Nav");
 		
-		this.add(new HTMLPanel("<div id=\"HeaderNav\"></div>"));
-		
-		
-		
-		
-		DOM.getElementById("HeaderNav").appendChild(navHeader);
+//		this.add(new HTMLPanel("<div id=\"HeaderNav\"></div>"));
+//		
+//		
+//		
+//		
+//		DOM.getElementById("HeaderNav").appendChild(navHeader);
 		
 		
 		navHeader.addClassName("Header");

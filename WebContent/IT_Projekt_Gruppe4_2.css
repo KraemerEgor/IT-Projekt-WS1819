@@ -20,16 +20,72 @@ html {
 	margin-top: 0px!important;
 	background-color: #39cccc;
 	padding: 14px;
+	
+	
 }
+
 
 #Main {
 	float: right;
 	padding: 14px;
     width: calc(70% - 56px);
     min-height: 700px;
-	background-color: red;
+	background-color: brown;
+	color: grey;
 	
 }
+
+#Main table{
+	width: 100%;
+}
+
+.Pinboard{
+	height: 300px;
+	background-color: white;
+	width: 100%;
+}
+
+.profile{
+	background-color: white;
+	color: grey;
+	width: 100%!important;
+	height: 200px!important;
+	margin-bottom: 30px;
+	padding: 15px;
+}
+
+.avatar {
+	
+	height: 40px;
+	width: 40px;
+	padding: 2px;
+	border: 1px solid brown;
+	border-radius: 100px;
+	margin-right: 50px;
+}
+
+.postInput{
+	width: 500px;
+	height: 80px;
+	text-align: top;
+	border-color: lightgrey;
+	padding: 10px;
+	margin-top: 15px;
+}
+
+.submit{
+	background-color: brown;
+	color: white;
+	width: 150px;
+	height: 35px;
+	padding: 5px;
+	border: none;
+}
+
+.label{
+	color: black;
+}
+
 #Nav {
 	float: left;
 	padding: 14px;
@@ -43,6 +99,7 @@ html {
 	color: white;
 	margin-bottom: 10px!important;
 	margin-top: 20px;
+	font-size: 20pt;
 }
 
 div#Subs {
@@ -54,11 +111,14 @@ div#Subs {
 	border-right: 3px solid #00868B;
 }
 div#Search {
-    width: 95%;
+    width: 80%;
     height: 15em;
-	padding: 5px;
+	padding: 70px;
 	background-color: #804000;
 	border-right: 3px solid #00868B;
+	min-height: 700px;
+	padding: 20px;
+	margin-top: 200px
 }
 /** Example rules used by the template application (remove for your app) */
 h1 {
@@ -151,15 +211,86 @@ h1 {
 	width: 225px;
     font-size: 14px;
 }
-.test_btn{
-	width: 200px;
-	padding: 20px;
+/** Labels for SearchPanel **/ 
+.sp_profile_btn{
+	width:38%;
+	margin-right: 2%;
+	margin-bottom: 10px;
+	padding: 10px;
 	background-color: orange;
  	white-space:nowrap;
- 	before: before;
+ 	border-radius:8px;
 }
+.sp_add_btn{
+	padding: 10px;
+	background-color: orange;
+ 	white-space:nowrap;
+ 	margin-bottom: 10px;
+ 	margin-right: 2%;
+ 	width:18%;
+ 	border-radius:8px;
+ 	padding: 10px;
+}
+.suggestbox{
+   margin-right: 2%;
+   width: 100%;
+   color: green;
+   padding: 10px;
+   margin-bottom:10px;
+   background-color:black;
+   border-radius: 4px;
+   background-text:"Search";
+   font-family: 'Lato', sans-serif;
+   font-size: 12px;
+}
+.report_btn{
+	width: 38%;
+	padding: 10px;
+	background-color: yellow;
+ 	margin-bottom: 10px;
+ 	margin-right: 2%;
+ 	border-radius:8px;
+}
+.search_lbl{
+	width: 100%;
+	padding: 10px;
+	font-color: black;
+	font-size: 20px;
+ 	margin-bottom: 10px;
+ 	margin-right: 10px;
+ 	padding: 10px;
+}
+
+.cellList *{
+
+}
+
+
+.report{
+
+	width: 200px;
+	padding: 20px;
+	background-color: brown;
+ 	color: white;
+ 	position: absolute;
+ 	margin-left: 80%;
+ 	margin-top: -80px;
+ 	border: none;
+}
+
+
 .cellList{
+
 	font-family: 'Lato', sans-serif;
     font-size: 12px;
 	
+}
+
+.cellList *:hover{
+    background-color: lightblue !important;
+}
+
+
+.cellList *:focus, .cellList *:active, ,.cellList *:checked{
+    background-color: white !important;
 }

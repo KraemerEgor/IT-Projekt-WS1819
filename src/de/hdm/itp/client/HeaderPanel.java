@@ -35,8 +35,8 @@ public class HeaderPanel extends HorizontalPanel {
 		
 		header_lbl.addStyleName("label_test");
 		header_lbl.setWidth("210px");
-		this.add(header_lbl);
-		this.add(header_lbl);
+//		this.add(header_lbl);
+//		this.add(header_lbl);
 		
 		
 	
