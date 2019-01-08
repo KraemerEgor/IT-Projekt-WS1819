@@ -38,6 +38,7 @@ public class userProfilePanel extends HorizontalPanel {
 	
 	private Image avatar_man = new Image("man.png");
 	private Image avatar_girl = new Image("girl.png");
+	private Image avatar_gn = new Image ("user.png");
 	private FlexTable profile = new FlexTable();
 	private Label nickname_lbl = new Label("Nickname: ");
 	private Label firstname_lbl = new Label("Vorname: ");
@@ -82,8 +83,11 @@ public class userProfilePanel extends HorizontalPanel {
 				if (currentUser.getGender() == "m") {
 					profile.setWidget(0, 0, avatar_man);
 				}
-				else {
+				else if(currentUser.getGender() == "f"){
 					profile.setWidget(0, 0, avatar_girl);
+				}
+				else {
+					profile.setWidget(0, 0, avatar_gn);
 				}
 				
 			}
@@ -99,6 +103,7 @@ public class userProfilePanel extends HorizontalPanel {
 		this.setStylePrimaryName("profile");
 		avatar_man.setStylePrimaryName("avatar");
 		avatar_girl.setStylePrimaryName("avatar");
+		avatar_gn.setStylePrimaryName("avatar_gn");
 		
 		
 		
@@ -122,13 +127,14 @@ public class userProfilePanel extends HorizontalPanel {
 					
 					public void onSuccess(Post success) {
 						Window.alert("hat geklappt");
+						profile.clearCell(2, 1);
+						TextArea postInput = new TextArea();
+						postInput.setStylePrimaryName("postInput");
+						profile.setWidget(2, 1, postInput);
 						
 					}
 				});
-			profile.clearCell(2, 1);
-			TextArea input = new TextArea();
-			input.setStylePrimaryName("postInput");
-			profile.setWidget(2, 1, input);
+			
 
 
 			
