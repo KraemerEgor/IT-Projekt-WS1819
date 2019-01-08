@@ -78,4 +78,10 @@ public void onLoad() {
 		
 }
 
+public void createPinnboard(User user) {
+	
+	pp.createPinboard(user);
+	
+}
+
 }
