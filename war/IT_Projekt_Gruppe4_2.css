@@ -95,6 +95,8 @@ html {
 	color: black;
 }
 
+
+
 #Nav {
 	float: left;
 	padding: 14px;
@@ -258,6 +260,17 @@ h1 {
 	width: 225px;
     font-size: 14px;
 }
+.signin_btn{
+	text-decoration: none;
+	background-color: darkgreen;
+	color: white;
+	padding: 16px;
+	border-radius:12px;
+	font-weight: bold; 	
+}
+
+
+
 /** Labels for SearchPanel **/ 
 .sp_profile_btn{
 	width:38%;
