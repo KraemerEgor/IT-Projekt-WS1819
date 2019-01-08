@@ -30,37 +30,6 @@ public class PinboardPanel extends VerticalPanel {
 	Label lbl = new Label("HulapaluHulapaluHulapaluTeeeeeeesssssst");
 	
 	User currentUser;
-	
-	public void onLoad() {
-	
-			
-			super.onLoad();
-			this.add(lbl);
-			//this.add(postpanel);	
-			this.add(post);	
-					
-			
-			//this.addStyleName("Pinboard");
-			//this.getElement().getStyle().setBackgroundColor("red");
-			//this.setHeight("400px");
-					
-	
-			
-			//this.setStylePrimaryName("Pinboard");
-			
-			//this.clear();
-			
-			
-			
-		
-			
-	//		this.getElement().getStyle().setBackgroundColor("red");
-	//		this.setHeight("400px");
-	
-		}
-
-
-
 
 	public void onLoad() {
 
