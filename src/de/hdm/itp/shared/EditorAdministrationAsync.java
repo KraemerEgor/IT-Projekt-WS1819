@@ -27,7 +27,7 @@ public interface EditorAdministrationAsync {
 	
 	void getAllUser(AsyncCallback<Vector<User>> callback);
 	
-	void createPost(String content, AsyncCallback<Post> callback);
+	void createPost(String content, User currentUsers, AsyncCallback<Post> callback);
 	
 	void updatePost(Post p, String content, AsyncCallback<Post> callback);
 	

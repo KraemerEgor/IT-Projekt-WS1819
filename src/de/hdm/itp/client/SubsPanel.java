@@ -139,6 +139,7 @@ public class SubsPanel extends VerticalPanel {
 								cellSubs.add(result);
 								cellList.setRowCount(cellSubs.size(), true);
 							    cellList.setRowData(0, cellSubs);
+							    cellList.setStylePrimaryName("subslist");
 					      }
 							
 					    });

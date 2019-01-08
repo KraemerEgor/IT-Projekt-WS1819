@@ -29,7 +29,7 @@ html {
 	float: right;
 	padding: 14px;
     width: calc(70% - 56px);
-    min-height: 700px;
+    min-height: 100vh;
 	background-color: brown;
 	color: grey;
 	
@@ -64,6 +64,14 @@ html {
 	margin-right: 50px;
 }
 
+.avatar_gn{
+	height: 40px;
+	width: 40px;
+	padding: 2px;
+	border: none;
+	margin-right: 50px;
+}
+
 .postInput{
 	width: 500px;
 	height: 80px;
@@ -93,7 +101,7 @@ html {
 	float: left;
 	padding: 14px;
     width: 30%;
-    min-height: 700px;
+    min-height: 100vh;
 	background-color: #177f7f;
 }
 
@@ -144,6 +152,11 @@ div#Subs {
 	margin-top: 7px;
 }
 
+.subslist{
+	padding: 10px;
+	border: 2px solid white;
+	min-width: 250px;
+}
 
 
 div#Search {

@@ -37,9 +37,14 @@ public class TestMapper {
 		Subs sub = new Subs();
 		sub.setCurrentUser(10000001);
 		sub.setTargetUser(10000002);
+		Post p = new Post();
+		p.setId(20000005);
+		p.setOwnerId(10000004);
+		p.setContent("Ich poste immernoch wahnsinnig gerne Sachen!!");
 		
 		
-		sMapper.insert(sub);
+		
+		pMapper.insert(p);
 		
 		
 		/*
