@@ -67,6 +67,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	public void onModuleLoad() {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
+		signInLink.setStylePrimaryName("signin_btn");
 		User test = new User();
 		test.setId(10000004);
 		test.setFirstname("Egor");
