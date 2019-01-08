@@ -158,6 +158,55 @@ public class userProfilePanel extends HorizontalPanel {
 		
 	}
 	
+	public void createUserProfile(User user) {
+		
+		if (editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getEditorAdministration();
+		}
+		
+		firstname_lbl = new Label("Vorname: " + user.getFirstname());
+		lastname_lbl = new Label("Nachname: " + user.getLastname());
+		email_lbl = new Label("Email: " + user.getEmail());
+		nickname_lbl = new Label("Nickname: " + user.getNickname());
+		profile.setWidget(0, 2, firstname_lbl);
+		profile.setWidget(1, 2, lastname_lbl);
+		profile.setWidget(1, 1, email_lbl);
+		profile.setWidget(0, 1, nickname_lbl);
+		
+		if (user.getGender() == "m") {
+			profile.setWidget(0, 0, avatar_man);
+		}
+		else {
+			profile.setWidget(0, 0, avatar_girl);
+		}
+		
+		this.setStylePrimaryName("profile");
+		avatar_man.setStylePrimaryName("avatar");
+		avatar_girl.setStylePrimaryName("avatar");
+		
+		
+		
+		
+		
+		profile.setWidget(2, 1, postInput);
+		postInput.setStylePrimaryName("postInput");
+		profile.getFlexCellFormatter().setColSpan(2, 1, 2);
+
+			
+		submitBtn.setStylePrimaryName("submit");
+		profile.setWidget(2, 3, submitBtn);
+		submitBtn.addClickHandler(new SubmitClickHandler());
+		
+		
+			
+	
+		
+		this.add(this.profile);
+		
+		
+		
+	}
+	
 	
 	
 	
