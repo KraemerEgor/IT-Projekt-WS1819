@@ -20,7 +20,7 @@ html {
 	margin-top: 0px!important;
 	background-color: #39cccc;
 	padding: 14px;
-	
+	height: 120px;
 	
 }
 
@@ -102,9 +102,15 @@ html {
 .Header{
 	text-align: left!important;
 	color: white;
-	margin-bottom: 10px!important;
+	margin-bottom: 7px!important;
 	margin-top: 20px;
 	font-size: 20pt;
+}
+
+.Header_user{
+	color: white;
+	font-size: 20pt;
+	margin-bottom: 20px;
 }
 
 div#Subs {
@@ -114,6 +120,26 @@ div#Subs {
 	padding: 5px;
 	background-color: #800080;
 	border-right: 3px solid #00868B;
+}
+
+.com-google-gwt-user-cellview-client-CellList-Style-cellListEvenItem.com-google-gwt-user-cellview-client-CellList-Style-cellListKeyboardSelectedItem, 
+.com-google-gwt-user-cellview-client-CellList-Style-cellListOddItem.com-google-gwt-user-cellview-client-CellList-Style-cellListSelectedItem {
+	background: #177f7f!important;
+	background-image: none!important;
+	color: white!important;
+	border: 2px solid white;
+	
+}
+
+.com-google-gwt-user-cellview-client-CellList-Style-cellListOddItem, .com-google-gwt-user-cellview-client-CellList-Style-cellListEvenItem{
+	background-color: #177f7f!important;
+	color: white!important;
+	
+	
+}
+
+.subs{
+	margin-top: 7px;
 }
 
 
@@ -241,10 +267,11 @@ h1 {
 }
 .suggestbox{
 	
-   width: 100%;
+   width: 250px;
    color: black;
    padding: 10px;
-   margin-bottom:10px;
+   margin-top: 30px;
+   margin-bottom:5px;
    background-color:white;
    background-text:"Search";
    font-family: 'Arial', sans-serif;
@@ -252,7 +279,7 @@ h1 {
 }
 
 .gwt-SuggestBoxPopup{
-	margin-top: 30px!important;
+	position: absolute;
 }
 
 .report_btn{
@@ -286,7 +313,7 @@ h1 {
  	color: white;
  	position: absolute;
  	margin-left: 80%;
- 	margin-top: -80px;
+ 	margin-top: -40px;
  	border: none;
 }
 

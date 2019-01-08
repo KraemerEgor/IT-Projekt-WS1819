@@ -43,7 +43,7 @@ public class userProfilePanel extends HorizontalPanel {
 	private Label firstname_lbl = new Label("Vorname: ");
 	private Label lastname_lbl = new Label("Nachname: ");
 	private Label email_lbl = new Label("Email: ");
-	private User currentUser = ClientsideSettings.getUser();
+	private User currentUser = new User();
 	private TextArea postInput = new TextArea();
 	private Button submitBtn = new Button("Post veröffentlichen");
 	
@@ -55,8 +55,10 @@ public class userProfilePanel extends HorizontalPanel {
 			editorAdministration = ClientsideSettings.getEditorAdministration();
 		}
 		
+		currentUser = ClientsideSettings.getUser();
 		
-		editorAdministration.getUserById(10000001, new AsyncCallback<User>() {
+		editorAdministration.getUserById(currentUser.getId(), new AsyncCallback<User>() {
+			
 			
 			@Override
 			public void onFailure(Throwable caught) {
@@ -68,16 +70,16 @@ public class userProfilePanel extends HorizontalPanel {
 			public void onSuccess(User result) {
 				
 				u = result;
-				firstname_lbl = new Label("Vorname: " + u.getFirstname());
-				lastname_lbl = new Label("Nachname: " + u.getLastname());
-				email_lbl = new Label("Email: " + u.getEmail());
-				nickname_lbl = new Label("Nickname: " + u.getNickname());
+				firstname_lbl = new Label("Vorname: " + currentUser.getFirstname());
+				lastname_lbl = new Label("Nachname: " + currentUser.getLastname());
+				email_lbl = new Label("Email: " + currentUser.getEmail());
+				nickname_lbl = new Label("Nickname: " + currentUser.getNickname());
 				profile.setWidget(0, 2, firstname_lbl);
 				profile.setWidget(1, 2, lastname_lbl);
 				profile.setWidget(1, 1, email_lbl);
 				profile.setWidget(0, 1, nickname_lbl);
 				
-				if (u.getGender() == "m") {
+				if (currentUser.getGender() == "m") {
 					profile.setWidget(0, 0, avatar_man);
 				}
 				else {

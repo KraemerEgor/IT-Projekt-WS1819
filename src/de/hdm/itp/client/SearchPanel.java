@@ -109,7 +109,7 @@ public class SearchPanel extends FlowPanel {
 		
 		dltBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {		
-				sp.removeSub();
+				
 				
 				
 				}

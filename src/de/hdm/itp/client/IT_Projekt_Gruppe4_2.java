@@ -61,16 +61,19 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	ClientsideFunctions.InputDialogBox createAccountBox = null;
 
 	NavPanel np = new NavPanel();
+	SubsPanel sp = new SubsPanel();
 	MainPanel mp = new MainPanel();
 	HeaderPanel hp = new HeaderPanel();
 
 	public void onModuleLoad() {
-		//Diese 7 Lines entkommentieren, um lokal auszuführen
+		//Diese 9 Lines entkommentieren, um lokal auszuführen
 		User test = new User();
 		test.setId(10000004);
 		test.setFirstname("Egor");
 		test.setLastname("Kramu");
 		test.setNickname("KK");
+		test.setGender("m");
+		test.setEmail("egor.kramu@gmail.com");
 		ClientsideSettings.setUser(test);
 		loadApplication();
 
@@ -217,9 +220,12 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 //		signOutLink.setHref(loginInfo.getLogoutUrl());
 //		
 //		hp.add(signOutLink);
+
+
 		
 		RootPanel.get("Head").add(hp);
-		RootPanel.get("Nav").add(np);
+		//RootPanel.get("Nav").add(np);
+		RootPanel.get("Nav").add(sp);
 		RootPanel.get("Main").add(mp);
 		
 
