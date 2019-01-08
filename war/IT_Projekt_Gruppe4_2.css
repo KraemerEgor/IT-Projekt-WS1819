@@ -154,6 +154,7 @@ div#Subs {
 	padding: 10px;
 	border: 2px solid white;
 	min-width: 250px;
+	
 }
 
 
@@ -326,7 +327,7 @@ h1 {
  	color: white;
  	position: absolute;
  	margin-left: 80%;
- 	margin-top: -40px;
+ 	margin-top: -90px;
  	border: none;
 }
 
