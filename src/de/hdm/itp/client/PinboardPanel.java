@@ -31,6 +31,7 @@ public class PinboardPanel extends VerticalPanel {
 	
 	User currentUser;
 
+	
 	public void onLoad() {
 
 		

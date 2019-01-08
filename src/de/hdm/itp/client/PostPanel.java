@@ -29,6 +29,7 @@ public class PostPanel extends VerticalPanel {
 	Label lbl = new Label("Post:");
 	
 	User currentUser;
+
 	
 	public void onLoad() {
 
@@ -81,7 +82,6 @@ public class PostPanel extends VerticalPanel {
 		 * Post-Text-Teil 
 		 * */
 		
-		VerticalPanel vpost = new VerticalPanel();
 		Label ueberschrift = new Label("Post:");
 		vpost.add(ueberschrift);
 		
@@ -92,6 +92,8 @@ public class PostPanel extends VerticalPanel {
 		/*
 		 * Optionen-Teil 
 		 * */
+		
+		
 		
 		
 		/*

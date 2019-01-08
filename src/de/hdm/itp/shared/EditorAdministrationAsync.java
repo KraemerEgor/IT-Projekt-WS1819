@@ -15,6 +15,7 @@ public interface EditorAdministrationAsync {
 	
 	void init(AsyncCallback<Void> callback);
 	
+	void setUser(User u, AsyncCallback<Void> callback);
 	
 	void createUser(String email, String firstname, String lastname, String nickname, String gender, AsyncCallback<User> callback);
 

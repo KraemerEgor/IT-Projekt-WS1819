@@ -56,15 +56,8 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	private UserMapper uMapper = null;
 
-	/**
-	 * Referenz auf die EditorAdministration, welche administrative Fähigkeiten definiert
-	 */
 	private static EditorAdministration editorAdministrationImpl = null;
 
-	/**
-	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rückgabe dessen
-	 * @return
-	 */
 	public static EditorAdministration editorAdministrationImpl() {
 		if (editorAdministrationImpl == null) {
 			editorAdministrationImpl = new EditorAdministrationImpl();
@@ -73,7 +66,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 
 	/**
-	 * No-Arguments-Constructor der EditorAdministrationImpl
+	 * No-Arguments-Constructor
 	 */
 	public EditorAdministrationImpl() throws IllegalArgumentException {
 
@@ -100,11 +93,17 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * Ende Initialisierung
 	 */
 
-	/**
-	 * Methode zum späteren Erstellen eines User Objects
-	 * Hierbei wird ebenfalls definiert welche Attribute übergeben werden müssen zum Erstellen
-	 * @return User Object
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.hdm.itp.server.EditorAdministration#createUser(java.lang.String,
+	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
+	public void setUser(User u) {
+		
+	}
+	
+	
 	@Override
 	public User createUser(String email, String firstname, String lastname, String nickname, String gender) {
 
