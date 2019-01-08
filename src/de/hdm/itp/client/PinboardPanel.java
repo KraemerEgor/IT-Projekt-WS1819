@@ -27,7 +27,8 @@ public class PinboardPanel extends VerticalPanel {
 	
 	VerticalPanel post = new VerticalPanel();
 	
-	Label lbl = new Label("HulapaluHulapaluHulapaluTeeeeeeesssssst");
+	VerticalPanel postsPanel = new VerticalPanel();
+	Label lbl2 = new Label("Loading...");
 	
 	User currentUser;
 	User tryy = new User();
@@ -37,7 +38,7 @@ public class PinboardPanel extends VerticalPanel {
 
 		
 		super.onLoad();
-		this.add(lbl);
+		
 		//this.add(postpanel);	
 		this.add(post);	
 				
@@ -95,7 +96,6 @@ public class PinboardPanel extends VerticalPanel {
 	 * */
 	
 	public void createPinboard(User u) {
-		final Label lbl2 = new Label("Loading...");
 		tryy= u;
 		
 		
@@ -113,11 +113,12 @@ public class PinboardPanel extends VerticalPanel {
 					for(Post p: result) {
 						//Window.alert("der Post lautet: "+p.getContent());
 						lbl2.setText("Post von "+tryy.getFirstname()+": "+p.getContent());
-						post.add(postpanel.createPost(p));
+						postsPanel.add(lbl2);
+						//post.add(postpanel.createPost(p));
 					
 					}}
 		});
-		this.add(lbl2);
+		this.add(postsPanel);
 		
 	}
 		
