@@ -67,6 +67,7 @@ public void onLoad() {
 		this.add(this.userProfile);
 		
 		this.add(this.pp);
+		pp.setStylePrimaryName("profilePanel");
 		
 
 		
