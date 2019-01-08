@@ -48,9 +48,10 @@ public class SubsPanel extends VerticalPanel {
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	SuggestBox suggestbox = new SuggestBox(oracle);
 	
-	Label lbl = new Label();
-	PinboardPanel pp = new PinboardPanel();
+	VerticalPanel testpanel = new VerticalPanel();
 	
+	Label lbl = new Label();
+	MainPanel mainPanel = new MainPanel();
 	
 	public void onLoad() {
 		super.onLoad();	
@@ -162,10 +163,10 @@ public class SubsPanel extends VerticalPanel {
 		//dem Selection Model einen Handler geben
 		selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 		      public void onSelectionChange(SelectionChangeEvent event) {
-		    	  User selected = selectionModel.getSelectedObject();
 		    	  selectedUser = selectionModel.getSelectedObject();
+		    	  mainPanel.createPinnboard(selectedUser);
 		    	  
-		        if (selected != null) {
+		        if (selectedUser != null) {
 		        	//Window.alert("die ID des Selected Users: "+selectedUser.getId());
 		          //Window.alert("Show Pinboard of: " + selected);
 		          //pp.createPinboard(selected);
@@ -181,8 +182,8 @@ public class SubsPanel extends VerticalPanel {
 		    					for(Post p: result) {
 		    						//dies ist nur zum Testen drin
 		    						lbl.setText("Post von "+ selectedUser.getFirstname()+": \n"+p.getContent());
-		    						//post.add(postpanel.createPost(p));
-		    						
+		    						testpanel.add(lbl);
+		    						//post.add(postpanel.createPost(p));		    						
 		    					
 		    					}}
 		    		});
@@ -191,7 +192,7 @@ public class SubsPanel extends VerticalPanel {
 			
 		}	
 	});
-		this.add(lbl);
+		this.add(testpanel);
 		
 	}
 	public void addSub(User u) {
@@ -316,8 +317,14 @@ public class SubsPanel extends VerticalPanel {
 		public void onClick(ClickEvent event) {		
 			//hier soll die eigene Pinnwand angezeigt werden
 			Window.alert("Show own Pinboard of "+currentUser.getFirstname()+" "+currentUser.getLastname());
-			pp.createPinboard(currentUser);			
+			mainPanel.createPinnboard(currentUser);			
 			
 			}
+	}
+	public MainPanel getMainPanel() {
+		return mainPanel;
+	}
+	public void setMainPanel(MainPanel mainPanel) {
+		this.mainPanel = mainPanel;
 	}
 }

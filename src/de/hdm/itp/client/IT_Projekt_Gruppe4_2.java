@@ -224,9 +224,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 		
 		RootPanel.get("Head").add(hp);
-		//RootPanel.get("Nav").add(np);
 		RootPanel.get("Nav").add(sp);
 		RootPanel.get("Main").add(mp);
+		sp.setMainPanel(mp);
 		
 
 

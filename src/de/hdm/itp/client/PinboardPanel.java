@@ -30,6 +30,7 @@ public class PinboardPanel extends VerticalPanel {
 	Label lbl = new Label("HulapaluHulapaluHulapaluTeeeeeeesssssst");
 	
 	User currentUser;
+	User tryy = new User();
 
 	
 	public void onLoad() {
@@ -94,19 +95,24 @@ public class PinboardPanel extends VerticalPanel {
 	 * */
 	
 	public void createPinboard(User u) {
-		final Label lbl2 = new Label("Test");
+		final Label lbl2 = new Label("Loading...");
+		tryy= u;
+		
+		
 		
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}		
 		
 		editorAdministration.getAllPostsOfUser(u, new AsyncCallback<Vector<Post>>() {
+			
+			
 			public void onFailure(Throwable t) {
 				Window.alert(t.getMessage());}		
 			public void onSuccess(Vector<Post> result) {
 					for(Post p: result) {
-						Window.alert("der Post lautet: "+p.getContent());
-						lbl2.setText("jetzt steht hier was anderes: "+p.getContent());
+						//Window.alert("der Post lautet: "+p.getContent());
+						lbl2.setText("Post von "+tryy.getFirstname()+": "+p.getContent());
 						post.add(postpanel.createPost(p));
 					
 					}}
