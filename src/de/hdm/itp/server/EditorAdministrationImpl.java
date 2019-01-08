@@ -21,10 +21,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 @SuppressWarnings("serial")
 public class EditorAdministrationImpl extends RemoteServiceServlet implements EditorAdministration {
+	
+	User currentUser = new User();
 
 	/**
 	 * Referenz auf den Commentmapper, der die Kommentare mit der Datenbank
@@ -89,6 +92,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		this.pMapper = PostMapper.postMapper();
 		this.sMapper = SubsMapper.subsMapper();
 		this.uMapper = UserMapper.userMapper();
+		currentUser = ClientsideSettings.getUser();
 
 	}
 
@@ -180,18 +184,19 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * @see de.hdm.itp.server.EditorAdministration#createPost(java.lang.String)
 	 */
 	@Override
-	public Post createPost(String content) throws IllegalArgumentException {
+	public Post createPost(String content, User currentUsers) throws IllegalArgumentException {
 
-		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = new Date();
-		long time = date.getTime();
+		//DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		//Date date = new Date();
+		//long time = date.getTime();
 
 		Post p = new Post();
+		Window.alert("Inhalt: "+content);
 		p.setContent(content);
-		p.setCreateDate(new Timestamp(time));
+		//p.setCreateDate(new Timestamp(time));
 		
-		User currentUser = ClientsideSettings.getUser();
-		p.setOwnerId(currentUser.getId());
+		Window.alert("User Id: "+currentUsers.getId());
+		p.setOwnerId(currentUsers.getId());
 
 		return pMapper.insert(p);
 	}
