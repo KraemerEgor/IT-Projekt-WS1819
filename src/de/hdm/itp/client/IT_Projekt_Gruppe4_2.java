@@ -67,6 +67,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	public void onModuleLoad() {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
+		signInLink.setStylePrimaryName("signin_btn");
 		User test = new User();
 		test.setId(10000004);
 		test.setFirstname("Egor");
@@ -224,9 +225,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 		
 		RootPanel.get("Head").add(hp);
-		//RootPanel.get("Nav").add(np);
 		RootPanel.get("Nav").add(sp);
 		RootPanel.get("Main").add(mp);
+		sp.setMainPanel(mp);
 		
 
 

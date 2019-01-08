@@ -39,7 +39,7 @@ public interface EditorAdministration extends RemoteService {
 	/**
 	 * Methode, die den User anhand seiner Email in der Datenbank sucht
 	 * @param email, die den User eindeutig in der Datenbank identifiziert
-	 * @return den User, der vom Mapper aus der Datenbank Ã¼bergeben wird
+	 * @return den User, der vom Mapper aus der Datenbank übergeben wird
 	 * @throws IllegalArgumentException
 	 */
 	User getUserByEmail(String email) throws IllegalArgumentException;
@@ -47,40 +47,40 @@ public interface EditorAdministration extends RemoteService {
 	/**
 	 * Methode, die einen Benutzer anhand seiner Id in der Datenbank sucht
 	 * @param id, die den User eindeutig in der Datenbank identifiziert
-	 * @return das Userobjekt, das vom Mapper aus der Datenbank Ã¼bergeben wird
+	 * @return das Userobjekt, das vom Mapper aus der Datenbank übergeben wird
 	 * @throws IllegalArgumentException
 	 */
 	User getUserById(int userId) throws IllegalArgumentException;
 
 	/**
 	 * Methode, die alle Benutzerobjekte ausgibt
-	 * @return alle Benutzerobjekte aus der Datenbank, die vom Mapper Ã¼bergeben werden
+	 * @return alle Benutzerobjekte aus der Datenbank, die vom Mapper übergeben werden
 	 * @throws IllegalArgumentException
 	 */
 	Vector<User> getAllUser() throws IllegalArgumentException;
 
 	/**
 	 * Methode zum Erstellen eines Posts
-	 * @param content enthÃ¤lt den Text eines Posts
-	 * @return gibt den Post zurÃ¼ck, der mit Hilfe des Mappers in der Datenbank gespeichert wird
+	 * @param content enthält den Text eines Posts
+	 * @return gibt den Post zurück, der mit Hilfe des Mappers in der Datenbank gespeichert wird
 	 * @throws IllegalArgumentException
 	 */
 	Post createPost(String content, User currentUsers) throws IllegalArgumentException;
 
 	/**
 	 * Methode, die einen Post modifiziert und wieder in der Datenbank speichert
-	 * @param p enthÃ¤lt den Post, der dem Mapper Ã¼bergeben wird
-	 * @param content enthÃ¤lt den String, der als neuer Text im Post gespeichert werden soll
-	 * @return gibt den aktualisierten Post zurÃ¼ck, der vom Mapper in der Datenbank gespeichert wird
+	 * @param p enthält den Post, der dem Mapper übergeben wird
+	 * @param content enthält den String, der als neuer Text im Post gespeichert werden soll
+	 * @return gibt den aktualisierten Post zurück, der vom Mapper in der Datenbank gespeichert wird
 	 * @throws IllegalArgumentException
 	 */
 
 	Post updatePost(Post p, String content) throws IllegalArgumentException;
 
 	/**
-	 * Methode zum LÃ¶schen eines Posts. ZunÃ¤chst werden alle Likes und Kommentare, die zu diesem Post
-	 * gehÃ¶ren, gelÃ¶scht, bevor der eigentliche Post an sich gelÃ¶scht wird
-	 * @param p enthÃ¤lt den Post, der gelÃ¶scht werden soll
+	 * Methode zum Löschen eines Posts. Zunächst werden alle Likes und Kommentare, die zu diesem Post
+	 * gehören, gelöscht, bevor der eigentliche Post an sich gelöscht wird
+	 * @param p enthält den Post, der gelöscht werden soll
 	 * @throws IllegalArgumentException
 	 */
 
@@ -90,9 +90,9 @@ public interface EditorAdministration extends RemoteService {
 
 	/**
 	 * Methode zum Abrufen aller Posts, die von einem User erstellt wurden
-	 * @param u enthÃ¤lt den User, dessen Posts abgerufen werden sollen und der an den Mapper
-	 * Ã¼bergeben wird
-	 * @return einen Vektor, der alle Posts enthÃ¤lt, die vom Mapper zurÃ¼ckgegeben werden
+	 * @param u enthält den User, dessen Posts abgerufen werden sollen und der an den Mapper
+	 * übergeben wird
+	 * @return einen Vektor, der alle Posts enthÃ¤lt, die vom Mapper zurückgegeben werden
 	 * @throws IllegalArgumentException
 	 */
 
@@ -100,21 +100,21 @@ public interface EditorAdministration extends RemoteService {
 
 	/**
 	 * Methode zum Abrufen aller Posts aus der Datenbank
-	 * @return einen Vektor, der alle Posts enthÃ¤lt, die vom Mapper zurÃ¼ckgegeben werden
+	 * @return einen Vektor, der alle Posts enthält, die vom Mapper zurückgegeben werden
 	 * @throws IllegalArgumentException
 	 */
 	Vector<Post> getAllPosts() throws IllegalArgumentException;
 
 	/**
 	 * Methode zum Erstellen eines Likes
-	 * @param p enthÃ¤lt den Post, bei dem der Like gesetzt wird
-	 * @return das Like-Objekt, das vom Mapper zurÃ¼ckgegeben wird
+	 * @param p enthält den Post, bei dem der Like gesetzt wird
+	 * @return das Like-Objekt, das vom Mapper zurückgegeben wird
 	 */
 	Like createLike(Post p) throws IllegalArgumentException;
 
 	/**
-	 * Methode zum LÃ¶schen eines Likes
-	 * @param l definiert den Like, der aus der Datenbank gelÃ¶scht werden soll
+	 * Methode zum Löschen eines Likes
+	 * @param l definiert den Like, der aus der Datenbank gelöscht werden soll
 	 * @throws IllegalArgumentException
 	 */
 	void deleteLike(Like l) throws IllegalArgumentException;
@@ -123,8 +123,8 @@ public interface EditorAdministration extends RemoteService {
 
 	/**
 	 * Methode zum Auslesen aller Likes, die ein Beitrag erhalten hat
-	 * @param p enthÃ¤lt den Post, dessen Likes zurÃ¼ckgegeben werden sollen
-	 * @return ein Vektor-Objekt, das alle Likes von p enthÃ¤lt
+	 * @param p enthält den Post, dessen Likes zurückgegeben werden sollen
+	 * @return ein Vektor-Objekt, das alle Likes von p enthält
 	 * @throws IllegalArgumentException
 	 */
 	Vector<Like> getAllLikesOfPost(Post p) throws IllegalArgumentException;
@@ -132,38 +132,38 @@ public interface EditorAdministration extends RemoteService {
 	/**
 	 * Methode zum Ausgeben aller Likes, die ein Nutzer gesetzt hat
 	 * @param u definiert den Nutzer, dessen Likes angezeigt werden sollen
-	 * @return ein Vektor-Objekt, das alle Likes des Nutzers enthÃ¤lt
+	 * @return ein Vektor-Objekt, das alle Likes des Nutzers enthält
 	 * @throws IllegalArgumentException
 	 */
 	Vector<Like> getAllLikesOfUser(User u) throws IllegalArgumentException;
 
 	/**
 	 * Methode zum Ausgeben aller Likes, die gesetzt wurden
-	 * @return ein Vektor-Objekt, das alle Likes enthÃ¤lt
+	 * @return ein Vektor-Objekt, das alle Likes enthält
 	 * @throws IllegalArgumentException
 	 */
 	Vector<Like> getAllLikes() throws IllegalArgumentException;
 
 	/**
 	 * Methode zum Erstellen eines Kommentars
-	 * @param p enthÃ¤lt den Post, zu dem der Kommentar erstellt wird
+	 * @param p enthält den Post, zu dem der Kommentar erstellt wird
 	 * @param text definiert den Inhalt des Kommentars als String
-	 * @return ein Objekt vom Typ Comment, das vom Mapper zurÃ¼ckgegeben wird
+	 * @return ein Objekt vom Typ Comment, das vom Mapper zurückgegeben wird
 	 * @throws IllegalArgumentException
 	 */
 	Comment createComment(Post p, String text) throws IllegalArgumentException;
 
 	/**
-	 * Methode zum LÃ¶schen eines Kommentars
-	 * @param c ist das Kommentarobjekt, das aus der Datenbank gelÃ¶scht werden soll
+	 * Methode zum Löschen eines Kommentars
+	 * @param c ist das Kommentarobjekt, das aus der Datenbank gelöscht werden soll
 	 * @throws IllegalArgumentException
 	 */
 	void deleteComment(Comment c) throws IllegalArgumentException;
 
 	/**
 	 * Methode zum Ausgeben eines Kommentars anhand seiner Id
-	 * @param commentId Ã¼bergibt die Id des Kommentars, der zurÃ¼ckgegeben werden soll
-	 * @return ein Objekt vom Typ Kommentar, das vom Mapper zurÃ¼ckgegeben wird
+	 * @param commentId übergibt die Id des Kommentars, der zurück gegeben werden soll
+	 * @return ein Objekt vom Typ Kommentar, das vom Mapper zurückgegeben wird
 	 * @throws IllegalArgumentException
 	 */
 	Comment getCommentById(int commentId) throws IllegalArgumentException;
@@ -195,14 +195,14 @@ public interface EditorAdministration extends RemoteService {
 	 * Methode zum Erstellen eines Abonnements
 	 * @param currentUser definiert den im System angemeldeten User
 	 * @param targetUser definiert den User, der abonniert werden soll
-	 * @return das Abonnement, das vom vom Mapper zurÃ¼ckgeliefert wird
+	 * @return das Abonnement, das vom vom Mapper zurückgeliefert wird
 	 * @throws IllegalArgumentException
 	 */
 	Subs createSubs(int currentUser, int targetUser) throws IllegalArgumentException;
 
 	/**
-	 * Methode zum LÃ¶schen eines Abonnements
-	 * @param s definiert das Abonnement, das gelÃ¶scht werden soll
+	 * Methode zum Löschen eines Abonnements
+	 * @param s definiert das Abonnement, das gelöscht werden soll
 	 * @throws IllegalArgumentException
 	 */
 	void deleteSubs(Subs s) throws IllegalArgumentException;
@@ -212,7 +212,7 @@ public interface EditorAdministration extends RemoteService {
 	/**
 	 * Methode zum Auslesen aller Abonnements, bei denen der aktuelle Benutzer abonniert wurde
 	 * @param u definiert den aktuellen Benutzer als Target-User
-	 * @return ein Vektor-Objekt, das alle Abonnements enthÃ¤lt
+	 * @return ein Vektor-Objekt, das alle Abonnements enthält
 	 * @throws IllegalArgumentException
 	 */
 	Vector<Subs> getSubsOfTargetUser(User u) throws IllegalArgumentException;
@@ -226,7 +226,7 @@ public interface EditorAdministration extends RemoteService {
 	
 	/**
 	 * Holt die Information ob der Nutzer bereits aus der Datenbank.
-	 * Identifiziert wird dies Ã¼ber einen boolschen RÃ¼ckgabewert, true wenn Nutzer bereits existiert, sonst false.
+	 * Identifiziert wird dies über einen boolschen Rückgabewert, true wenn Nutzer bereits existiert, sonst false.
 	 * 
 	 * @param email Email des Nutzers
 	 * @return boolscher Wert
