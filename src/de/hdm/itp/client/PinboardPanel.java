@@ -110,12 +110,11 @@ public class PinboardPanel extends VerticalPanel {
 			public void onFailure(Throwable t) {
 				Window.alert(t.getMessage());}		
 			public void onSuccess(Vector<Post> result) {
-				postsPanel.clear();
 					for(Post p: result) {
+						//Window.alert("der Post lautet: "+p.getContent());
 						lbl2.setText("Post von "+tryy.getFirstname()+": "+p.getContent());
-						postsPanel.add(new Label("Post von "+tryy.getFirstname()+": "+p.getContent()));
-						//TODO: das funktioniert noch nicht
-						//postsPanel.add(postpanel.createPost2(p));
+						postsPanel.add(lbl2);
+						//post.add(postpanel.createPost(p));
 					
 					}}
 		});

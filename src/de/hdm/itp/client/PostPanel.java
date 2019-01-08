@@ -219,11 +219,5 @@ public class PostPanel extends VerticalPanel {
 			else return false;*/
 			return true;
 		}
-		public VerticalPanel createPost2(Post post){
-			VerticalPanel result = new VerticalPanel();
-			Label lbl = new Label(post.getContent());
-			result.add(lbl);
-			return result;
-		}
 		
 }
