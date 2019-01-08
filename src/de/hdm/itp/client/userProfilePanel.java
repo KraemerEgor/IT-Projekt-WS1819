@@ -32,7 +32,7 @@ public class userProfilePanel extends HorizontalPanel {
 	 * Zusammenbauen des userProfiles
 	 */
 	
-	private static EditorAdministrationAsync editorAdministration = null;
+	private EditorAdministrationAsync editorAdministration = null;
 	
 	private User u = new User();
 	
@@ -62,7 +62,7 @@ public class userProfilePanel extends HorizontalPanel {
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+				Window.alert(caught.getMessage());
 				
 			}
 
@@ -111,31 +111,11 @@ public class userProfilePanel extends HorizontalPanel {
 			
 		submitBtn.setStylePrimaryName("submit");
 		profile.setWidget(2, 3, submitBtn);
+		submitBtn.addClickHandler(new SubmitClickHandler());
 		
-		submitBtn.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				String inputText = postInput.getValue();
-				editorAdministration.createPost(inputText, new AsyncCallback<Post>() {
-					public void onFailure (Throwable caught) {
-						Window.alert(caught.getMessage());
-					}
-					
-					public void onSuccess(Post success) {
-						Window.alert("hat geklappt");
-						
-					}
-				});
-			profile.clearCell(2, 1);
-			TextArea input = new TextArea();
-			input.setStylePrimaryName("postInput");
-			profile.setWidget(2, 1, input);
-
-
+		
 			
-					
-			}
-			
-		});
+	
 		
 		this.add(this.profile);
 		
@@ -144,6 +124,37 @@ public class userProfilePanel extends HorizontalPanel {
 		
 		
 		
+		
+	}
+	private class SubmitClickHandler implements ClickHandler{
+		public void onClick(ClickEvent event) {
+			currentUser = ClientsideSettings.getUser();
+			if(editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+		    }
+			String inputText = postInput.getValue();
+			Window.alert(inputText);
+			Window.alert(currentUser.getId()+" ist die Id des aktuellen Users");
+			editorAdministration.createPost(inputText, currentUser, new AsyncCallback<Post>() {
+				public void onFailure (Throwable caught) {
+					Window.alert(caught.getMessage());
+				}
+				
+				public void onSuccess(Post success) {
+					Window.alert("hat geklappt");
+					profile.clearCell(2, 1);
+					TextArea input = new TextArea();
+					input.setStylePrimaryName("postInput");
+					profile.setWidget(2, 1, input);
+					
+				}
+			});
+		
+
+
+		
+				
+		}
 		
 	}
 	
