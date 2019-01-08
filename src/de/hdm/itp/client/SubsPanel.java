@@ -183,7 +183,7 @@ public class SubsPanel extends VerticalPanel {
 		    						//dies ist nur zum Testen drin
 		    						lbl.setText("Post von "+ selectedUser.getFirstname()+": \n"+p.getContent());
 		    						testpanel.add(lbl);
-		    						//post.add(postpanel.createPost(p));		    						
+		    						mainPanel.createPinnboard(selectedUser);		    						
 		    					
 		    					}}
 		    		});
