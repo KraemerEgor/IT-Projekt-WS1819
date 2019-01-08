@@ -32,13 +32,12 @@ public class userProfilePanel extends HorizontalPanel {
 	 * Zusammenbauen des userProfiles
 	 */
 	
-	private static EditorAdministrationAsync editorAdministration = null;
+	private EditorAdministrationAsync editorAdministration = null;
 	
 	private User u = new User();
 	
 	private Image avatar_man = new Image("man.png");
 	private Image avatar_girl = new Image("girl.png");
-	private Image avatar_gn = new Image ("user.png");
 	private FlexTable profile = new FlexTable();
 	private Label nickname_lbl = new Label("Nickname: ");
 	private Label firstname_lbl = new Label("Vorname: ");
@@ -63,7 +62,7 @@ public class userProfilePanel extends HorizontalPanel {
 			
 			@Override
 			public void onFailure(Throwable caught) {
-				// TODO Auto-generated method stub
+				Window.alert(caught.getMessage());
 				
 			}
 
@@ -83,11 +82,8 @@ public class userProfilePanel extends HorizontalPanel {
 				if (currentUser.getGender() == "m") {
 					profile.setWidget(0, 0, avatar_man);
 				}
-				else if(currentUser.getGender() == "f"){
-					profile.setWidget(0, 0, avatar_girl);
-				}
 				else {
-					profile.setWidget(0, 0, avatar_gn);
+					profile.setWidget(0, 0, avatar_girl);
 				}
 				
 			}
@@ -103,7 +99,6 @@ public class userProfilePanel extends HorizontalPanel {
 		this.setStylePrimaryName("profile");
 		avatar_man.setStylePrimaryName("avatar");
 		avatar_girl.setStylePrimaryName("avatar");
-		avatar_gn.setStylePrimaryName("avatar_gn");
 		
 		
 		
@@ -116,32 +111,11 @@ public class userProfilePanel extends HorizontalPanel {
 			
 		submitBtn.setStylePrimaryName("submit");
 		profile.setWidget(2, 3, submitBtn);
+		submitBtn.addClickHandler(new SubmitClickHandler());
 		
-		submitBtn.addClickHandler(new ClickHandler() {
-			public void onClick(ClickEvent event) {
-				String inputText = postInput.getValue();
-				editorAdministration.createPost(inputText, new AsyncCallback<Post>() {
-					public void onFailure (Throwable caught) {
-						Window.alert(caught.getMessage());
-					}
-					
-					public void onSuccess(Post success) {
-						Window.alert("hat geklappt");
-						profile.clearCell(2, 1);
-						TextArea postInput = new TextArea();
-						postInput.setStylePrimaryName("postInput");
-						profile.setWidget(2, 1, postInput);
-						
-					}
-				});
+		
 			
-
-
-			
-					
-			}
-			
-		});
+	
 		
 		this.add(this.profile);
 		
@@ -150,6 +124,37 @@ public class userProfilePanel extends HorizontalPanel {
 		
 		
 		
+		
+	}
+	private class SubmitClickHandler implements ClickHandler{
+		public void onClick(ClickEvent event) {
+			currentUser = ClientsideSettings.getUser();
+			if(editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+		    }
+			String inputText = postInput.getValue();
+			Window.alert(inputText);
+			Window.alert(currentUser.getId()+" ist die Id des aktuellen Users");
+			editorAdministration.createPost(inputText, currentUser, new AsyncCallback<Post>() {
+				public void onFailure (Throwable caught) {
+					Window.alert(caught.getMessage());
+				}
+				
+				public void onSuccess(Post success) {
+					Window.alert("hat geklappt");
+					profile.clearCell(2, 1);
+					TextArea input = new TextArea();
+					input.setStylePrimaryName("postInput");
+					profile.setWidget(2, 1, input);
+					
+				}
+			});
+		
+
+
+		
+				
+		}
 		
 	}
 	

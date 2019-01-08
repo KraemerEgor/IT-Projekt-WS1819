@@ -34,6 +34,11 @@ public class MainPanel extends VerticalPanel {
 	
 public void onLoad() {
 		super.onLoad();
+		if (editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+		}
+		
+		user = ClientsideSettings.getUser();
 
 		this.add(header_lbl);
 		this.addStyleName("Main");
@@ -68,11 +73,7 @@ public void onLoad() {
 		
 		
 
-		if (editorAdministration == null) {
-			editorAdministration = ClientsideSettings.getAdministration();
-		}
 		
-		user = ClientsideSettings.getUser();
 		
 		
 }

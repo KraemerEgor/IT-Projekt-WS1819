@@ -66,7 +66,7 @@ public interface EditorAdministration extends RemoteService {
 	 * @return gibt den Post zurück, der mit Hilfe des Mappers in der Datenbank gespeichert wird
 	 * @throws IllegalArgumentException
 	 */
-	Post createPost(String content) throws IllegalArgumentException;
+	Post createPost(String content, User currentUsers) throws IllegalArgumentException;
 
 	/**
 	 * Methode, die einen Post modifiziert und wieder in der Datenbank speichert
