@@ -175,18 +175,6 @@ public class SubsPanel extends VerticalPanel {
 		    			editorAdministration = ClientsideSettings.getAdministration();
 		    		}		
 		    		
-		    		editorAdministration.getAllPostsOfUser(selectedUser, new AsyncCallback<Vector<Post>>() {
-		    			public void onFailure(Throwable t) {
-		    				Window.alert(t.getMessage());}		
-		    			public void onSuccess(Vector<Post> result) {
-		    					for(Post p: result) {
-		    						//dies ist nur zum Testen drin
-		    						lbl.setText("Post von "+ selectedUser.getFirstname()+": \n"+p.getContent());
-		    						testpanel.add(lbl);
-		    						mainPanel.createPinnboard(selectedUser);		    						
-		    					
-		    					}}
-		    		});
 		    		
 		        }
 			

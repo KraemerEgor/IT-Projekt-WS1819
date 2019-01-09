@@ -73,6 +73,7 @@ public void onLoad() {
 public void createPinnboard(User user){
 	userProfile.clear();
 	userProfile.createUserProfile(user);
+	pp.clear();
 	pp.createPinboard(user);
 	
 }
