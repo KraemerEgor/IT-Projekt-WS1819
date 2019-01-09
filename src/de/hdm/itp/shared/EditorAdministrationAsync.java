@@ -38,7 +38,7 @@ public interface EditorAdministrationAsync {
 	
 	void getAllPosts(AsyncCallback<Vector<Post>> callback);
 	
-	void createLike(Post p, AsyncCallback<Like> callback);
+	void createLike(Post p, User owner, AsyncCallback<Like> callback);
 	
 	void deleteLike(Like l, AsyncCallback<Void> callback);
 

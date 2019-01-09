@@ -57,12 +57,12 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	private UserMapper uMapper = null;
 
 	/**
-	 * Referenz auf die EditorAdministration, welche administrative Fähigkeiten definiert
+	 * Referenz auf die EditorAdministration, welche administrative Fï¿½higkeiten definiert
 	 */
 	private static EditorAdministration editorAdministrationImpl = null;
 
 	/**
-	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rückgabe dessen
+	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rï¿½ckgabe dessen
 	 * @return
 	 */
 	public static EditorAdministration editorAdministrationImpl() {
@@ -101,8 +101,8 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 
 	/**
-	 * Methode zum späteren Erstellen eines User Objects
-	 * Hierbei wird ebenfalls definiert welche Attribute übergeben werden müssen zum Erstellen
+	 * Methode zum spï¿½teren Erstellen eines User Objects
+	 * Hierbei wird ebenfalls definiert welche Attribute ï¿½bergeben werden mï¿½ssen zum Erstellen
 	 * @return User Object
 	 */
 	@Override
@@ -304,13 +304,14 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * de.hdm.itp.server.EditorAdministration#createLike(de.hdm.itp.shared.bo.Post)
 	 */
 	@Override
-	public Like createLike(Post p) throws IllegalArgumentException {
+	public Like createLike(Post p, User owner) throws IllegalArgumentException {
 
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		long time = date.getTime();
 
 		Like l = new Like();
+		l.setOwnerId(owner.getId());
 		l.setPostId(p.getId());
 		l.setCreateDate(new Timestamp(time));
 
