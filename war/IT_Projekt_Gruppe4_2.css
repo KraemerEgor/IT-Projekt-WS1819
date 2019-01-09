@@ -329,7 +329,24 @@ h1 {
  	margin-right: 10px;
  	padding: 10px;
 }
-
+.posttext_lbl{
+	color: black;
+    font-size: 16px;
+}
+.postuser_lbl{
+	color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+.postdate_lbl{
+	color: gray;
+    font-size: 14px;
+    font-style: italic;
+}
+.postbox{
+	border: medium;
+	margin: 5px;
+}
 .cellList *{
 
 }
