@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import java.util.Collections;
 
 import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.Comment;
@@ -33,8 +34,8 @@ public class PinboardPanel extends VerticalPanel {
 	Label lbl_date = new Label("Loading...");
 	
 	User currentUser;
-	User userDummy = new User();
-	Post postDummy = new Post();
+	User pinboardUser = new User();
+	Post pinboardPost = new Post();
 
 	
 	public void onLoad() {
@@ -103,7 +104,7 @@ public class PinboardPanel extends VerticalPanel {
 	 * */
 	
 	public void createPinboard(User u) {
-		userDummy= u;
+		pinboardUser= u;
 		postPanel.clear();
 		postPanel.setStylePrimaryName("postbox");
 		
@@ -118,15 +119,21 @@ public class PinboardPanel extends VerticalPanel {
 				Window.alert(t.getMessage());}		
 			public void onSuccess(Vector<Post> result) {
 				//postsPanel.clear();
+				Collections.reverse(result);
 					for(Post p: result) {
+						
 						postPanel.add(createPostPanel(p));
 						
-						//TODO: das funktioniert noch nicht
+						
+						
+						//TODO: das funktioniert noch nichtÏ
 						//postsPanel.add(postpanel.createPost2(p));
 					
 					}}
+			
 		});
 		this.add(postPanel);
+		
 		
 	}
 	public VerticalPanel createPostPanel(Post p) {
@@ -134,7 +141,7 @@ public class PinboardPanel extends VerticalPanel {
 		final VerticalPanel postsPanel = new VerticalPanel();
 		
 		//postsPanel.clear();
-		postDummy=p;
+		pinboardPost=p;
 		
 		editorAdministration.getAllLikesOfPost(p, new AsyncCallback<Vector<Like>>(){
 
@@ -152,22 +159,22 @@ public class PinboardPanel extends VerticalPanel {
 					}
 				}
 				if(isLiked) {
-					postsPanel.add(new StyleLabel("Post von "+userDummy.getFirstname()+" '"+userDummy.getNickname()+"' "+userDummy.getLastname()+": ","postuser_lbl"));
-					postsPanel.add(new StyleLabel(postDummy.getContent(),"posttext_lbl"));
-					postsPanel.add(new StyleLabel("Zuletzt geändert am "+postDummy.getModDate(),"postdate_lbl"));
-					//postsPanel.add(new StyleLabel("Zuletzt geändert am "+postDummy.getModDate(),"search_lbl"));
-					postsPanel.add(new Label("Post ID:"+postDummy.getId()+" User ID:"+userDummy.getId()));
+					postsPanel.add(new StyleLabel("Post von "+pinboardUser.getFirstname()+" '"+pinboardUser.getNickname()+"' "+pinboardUser.getLastname()+": ","postuser_lbl"));
+					postsPanel.add(new StyleLabel(p.getContent(),"posttext_lbl"));
+					postsPanel.add(new StyleLabel("Zuletzt geändert am "+p.getModDate(),"postdate_lbl"));
+					//postsPanel.add(new StyleLabel("Zuletzt geändert am "+pinboardPost.getModDate(),"search_lbl"));
+					postsPanel.add(new Label("Post ID:"+p.getId()+" User ID:"+pinboardUser.getId()));
 					postsPanel.add(new StyleLabel("isLiked ist auf true","search_lbl"));
-					postsPanel.add(new Button("Unlike",new UnlikeClickHandler(postDummy)));	
+					postsPanel.add(new Button("Unlike",new UnlikeClickHandler(p)));	
 					//postPanel.add(postsPanel);
 				}else {
-					postsPanel.add(new StyleLabel("Post von "+userDummy.getFirstname()+" '"+userDummy.getNickname()+"' "+userDummy.getLastname()+": ","postuser_lbl"));
-					postsPanel.add(new StyleLabel(postDummy.getContent(),"posttext_lbl"));
-					postsPanel.add(new StyleLabel("Zuletzt geändert am "+postDummy.getModDate(),"postdate_lbl"));
-					//postsPanel.add(new StyleLabel("Zuletzt geändert am "+postDummy.getModDate(),"search_lbl"));
-					postsPanel.add(new Label("Post ID:"+postDummy.getId()+" User ID:"+userDummy.getId()));
+					postsPanel.add(new StyleLabel("Post von "+pinboardUser.getFirstname()+" '"+pinboardUser.getNickname()+"' "+pinboardUser.getLastname()+": ","postuser_lbl"));
+					postsPanel.add(new StyleLabel(p.getContent(),"posttext_lbl"));
+					postsPanel.add(new StyleLabel("Zuletzt geändert am "+p.getModDate(),"postdate_lbl"));
+					//postsPanel.add(new StyleLabel("Zuletzt geändert am "+pinboardPost.getModDate(),"search_lbl"));
+					postsPanel.add(new Label("Post ID:"+p.getId()+" User ID:"+pinboardUser.getId()));
 					postsPanel.add(new StyleLabel("isLiked ist auf false","search_lbl"));
-					postsPanel.add(new Button("Like",new LikeClickHandler(postDummy)));
+					postsPanel.add(new Button("Like",new LikeClickHandler(p)));
 					//postPanel.add(postsPanel);
 					
 				}
@@ -180,6 +187,7 @@ public class PinboardPanel extends VerticalPanel {
 		//TODO: im commits schauen als es noch funktioniert hat
 		
 		return new DefaultVerticalPanel(postsPanel).newvp;
+		
 		
 	}
 
