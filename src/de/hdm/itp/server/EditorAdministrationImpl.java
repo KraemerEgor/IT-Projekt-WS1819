@@ -191,12 +191,14 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		//long time = date.getTime();
 
 		Post p = new Post();
-		Window.alert("Inhalt: "+content);
+
+		System.out.println("Inhalt: "+content);
 		p.setContent(content);
 		//p.setCreateDate(new Timestamp(time));
 		
-		Window.alert("User Id: "+currentUsers.getId());
+
 		p.setOwnerId(currentUsers.getId());
+		
 
 		return pMapper.insert(p);
 	}
