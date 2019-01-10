@@ -119,8 +119,8 @@ public class PinboardPanel extends VerticalPanel {
 			public void onSuccess(Vector<Post> result) {
 				//postsPanel.clear();
 					for(Post p: result) {
+						postPanel.add(createPostPanel(p));
 						
-						postPanel.add(createPost(p));
 						//TODO: das funktioniert noch nicht
 						//postsPanel.add(postpanel.createPost2(p));
 					
@@ -129,7 +129,7 @@ public class PinboardPanel extends VerticalPanel {
 		this.add(postPanel);
 		
 	}
-	public VerticalPanel createPost(Post p) {
+	public VerticalPanel createPostPanel(Post p) {
 		Window.alert("Creating Post: "+p.getContent());
 		final VerticalPanel postsPanel = new VerticalPanel();
 		
@@ -158,8 +158,7 @@ public class PinboardPanel extends VerticalPanel {
 					//postsPanel.add(new StyleLabel("Zuletzt geändert am "+postDummy.getModDate(),"search_lbl"));
 					postsPanel.add(new Label("Post ID:"+postDummy.getId()+" User ID:"+userDummy.getId()));
 					postsPanel.add(new StyleLabel("isLiked ist auf true","search_lbl"));
-					//postsPanel.add(new Button("Unlike",new UnlikeClickHandler(p)));	
-					postsPanel.add(new Button("Unlike"));
+					postsPanel.add(new Button("Unlike",new UnlikeClickHandler(postDummy)));	
 					//postPanel.add(postsPanel);
 				}else {
 					postsPanel.add(new StyleLabel("Post von "+userDummy.getFirstname()+" '"+userDummy.getNickname()+"' "+userDummy.getLastname()+": ","postuser_lbl"));
@@ -168,8 +167,7 @@ public class PinboardPanel extends VerticalPanel {
 					//postsPanel.add(new StyleLabel("Zuletzt geändert am "+postDummy.getModDate(),"search_lbl"));
 					postsPanel.add(new Label("Post ID:"+postDummy.getId()+" User ID:"+userDummy.getId()));
 					postsPanel.add(new StyleLabel("isLiked ist auf false","search_lbl"));
-					//postsPanel.add(new Button("Like",new LikeClickHandler(p)));
-					postsPanel.add(new Button("Like"));
+					postsPanel.add(new Button("Like",new LikeClickHandler(postDummy)));
 					//postPanel.add(postsPanel);
 					
 				}
@@ -180,7 +178,9 @@ public class PinboardPanel extends VerticalPanel {
 		});
 		//ich drehe mich im Kreis: hier wird immer der neuste post zurückgegeben anstatt des jeweils passenden
 		//TODO: im commits schauen als es noch funktioniert hat
+		
 		return new DefaultVerticalPanel(postsPanel).newvp;
+		
 	}
 
 
@@ -212,7 +212,7 @@ public class PinboardPanel extends VerticalPanel {
 
 				@Override
 				public void onSuccess(Like result) {
-					//Window.alert("like gesetzt auf '"+post.getContent()+"'");					
+					Window.alert("like gesetzt auf '"+post.getContent()+"'");					
 				}
 				
 			});

@@ -135,7 +135,7 @@ public class userProfilePanel extends HorizontalPanel {
 			String inputText = postInput.getValue();
 			Window.alert(inputText);
 			Window.alert(currentUser.getId()+" ist die Id des aktuellen Users");
-			editorAdministration.createPost(inputText, currentUser, new AsyncCallback<Post>() {
+			editorAdministration.createPost(postInput.getValue(), ClientsideSettings.getUser(), new AsyncCallback<Post>() {
 				public void onFailure (Throwable caught) {
 					Window.alert(caught.getMessage());
 				}
