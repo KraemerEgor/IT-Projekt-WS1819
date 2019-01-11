@@ -1,7 +1,11 @@
 package de.hdm.itp.client;
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -13,7 +17,10 @@ import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.itp.client.ClientsideFunctions.InputDialogBox.CloseButton;
 import de.hdm.itp.shared.EditorAdministrationAsync;
+import de.hdm.itp.shared.bo.Comment;
+import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
 
@@ -466,7 +473,7 @@ public abstract class ClientsideFunctions {
 		/**
 		 * Standard ClickHandler zum schließen einer DialogBox.
 		 */
-		private class CloseDBClickHandler implements ClickHandler{
+		public class CloseDBClickHandler implements ClickHandler{
 			
 			DialogBox db;
 	
@@ -527,4 +534,123 @@ public abstract class ClientsideFunctions {
 			}
 		}
 	}
-}}
+}
+	public static class CommentDialogBox extends DialogBox{
+		final VerticalPanel panel = new VerticalPanel();
+		final HorizontalPanel buttonpanel = new HorizontalPanel();
+		TextBox comment_box = new TextBox();
+		Button submit_btn = new Button("Kommentieren");
+		CloseButton close_btn = new CloseButton();
+		
+		
+		public CommentDialogBox(Post post) {
+			if (editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+			}
+			 user = ClientsideSettings.getUser();
+			 close_btn.addClickHandler(new CloseDBClickHandler(this));
+			 comment_box.setWidth("100");
+			submit_btn.addClickHandler(new SubmitDBClickHandler(post.getId()));
+			 editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>(){
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Vector<Comment> result) {
+					 panel.setHeight("100");
+				     panel.setWidth("600");
+				     panel.setSpacing(10);
+				     panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+				     
+					for(final Comment c: result) {
+						//hier noch Namen holen
+						editorAdministration.getUserById(c.getOwnerId(), new AsyncCallback<User>() {
+
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert(caught.getMessage());
+								
+							}
+
+							@Override
+							public void onSuccess(User result) {
+								panel.add(new StyleLabel("Kommentar von "+result.getFirstname()+" '"+result.getNickname()+"' "+result.getLastname()+": ","search_lbl"));
+								panel.add(new StyleLabel(c.getText(),"search_lbl"));
+								panel.add(new Label("--------------------------------------------"));
+								//TODO if your own, delete or modify
+								
+								buttonpanel.add(comment_box);
+								buttonpanel.add(submit_btn);
+								buttonpanel.add(close_btn);
+								panel.add(buttonpanel);
+								
+							}
+							
+						});
+						
+					}
+					
+					
+				}
+			 
+			
+		});
+			setWidget(panel);
+			show();
+			center();
+		
+		
+	}
+public class CloseDBClickHandler implements ClickHandler{
+			
+			DialogBox db;
+	
+			public CloseDBClickHandler(DialogBox db) {
+				this.db=db;
+			}
+			public void onClick(ClickEvent event) {
+				db.hide();
+			}
+		}
+public class SubmitDBClickHandler implements ClickHandler{
+	
+	String text1 = new String();
+	int postid1;
+	
+
+	public SubmitDBClickHandler(int postid) {
+		
+	
+		postid1=postid;
+	}
+	public void onClick(ClickEvent event) {
+		text1 = comment_box.getValue();
+		Window.alert(text1+" "+postid1+" "+user.getId());
+		if(text1==null) {
+			Window.alert("Leerer Kommentar kann nciht gepostet werden!");
+		}else {
+		
+		editorAdministration.createComment(postid1, text1, user, new AsyncCallback<Comment>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Comment result) {
+				panel.add(new Label("success"));
+				
+			}
+			
+		});
+	
+	}}
+}
+	}
+	}

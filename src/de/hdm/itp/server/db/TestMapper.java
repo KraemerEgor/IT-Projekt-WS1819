@@ -41,10 +41,14 @@ public class TestMapper {
 		p.setId(20000005);
 		p.setOwnerId(10000004);
 		p.setContent("Ich poste immernoch wahnsinnig gerne Sachen!!");
+		c.setPostId(20000003);
+		c.setText("Also ich finde dich wundervoll");
+		c.setOwnerId(10000004);
 		
 		
 		
-		pMapper.insert(p);
+		
+		cMapper.insert(c);
 		
 		
 		/*
