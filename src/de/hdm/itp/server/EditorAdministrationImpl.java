@@ -404,11 +404,12 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * Post, java.lang.String)
 	 */
 	@Override
-	public Comment createComment(Post p, String text) throws IllegalArgumentException {
+	public Comment createComment(int postID, String text, User currentUser) throws IllegalArgumentException {
 
 		Comment c = new Comment();
-		c.setPostId(p.getId());
+		c.setPostId(postID);
 		c.setText(text);
+		c.setOwnerId(currentUser.getId());
 
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();

@@ -151,7 +151,7 @@ public interface EditorAdministration extends RemoteService {
 	 * @return ein Objekt vom Typ Comment, das vom Mapper zur�ckgegeben wird
 	 * @throws IllegalArgumentException
 	 */
-	Comment createComment(Post p, String text) throws IllegalArgumentException;
+	Comment createComment(int postID, String text, User currentUser) throws IllegalArgumentException;
 
 	/**
 	 * Methode zum L�schen eines Kommentars

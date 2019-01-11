@@ -50,7 +50,7 @@ public interface EditorAdministrationAsync {
 	
 	void getAllLikes(AsyncCallback<Vector<Like>> callback);
 	
-	void createComment(Post p, String text, AsyncCallback<Comment> callback);
+	void createComment(int postID, String text, User currentUser, AsyncCallback<Comment> callback);
 	
 	void deleteComment(Comment c, AsyncCallback<Void> callback);
 	
