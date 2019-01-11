@@ -263,12 +263,12 @@ Vector<Comment> result = new Vector<Comment>();
 				+ comment.getId() 
 				+ ", " 
 				+ comment.getOwnerId()
-				+ ", '" 
+				+ ", " 
 				+ comment.getPostId()
 				+ ", '" 
 				+ comment.getText() 
 				+ "', '" 
-				+ s
+				+ s 
 				+ "', '" 
 				+ s
 				+ "')") ;
