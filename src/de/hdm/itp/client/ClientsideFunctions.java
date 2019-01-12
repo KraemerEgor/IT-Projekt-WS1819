@@ -6,6 +6,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -13,6 +14,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -536,6 +538,7 @@ public abstract class ClientsideFunctions {
 	}
 }
 	public static class CommentDialogBox extends DialogBox{
+		final ScrollPanel scrollpanel = new ScrollPanel();
 		final VerticalPanel panel = new VerticalPanel();
 		final HorizontalPanel buttonpanel = new HorizontalPanel();
 		TextBox comment_box = new TextBox();
@@ -547,6 +550,8 @@ public abstract class ClientsideFunctions {
 			if (editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
+			//ich kriege die Größe der DialogBoxen nicht angepasst
+			this.setSize("500", "800");
 			 user = ClientsideSettings.getUser();
 			 close_btn.addClickHandler(new CloseDBClickHandler(this));
 			 comment_box.setWidth("100");
@@ -561,13 +566,14 @@ public abstract class ClientsideFunctions {
 
 				@Override
 				public void onSuccess(Vector<Comment> result) {
-					 panel.setHeight("100");
-				     panel.setWidth("600");
+					 panel.setHeight("800");
+				     panel.setWidth("700");
 				     panel.setSpacing(10);
 				     panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+				     scrollpanel.setSize("700", "800");
+				     scrollpanel.setAlwaysShowScrollBars(true);
 				     
 					for(final Comment c: result) {
-						//hier noch Namen holen
 						editorAdministration.getUserById(c.getOwnerId(), new AsyncCallback<User>() {
 
 							@Override
@@ -580,13 +586,20 @@ public abstract class ClientsideFunctions {
 							public void onSuccess(User result) {
 								panel.add(new StyleLabel("Kommentar von "+result.getFirstname()+" '"+result.getNickname()+"' "+result.getLastname()+": ","search_lbl"));
 								panel.add(new StyleLabel(c.getText(),"search_lbl"));
+							
+								if(c.getOwnerId()==user.getId()) {
+									HorizontalPanel ownButtonPanel = new HorizontalPanel();
+									ownButtonPanel.add(new StyleLabel("Löschen", new DeleteCommentClickHandler(c),"comment_lbl"));
+									ownButtonPanel.add(new StyleLabel("Bearbeiten", new EditCommentClickHandler(c),"comment_lbl"));
+									panel.add(ownButtonPanel);
+								}
 								panel.add(new Label("--------------------------------------------"));
-								//TODO if your own, delete or modify
 								
 								buttonpanel.add(comment_box);
 								buttonpanel.add(submit_btn);
 								buttonpanel.add(close_btn);
 								panel.add(buttonpanel);
+								scrollpanel.add(panel);
 								
 							}
 							
@@ -599,12 +612,22 @@ public abstract class ClientsideFunctions {
 			 
 			
 		});
-			setWidget(panel);
+			setWidget(scrollpanel);
 			show();
 			center();
 		
-		
 	}
+		
+private void refresh(int postId) {
+			//this.clear();
+			this.setVisible(false);
+			Post post = new Post();
+			post.setId(postId);
+			CommentDialogBox cbd = new CommentDialogBox(post);
+			
+			
+		}
+
 public class CloseDBClickHandler implements ClickHandler{
 			
 			DialogBox db;
@@ -629,9 +652,8 @@ public class SubmitDBClickHandler implements ClickHandler{
 	}
 	public void onClick(ClickEvent event) {
 		text1 = comment_box.getValue();
-		Window.alert(text1+" "+postid1+" "+user.getId());
 		if(text1==null) {
-			Window.alert("Leerer Kommentar kann nciht gepostet werden!");
+			Window.alert("Leerer Kommentar kann nicht gepostet werden!");
 		}else {
 		
 		editorAdministration.createComment(postid1, text1, user, new AsyncCallback<Comment>() {
@@ -644,13 +666,54 @@ public class SubmitDBClickHandler implements ClickHandler{
 
 			@Override
 			public void onSuccess(Comment result) {
-				panel.add(new Label("success"));
+				refresh(result.getPostId());
 				
 			}
 			
 		});
 	
 	}}
+}
+public class DeleteCommentClickHandler implements ClickHandler{
+	Comment comment = new Comment();
+	public DeleteCommentClickHandler(Comment c) {
+		comment=c;
+	}
+
+	@Override
+	public void onClick(ClickEvent event) {
+		editorAdministration.deleteComment(comment, new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				refresh(comment.getPostId());
+				
+			}
+			
+		});
+		
+	}
+	
+}
+public class EditCommentClickHandler implements ClickHandler{
+	Comment comment = new Comment();
+	public EditCommentClickHandler(Comment c) {
+		comment=c;
+	}
+	@Override
+	public void onClick(ClickEvent event) {
+		Window.alert(comment.getText());
+		//hier wollte ich einen neuen Popup einbauen, der deinen Kommentar verändern lässt
+		//am besten mit einer Textbox, welche den aktuellen Text beinhaltet
+		
+	}
+	
 }
 	}
 	}
