@@ -420,6 +420,20 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		return cMapper.insert(c);
 
 	}
+	@Override
+	public Comment updateComment(Comment c, String content) throws IllegalArgumentException {
+
+		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		long time = date.getTime();
+
+		c = cMapper.findByID(c);
+		c.setText(content);
+		c.setModDate(new Timestamp(time));
+
+		return cMapper.update(c);
+
+	}
 
 	/*
 	 * (non-Javadoc)

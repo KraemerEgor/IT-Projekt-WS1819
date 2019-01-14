@@ -308,10 +308,8 @@ Vector<Comment> result = new Vector<Comment>();
 			+", post =" 
 			+ comment.getPostId()
 			+ ", text='" 
-			+ comment.getText() 
-			+"', createDate="
-			+ comment.getCreateDate() 
-			+", modDate='"
+			+ comment.getText()  
+			+"', modDate='"
 			+ s
 			+ "' WHERE C_ID=" 
 			+ comment.getId());

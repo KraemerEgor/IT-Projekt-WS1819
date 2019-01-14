@@ -52,6 +52,8 @@ public interface EditorAdministrationAsync {
 	
 	void createComment(int postID, String text, User currentUser, AsyncCallback<Comment> callback);
 	
+	void updateComment(Comment c, String text,AsyncCallback<Comment> callback);
+	
 	void deleteComment(Comment c, AsyncCallback<Void> callback);
 	
 	void getCommentById(int commentId, AsyncCallback<Comment> callback);

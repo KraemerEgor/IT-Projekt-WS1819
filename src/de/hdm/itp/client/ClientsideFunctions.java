@@ -544,9 +544,11 @@ public abstract class ClientsideFunctions {
 		TextBox comment_box = new TextBox();
 		Button submit_btn = new Button("Kommentieren");
 		CloseButton close_btn = new CloseButton();
+		CommentDialogBox db;
 		
 		
 		public CommentDialogBox(Post post) {
+			db = this;
 			if (editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
@@ -590,7 +592,7 @@ public abstract class ClientsideFunctions {
 								if(c.getOwnerId()==user.getId()) {
 									HorizontalPanel ownButtonPanel = new HorizontalPanel();
 									ownButtonPanel.add(new StyleLabel("Löschen", new DeleteCommentClickHandler(c),"comment_lbl"));
-									ownButtonPanel.add(new StyleLabel("Bearbeiten", new EditCommentClickHandler(c),"comment_lbl"));
+									ownButtonPanel.add(new StyleLabel("Bearbeiten", new EditCommentClickHandler(c,db),"comment_lbl"));
 									panel.add(ownButtonPanel);
 								}
 								panel.add(new Label("--------------------------------------------"));
@@ -703,12 +705,14 @@ public class DeleteCommentClickHandler implements ClickHandler{
 }
 public class EditCommentClickHandler implements ClickHandler{
 	Comment comment = new Comment();
-	public EditCommentClickHandler(Comment c) {
+	DialogBox dialog = new DialogBox();
+	public EditCommentClickHandler(Comment c, DialogBox dialog) {
 		comment=c;
+		this.dialog = dialog;
 	}
 	@Override
 	public void onClick(ClickEvent event) {
-		Window.alert(comment.getText());
+		new UpdateCommentDialogBox(comment, dialog);
 		//hier wollte ich einen neuen Popup einbauen, der deinen Kommentar verändern lässt
 		//am besten mit einer Textbox, welche den aktuellen Text beinhaltet
 		
@@ -716,4 +720,115 @@ public class EditCommentClickHandler implements ClickHandler{
 	
 }
 	}
+	
+	public static class UpdateCommentDialogBox extends DialogBox{
+		final ScrollPanel scrollpanel = new ScrollPanel();
+		final VerticalPanel panel = new VerticalPanel();
+		final HorizontalPanel buttonpanel = new HorizontalPanel();
+		StyleLabel header = new StyleLabel("Kommentar bearbeiten","search_lbl");
+		TextBox commentBox = new TextBox();
+		public TextBox getCommentBox() {
+			return commentBox;
+		}
+		public void setCommentBox(TextBox commentBox) {
+			this.commentBox = commentBox;
+		}
+		Button changeBtn = new Button("Fertig");
+		CloseButton closeBtn = new CloseButton();
+		
+		Comment fullcomment = new Comment();
+		
+	public UpdateCommentDialogBox(Comment comment, DialogBox dialogbox){
+		if (editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+		}
+		this.setSize("500", "800");
+		 user = ClientsideSettings.getUser();
+		editorAdministration.getCommentById(comment.getId(), new AsyncCallback<Comment>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Comment result) {
+				fullcomment = result;
+				commentBox.setValue(fullcomment.getText());
+				
+			}
+			
+		});
+		
+		 closeBtn.addClickHandler(new CloseDBClickHandler(this, dialogbox));
+		 commentBox.setWidth("100");
+		 changeBtn.addClickHandler(new UpdateCommentDBClickHandler(fullcomment, commentBox.getValue(),this, dialogbox));
+		 panel.add(header);
+		
+		 panel.add(commentBox);
+		 buttonpanel.add(changeBtn);
+		 buttonpanel.add(closeBtn);
+		 panel.add(buttonpanel);
+		scrollpanel.add(panel);
+		setWidget(scrollpanel);
+		dialogbox.hide();
+		show();
+		center();
+		}
+	public class CloseDBClickHandler implements ClickHandler{
+		
+		DialogBox db;
+		DialogBox superdb;
+
+		public CloseDBClickHandler(DialogBox db, DialogBox superdb) {
+			this.db=db;
+			this.superdb=superdb;
+		}
+		public void onClick(ClickEvent event) {
+			db.hide();
+			superdb.show();
+		}
+	}
+public class UpdateCommentDBClickHandler implements ClickHandler{
+		
+	UpdateCommentDialogBox db;
+		DialogBox superdb;
+		Comment comment;
+		String text;
+
+		public UpdateCommentDBClickHandler(Comment comment, String text, UpdateCommentDialogBox db, DialogBox superdb) {
+			this.db=db;
+			this.superdb=superdb;
+			this.comment=comment;
+			this.text=text;
+		}
+		public void onClick(ClickEvent event) {
+			if (editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+			}
+			editorAdministration.updateComment(comment, db.getCommentBox().getValue(), new AsyncCallback<Comment>(){
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Comment result) {
+					Window.alert("updated "+comment.getText());
+					Window.alert("updated "+result.getText());
+					db.hide();
+					superdb.show();
+					
+				}
+				
+			});
+			
+		}
+	}
+	
+	}
+	
 	}
