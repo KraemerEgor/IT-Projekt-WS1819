@@ -731,6 +731,116 @@ public class EditCommentClickHandler implements ClickHandler{
 }
 	}
 	
+	//TODO
+	public static class UpdatePostDialogBox extends DialogBox{
+		
+		final ScrollPanel scrollPanel = new ScrollPanel();
+		final VerticalPanel verticalPanel = new VerticalPanel();
+		final HorizontalPanel buttonPanel = new HorizontalPanel();
+		StyleLabel header = new StyleLabel("Beitrag bearbeiten","search_lbl");
+		TextBox updatePostBox = new TextBox();
+		
+		Button doneBtn = new Button("Fertig");
+		CloseButton closeBtn = new CloseButton();
+		Post updatedPost = new Post();
+		
+		public TextBox getUpdatePostBox() {
+			return updatePostBox;
+		}
+		public void setUpdatePostBox(TextBox updatePostBox) {
+			this.updatePostBox = updatePostBox;
+		}
+		
+		public UpdatePostDialogBox(Post post) {
+			if (editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+			}
+			this.setSize("500", "800");
+			 user = ClientsideSettings.getUser();
+			editorAdministration.updatePost(post, post.getContent(), new AsyncCallback<Post>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Post result) {
+					updatePostBox.setValue(updatedPost.getContent());
+					
+				}
+				
+			});
+			closeBtn.addClickHandler(new CloseDBClickHandler(this));
+			doneBtn.addClickHandler(new UpdatePostDBClickHandler(post, updatePostBox.getValue(),this));
+			updatePostBox.setWidth("300");
+			 verticalPanel.add(header);
+
+			 verticalPanel.add(updatePostBox);
+			 buttonPanel.add(doneBtn);
+			 buttonPanel.add(closeBtn);
+			 verticalPanel.add(buttonPanel);
+			 scrollPanel.add(verticalPanel);
+			setWidget(scrollPanel);
+			this.hide();
+			show();
+			center();
+			
+		}
+		public class UpdatePostDBClickHandler implements ClickHandler{
+			
+			Post post;
+			String updatedText; 
+			UpdatePostDialogBox UpdatedPostDB;
+			
+			
+			public UpdatePostDBClickHandler(Post post, String updatedText, UpdatePostDialogBox UpdatedPostDB) {
+				this.post=post;
+				this.UpdatedPostDB=UpdatedPostDB;
+				this.updatedText=updatedText;
+			}
+
+			@Override
+			public void onClick(ClickEvent event) {
+				if (editorAdministration == null) {
+					editorAdministration = ClientsideSettings.getAdministration();
+				}
+				editorAdministration.updatePost(post, UpdatedPostDB.getUpdatePostBox().getValue(), new AsyncCallback<Post>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());
+					}
+
+					@Override
+					public void onSuccess(Post result) {
+						
+						UpdatedPostDB.hide();
+						UpdatedPostDB.show();
+				//		UpdatedPostDB.refresh(UpdatedPostDB.updatedPost.getId());
+					}
+					
+				});
+			}
+			
+		}
+		public class CloseDBClickHandler implements ClickHandler{
+			
+			DialogBox db;
+			DialogBox superdb;
+
+			public CloseDBClickHandler(DialogBox db) {
+				this.db=db;
+			}
+			public void onClick(ClickEvent event) {
+				db.hide();
+				superdb.show();
+			}
+		}
+		
+	}
+	
 	public static class UpdateCommentDialogBox extends DialogBox{
 		final ScrollPanel scrollpanel = new ScrollPanel();
 		final VerticalPanel panel = new VerticalPanel();
@@ -806,6 +916,7 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 		CommentDialogBox superdb;
 		Comment comment;
 		String text;
+		
 
 		public UpdateCommentDBClickHandler(Comment comment, String text, UpdateCommentDialogBox db, CommentDialogBox superdb) {
 			this.db=db;
@@ -829,7 +940,7 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 				public void onSuccess(Comment result) {
 					db.hide();
 					superdb.show();
-					superdb.refresh(superdb.currentPost.getId());
+//					superdb.refresh(superdb.currentPost.getId());
 					
 				}
 				
