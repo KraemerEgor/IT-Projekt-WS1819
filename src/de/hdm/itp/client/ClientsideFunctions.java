@@ -546,9 +546,12 @@ public abstract class ClientsideFunctions {
 		CloseButton close_btn = new CloseButton();
 		CommentDialogBox db;
 		
+		public Post currentPost = new Post();
+		
 		
 		public CommentDialogBox(Post post) {
 			db = this;
+			currentPost = post;
 			if (editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
@@ -574,7 +577,7 @@ public abstract class ClientsideFunctions {
 				     panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 				     scrollpanel.setSize("700", "800");
 				     scrollpanel.setAlwaysShowScrollBars(true);
-				     
+				     if(!result.isEmpty()) {
 					for(final Comment c: result) {
 						editorAdministration.getUserById(c.getOwnerId(), new AsyncCallback<User>() {
 
@@ -610,6 +613,13 @@ public abstract class ClientsideFunctions {
 					}
 					
 					
+				}else{
+					buttonpanel.add(comment_box);
+					buttonpanel.add(submit_btn);
+					buttonpanel.add(close_btn);
+					panel.add(buttonpanel);
+					scrollpanel.add(panel);
+					}
 				}
 			 
 			
@@ -620,7 +630,7 @@ public abstract class ClientsideFunctions {
 		
 	}
 		
-private void refresh(int postId) {
+public void refresh(int postId) {
 			//this.clear();
 			this.setVisible(false);
 			Post post = new Post();
@@ -705,8 +715,8 @@ public class DeleteCommentClickHandler implements ClickHandler{
 }
 public class EditCommentClickHandler implements ClickHandler{
 	Comment comment = new Comment();
-	DialogBox dialog = new DialogBox();
-	public EditCommentClickHandler(Comment c, DialogBox dialog) {
+	CommentDialogBox dialog;
+	public EditCommentClickHandler(Comment c, CommentDialogBox dialog) {
 		comment=c;
 		this.dialog = dialog;
 	}
@@ -738,7 +748,7 @@ public class EditCommentClickHandler implements ClickHandler{
 		
 		Comment fullcomment = new Comment();
 		
-	public UpdateCommentDialogBox(Comment comment, DialogBox dialogbox){
+	public UpdateCommentDialogBox(Comment comment, CommentDialogBox dialogbox){
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
@@ -793,11 +803,11 @@ public class EditCommentClickHandler implements ClickHandler{
 public class UpdateCommentDBClickHandler implements ClickHandler{
 		
 	UpdateCommentDialogBox db;
-		DialogBox superdb;
+		CommentDialogBox superdb;
 		Comment comment;
 		String text;
 
-		public UpdateCommentDBClickHandler(Comment comment, String text, UpdateCommentDialogBox db, DialogBox superdb) {
+		public UpdateCommentDBClickHandler(Comment comment, String text, UpdateCommentDialogBox db, CommentDialogBox superdb) {
 			this.db=db;
 			this.superdb=superdb;
 			this.comment=comment;
@@ -817,10 +827,9 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 
 				@Override
 				public void onSuccess(Comment result) {
-					Window.alert("Übergebener Comment id: "+comment.getId()+" text: "+comment.getText());
-					Window.alert("Aus Impl Comment id: "+result.getId()+" text: "+result.getText());
 					db.hide();
 					superdb.show();
+					superdb.refresh(superdb.currentPost.getId());
 					
 				}
 				
