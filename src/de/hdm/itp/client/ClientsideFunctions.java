@@ -763,7 +763,7 @@ public class EditCommentClickHandler implements ClickHandler{
 		
 		 closeBtn.addClickHandler(new CloseDBClickHandler(this, dialogbox));
 		 commentBox.setWidth("100");
-		 changeBtn.addClickHandler(new UpdateCommentDBClickHandler(fullcomment, commentBox.getValue(),this, dialogbox));
+		 changeBtn.addClickHandler(new UpdateCommentDBClickHandler(comment, commentBox.getValue(),this, dialogbox));
 		 panel.add(header);
 		
 		 panel.add(commentBox);
@@ -817,8 +817,8 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 
 				@Override
 				public void onSuccess(Comment result) {
-					Window.alert("updated "+comment.getText());
-					Window.alert("updated "+result.getText());
+					Window.alert("Übergebener Comment id: "+comment.getId()+" text: "+comment.getText());
+					Window.alert("Aus Impl Comment id: "+result.getId()+" text: "+result.getText());
 					db.hide();
 					superdb.show();
 					
