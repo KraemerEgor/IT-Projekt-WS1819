@@ -26,8 +26,9 @@ public class PinboardPanel extends VerticalPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
 	
-	VerticalPanel postPanel = new VerticalPanel();
+	static MainPanel mainPanel = new MainPanel();
 	
+	VerticalPanel postPanel = new VerticalPanel();
 	
 	Label lbl_user = new Label("Loading...");
 	Label lbl_content = new Label("Loading...");
@@ -39,6 +40,16 @@ public class PinboardPanel extends VerticalPanel {
 	
 	int commentcounter = 0;
 
+	public static MainPanel getMainPanel() {
+		return mainPanel;
+	}
+
+
+
+
+	public static void setMainPanel(MainPanel mainPanel) {
+		PinboardPanel.mainPanel = mainPanel;
+	}
 	
 	public void onLoad() {
 
@@ -106,7 +117,21 @@ public class PinboardPanel extends VerticalPanel {
 	 * */
 	
 	public void createPinboard(User u) {
-		pinboardUser= u;
+		editorAdministration.getUserById(u.getId(), new AsyncCallback<User>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(User result) {
+				pinboardUser= result;
+				
+			}
+			
+		});
 		postPanel.clear();
 		postPanel.setStylePrimaryName("postbox");
 		
@@ -139,11 +164,10 @@ public class PinboardPanel extends VerticalPanel {
 		
 	}
 	public VerticalPanel createPostPanel(Post post) {
-		Window.alert("Creating Post: "+post.getContent());
+		
 		final VerticalPanel postsPanel = new VerticalPanel();
 		final HorizontalPanel buttonPanel = new HorizontalPanel();
-		//postsPanel.clear();
-		pinboardPost=post;
+		final Post pinboardPost = post;
 		
 		
 		editorAdministration.getAllLikesOfPost(post, new AsyncCallback<Vector<Like>>(){
@@ -180,7 +204,7 @@ editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Co
 						@Override
 						public void onSuccess(Vector<Comment> result) {
 							commentcounter = result.size();
-							Window.alert("Der Zähler der Comments ist auf: "+commentcounter);
+							
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: "+result.size(),"search_lbl"));
 							buttonPanel.add(new Button("Unlike",new UnlikeClickHandler(pinboardPost)));
 							buttonPanel.add(new Button("Kommentieren", new CommentClickHandler(pinboardPost)));		
@@ -208,7 +232,7 @@ editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Co
 						@Override
 						public void onSuccess(Vector<Comment> result) {
 							commentcounter = result.size();
-							Window.alert("Der Zähler der Comments ist auf: "+commentcounter);
+							
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: "+result.size(),"search_lbl"));
 							buttonPanel.add(new Button("Like",new LikeClickHandler(pinboardPost)));
 							buttonPanel.add(new Button("Kommentieren", new CommentClickHandler(pinboardPost)));	
@@ -249,7 +273,7 @@ editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Co
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			currentUser = ClientsideSettings.getUser();
-			Window.alert("try to set like to: "+post.getContent()+" from: "+currentUser.getFirstname()+" "+currentUser.getId());
+			
 			editorAdministration.createLike(post, currentUser, new AsyncCallback<Like>(){
 
 				@Override
@@ -260,7 +284,11 @@ editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Co
 
 				@Override
 				public void onSuccess(Like result) {
-					Window.alert("like gesetzt auf '"+post.getContent()+"'");					
+					//TODO: das funktioniert noch nicht
+					User us = new User();
+					us.setId(post.getOwnerId());
+					//mainPanel.createPinnboard(us);	
+					createPinboard(us);
 				}
 				
 			});
@@ -284,7 +312,7 @@ editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Co
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			currentUser = ClientsideSettings.getUser();
-			Window.alert("try to delete like from: "+post.getContent()+" from: "+currentUser.getFirstname()+" "+currentUser.getId());
+			
 			Like like = new Like();
 			like.setOwnerId(currentUser.getId());
 			like.setPostId(post.getId());
@@ -299,7 +327,11 @@ editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Co
 
 				@Override
 				public void onSuccess(Void result) {
-					Window.alert("like entfernt auf '"+post.getContent()+"'");					
+					//TODO: das funktioniert noch nicht
+					User us = new User();
+					us.setId(post.getOwnerId());
+					//mainPanel.createPinnboard(us);	
+					createPinboard(us);
 				}
 				
 			});

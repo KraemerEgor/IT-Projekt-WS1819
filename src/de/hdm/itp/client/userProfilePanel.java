@@ -30,6 +30,7 @@ public class userProfilePanel extends HorizontalPanel {
 	private EditorAdministrationAsync editorAdministration = null;
 
 	private User u = new User();
+	static MainPanel mainPanel = new MainPanel();
 
 	private Image avatar_man = new Image("man.png");
 	private Image avatar_girl = new Image("girl.png");
@@ -42,6 +43,15 @@ public class userProfilePanel extends HorizontalPanel {
 	private TextArea postInput = new TextArea();
 	private Button submitBtn = new Button("Post veröffentlichen");
 
+	public MainPanel getMainPanel() {
+		return mainPanel;
+	}
+
+	public void setMainPanel(MainPanel mainPanel) {
+		this.mainPanel = mainPanel;
+	}
+
+	
 	public void onLoad() {
 
 		super.onLoad();
@@ -123,6 +133,8 @@ public class userProfilePanel extends HorizontalPanel {
 							TextArea input = new TextArea();
 							input.setStylePrimaryName("postInput");
 							profile.setWidget(2, 1, input);
+							postInput.setText("");
+							mainPanel.createPinnboard(u);
 
 						}
 					});
@@ -176,4 +188,5 @@ public class userProfilePanel extends HorizontalPanel {
 
 	}
 
+	
 }

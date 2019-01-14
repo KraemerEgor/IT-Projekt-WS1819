@@ -65,6 +65,7 @@ public void onLoad() {
 		 */
 		userProfile.setWidth("100%");
 		this.add(this.userProfile);
+		userProfile.setMainPanel(this);
 		
 		this.add(this.pp);
 		pp.setStylePrimaryName("profilePanel");	
