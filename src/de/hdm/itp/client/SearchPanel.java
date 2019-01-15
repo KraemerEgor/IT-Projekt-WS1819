@@ -94,6 +94,7 @@ public class SearchPanel extends FlowPanel {
 		
 		
 		
+		
 		profileBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {		
 				//hier soll die eigene Pinnwand angezeigt werden
