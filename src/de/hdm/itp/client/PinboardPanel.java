@@ -29,6 +29,7 @@ public class PinboardPanel extends VerticalPanel {
 	static MainPanel mainPanel = new MainPanel();
 
 	VerticalPanel postPanel = new VerticalPanel();
+	PinboardPanel pinboardPanel;
 
 	Label lbl_user = new Label("Loading...");
 	Label lbl_content = new Label("Loading...");
@@ -55,6 +56,7 @@ public class PinboardPanel extends VerticalPanel {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
 		currentUser = ClientsideSettings.getUser();
+		pinboardPanel=this;
 
 		// this.add(postpanel);
 		createPinboard(currentUser);
@@ -300,7 +302,7 @@ public class PinboardPanel extends VerticalPanel {
 			}
 			currentUser = ClientsideSettings.getUser();
 
-			ClientsideFunctions.UpdatePostDialogBox updatePostDB = new ClientsideFunctions.UpdatePostDialogBox(post);
+			ClientsideFunctions.UpdatePostDialogBox updatePostDB = new ClientsideFunctions.UpdatePostDialogBox(post,pinboardPanel);
 			
 		
 

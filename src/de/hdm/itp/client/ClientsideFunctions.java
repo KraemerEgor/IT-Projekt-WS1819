@@ -739,6 +739,7 @@ public class EditCommentClickHandler implements ClickHandler{
 		final HorizontalPanel buttonPanel = new HorizontalPanel();
 		StyleLabel header = new StyleLabel("Beitrag bearbeiten","search_lbl");
 		TextBox updatePostBox = new TextBox();
+		static PinboardPanel pinboardPanel = new PinboardPanel();
 		
 		Button doneBtn = new Button("Fertig");
 		CloseButton closeBtn = new CloseButton();
@@ -751,10 +752,11 @@ public class EditCommentClickHandler implements ClickHandler{
 			this.updatePostBox = updatePostBox;
 		}
 		
-		public UpdatePostDialogBox(Post post) {
+		public UpdatePostDialogBox(Post post, PinboardPanel pp) {
 			if (editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
+			pinboardPanel = pp;
 			this.setSize("500", "800");
 			 user = ClientsideSettings.getUser();
 			editorAdministration.updatePost(post, post.getContent(), new AsyncCallback<Post>() {
@@ -775,7 +777,7 @@ public class EditCommentClickHandler implements ClickHandler{
 				
 			});
 			closeBtn.addClickHandler(new CloseDBClickHandler(this));
-			doneBtn.addClickHandler(new UpdatePostDBClickHandler(post, updatePostBox.getValue(),this));
+			doneBtn.addClickHandler(new UpdatePostDBClickHandler(post, updatePostBox.getValue(),this, pp));
 			updatePostBox.setWidth("300");
 			 verticalPanel.add(header);
 
@@ -796,12 +798,14 @@ public class EditCommentClickHandler implements ClickHandler{
 			Post post;
 			String updatedText; 
 			UpdatePostDialogBox UpdatedPostDB;
+			PinboardPanel pp = new PinboardPanel();
 			
 			
-			public UpdatePostDBClickHandler(Post post, String updatedText, UpdatePostDialogBox UpdatedPostDB) {
+			public UpdatePostDBClickHandler(Post post, String updatedText, UpdatePostDialogBox UpdatedPostDB, PinboardPanel pp) {
 				this.post=post;
 				this.UpdatedPostDB=UpdatedPostDB;
 				this.updatedText=updatedText;
+				this.pp=pp;
 			}
 
 			@Override
@@ -820,8 +824,10 @@ public class EditCommentClickHandler implements ClickHandler{
 					public void onSuccess(Post result) {
 						
 						UpdatedPostDB.hide();
-						//TODO
-				//		.refresh(UpdatedPostDB.updatedPost.getId());
+						User u= new User();
+						u.setId(result.getOwnerId());
+						Window.alert(result.getOwnerId()+" die Id des users");
+						pp.createPinboard(u);
 					}
 					
 				});
