@@ -48,9 +48,10 @@ public class SubsPanel extends VerticalPanel {
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	SuggestBox suggestbox = new SuggestBox(oracle);
 	
-	Label lbl = new Label();
-	PinboardPanel pp = new PinboardPanel();
+	VerticalPanel testpanel = new VerticalPanel();
 	
+	Label lbl = new Label();
+	MainPanel mainPanel = new MainPanel();
 	
 	public void onLoad() {
 		super.onLoad();	
@@ -162,10 +163,10 @@ public class SubsPanel extends VerticalPanel {
 		//dem Selection Model einen Handler geben
 		selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
 		      public void onSelectionChange(SelectionChangeEvent event) {
-		    	  User selected = selectionModel.getSelectedObject();
 		    	  selectedUser = selectionModel.getSelectedObject();
+		    	  mainPanel.createPinnboard(selectedUser);
 		    	  
-		        if (selected != null) {
+		        if (selectedUser != null) {
 		        	//Window.alert("die ID des Selected Users: "+selectedUser.getId());
 		          //Window.alert("Show Pinboard of: " + selected);
 		          //pp.createPinboard(selected);
@@ -174,24 +175,12 @@ public class SubsPanel extends VerticalPanel {
 		    			editorAdministration = ClientsideSettings.getAdministration();
 		    		}		
 		    		
-		    		editorAdministration.getAllPostsOfUser(selectedUser, new AsyncCallback<Vector<Post>>() {
-		    			public void onFailure(Throwable t) {
-		    				Window.alert(t.getMessage());}		
-		    			public void onSuccess(Vector<Post> result) {
-		    					for(Post p: result) {
-		    						//dies ist nur zum Testen drin
-		    						lbl.setText("Post von "+ selectedUser.getFirstname()+": \n"+p.getContent());
-		    						//post.add(postpanel.createPost(p));
-		    						
-		    					
-		    					}}
-		    		});
 		    		
 		        }
 			
 		}	
 	});
-		this.add(lbl);
+		this.add(testpanel);
 		
 	}
 	public void addSub(User u) {
@@ -315,9 +304,15 @@ public class SubsPanel extends VerticalPanel {
 	private class MyProfileClickHandler implements ClickHandler{
 		public void onClick(ClickEvent event) {		
 			//hier soll die eigene Pinnwand angezeigt werden
-			Window.alert("Show own Pinboard of "+currentUser.getFirstname()+" "+currentUser.getLastname());
-			pp.createPinboard(currentUser);			
+			//Window.alert("Show own Pinboard of "+currentUser.getFirstname()+" "+currentUser.getLastname());
+			mainPanel.createPinnboard(currentUser);			
 			
 			}
+	}
+	public MainPanel getMainPanel() {
+		return mainPanel;
+	}
+	public void setMainPanel(MainPanel mainPanel) {
+		this.mainPanel = mainPanel;
 	}
 }

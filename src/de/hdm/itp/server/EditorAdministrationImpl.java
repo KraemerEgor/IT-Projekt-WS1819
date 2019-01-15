@@ -57,12 +57,12 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	private UserMapper uMapper = null;
 
 	/**
-	 * Referenz auf die EditorAdministration, welche administrative Fähigkeiten definiert
+	 * Referenz auf die EditorAdministration, welche administrative Fï¿½higkeiten definiert
 	 */
 	private static EditorAdministration editorAdministrationImpl = null;
 
 	/**
-	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rückgabe dessen
+	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rï¿½ckgabe dessen
 	 * @return
 	 */
 	public static EditorAdministration editorAdministrationImpl() {
@@ -101,8 +101,8 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 
 	/**
-	 * Methode zum späteren Erstellen eines User Objects
-	 * Hierbei wird ebenfalls definiert welche Attribute übergeben werden müssen zum Erstellen
+	 * Methode zum spï¿½teren Erstellen eines User Objects
+	 * Hierbei wird ebenfalls definiert welche Attribute ï¿½bergeben werden mï¿½ssen zum Erstellen
 	 * @return User Object
 	 */
 	@Override
@@ -191,12 +191,14 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		//long time = date.getTime();
 
 		Post p = new Post();
-		Window.alert("Inhalt: "+content);
+
+		System.out.println("Inhalt: "+content);
 		p.setContent(content);
 		//p.setCreateDate(new Timestamp(time));
 		
-		Window.alert("User Id: "+currentUsers.getId());
+
 		p.setOwnerId(currentUsers.getId());
+		
 
 		return pMapper.insert(p);
 	}
@@ -304,13 +306,14 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * de.hdm.itp.server.EditorAdministration#createLike(de.hdm.itp.shared.bo.Post)
 	 */
 	@Override
-	public Like createLike(Post p) throws IllegalArgumentException {
+	public Like createLike(Post p, User owner) throws IllegalArgumentException {
 
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		long time = date.getTime();
 
 		Like l = new Like();
+		l.setOwnerId(owner.getId());
 		l.setPostId(p.getId());
 		l.setCreateDate(new Timestamp(time));
 
@@ -401,11 +404,12 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * Post, java.lang.String)
 	 */
 	@Override
-	public Comment createComment(Post p, String text) throws IllegalArgumentException {
+	public Comment createComment(int postID, String text, User currentUser) throws IllegalArgumentException {
 
 		Comment c = new Comment();
-		c.setPostId(p.getId());
+		c.setPostId(postID);
 		c.setText(text);
+		c.setOwnerId(currentUser.getId());
 
 		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
@@ -414,6 +418,20 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		c.setCreateDate(new Timestamp(time));
 
 		return cMapper.insert(c);
+
+	}
+	@Override
+	public Comment updateComment(Comment c, String content) throws IllegalArgumentException {
+
+		DateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		long time = date.getTime();
+
+		c = cMapper.findByID(c);
+		c.setText(content);
+		c.setModDate(new Timestamp(time));
+
+		return cMapper.update(c);
 
 	}
 

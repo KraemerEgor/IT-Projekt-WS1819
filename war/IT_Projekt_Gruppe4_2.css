@@ -117,6 +117,10 @@ html {
 	font-size: 20pt;
 }
 
+#logo{
+	margin-right: 30px;
+}
+
 .Header_user{
 	color: white;
 	font-size: 20pt;
@@ -325,7 +329,38 @@ h1 {
  	margin-right: 10px;
  	padding: 10px;
 }
-
+.comment_lbl{
+	width: 100%;
+	padding: 10px;
+	font-color: blue;
+	font-size: 20px;
+ 	margin-bottom: 10px;
+ 	margin-right: 10px;
+ 	padding: 10px;
+ 	text-decoration: underline;
+ 	
+}
+.comment_lbl *:hover{
+	font-color: red;
+}
+.posttext_lbl{
+	color: black;
+    font-size: 16px;
+}
+.postuser_lbl{
+	color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+.postdate_lbl{
+	color: gray;
+    font-size: 14px;
+    font-style: italic;
+}
+.postbox{
+	border: medium;
+	margin: 5px;
+}
 .cellList *{
 
 }
@@ -339,7 +374,7 @@ h1 {
  	color: white;
  	position: absolute;
  	margin-left: 80%;
- 	margin-top: -40px;
+ 	margin-top: 0px;
  	border: none;
 }
 

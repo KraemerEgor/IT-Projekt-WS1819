@@ -24,8 +24,8 @@ public class MainPanel extends VerticalPanel {
 	
 	private EditorAdministrationAsync editorAdministration = null;
 	private Label header_lbl = new Label("Mein Profil");
-	private PinboardPanel pp = new PinboardPanel();
-	private userProfilePanel userProfile = new userProfilePanel();
+	public PinboardPanel pp = new PinboardPanel();
+	public userProfilePanel userProfile = new userProfilePanel();
 	User user = new User();
 	
 	protected HeadingElement mainHeader = Document.get().createHElement(1);
@@ -65,17 +65,19 @@ public void onLoad() {
 		 */
 		userProfile.setWidth("100%");
 		this.add(this.userProfile);
+		userProfile.setMainPanel(this);
 		
 		this.add(this.pp);
-		pp.setStylePrimaryName("profilePanel");
+		pp.setStylePrimaryName("profilePanel");	
 		
-
-		
-		
-
-		
-		
-		
+}
+public void createPinnboard(User user){
+	Window.alert("kommt hier rein mit dem User: "+user.getId());
+	userProfile.clear();
+	userProfile.createUserProfile(user);
+	pp.clear();
+	pp.createPinboard(user);
+	
 }
 
 }

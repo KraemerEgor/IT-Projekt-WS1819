@@ -1,7 +1,12 @@
 package de.hdm.itp.client;
 
+import java.util.Vector;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -9,11 +14,15 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+import de.hdm.itp.client.ClientsideFunctions.InputDialogBox.CloseButton;
 import de.hdm.itp.shared.EditorAdministrationAsync;
+import de.hdm.itp.shared.bo.Comment;
+import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
 
@@ -466,7 +475,7 @@ public abstract class ClientsideFunctions {
 		/**
 		 * Standard ClickHandler zum schließen einer DialogBox.
 		 */
-		private class CloseDBClickHandler implements ClickHandler{
+		public class CloseDBClickHandler implements ClickHandler{
 			
 			DialogBox db;
 	
@@ -527,4 +536,428 @@ public abstract class ClientsideFunctions {
 			}
 		}
 	}
-}}
+}
+	public static class CommentDialogBox extends DialogBox{
+		final ScrollPanel scrollpanel = new ScrollPanel();
+		final VerticalPanel panel = new VerticalPanel();
+		final HorizontalPanel buttonpanel = new HorizontalPanel();
+		TextBox comment_box = new TextBox();
+		Button submit_btn = new Button("Kommentieren");
+		CloseButton close_btn = new CloseButton();
+		CommentDialogBox db;
+		
+		public Post currentPost = new Post();
+		
+		
+		public CommentDialogBox(Post post) {
+			db = this;
+			currentPost = post;
+			if (editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+			}
+			//ich kriege die Größe der DialogBoxen nicht angepasst
+			this.setSize("500", "800");
+			 user = ClientsideSettings.getUser();
+			 close_btn.addClickHandler(new CloseDBClickHandler(this));
+			 comment_box.setWidth("100");
+			submit_btn.addClickHandler(new SubmitDBClickHandler(post.getId()));
+			 editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>(){
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Vector<Comment> result) {
+					 panel.setHeight("800");
+				     panel.setWidth("700");
+				     panel.setSpacing(10);
+				     panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+				     scrollpanel.setSize("700", "800");
+				     scrollpanel.setAlwaysShowScrollBars(true);
+				     if(!result.isEmpty()) {
+					for(final Comment c: result) {
+						editorAdministration.getUserById(c.getOwnerId(), new AsyncCallback<User>() {
+
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert(caught.getMessage());
+								
+							}
+
+							@Override
+							public void onSuccess(User result) {
+								panel.add(new StyleLabel("Kommentar von "+result.getFirstname()+" '"+result.getNickname()+"' "+result.getLastname()+": ","search_lbl"));
+								panel.add(new StyleLabel(c.getText(),"search_lbl"));
+							
+								if(c.getOwnerId()==user.getId()) {
+									HorizontalPanel ownButtonPanel = new HorizontalPanel();
+									ownButtonPanel.add(new StyleLabel("Löschen", new DeleteCommentClickHandler(c),"comment_lbl"));
+									ownButtonPanel.add(new StyleLabel("Bearbeiten", new EditCommentClickHandler(c,db),"comment_lbl"));
+									panel.add(ownButtonPanel);
+								}
+								panel.add(new Label("--------------------------------------------"));
+								
+								buttonpanel.add(comment_box);
+								buttonpanel.add(submit_btn);
+								buttonpanel.add(close_btn);
+								panel.add(buttonpanel);
+								scrollpanel.add(panel);
+								
+							}
+							
+						});
+						
+					}
+					
+					
+				}else{
+					buttonpanel.add(comment_box);
+					buttonpanel.add(submit_btn);
+					buttonpanel.add(close_btn);
+					panel.add(buttonpanel);
+					scrollpanel.add(panel);
+					}
+				}
+			 
+			
+		});
+			setWidget(scrollpanel);
+			show();
+			center();
+		
+	}
+		
+public void refresh(int postId) {
+			//this.clear();
+			this.setVisible(false);
+			Post post = new Post();
+			post.setId(postId);
+			CommentDialogBox cbd = new CommentDialogBox(post);
+			
+			
+		}
+
+public class CloseDBClickHandler implements ClickHandler{
+			
+			DialogBox db;
+	
+			public CloseDBClickHandler(DialogBox db) {
+				this.db=db;
+			}
+			public void onClick(ClickEvent event) {
+				db.hide();
+			}
+		}
+public class SubmitDBClickHandler implements ClickHandler{
+	
+	String text1 = new String();
+	int postid1;
+	
+
+	public SubmitDBClickHandler(int postid) {
+		
+	
+		postid1=postid;
+	}
+	public void onClick(ClickEvent event) {
+		text1 = comment_box.getValue();
+		if(text1==null) {
+			Window.alert("Leerer Kommentar kann nicht gepostet werden!");
+		}else {
+		
+		editorAdministration.createComment(postid1, text1, user, new AsyncCallback<Comment>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Comment result) {
+				refresh(result.getPostId());
+				
+			}
+			
+		});
+	
+	}}
+}
+public class DeleteCommentClickHandler implements ClickHandler{
+	Comment comment = new Comment();
+	public DeleteCommentClickHandler(Comment c) {
+		comment=c;
+	}
+
+	@Override
+	public void onClick(ClickEvent event) {
+		editorAdministration.deleteComment(comment, new AsyncCallback<Void>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Void result) {
+				refresh(comment.getPostId());
+				
+			}
+			
+		});
+		
+	}
+	
+}
+public class EditCommentClickHandler implements ClickHandler{
+	Comment comment = new Comment();
+	CommentDialogBox dialog;
+	public EditCommentClickHandler(Comment c, CommentDialogBox dialog) {
+		comment=c;
+		this.dialog = dialog;
+	}
+	@Override
+	public void onClick(ClickEvent event) {
+		new UpdateCommentDialogBox(comment, dialog);
+		//hier wollte ich einen neuen Popup einbauen, der deinen Kommentar verändern lässt
+		//am besten mit einer Textbox, welche den aktuellen Text beinhaltet
+		
+	}
+	
+}
+	}
+	
+	//TODO
+	public static class UpdatePostDialogBox extends DialogBox{
+		
+		final ScrollPanel scrollPanel = new ScrollPanel();
+		final VerticalPanel verticalPanel = new VerticalPanel();
+		final HorizontalPanel buttonPanel = new HorizontalPanel();
+		StyleLabel header = new StyleLabel("Beitrag bearbeiten","search_lbl");
+		TextBox updatePostBox = new TextBox();
+		static PinboardPanel pinboardPanel = new PinboardPanel();
+		
+		Button doneBtn = new Button("Fertig");
+		CloseButton closeBtn = new CloseButton();
+		Post updatedPost = new Post();
+		
+		public TextBox getUpdatePostBox() {
+			return updatePostBox;
+		}
+		public void setUpdatePostBox(TextBox updatePostBox) {
+			this.updatePostBox = updatePostBox;
+		}
+		
+		public UpdatePostDialogBox(Post post, PinboardPanel pp) {
+			if (editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+			}
+			pinboardPanel = pp;
+			this.setSize("500", "800");
+			 user = ClientsideSettings.getUser();
+			editorAdministration.updatePost(post, post.getContent(), new AsyncCallback<Post>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Post result) {
+					updatePostBox.setValue(result.getContent());
+					
+				
+					
+				}
+				
+			});
+			closeBtn.addClickHandler(new CloseDBClickHandler(this));
+			doneBtn.addClickHandler(new UpdatePostDBClickHandler(post, updatePostBox.getValue(),this, pp));
+			updatePostBox.setWidth("300");
+			 verticalPanel.add(header);
+
+			 verticalPanel.add(updatePostBox);
+			 buttonPanel.add(doneBtn);
+			 buttonPanel.add(closeBtn);
+			 verticalPanel.add(buttonPanel);
+			 scrollPanel.add(verticalPanel);
+			setWidget(scrollPanel);
+			
+			this.hide();
+			show();
+			center();
+			
+		}
+		public class UpdatePostDBClickHandler implements ClickHandler{
+			
+			Post post;
+			String updatedText; 
+			UpdatePostDialogBox UpdatedPostDB;
+			PinboardPanel pp = new PinboardPanel();
+			
+			
+			public UpdatePostDBClickHandler(Post post, String updatedText, UpdatePostDialogBox UpdatedPostDB, PinboardPanel pp) {
+				this.post=post;
+				this.UpdatedPostDB=UpdatedPostDB;
+				this.updatedText=updatedText;
+				this.pp=pp;
+			}
+
+			@Override
+			public void onClick(ClickEvent event) {
+				if (editorAdministration == null) {
+					editorAdministration = ClientsideSettings.getAdministration();
+				}
+				editorAdministration.updatePost(post, UpdatedPostDB.getUpdatePostBox().getValue(), new AsyncCallback<Post>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert(caught.getMessage());
+					}
+
+					@Override
+					public void onSuccess(Post result) {
+						
+						UpdatedPostDB.hide();
+						User u= new User();
+						u.setId(result.getOwnerId());
+						Window.alert(result.getOwnerId()+" die Id des users");
+						pp.createPinboard(u);
+					}
+					
+				});
+			}
+			
+		}
+		public class CloseDBClickHandler implements ClickHandler{
+			
+			DialogBox db;
+			DialogBox superdb;
+
+			public CloseDBClickHandler(DialogBox db) {
+				this.db=db;
+			}
+			public void onClick(ClickEvent event) {
+				db.hide();
+				superdb.show();
+			}
+		}
+		
+	}
+	
+	public static class UpdateCommentDialogBox extends DialogBox{
+		final ScrollPanel scrollpanel = new ScrollPanel();
+		final VerticalPanel panel = new VerticalPanel();
+		final HorizontalPanel buttonpanel = new HorizontalPanel();
+		StyleLabel header = new StyleLabel("Kommentar bearbeiten","search_lbl");
+		TextBox commentBox = new TextBox();
+		public TextBox getCommentBox() {
+			return commentBox;
+		}
+		public void setCommentBox(TextBox commentBox) {
+			this.commentBox = commentBox;
+		}
+		Button changeBtn = new Button("Fertig");
+		CloseButton closeBtn = new CloseButton();
+		
+		Comment fullcomment = new Comment();
+		
+	public UpdateCommentDialogBox(Comment comment, CommentDialogBox dialogbox){
+		if (editorAdministration == null) {
+			editorAdministration = ClientsideSettings.getAdministration();
+		}
+		this.setSize("500", "800");
+		 user = ClientsideSettings.getUser();
+		editorAdministration.getCommentById(comment.getId(), new AsyncCallback<Comment>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert(caught.getMessage());
+				
+			}
+
+			@Override
+			public void onSuccess(Comment result) {
+				fullcomment = result;
+				commentBox.setValue(fullcomment.getText());
+				
+			}
+			
+		});
+		
+		 closeBtn.addClickHandler(new CloseDBClickHandler(this, dialogbox));
+		 commentBox.setWidth("100");
+		 changeBtn.addClickHandler(new UpdateCommentDBClickHandler(comment, commentBox.getValue(),this, dialogbox));
+		 panel.add(header);
+		
+		 panel.add(commentBox);
+		 buttonpanel.add(changeBtn);
+		 buttonpanel.add(closeBtn);
+		 panel.add(buttonpanel);
+		scrollpanel.add(panel);
+		setWidget(scrollpanel);
+		dialogbox.hide();
+		show();
+		center();
+		}
+	public class CloseDBClickHandler implements ClickHandler{
+		
+		DialogBox db;
+		DialogBox superdb;
+
+		public CloseDBClickHandler(DialogBox db, DialogBox superdb) {
+			this.db=db;
+			this.superdb=superdb;
+		}
+		public void onClick(ClickEvent event) {
+			db.hide();
+			superdb.show();
+		}
+	}
+public class UpdateCommentDBClickHandler implements ClickHandler{
+		
+	UpdateCommentDialogBox db;
+		CommentDialogBox superdb;
+		Comment comment;
+		String text;
+		
+
+		public UpdateCommentDBClickHandler(Comment comment, String text, UpdateCommentDialogBox db, CommentDialogBox superdb) {
+			this.db=db;
+			this.superdb=superdb;
+			this.comment=comment;
+			this.text=text;
+		}
+		public void onClick(ClickEvent event) {
+			if (editorAdministration == null) {
+				editorAdministration = ClientsideSettings.getAdministration();
+			}
+			editorAdministration.updateComment(comment, db.getCommentBox().getValue(), new AsyncCallback<Comment>(){
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Comment result) {
+					db.hide();
+					superdb.show();
+//					superdb.refresh(superdb.currentPost.getId());
+					
+				}
+				
+			});
+			
+		}
+	}
+	
+	}
+	
+	}

@@ -263,12 +263,12 @@ Vector<Comment> result = new Vector<Comment>();
 				+ comment.getId() 
 				+ ", " 
 				+ comment.getOwnerId()
-				+ ", '" 
+				+ ", " 
 				+ comment.getPostId()
 				+ ", '" 
 				+ comment.getText() 
 				+ "', '" 
-				+ s
+				+ s 
 				+ "', '" 
 				+ s
 				+ "')") ;
@@ -305,13 +305,11 @@ Vector<Comment> result = new Vector<Comment>();
 			+comment.getId()
 			+", currentUser =" 
 			+ comment.getOwnerId()
-			+", post =" 
+			+", post ='" 
 			+ comment.getPostId()
-			+ ", text='" 
-			+ comment.getText() 
-			+"', createDate="
-			+ comment.getCreateDate() 
-			+", modDate='"
+			+ "', text=" 
+			+ comment.getText()  
+			+"', modDate="
 			+ s
 			+ "' WHERE C_ID=" 
 			+ comment.getId());

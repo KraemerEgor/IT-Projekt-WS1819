@@ -203,11 +203,11 @@ Vector<Post> result = new Vector<Post>();
 				+ post.getOwnerId()
 				+ ", content='" 
 				+ post.getContent() 
-				+"', createDate="
-				+ post.getCreateDate() 
-				+", modDate="
+//				+"', createDate="
+//				+ post.getCreateDate() 
+				+"', modDate='"
 				+ s 
-				+ " WHERE P_ID=" 
+				+ "' WHERE P_ID=" 
 				+ post.getId());
 			}
 
