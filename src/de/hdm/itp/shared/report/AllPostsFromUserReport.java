@@ -1,6 +1,6 @@
 package de.hdm.itp.shared.report;
 
-/*
+/**
  * Report, der alle Beiträge eines Nutzers darstellt.
  * AllPostsFromUserReport erweitert SimpleReport,
  * diese Superklasse hat bereits alle notwendigen Methoden und Attribute implementiert.

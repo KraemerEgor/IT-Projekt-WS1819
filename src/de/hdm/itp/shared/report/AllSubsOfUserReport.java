@@ -1,6 +1,6 @@
 package de.hdm.itp.shared.report;
 
-/*
+/**
  * Report, der alle Abonnenten des Nutzers darstellt.
  * AllSubsOfUserReport erweitert SimpleReport,
  * diese Superklasse hat bereits alle notwendigen Methoden und Attribute implementiert.

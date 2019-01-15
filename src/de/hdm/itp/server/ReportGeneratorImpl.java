@@ -32,7 +32,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	private EditorAdministration admin = null;
 
 	/**
-	 * Der Konstruktor fÃ¼r der ReportGeneratorImpl.
+	 * Der Konstruktor für der ReportGeneratorImpl.
 	 *
 	 * @throws IllegalArgumentException the illegal argument exception
 	 */
@@ -75,6 +75,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return this.admin.getUserByEmail(email);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.hdm.itp.shared.ReportGenerator#setUser(de.hdm.itp.shared.bo.User)
+	 */
 	public void setUser(User u) throws IllegalArgumentException {
 
 	}
@@ -163,6 +167,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.hdm.itp.shared.ReportGenerator#createAllLikesFromUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 */
 	public AllLikesFromUserReport createAllLikesFromUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
 
@@ -234,6 +242,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see de.hdm.itp.shared.ReportGenerator#createAllPostsFromUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 */
 	public AllPostsFromUserReport createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
 
@@ -303,7 +315,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see de.hdm.itp.shared.ReportGenerator#createAllSubsFromUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 */
 	public AllSubsFromUserReport createAllSubsFromUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
 
@@ -371,7 +386,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see de.hdm.itp.shared.ReportGenerator#createAllSubsOfUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 */
 	public AllSubsOfUserReport createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
 		 if( this.getEditorAdministration()== null){
@@ -440,7 +458,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 
 	}
-
+	/*
+	 * (non-Javadoc)
+	 * @see de.hdm.itp.shared.ReportGenerator#createAllCommentsOfAllPostsFromUserReportForm(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 */
 	@Override
 	public AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
 			Date dateTill) throws IllegalArgumentException {

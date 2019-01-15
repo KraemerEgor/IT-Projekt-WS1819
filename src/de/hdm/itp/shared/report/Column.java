@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Vector;
 
 /**
- * 
+ * Die Klasse Column legt fest wie eine Spalte im Report Generator gebildet wird.
  */
 
 public class Column implements Serializable{
@@ -17,28 +17,27 @@ public class Column implements Serializable{
 
 	
 	/** 
-	 * 
+	 * Wert des jeweiligen Eintrags
 	 */
 	private String value = "";
 	
 	
 	/**
-	 *
+	 *Null-Argument Konstruktor
 	 * 
 	 */
 	public Column(){
 	}
 	
 	/**
-	 * 
-	 * Vector for sub table.
+	 * Vektor der Sub-Tabelle
 	 */
 	
 	private Vector<Row> subRow = new Vector<Row>();
 	
 	                                                                                                               
 	/** 
-	 * 
+	 * Konstruktor mit Value
 	 */
 	public Column(String v){
 		this.value=v;
@@ -46,6 +45,7 @@ public class Column implements Serializable{
 	
 	/**
 	 * Auslesen des column Werts.
+	 * @return Value
 	 */
 	public String getValue() {
 		return value;
@@ -58,21 +58,22 @@ public class Column implements Serializable{
 	}
 	
 	/**
-	 * 
+	 * Auslesen der Sub-Reihen
+	 * @return Sub-Reihe
 	 */
 	public Vector<Row> getSubRow() {
 		return subRow;
 	}
 
 	/**
-	 * S
+	 * Setzen der Sub-Reihe
 	 */
 	public void setSubRow(Vector<Row> subRow) {
 		this.subRow = subRow;
 	}
 	
 	/**
-	 * Zeilen hinzufÃ¼gen.
+	 * Zeilen hinzufügen.
 	 * @param r
 	 */
 	public void addRow(Row r){
@@ -80,7 +81,7 @@ public class Column implements Serializable{
 	}
 	
 	/**
-	 * Zeilen entfernen..
+	 * Zeilen entfernen.
 	 * @param r
 	 */
 	public void removeRow(Row r){

@@ -62,7 +62,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	private static EditorAdministration editorAdministrationImpl = null;
 
 	/**
-	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rï¿½ckgabe dessen
+	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rückgabe dessen
 	 * @return
 	 */
 	public static EditorAdministration editorAdministrationImpl() {
@@ -101,8 +101,8 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 
 	/**
-	 * Methode zum spï¿½teren Erstellen eines User Objects
-	 * Hierbei wird ebenfalls definiert welche Attribute ï¿½bergeben werden mï¿½ssen zum Erstellen
+	 * Methode zum späteren Erstellen eines User Objects
+	 * Hierbei wird ebenfalls definiert welche Attribute übergeben werden müssen zum Erstellen
 	 * @return User Object
 	 */
 	@Override
@@ -420,6 +420,13 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 		return cMapper.insert(c);
 
 	}
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * de.hdm.itp.server.EditorAdministration#updateComment(de.hdm.itp.shared.bo.
+	 * Post, java.lang.String)
+	 */
 	@Override
 	public Comment updateComment(Comment c, String content) throws IllegalArgumentException {
 
@@ -590,7 +597,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 	/**
 	 * Holt die Information ob der Nutzer bereits aus der Datenbank. Identifiziert
-	 * wird dies Ã¼ber einen boolschen RÃ¼ckgabewert, true wenn Nutzer bereits
+	 * wird dies über einen boolschen RÃ¼ckgabewert, true wenn Nutzer bereits
 	 * existiert, sonst false.
 	 * 
 	 * @param email Email des Nutzers
