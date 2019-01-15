@@ -664,12 +664,10 @@ public class SubmitDBClickHandler implements ClickHandler{
 	}
 	public void onClick(ClickEvent event) {
 		text1 = comment_box.getValue();
-		if(text1==null) {
+		if(text1=="") {
 			Window.alert("Leerer Kommentar kann nicht gepostet werden!");
 		}else {
-		
 		editorAdministration.createComment(postid1, text1, user, new AsyncCallback<Comment>() {
-
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert(caught.getMessage());

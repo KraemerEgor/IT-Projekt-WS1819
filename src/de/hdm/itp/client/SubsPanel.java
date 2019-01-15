@@ -270,7 +270,6 @@ public class SubsPanel extends VerticalPanel {
 
 				@Override
 				public void onSuccess(User result) {
-					Window.alert(result.getFirstname());
 					if(result.getFirstname() == null) {
 						Window.alert("ungültiger User");
 					}
@@ -288,7 +287,6 @@ public class SubsPanel extends VerticalPanel {
 							
 						}
 						if(toAdd && result.getFirstname()!=null) {
-							Window.alert(result.getId()+" wird geaddet");
 					addSub(result);}
 					}
 				}
