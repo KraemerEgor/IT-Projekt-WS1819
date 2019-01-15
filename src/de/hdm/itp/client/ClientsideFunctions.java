@@ -767,7 +767,9 @@ public class EditCommentClickHandler implements ClickHandler{
 
 				@Override
 				public void onSuccess(Post result) {
-					updatePostBox.setValue(updatedPost.getContent());
+					updatePostBox.setValue(result.getContent());
+					
+				
 					
 				}
 				
@@ -783,6 +785,7 @@ public class EditCommentClickHandler implements ClickHandler{
 			 verticalPanel.add(buttonPanel);
 			 scrollPanel.add(verticalPanel);
 			setWidget(scrollPanel);
+			
 			this.hide();
 			show();
 			center();
@@ -817,8 +820,8 @@ public class EditCommentClickHandler implements ClickHandler{
 					public void onSuccess(Post result) {
 						
 						UpdatedPostDB.hide();
-						UpdatedPostDB.show();
-				//		UpdatedPostDB.refresh(UpdatedPostDB.updatedPost.getId());
+						//TODO
+				//		.refresh(UpdatedPostDB.updatedPost.getId());
 					}
 					
 				});

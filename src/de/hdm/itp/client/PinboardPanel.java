@@ -301,6 +301,8 @@ public class PinboardPanel extends VerticalPanel {
 			currentUser = ClientsideSettings.getUser();
 
 			ClientsideFunctions.UpdatePostDialogBox updatePostDB = new ClientsideFunctions.UpdatePostDialogBox(post);
+			
+		
 
 		}
 
@@ -332,6 +334,9 @@ public class PinboardPanel extends VerticalPanel {
 				public void onSuccess(Void result) {
 					Window.alert("Der folgende Beitrag wurde gelöscht:" + post.getContent());
 
+					User user = new User();
+					user.setId(post.getOwnerId());
+					createPinboard(user);
 				}
 
 			});

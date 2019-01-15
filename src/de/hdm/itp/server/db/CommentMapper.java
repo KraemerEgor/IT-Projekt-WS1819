@@ -305,11 +305,11 @@ Vector<Comment> result = new Vector<Comment>();
 			+comment.getId()
 			+", currentUser =" 
 			+ comment.getOwnerId()
-			+", post =" 
+			+", post ='" 
 			+ comment.getPostId()
-			+ ", text='" 
+			+ "', text=" 
 			+ comment.getText()  
-			+"', modDate='"
+			+"', modDate="
 			+ s
 			+ "' WHERE C_ID=" 
 			+ comment.getId());
