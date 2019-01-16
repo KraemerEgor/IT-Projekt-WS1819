@@ -195,7 +195,7 @@ public class SubsPanel extends VerticalPanel {
 
 
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());						
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());				
 			}
 
 		
@@ -206,7 +206,7 @@ public class SubsPanel extends VerticalPanel {
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert(caught.getMessage());
+						ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 						
 					}
 
@@ -241,7 +241,7 @@ public class SubsPanel extends VerticalPanel {
 
 				
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 					
 				}
 
@@ -265,23 +265,23 @@ public class SubsPanel extends VerticalPanel {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());						
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 				}
 
 				@Override
 				public void onSuccess(User result) {
 					if(result.getFirstname() == null) {
-						Window.alert("ungültiger User");
+						ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Ungültiger User.");
 					}
 					if(result != null) {
 						boolean toAdd = true;
 						if (result.getId()==currentUser.getId()) {
-							Window.alert("Sie können sich nicht selbst folgen");
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Sie können sich nicht selbst folgen.");
 							toAdd = false;
 						}
 						for(User u: cellSubs) {
 							if(result.getId()==u.getId()) {
-								Window.alert("Der Nutzer "+result.getFirstname()+" "+ result.getLastname()+ " befindet sich bereits unter den Abonenten");
+								ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Der Nutzer "+result.getFirstname()+" "+ result.getLastname()+ " befindet sich bereits unter den Abonenten");
 								toAdd = false;
 							}
 							
@@ -296,14 +296,14 @@ public class SubsPanel extends VerticalPanel {
 			
 			
 			}if(suggestbox.getValue().isEmpty()){
-			Window.alert("Bitte wähle ein Nutzer zum Abonieren aus");	
+			ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Bitte wähle ein Nutzer zum Abonieren aus");
 			}
 			}
 	}
 	private class MyProfileClickHandler implements ClickHandler{
 		public void onClick(ClickEvent event) {		
-			//hier soll die eigene Pinnwand angezeigt werden
-			//Window.alert("Show own Pinboard of "+currentUser.getFirstname()+" "+currentUser.getLastname());
+			
+			//selectionModel.setSelected(selectedUser, false);
 			mainPanel.createPinnboard(currentUser);			
 			
 			}

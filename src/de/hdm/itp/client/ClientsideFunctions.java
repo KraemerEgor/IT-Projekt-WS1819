@@ -544,12 +544,14 @@ public abstract class ClientsideFunctions {
 		TextBox comment_box = new TextBox();
 		Button submit_btn = new Button("Kommentieren");
 		CloseButton close_btn = new CloseButton();
+		static PinboardPanel pinboardPanel = new PinboardPanel();
 		CommentDialogBox db;
 		
 		public Post currentPost = new Post();
 		
 		
-		public CommentDialogBox(Post post) {
+		public CommentDialogBox(Post post, PinboardPanel pp) {
+			pinboardPanel = pp;
 			this.setStylePrimaryName("commentBox");
 			db = this;
 			currentPost = post;
@@ -559,7 +561,22 @@ public abstract class ClientsideFunctions {
 			//ich kriege die Gr��e der DialogBoxen nicht angepasst
 			//this.setSize("200px", "200px");
 			 user = ClientsideSettings.getUser();
-			 close_btn.addClickHandler(new CloseDBClickHandler(this));
+			 editorAdministration.getPostById(post.getId(), new AsyncCallback<Post>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert(caught.getMessage());
+					
+				}
+
+				@Override
+				public void onSuccess(Post result) {
+					close_btn.addClickHandler(new CloseDBClickHandler(db, result.getOwnerId()));
+					
+				}
+				 
+			 });
+			 
 			comment_box.setWidth("150px");
 			scrollpanel.setWidth("420px");
 			scrollpanel.setHeight("350px");
@@ -641,7 +658,7 @@ public void refresh(int postId) {
 			this.hide();
 			Post post = new Post();
 			post.setId(postId);
-			CommentDialogBox cbd = new CommentDialogBox(post);
+			CommentDialogBox cbd = new CommentDialogBox(post, pinboardPanel);
 			
 			
 		}
@@ -649,12 +666,20 @@ public void refresh(int postId) {
 public class CloseDBClickHandler implements ClickHandler{
 			
 			DialogBox db;
+			PinboardPanel pp = new PinboardPanel();
+			int postOwnerId;
+			
 	
-			public CloseDBClickHandler(DialogBox db) {
+			public CloseDBClickHandler(DialogBox db, int postOwnerId) {
 				this.db=db;
+				this.postOwnerId=postOwnerId;
 			}
 			public void onClick(ClickEvent event) {
 				db.hide();
+				User u= new User();
+				u.setId(postOwnerId);
+				Window.alert(u.getId()+"ist die gesetzte ID");
+				pp.createPinboard(u);
 			}
 		}
 public class SubmitDBClickHandler implements ClickHandler{
@@ -952,6 +977,8 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 				public void onSuccess(Comment result) {
 					db.hide();
 					superdb.show();
+					superdb.refresh(result.getPostId());
+					
 					
 				}
 				
@@ -961,5 +988,41 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 	}
 	
 	}
-	
+public static class AlertDialogBox extends DialogBox{
+		
+		/** Diverse Attribute und GWT Elemente die zur Realisierung der AlertDialogBox benötigt werden. */
+		Label textLbl = new Label();
+		CloseButton okBtn = new CloseButton(this); 
+		VerticalPanel panel = new VerticalPanel();
+		
+		/**
+		 * Instanziert eine AlertDialogBox, welche genutzt wird um einen neuen Nutzer anzulegen.
+		 *
+		 * @param text String Inhant von dem was angezeigt werden soll
+		 */
+		public AlertDialogBox(String text) {
+			textLbl.setText(text);
+			panel.add(textLbl);
+			okBtn.addClickHandler(new CloseDBClickHandler(this));
+			panel.add(okBtn);
+			setWidget(panel);    
+		        show();
+				center();
+			
+		}
+		public class CloseDBClickHandler implements ClickHandler{
+			
+			DialogBox db;
+			
+
+			public CloseDBClickHandler(DialogBox db) {
+				this.db=db;
+				
+			}
+			public void onClick(ClickEvent event) {
+				db.hide();
+				
+			}
+		}
+}
 	}

@@ -69,11 +69,11 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		ClientsideSettings.setUser(test);
 		loadApplication();
 
-		Window.alert("loginTesting");
+		//Window.alert("loginTesting");
 
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
 
-		Window.alert("hier gehts noch ");
+		//Window.alert("hier gehts noch ");
 
 		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
 
@@ -86,11 +86,11 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				loginInfo = result;
 
 				if (loginInfo.isLoggedIn()) {
-					Window.alert("if !!!loggedin and loadUserInformation");
+					//Window.alert("if !!!loggedin and loadUserInformation");
 					loadUserInformation();
 
 				} else {
-					Window.alert("else loadLogin");
+					//Window.alert("else loadLogin");
 
 					loadLogin();
 
@@ -114,10 +114,10 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 			}
 
 			public void onSuccess(Boolean result) {
-				Window.alert("KnownUserSuccess");
+				//Window.alert("KnownUserSuccess");
 
 				if (result) {
-					Window.alert("UserisKnown");
+					//Window.alert("UserisKnown");
 
 					// Der Nutzer konnte in der Datenbank gefunden werden und ist somit bereits
 					// bestehender Nutzer der Applikation
@@ -132,7 +132,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 							// und in einer Instanzenvariable gespeichert.
 							ClientsideSettings.setUser(arg0);
 							user = arg0;
-							Window.alert("UserWurdegesetzt");
+							//Window.alert("UserWurdegesetzt");
 
 							// da der Nutzer bereits bekannt ist, wird für ihn im Folgenden die Applikation
 							// geladen
@@ -142,7 +142,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				}
 
 				else {
-					Window.alert("Userisunknown");
+					//Window.alert("Userisunknown");
 
 					/*
 					 * Wenn kein Nutzer mit dieser e-Mail in der Datenbank gefunden wurde, wird die
@@ -172,7 +172,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 								break;
 							}
 							
-							Window.alert("after creatACCountBox switch case " + loginInfo.getEmailAddress());
+							//Window.alert("after creatACCountBox switch case " + loginInfo.getEmailAddress());
 							editorAdministration.createUser(loginInfo.getEmailAddress(),
 									createAccountBox.getFirstnameTextBox().getText(),
 									createAccountBox.getLastnameTextBox().getText(),
