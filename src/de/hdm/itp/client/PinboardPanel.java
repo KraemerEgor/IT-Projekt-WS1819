@@ -97,7 +97,6 @@ public class PinboardPanel extends VerticalPanel {
 	 */
 
 	public void createPinboard(User u) {
-		Window.alert("kommt hier rein für: "+u.getId());
 		editorAdministration.getUserById(u.getId(), new AsyncCallback<User>() {
 
 			@Override
@@ -190,7 +189,7 @@ public class PinboardPanel extends VerticalPanel {
 						public void onSuccess(Vector<Comment> result) {
 							commentcounter = result.size();
 							Collections.reverse(result);
-							Window.alert("create Post mit so vieln Kommenatren:"+ result.size());
+							
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
 									"postdate_lbl"));
 									
