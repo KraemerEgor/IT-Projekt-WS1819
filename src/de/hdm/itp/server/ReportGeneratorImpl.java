@@ -32,7 +32,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	private EditorAdministration admin = null;
 
 	/**
-	 * Der Konstruktor für der ReportGeneratorImpl.
+	 * Der Konstruktor fï¿½r der ReportGeneratorImpl.
 	 *
 	 * @throws IllegalArgumentException the illegal argument exception
 	 */
@@ -132,8 +132,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				i++;
 				commentRow.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
 				commentRow.addColumn(new Column(String.valueOf(c.getText())));
-				commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
-				commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+				//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+				String fullcdate = c.getCreateDate().toString();
+				String[] cparts = fullcdate.split(" ");
+				String cutcdate = cparts[0];
+				commentRow.addColumn(new Column(String.valueOf(cutcdate)));
+				//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+				String fullmdate = c.getCreateDate().toString();
+				String[] mparts = fullcdate.split(" ");
+				String cutmdate = mparts[0];
+				commentRow.addColumn(new Column(String.valueOf(cutmdate)));
 
 				result.addRow(commentRow);
 
@@ -481,17 +489,27 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		if (posts.size() != 0) {
 
 			if (dateFrom == null) {
+				
 				for (Post p : posts) {
+					
+					//createAllPostsWithCommentFromUserReport
+					
 					result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
+					
 					Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+					
+					
 					if (comments.size() != 0) {
+						
 						result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
+						
 					} else {
+						
 						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+						 
 
 						result.setHeader(errornote);
 					}
-
 				}
 
 			} else {

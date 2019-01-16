@@ -638,8 +638,7 @@ public abstract class ClientsideFunctions {
 	}
 		
 public void refresh(int postId) {
-			//this.clear();
-			this.setVisible(false);
+			this.hide();
 			Post post = new Post();
 			post.setId(postId);
 			CommentDialogBox cbd = new CommentDialogBox(post);
@@ -831,7 +830,6 @@ public class EditCommentClickHandler implements ClickHandler{
 						UpdatedPostDB.hide();
 						User u= new User();
 						u.setId(result.getOwnerId());
-						Window.alert(result.getOwnerId()+" die Id des users");
 						pp.createPinboard(u);
 					}
 					
@@ -954,7 +952,6 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 				public void onSuccess(Comment result) {
 					db.hide();
 					superdb.show();
-//					superdb.refresh(superdb.currentPost.getId());
 					
 				}
 				

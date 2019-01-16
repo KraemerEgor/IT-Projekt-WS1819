@@ -72,7 +72,6 @@ public class ReportMenue implements EntryPoint {
 			}
 
 		});
-		loadApplication();
 
 	}
 
