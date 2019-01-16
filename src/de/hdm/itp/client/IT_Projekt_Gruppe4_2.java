@@ -58,6 +58,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	public void onModuleLoad() {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
+<<<<<<< HEAD
 //		signInLink.setStylePrimaryName("signin_btn");
 //		User test = new User();
 //		test.setId(10000002);
@@ -68,6 +69,18 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 //		test.setEmail("egor.kramu@gmail.com");
 //		ClientsideSettings.setUser(test);
 //		loadApplication();
+=======
+		signInLink.setStylePrimaryName("signin_btn");
+		User test = new User();
+		test.setId(10000004);
+		test.setFirstname("Egor");
+		test.setLastname("Kramu");
+		test.setNickname("KK");
+		test.setGender("m");
+		test.setEmail("egor.kramu@gmail.com");
+		ClientsideSettings.setUser(test);
+		loadApplication();
+>>>>>>> refs/remotes/origin/master
 
 		Window.alert("loginTesting");
 

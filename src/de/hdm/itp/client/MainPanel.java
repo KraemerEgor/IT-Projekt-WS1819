@@ -72,6 +72,7 @@ public void onLoad() {
 		
 }
 public void createPinnboard(User user){
+	Window.alert("kommt hier rein mit dem User: "+user.getId());
 	userProfile.clear();
 	userProfile.createUserProfile(user);
 	pp.clear();

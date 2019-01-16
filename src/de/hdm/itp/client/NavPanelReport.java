@@ -65,7 +65,7 @@ public class NavPanelReport extends VerticalPanel {
 		super.onLoad();
 		this.setStylePrimaryName("NavReport");
 		
-		this.setWidth("300px");
+	//	this.setWidth("300px");
 				
 		this.add(checkBoxShowAll);
 		this.add(checkBoxPickDate);
