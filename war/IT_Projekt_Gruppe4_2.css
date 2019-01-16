@@ -351,12 +351,11 @@ h1 {
 }
 .search_lbl{
 	width: 100%;
-	padding: 10px;
 	font-color: black;
 	font-size: 20px;
  	margin-bottom: 10px;
  	margin-right: 10px;
- 	padding: 10px;
+ 	margin-left: 0px;
 }
 .comment_lbl{
 	width: 100%;
@@ -394,6 +393,7 @@ h1 {
 	border: none;
 	margin-right: 10px;
 	margin-left: 0px;
+	min-width: 75px;
 }
 
 .commentBox{
@@ -436,6 +436,27 @@ h1 {
 	padding: 15px;
 	border: 1px solid white;
 	
+}
+
+.updatePostBox{
+	width: 400px;
+	height: 250px;
+	background-color: white;
+	padding: 15px;
+	border: 2px solid #F3E367;
+}
+
+.updatePostInput{
+	width: 300px;
+	min-height: 100px;
+	margin-bottom: 15px;
+	padding: 15px;
+	font-size: 10pt;
+}
+
+.scrollPanelPostUpdate{
+	width: 350px;
+	height: 350px;
 }
 
 

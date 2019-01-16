@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SuggestBox;
+import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -545,7 +546,7 @@ public abstract class ClientsideFunctions {
 		final VerticalPanel panel = new VerticalPanel();
 		final HorizontalPanel commentPanel = new HorizontalPanel();
 		final HorizontalPanel buttonpanel = new HorizontalPanel();
-		TextBox comment_box = new TextBox();
+		TextArea comment_box = new TextArea();
 		Button submit_btn = new Button("Kommentieren");
 		CloseButton close_btn = new CloseButton();
 		static PinboardPanel pinboardPanel = new PinboardPanel();
@@ -776,17 +777,17 @@ public class EditCommentClickHandler implements ClickHandler{
 		final HorizontalPanel buttonPanel = new HorizontalPanel();
 		final HorizontalPanel commentPanel = new HorizontalPanel();
 		StyleLabel header = new StyleLabel("Beitrag bearbeiten","search_lbl");
-		TextBox updatePostBox = new TextBox();
+		TextArea updatePostBox = new TextArea();
 		static PinboardPanel pinboardPanel = new PinboardPanel();
 		
 		Button doneBtn = new Button("Fertig");
 		CloseButton closeBtn = new CloseButton();
 		Post updatedPost = new Post();
 		
-		public TextBox getUpdatePostBox() {
+		public TextArea getUpdatePostBox() {
 			return updatePostBox;
 		}
-		public void setUpdatePostBox(TextBox updatePostBox) {
+		public void setUpdatePostBox(TextArea updatePostBox) {
 			this.updatePostBox = updatePostBox;
 		}
 		
@@ -795,7 +796,6 @@ public class EditCommentClickHandler implements ClickHandler{
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			pinboardPanel = pp;
-			this.setSize("500", "800");
 			 user = ClientsideSettings.getUser();
 			editorAdministration.updatePost(post, post.getContent(), new AsyncCallback<Post>() {
 
@@ -815,16 +815,22 @@ public class EditCommentClickHandler implements ClickHandler{
 				
 			});
 			closeBtn.addClickHandler(new CloseDBClickHandler(this));
+			closeBtn.setStylePrimaryName("commentButton");
 			doneBtn.addClickHandler(new UpdatePostDBClickHandler(post, updatePostBox.getValue(),this, pp));
-			updatePostBox.setWidth("300");
+			doneBtn.setStylePrimaryName("commentButton");
+			//updatePostBox.setStylePrimaryName("updatePostBox");
 			 verticalPanel.add(header);
 
 			 verticalPanel.add(updatePostBox);
+			 updatePostBox.setStylePrimaryName("updatePostInput");
 			 buttonPanel.add(doneBtn);
 			 buttonPanel.add(closeBtn);
 			 verticalPanel.add(buttonPanel);
 			 scrollPanel.add(verticalPanel);
+			 scrollPanel.setStylePrimaryName("scrollPanelPostUpdate");
+			 
 			setWidget(scrollPanel);
+			this.setStylePrimaryName("updatePostBox");
 			
 			this.hide();
 			show();
@@ -893,11 +899,11 @@ public class EditCommentClickHandler implements ClickHandler{
 		final VerticalPanel panel = new VerticalPanel();
 		final HorizontalPanel buttonpanel = new HorizontalPanel();
 		StyleLabel header = new StyleLabel("Kommentar bearbeiten","search_lbl");
-		TextBox commentBox = new TextBox();
-		public TextBox getCommentBox() {
+		TextArea commentBox = new TextArea();
+		public TextArea getCommentBox() {
 			return commentBox;
 		}
-		public void setCommentBox(TextBox commentBox) {
+		public void setCommentBox(TextArea commentBox) {
 			this.commentBox = commentBox;
 		}
 		Button changeBtn = new Button("Fertig");
@@ -909,7 +915,7 @@ public class EditCommentClickHandler implements ClickHandler{
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
-		this.setSize("500", "800");
+		
 		 user = ClientsideSettings.getUser();
 		editorAdministration.getCommentById(comment.getId(), new AsyncCallback<Comment>() {
 
@@ -929,8 +935,10 @@ public class EditCommentClickHandler implements ClickHandler{
 		});
 		
 		 closeBtn.addClickHandler(new CloseDBClickHandler(this, dialogbox));
-		 commentBox.setWidth("100");
+		 closeBtn.setStylePrimaryName("commentButton");
+		 commentBox.setStylePrimaryName("updatePostInput");
 		 changeBtn.addClickHandler(new UpdateCommentDBClickHandler(comment, commentBox.getValue(),this, dialogbox));
+		 changeBtn.setStylePrimaryName("commentButton");
 		 panel.add(header);
 		
 		 panel.add(commentBox);
@@ -938,7 +946,9 @@ public class EditCommentClickHandler implements ClickHandler{
 		 buttonpanel.add(closeBtn);
 		 panel.add(buttonpanel);
 		scrollpanel.add(panel);
+		scrollpanel.setStylePrimaryName("scrollPanelPostUpdate");
 		setWidget(scrollpanel);
+		this.setStylePrimaryName("updatePostBox");
 		dialogbox.hide();
 		show();
 		center();
