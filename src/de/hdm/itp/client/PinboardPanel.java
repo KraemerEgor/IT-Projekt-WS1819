@@ -269,8 +269,8 @@ public class PinboardPanel extends VerticalPanel {
 
 		});
 		postsPanel.setStylePrimaryName("postbox");
-		postsPanel.setSpacing(20);
-		postPanel.setBorderWidth(2);
+//		postsPanel.setSpacing(20);
+//		postPanel.setBorderWidth(2);
 
 		return new DefaultVerticalPanel(postsPanel).newvp;
 

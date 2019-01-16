@@ -3,7 +3,7 @@
 *, body, html{
 	margin-top: 0px;
 	padding: 0px;
-	
+	font-family: 'Product Sans';
 }
 
 html {
@@ -52,7 +52,7 @@ html {
 	border-color: yellow;
 	width: 100%!important;
 	height: 200px!important;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 	padding: 15px;
 }
 
