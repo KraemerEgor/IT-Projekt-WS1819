@@ -2,7 +2,18 @@
 
 .NavReport{
 	background-color: lightgrey;
-	min-height: 700px;
+	min-height: 800px;
+	min-width: 100%;
 	float: left;
 	padding: 20px; 
+}
+
+.HeaderReport{
+	background-color: white;
+	min-height: 100px;
+	min-width: 100%;
+	float: left;
+	padding: 20px;
+	border: 2px solid brown;
+	
 }

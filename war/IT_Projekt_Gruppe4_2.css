@@ -18,7 +18,7 @@ html {
 }
 #Head {
 	margin-top: 0px!important;
-	background-color: #39cccc;
+	background-color: white;
 	padding: 14px;
 	height: 120px;
 	
@@ -82,7 +82,7 @@ html {
 }
 
 .submit{
-	background-color: brown;
+	background-color: #FFA9A2;
 	color: white;
 	width: 150px;
 	height: 35px;
@@ -102,7 +102,10 @@ html {
 	padding: 14px;
     width: 30%;
     min-height: 100vh;
+    height: 100%;
 	background-color: #177f7f;
+	paddin-bottom: 100%;
+	margin-bottom: -100%;
 }
 
 .btnPanel{
@@ -114,17 +117,20 @@ html {
 	color: white;
 	margin-bottom: 7px!important;
 	margin-top: 20px;
-	font-size: 20pt;
+	font-size:20pt;
 }
 
 #logo{
-	margin-right: 30px;
+	margin-top: 50px;
+	width: 40px;
+	heigh: 40px;
 }
 
 .Header_user{
 	color: white;
 	font-size: 20pt;
 	margin-bottom: 20px;
+	
 }
 
 div#Subs {
@@ -175,10 +181,9 @@ div#Search {
 }
 /** Example rules used by the template application (remove for your app) */
 h1 {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: bold;
-  color: #777777;
-  margin: 40px 0px 70px;
+  color: grey;
   text-align: center;
 }
 
@@ -218,7 +223,7 @@ h1 {
 	position: absolute;
     right: 4px;
     top: 20px;
-	background-color: #fc9191;
+	background-color: #FFA9A2;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
@@ -240,7 +245,7 @@ h1 {
 }
 /*SignIn Button*/
 .signin{
-	background-color: #7dd286;
+	background-color: grey;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
     border-radius: 4px;
@@ -281,13 +286,12 @@ h1 {
 	margin-right: 2%;
 	margin-bottom: 10px;
 	padding: 10px;
-	background-color: orange;
+	background-color: blue;
  	white-space:nowrap;
  	border-radius:8px;
 }
 .sp_add_btn{
 	padding: 10px;
-	background-color: orange;
  	white-space:nowrap;
  	margin-bottom: 10px;
  	margin-right: 2%;
@@ -303,7 +307,6 @@ h1 {
    margin-top: 30px;
    margin-bottom:5px;
    background-color:white;
-   background-text:"Search";
    font-family: 'Arial', sans-serif;
    font-size: 16px;
 }
@@ -358,10 +361,27 @@ h1 {
     font-style: italic;
 }
 .postbox{
-	border: medium;
+	
 	margin: 5px;
-	background-color: blue;
+	font-color: black;
+	background-color: white;
+	padding: 20px;
+
 }
+
+
+
+.postbox tbody tr td table{
+	margin-bottom: 30px;
+	background-color: white;
+	
+}
+
+.buttonPanel tbody tr td{
+	max-width: 20%;
+	float: left;
+}
+
 .cellList *{
 
 }
@@ -375,7 +395,7 @@ h1 {
  	color: white;
  	position: absolute;
  	margin-left: 80%;
- 	margin-top: 0px;
+ 	margin-top: -70px;
  	border: none;
 }
 

@@ -555,11 +555,13 @@ public abstract class ClientsideFunctions {
 			if (editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
-			//ich kriege die GrÃ¶ÃŸe der DialogBoxen nicht angepasst
-			this.setSize("500", "800");
+			//ich kriege die Größe der DialogBoxen nicht angepasst
+			//this.setSize("200px", "200px");
 			 user = ClientsideSettings.getUser();
 			 close_btn.addClickHandler(new CloseDBClickHandler(this));
-			 comment_box.setWidth("100");
+			comment_box.setWidth("150px");
+			scrollpanel.setWidth("420px");
+			scrollpanel.setHeight("350px");
 			submit_btn.addClickHandler(new SubmitDBClickHandler(post.getId()));
 			 editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>(){
 
@@ -571,11 +573,11 @@ public abstract class ClientsideFunctions {
 
 				@Override
 				public void onSuccess(Vector<Comment> result) {
-					 panel.setHeight("800");
-				     panel.setWidth("700");
+					 panel.setHeight("700");
+				     panel.setWidth("800");
 				     panel.setSpacing(10);
 				     panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
-				     scrollpanel.setSize("700", "800");
+				     panel.setSize("700", "800");
 				     scrollpanel.setAlwaysShowScrollBars(true);
 				     if(!result.isEmpty()) {
 					for(final Comment c: result) {

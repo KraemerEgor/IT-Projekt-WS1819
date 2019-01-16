@@ -4,6 +4,7 @@ import java.util.Vector;
 
 /**
  //TODO Klassenbeschreibung ComposteParagraph
+  * 
  */
 public class CompositeParagraph extends Paragraph {
 	
@@ -19,7 +20,7 @@ public class CompositeParagraph extends Paragraph {
 	
 	
 	/**
-	 * HinzufÃ¼gen von Unterabschnitten
+	 * Hinzufügen von Unterabschnitten
 	 */
 	public void addSubparagraph(SimpleParagraph sp){
 		this.subParagraphs.addElement(sp);
@@ -62,7 +63,7 @@ public class CompositeParagraph extends Paragraph {
 	public String toString(){
 		
 		/**
-		 * Erstellen eines leeren Buffers, um alle String-ReprÃ¤sentationen 
+		 * Erstellen eines leeren Buffers, um alle String-Repräsentationen 
 		 * eines Unterabschnitts nacheinander einzutragen.
 		 */
 		StringBuffer result = new StringBuffer();

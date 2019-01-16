@@ -1,29 +1,20 @@
 package de.hdm.itp.client;
 
 import de.hdm.itp.shared.EditorAdministrationAsync;
-import de.hdm.itp.shared.FieldVerifier;
+
 import de.hdm.itp.shared.bo.User;
 
-import java.util.Vector;
+
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.Tree;
-import com.google.gwt.user.client.ui.TreeItem;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 /**
@@ -67,22 +58,22 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	public void onModuleLoad() {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
-		signInLink.setStylePrimaryName("signin_btn");
-		User test = new User();
-		test.setId(10000004);
-		test.setFirstname("Egor");
-		test.setLastname("Kramu");
-		test.setNickname("KK");
-		test.setGender("m");
-		test.setEmail("egor.kramu@gmail.com");
-		ClientsideSettings.setUser(test);
-		loadApplication();
+//		signInLink.setStylePrimaryName("signin_btn");
+//		User test = new User();
+//		test.setId(10000002);
+//		test.setFirstname("Egor");
+//		test.setLastname("Kramu");
+//		test.setNickname("KK");
+//		test.setGender("m");
+//		test.setEmail("egor.kramu@gmail.com");
+//		ClientsideSettings.setUser(test);
+//		loadApplication();
 
-		//Window.alert("loginTesting");
+		Window.alert("loginTesting");
 
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
 
-		//Window.alert("hier gehts noch ");
+		Window.alert("hier gehts noch ");
 
 		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
 
@@ -95,11 +86,11 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				loginInfo = result;
 
 				if (loginInfo.isLoggedIn()) {
-					//Window.alert("if !!!loggedin and loadUserInformation");
+					Window.alert("if !!!loggedin and loadUserInformation");
 					loadUserInformation();
 
 				} else {
-					//Window.alert("else loadLogin");
+					Window.alert("else loadLogin");
 
 					loadLogin();
 
@@ -107,7 +98,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 			}
 
 		});
-//		loadApplication();
+		loadApplication();
 
 	}
 
@@ -124,10 +115,10 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 			}
 
 			public void onSuccess(Boolean result) {
-				//Window.alert("KnownUserSuccess");
+				Window.alert("KnownUserSuccess");
 
 				if (result) {
-					//Window.alert("UserisKnown");
+					Window.alert("UserisKnown");
 
 					// Der Nutzer konnte in der Datenbank gefunden werden und ist somit bereits
 					// bestehender Nutzer der Applikation
@@ -142,7 +133,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 							// und in einer Instanzenvariable gespeichert.
 							ClientsideSettings.setUser(arg0);
 							user = arg0;
-							//Window.alert("UserWurdegesetzt");
+							Window.alert("UserWurdegesetzt");
 
 							// da der Nutzer bereits bekannt ist, wird für ihn im Folgenden die Applikation
 							// geladen
@@ -152,7 +143,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 				}
 
 				else {
-					//Window.alert("Userisunknown");
+					Window.alert("Userisunknown");
 
 					/*
 					 * Wenn kein Nutzer mit dieser e-Mail in der Datenbank gefunden wurde, wird die
@@ -182,7 +173,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 								break;
 							}
 							
-							//Window.alert("after creatACCountBox switch case " + loginInfo.getEmailAddress());
+							Window.alert("after creatACCountBox switch case " + loginInfo.getEmailAddress());
 							editorAdministration.createUser(loginInfo.getEmailAddress(),
 									createAccountBox.getFirstnameTextBox().getText(),
 									createAccountBox.getLastnameTextBox().getText(),
@@ -218,9 +209,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	public void loadApplication() {
 		
-//		signOutLink.setHref(loginInfo.getLogoutUrl());
-//		
-//		hp.add(signOutLink);
+		signOutLink.setHref(loginInfo.getLogoutUrl());
+		
+		hp.add(signOutLink);
 
 
 		
@@ -286,8 +277,8 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 //
 //		loginPanel.add(signedInUser);
 //	    RootPanel.get("Login").add(loginPanel);
-
-		// das loginPanel wird dem div mit der id "Login" hinzugefügt
+//
+//		// das loginPanel wird dem div mit der id "Login" hinzugefügt
 
 	}
 }
