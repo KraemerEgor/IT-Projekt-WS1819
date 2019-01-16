@@ -1,4 +1,5 @@
 /** Add css rules here for your application. */
+/* Rosa-Farbton: #FFA9A2 */
 *, body, html{
 	margin-top: 0px;
 	padding: 0px;
@@ -18,19 +19,18 @@ html {
 }
 #Head {
 	margin-top: 0px!important;
-	background-color: white;
-	padding: 14px;
-	height: 120px;
-	
+	background-color: grey  ;
+	padding-left: 14px;
+	height: 100px;
 }
 
 
 #Main {
 	float: right;
 	padding: 14px;
-    width: calc(70% - 56px);
+    width: calc(75% - 56px);
     min-height: 100vh;
-	background-color: brown;
+	background-color: whitesmoke ;
 	color: grey;
 	
 }
@@ -44,10 +44,12 @@ html {
 	background-color: white;
 	width: 100%;
 }
-
+/*Hier wird die Profilspalte definiert*/
 .profile{
 	background-color: white;
 	color: grey;
+	border: 3em;
+	border-color: yellow;
 	width: 100%!important;
 	height: 200px!important;
 	margin-bottom: 30px;
@@ -59,7 +61,7 @@ html {
 	height: 40px;
 	width: 40px;
 	padding: 2px;
-	border: 1px solid brown;
+	border: 1px solid #FFA9A2;
 	border-radius: 100px;
 	margin-right: 50px;
 }
@@ -100,12 +102,13 @@ html {
 #Nav {
 	float: left;
 	padding: 14px;
-    width: 30%;
+    width: 25%;
     min-height: 100vh;
+    background-color: #DCdCdC;
     height: 100%;
-	background-color: #177f7f;
 	paddin-bottom: 100%;
 	margin-bottom: -100%;
+
 }
 
 .btnPanel{
@@ -117,13 +120,14 @@ html {
 	color: white;
 	margin-bottom: 7px!important;
 	margin-top: 20px;
-	font-size:20pt;
-}
+	font-size: 1.5em;
+	}
 
 #logo{
-	margin-top: 50px;
-	width: 40px;
-	heigh: 40px;
+	margin-top: 30px;
+	width: 50px;
+	heigh: 50px;
+	border-radius: 10px;
 }
 
 .Header_user{
@@ -138,21 +142,21 @@ div#Subs {
     width: 95%;
     height: 30em;
 	padding: 5px;
-	background-color: #800080;
+	background-color: white;
 	border-right: 3px solid #00868B;
 }
 
 .com-google-gwt-user-cellview-client-CellList-Style-cellListEvenItem.com-google-gwt-user-cellview-client-CellList-Style-cellListKeyboardSelectedItem, 
 .com-google-gwt-user-cellview-client-CellList-Style-cellListOddItem.com-google-gwt-user-cellview-client-CellList-Style-cellListSelectedItem {
-	background: #177f7f!important;
+	background: #FFA9A2 !important;
 	background-image: none!important;
 	color: white!important;
 	border: 2px solid white;
 	
 }
-
+/*CellList*/
 .com-google-gwt-user-cellview-client-CellList-Style-cellListOddItem, .com-google-gwt-user-cellview-client-CellList-Style-cellListEvenItem{
-	background-color: #177f7f!important;
+	background-color: ##FFA9A2 !important;
 	color: white!important;
 	
 	
@@ -177,14 +181,17 @@ div#Search {
 	border-right: 3px solid #00868B;
 	min-height: 700px;
 	padding: 20px;
-	margin-top: 200px
+	margin-top: 200px;
+	background-color: white;
 }
 /** Example rules used by the template application (remove for your app) */
 h1 {
   font-size: 3em;
   font-weight: bold;
-  color: grey;
+  color: white;
   text-align: center;
+  
+  
 }
 
 .sendButton {
