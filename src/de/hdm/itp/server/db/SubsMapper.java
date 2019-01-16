@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Vector;
 
 import de.hdm.itp.shared.bo.Like;
@@ -91,7 +92,7 @@ Vector<Subs> result = new Vector<Subs>();
 				s.setTargetUser(rs.getInt("targetUser"));
 				s.setCreateDate(rs.getTimestamp("createDate"));
 				result.addElement(s);
-			}		
+			}
 		}catch(SQLException e2){
 			e2.printStackTrace();
 		}

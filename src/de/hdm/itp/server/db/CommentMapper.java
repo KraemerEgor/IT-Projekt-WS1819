@@ -307,9 +307,9 @@ Vector<Comment> result = new Vector<Comment>();
 			+ comment.getOwnerId()
 			+", post ='" 
 			+ comment.getPostId()
-			+ "', text=" 
+			+ "', text='" 
 			+ comment.getText()  
-			+"', modDate="
+			+"', modDate='"
 			+ s
 			+ "' WHERE C_ID=" 
 			+ comment.getId());
