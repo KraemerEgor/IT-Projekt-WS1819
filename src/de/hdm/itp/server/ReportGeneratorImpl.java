@@ -489,17 +489,27 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		if (posts.size() != 0) {
 
 			if (dateFrom == null) {
+				
 				for (Post p : posts) {
+					
+					//createAllPostsWithCommentFromUserReport
+					
 					result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
+					
 					Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+					
+					
 					if (comments.size() != 0) {
+						
 						result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
+						
 					} else {
+						
 						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+						 
 
 						result.setHeader(errornote);
 					}
-
 				}
 
 			} else {
