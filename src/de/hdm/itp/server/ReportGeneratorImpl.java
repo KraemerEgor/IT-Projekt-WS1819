@@ -498,7 +498,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					} else {
 						
 						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
-						
+						 
 
 						result.setHeader(errornote);
 					}
