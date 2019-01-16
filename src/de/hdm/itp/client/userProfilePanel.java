@@ -116,8 +116,9 @@ public class userProfilePanel extends HorizontalPanel {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			String inputText = postInput.getValue();
-			Window.alert(inputText);
-			Window.alert(currentUser.getId() + " ist die Id des aktuellen Users");
+			if(inputText == "") {
+				Window.alert("Sie können keine leeren Posts erstellen.");
+			}else {
 			
 			editorAdministration.createPost(postInput.getValue(), ClientsideSettings.getUser(),
 					new AsyncCallback<Post>() {
@@ -139,7 +140,7 @@ public class userProfilePanel extends HorizontalPanel {
 						}
 					});
 
-		}
+		}}
 
 	}
 

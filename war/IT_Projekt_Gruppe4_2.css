@@ -360,6 +360,7 @@ h1 {
 .postbox{
 	border: medium;
 	margin: 5px;
+	background-color: blue;
 }
 .cellList *{
 

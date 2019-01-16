@@ -160,15 +160,11 @@ public class PinboardPanel extends VerticalPanel {
 					}
 				}
 				if (isLiked) {
-					postsPanel.add(new StyleLabel("Post von " + pinboardUser.getFirstname() + " '"
+					postsPanel.add(new StyleLabel(pinboardUser.getFirstname() + " '"
 							+ pinboardUser.getNickname() + "' " + pinboardUser.getLastname() + ": ", "postuser_lbl"));
-					postsPanel.add(new StyleLabel(pinboardPost.getContent(), "posttext_lbl"));
+					postsPanel.add(new StyleLabel(pinboardPost.getContent(), "search_lbl"));
 					postsPanel.add(new StyleLabel("Zuletzt geändert am " + pinboardPost.getModDate(), "postdate_lbl"));
-					// postsPanel.add(new StyleLabel("Zuletzt geändert am
-					// "+pinboardPost.getModDate(),"search_lbl"));
-					postsPanel.add(new Label("Post ID:" + pinboardPost.getId() + " User ID:" + pinboardUser.getId()));
-					postsPanel.add(new StyleLabel("isLiked ist auf true.", "search_lbl"));
-					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "search_lbl"));
+					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
 					editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Comment>>() {
 
 						@Override
@@ -182,7 +178,7 @@ public class PinboardPanel extends VerticalPanel {
 							commentcounter = result.size();
 
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
-									"search_lbl"));
+									"postdate_lbl"));
 
 							buttonPanel.add(new Button("Unlike", new UnlikeClickHandler(pinboardPost)));
 
@@ -199,15 +195,11 @@ public class PinboardPanel extends VerticalPanel {
 					});
 
 				} else {
-					postsPanel.add(new StyleLabel("Post von " + pinboardUser.getFirstname() + " '"
+					postsPanel.add(new StyleLabel(pinboardUser.getFirstname() + " '"
 							+ pinboardUser.getNickname() + "' " + pinboardUser.getLastname() + ": ", "postuser_lbl"));
-					postsPanel.add(new StyleLabel(pinboardPost.getContent(), "posttext_lbl"));
+					postsPanel.add(new StyleLabel(pinboardPost.getContent(), "search_lbl"));
 					postsPanel.add(new StyleLabel("Zuletzt geändert am " + pinboardPost.getModDate(), "postdate_lbl"));
-					// postsPanel.add(new StyleLabel("Zuletzt geändert am
-					// "+pinboardPost.getModDate(),"search_lbl"));
-					postsPanel.add(new Label("Post ID:" + pinboardPost.getId() + " User ID:" + pinboardUser.getId()));
-					postsPanel.add(new StyleLabel("isLiked ist auf true.", "search_lbl"));
-					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "search_lbl"));
+					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
 					editorAdministration.getCommentsOfPost(pinboardPost, new AsyncCallback<Vector<Comment>>() {
 
 						@Override
@@ -221,7 +213,7 @@ public class PinboardPanel extends VerticalPanel {
 							commentcounter = result.size();
 
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
-									"search_lbl"));
+									"postdate_lbl"));
 							buttonPanel.add(new Button("Like", new LikeClickHandler(pinboardPost)));
 							if (pinboardUser.getId() == currentUser.getId()) {
 
@@ -242,6 +234,9 @@ public class PinboardPanel extends VerticalPanel {
 		// ich drehe mich im Kreis: hier wird immer der neuste post zurückgegeben
 		// anstatt des jeweils passenden
 		// TODO: im commits schauen als es noch funktioniert hat
+		postsPanel.setStylePrimaryName("postbox");
+		postsPanel.setSpacing(20);
+		postPanel.setBorderWidth(2);
 
 		return new DefaultVerticalPanel(postsPanel).newvp;
 
