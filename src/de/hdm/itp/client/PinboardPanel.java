@@ -170,7 +170,11 @@ public class PinboardPanel extends VerticalPanel {
 					postsPanel.add(new StyleLabel(pinboardUser.getFirstname() + " '"
 							+ pinboardUser.getNickname() + "' " + pinboardUser.getLastname() + ": ", "postuser_lbl"));
 					postsPanel.add(new StyleLabel(post.getContent(), "search_lbl"));
-					postsPanel.add(new StyleLabel("Zuletzt geändert am " + post.getModDate(), "postdate_lbl"));
+					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+					String fulldate = post.getModDate().toString();
+					String[] parts = fulldate.split("[.]");
+					String cutdate = parts[0];
+					postsPanel.add(new StyleLabel("Zuletzt geändert am " + cutdate, "postdate_lbl"));
 					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
 
 					editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>() {
@@ -215,10 +219,12 @@ public class PinboardPanel extends VerticalPanel {
 					postsPanel.add(new StyleLabel(pinboardUser.getFirstname() + " '"
 							+ pinboardUser.getNickname() + "' " + pinboardUser.getLastname() + ": ", "postuser_lbl"));
 					postsPanel.add(new StyleLabel(post.getContent(), "search_lbl"));
-
-					postsPanel.add(new StyleLabel(post.getContent(), "posttext_lbl"));
-				
-					postsPanel.add(new StyleLabel("Zuletzt geändert am " + post.getModDate(), "postdate_lbl"));
+					
+					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+					String fulldate = post.getModDate().toString();
+					String[] parts = fulldate.split("[.]");
+					String cutdate = parts[0];
+					postsPanel.add(new StyleLabel("Zuletzt geändert am " + cutdate, "postdate_lbl"));
 					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
 					editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>() {
 
