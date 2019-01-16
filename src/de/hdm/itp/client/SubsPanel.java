@@ -270,9 +270,10 @@ public class SubsPanel extends VerticalPanel {
 
 				@Override
 				public void onSuccess(User result) {
-					if(result == null) {
+					if(result.getFirstname() == null) {
 						Window.alert("ungültiger User");
-					}if(result != null) {
+					}
+					if(result != null) {
 						boolean toAdd = true;
 						if (result.getId()==currentUser.getId()) {
 							Window.alert("Sie können sich nicht selbst folgen");
@@ -284,12 +285,10 @@ public class SubsPanel extends VerticalPanel {
 								toAdd = false;
 							}
 							
-							
 						}
-						if(toAdd) {
+						if(toAdd && result.getFirstname()!=null) {
 					addSub(result);}
 					}
-					suggestbox.setText(" ");
 				}
 				
 			});

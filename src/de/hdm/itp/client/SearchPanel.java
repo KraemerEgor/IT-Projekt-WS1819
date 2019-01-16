@@ -86,6 +86,7 @@ public class SearchPanel extends FlowPanel {
 					oracle.add(u.getFirstname()+" ' "+u.getNickname()+" ' "+u.getLastname()+" - "+u.getEmail());
 					}
 				suggestbox.setStylePrimaryName("suggestbox");
+				suggestbox.setText("Search");
 				resultPanel.add(suggestbox);}
 			
 		});
