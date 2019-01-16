@@ -23,7 +23,7 @@ public class MainPanel extends VerticalPanel {
 	
 	
 	private EditorAdministrationAsync editorAdministration = null;
-	private Label header_lbl = new Label("Mein Profil");
+	//private Label header_lbl = new Label("Mein Profil");
 	public PinboardPanel pp = new PinboardPanel();
 	public userProfilePanel userProfile = new userProfilePanel();
 	User user = new User();
@@ -40,7 +40,7 @@ public void onLoad() {
 		
 		user = ClientsideSettings.getUser();
 
-		this.add(header_lbl);
+		//this.add(header_lbl);
 		this.addStyleName("Main");
 		
 		
@@ -55,10 +55,10 @@ public void onLoad() {
 		
 //		this.addStyleName("Main");		
 		
-		header_lbl.setStylePrimaryName("Header");
+		//header_lbl.setStylePrimaryName("Header");
 		
 		
-		this.add(this.header_lbl);
+		//this.add(this.header_lbl);
 		
 		/**
 		 * Hinzufügen des User-Profils
