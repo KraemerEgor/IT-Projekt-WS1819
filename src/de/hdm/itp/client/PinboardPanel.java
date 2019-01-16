@@ -97,6 +97,7 @@ public class PinboardPanel extends VerticalPanel {
 	 */
 
 	public void createPinboard(User u) {
+		Window.alert("kommt hier rein für: "+u.getId());
 		editorAdministration.getUserById(u.getId(), new AsyncCallback<User>() {
 
 			@Override
@@ -129,7 +130,6 @@ public class PinboardPanel extends VerticalPanel {
 				// postsPanel.clear();
 				Collections.reverse(result);
 				for (Post p : result) {
-
 					postPanel.add(createPostPanel(p));
 
 					// TODO: das funktioniert noch nichtÏ
@@ -176,6 +176,7 @@ public class PinboardPanel extends VerticalPanel {
 					String cutdate = parts[0];
 					postsPanel.add(new StyleLabel("Zuletzt geändert am " + cutdate, "postdate_lbl"));
 					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
+					final int likes = result.size();
 
 					editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>() {
 
@@ -189,12 +190,12 @@ public class PinboardPanel extends VerticalPanel {
 						public void onSuccess(Vector<Comment> result) {
 							commentcounter = result.size();
 							Collections.reverse(result);
-
+							Window.alert("create Post mit so vieln Kommenatren:"+ result.size());
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
 									"postdate_lbl"));
 									
 							
-							Button unlike = new Button("Unlike", new UnlikeClickHandler(pinboardPost));
+							Button unlike = new Button("Unlike ("+ likes+")", new UnlikeClickHandler(pinboardPost));
 							unlike.setStylePrimaryName("submit");
 							buttonPanel.add(unlike);
 
@@ -207,7 +208,7 @@ public class PinboardPanel extends VerticalPanel {
 								delete.setStylePrimaryName("submit");
 								buttonPanel.add(delete);
 							}
-							Button comment = new Button("Kommentieren", new CommentClickHandler(pinboardPost));
+							Button comment = new Button("Kommentieren("+ result.size()+")", new CommentClickHandler(pinboardPost));
 							comment.setStylePrimaryName("submit");
 							buttonPanel.add(comment);
 							postsPanel.add(buttonPanel);
@@ -227,6 +228,7 @@ public class PinboardPanel extends VerticalPanel {
 					String cutdate = parts[0];
 					postsPanel.add(new StyleLabel("Zuletzt geändert am " + cutdate, "postdate_lbl"));
 					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
+					final int likes = result.size();
 					editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>() {
 
 						@Override
@@ -241,7 +243,7 @@ public class PinboardPanel extends VerticalPanel {
 
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
 									"postdate_lbl"));
-							Button like = new Button("Like", new LikeClickHandler(pinboardPost));
+							Button like = new Button("Like ("+ likes+")", new LikeClickHandler(pinboardPost));
 							like.setStylePrimaryName("submit");
 							buttonPanel.add(like);
 							if (pinboardUser.getId() == currentUser.getId()) {
@@ -253,7 +255,7 @@ public class PinboardPanel extends VerticalPanel {
 								delete.setStylePrimaryName("submit");
 								buttonPanel.add(delete);
 							}
-							Button comment = new Button("Kommentieren", new CommentClickHandler(pinboardPost));
+							Button comment = new Button("Kommentieren("+ result.size()+")", new CommentClickHandler(pinboardPost));
 							comment.setStylePrimaryName("submit");
 							buttonPanel.add(comment);
 							postsPanel.add(buttonPanel);
@@ -426,7 +428,7 @@ public class PinboardPanel extends VerticalPanel {
 
 		@Override
 		public void onClick(ClickEvent event) {
-			ClientsideFunctions.CommentDialogBox cdb = new ClientsideFunctions.CommentDialogBox(post);
+			ClientsideFunctions.CommentDialogBox cdb = new ClientsideFunctions.CommentDialogBox(post, pinboardPanel);
 
 		}
 
