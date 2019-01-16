@@ -132,14 +132,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				i++;
 				commentRow.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
 				commentRow.addColumn(new Column(String.valueOf(c.getText())));
-				//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+				//hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcdate = c.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
 				String cutcdate = cparts[0];
 				commentRow.addColumn(new Column(String.valueOf(cutcdate)));
 				//hier werden die Millisekunden vom Mod_Date rausgeschnitten
 				String fullmdate = c.getCreateDate().toString();
-				String[] mparts = fullcdate.split(" ");
+				String[] mparts = fullmdate.split(" ");
 				String cutmdate = mparts[0];
 				commentRow.addColumn(new Column(String.valueOf(cutmdate)));
 
@@ -154,8 +154,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					i++;
 					commentRow.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
 					commentRow.addColumn(new Column(String.valueOf(c.getText())));
-					commentRow.addColumn(new Column(String.valueOf(c.getCreateDate())));
-					commentRow.addColumn(new Column(String.valueOf(c.getModDate())));
+					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					String fullcdate = c.getCreateDate().toString();
+					String[] cparts = fullcdate.split(" ");
+					String cutcdate = cparts[0];
+					commentRow.addColumn(new Column(String.valueOf(cutcdate)));
+					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+					String fullmdate = c.getCreateDate().toString();
+					String[] mparts = fullmdate.split(" ");
+					String cutmdate = mparts[0];
+					commentRow.addColumn(new Column(String.valueOf(cutmdate)));
 
 					result.addRow(commentRow);
 					
@@ -211,8 +219,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 				likesRow.addColumn(new Column(String.valueOf(p.getContent())));
 				likesRow.addColumn(new Column(String.valueOf(this.admin.getUserById(l.getOwnerId()).getNickname())));
-				likesRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
-				likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
+				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				String fullcdate = p.getCreateDate().toString();
+				String[] cparts = fullcdate.split(" ");
+				String cutcdate = cparts[0];
+				likesRow.addColumn(new Column(String.valueOf(cutcdate)));
+				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				String fullcldate = l.getCreateDate().toString();
+				String[] clparts = fullcldate.split(" ");
+				String cutcldate = clparts[0];
+				likesRow.addColumn(new Column(String.valueOf(cutcldate)));
 
 				result.addRow(likesRow);
 
@@ -228,8 +244,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					likesRow.addColumn(new Column(String.valueOf(p.getContent())));
 					likesRow.addColumn(new Column(String.valueOf(this.admin.getUserById(l.getOwnerId()).getNickname())));
-					likesRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
-					likesRow.addColumn(new Column(String.valueOf(l.getCreateDate())));
+					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					String fullcdate = p.getCreateDate().toString();
+					String[] cparts = fullcdate.split(" ");
+					String cutcdate = cparts[0];
+					likesRow.addColumn(new Column(String.valueOf(cutcdate)));
+					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					String fullcldate = l.getCreateDate().toString();
+					String[] clparts = fullcldate.split(" ");
+					String cutcldate = clparts[0];
+					likesRow.addColumn(new Column(String.valueOf(cutcldate)));
 
 					result.addRow(likesRow);
 
@@ -284,8 +308,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			if (dateFrom == null) {
 				i++;
 				postRow.addColumn(new Column(String.valueOf(p.getContent())));
-				postRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
-				postRow.addColumn(new Column(String.valueOf(p.getModDate())));
+				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				String fullcdate = p.getCreateDate().toString();
+				String[] cparts = fullcdate.split(" ");
+				String cutcdate = cparts[0];
+				postRow.addColumn(new Column(String.valueOf(cutcdate)));
+				//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+				String fullmdate = p.getCreateDate().toString();
+				String[] mparts = fullmdate.split(" ");
+				String cutmdate = mparts[0];
+				postRow.addColumn(new Column(String.valueOf(cutmdate)));
 				postRow.addColumn(new Column(String.valueOf(this.admin.getAllLikesOfPost(p).size())));
 
 
@@ -298,8 +330,16 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				if (p.getModDate().after(dateFrom) && p.getModDate().before(dateTill)) {
 					i++;
 					postRow.addColumn(new Column(String.valueOf(p.getContent())));
-					postRow.addColumn(new Column(String.valueOf(p.getCreateDate())));
-					postRow.addColumn(new Column(String.valueOf(p.getModDate())));
+					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					String fullcdate = p.getCreateDate().toString();
+					String[] cparts = fullcdate.split(" ");
+					String cutcdate = cparts[0];
+					postRow.addColumn(new Column(String.valueOf(cutcdate)));
+					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+					String fullmdate = p.getCreateDate().toString();
+					String[] mparts = fullmdate.split(" ");
+					String cutmdate = mparts[0];
+					postRow.addColumn(new Column(String.valueOf(cutmdate)));
 					postRow.addColumn(new Column(String.valueOf(this.admin.getAllLikesOfPost(p).size())));
 
 
@@ -359,7 +399,11 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-				subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				String fullcdate = u2.getCreateDate().toString();
+				String[] cparts = fullcdate.split(" ");
+				String cutcdate = cparts[0];
+				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 				result.addRow(subsRow);
 
 				result.setTitel("Hier sehen Sie Ihre Abonnements "); 
@@ -371,7 +415,11 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-					subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					String fullcdate = u2.getCreateDate().toString();
+					String[] cparts = fullcdate.split(" ");
+					String cutcdate = cparts[0];
+					subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 
 					result.addRow(subsRow);
 					
@@ -431,7 +479,11 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-				subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				String fullcdate = u2.getCreateDate().toString();
+				String[] cparts = fullcdate.split(" ");
+				String cutcdate = cparts[0];
+				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 				result.addRow(subsRow);
 
 				result.setTitel("All Ihre Abonnenten");
@@ -444,7 +496,11 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-					subsRow.addColumn(new Column(String.valueOf(s.getCreateDate())));
+					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					String fullcdate = u2.getCreateDate().toString();
+					String[] cparts = fullcdate.split(" ");
+					String cutcdate = cparts[0];
+					subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 
 					result.addRow(subsRow);
 
