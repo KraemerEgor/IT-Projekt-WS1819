@@ -1,6 +1,7 @@
 package de.hdm.itp.shared.bo;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  * Die Klasse Contact, Datenstruktur f�r das Kontakt Business Objekt.
@@ -19,6 +20,8 @@ public class Post extends BusinessObject {
 		
 	/** Modifikationsdatum des Kontakts. */
 	private Timestamp modDate;
+	
+	//private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 	
 	/**
 	 * Auslesen des Vornamens. 

@@ -32,7 +32,7 @@ import de.hdm.itp.shared.bo.User;
 			}
 			if(value.getGender()=="o") {
 				//wenn der User anders ist
-				sb.appendHtmlConstant("<img src=\"user_Symbol_other.png\" style=\"margin-right: 10px;\" height=\"20\" width=\"20\" >");	
+				sb.appendHtmlConstant("<img src=\"user.png\" style=\"margin-right: 10px;\" height=\"20\" width=\"20\" >");	
 				
 			}
 	      sb.appendHtmlConstant(value.getFirstname()+" '"+value.getNickname()+"' "+value.getLastname());
