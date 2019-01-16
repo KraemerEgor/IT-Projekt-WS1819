@@ -34,6 +34,7 @@ public class userProfilePanel extends HorizontalPanel {
 
 	private Image avatar_man = new Image("man.png");
 	private Image avatar_girl = new Image("girl.png");
+	private Image avatar_other = new Image("user.png");
 	private FlexTable profile = new FlexTable();
 	private Label nickname_lbl = new Label("Nickname: ");
 	private Label firstname_lbl = new Label("Vorname: ");
@@ -116,8 +117,9 @@ public class userProfilePanel extends HorizontalPanel {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			String inputText = postInput.getValue();
-			Window.alert(inputText);
-			Window.alert(currentUser.getId() + " ist die Id des aktuellen Users");
+			if(inputText == "") {
+				Window.alert("Sie können keine leeren Posts erstellen.");
+			}else {
 			
 			editorAdministration.createPost(postInput.getValue(), ClientsideSettings.getUser(),
 					new AsyncCallback<Post>() {
@@ -139,7 +141,7 @@ public class userProfilePanel extends HorizontalPanel {
 						}
 					});
 
-		}
+		}}
 
 	}
 
@@ -161,13 +163,19 @@ public class userProfilePanel extends HorizontalPanel {
 
 		if (user.getGender() == "m") {
 			profile.setWidget(0, 0, avatar_man);
-		} else {
+		} 
+		else if(user.getGender() == "o") {
+			profile.setWidget(0, 0, avatar_other);
+		}
+		
+		else {
 			profile.setWidget(0, 0, avatar_girl);
 		}
 
 		this.setStylePrimaryName("profile");
 		avatar_man.setStylePrimaryName("avatar");
 		avatar_girl.setStylePrimaryName("avatar");
+		avatar_other.setStylePrimaryName("avatar_gn");
 
 		if (user.getId() == currentUser.getId()) {
 			profile.setWidget(2, 1, postInput);

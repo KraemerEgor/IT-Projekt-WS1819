@@ -65,7 +65,7 @@ public class NavPanelReport extends VerticalPanel {
 		super.onLoad();
 		this.setStylePrimaryName("NavReport");
 		
-		this.setWidth("300px");
+	//	this.setWidth("300px");
 				
 		this.add(checkBoxShowAll);
 		this.add(checkBoxPickDate);
@@ -93,9 +93,11 @@ public class NavPanelReport extends VerticalPanel {
 			reportGenerator = ClientsideSettings.getReportGenerator();
 		}
 
+	
+		u = ClientsideSettings.getUser();
 		
 		
-		u.setId(10000001);
+//		u.setId(10000001);
 		
 		reportGenerator.setUser(u, new setUserCallback());
 

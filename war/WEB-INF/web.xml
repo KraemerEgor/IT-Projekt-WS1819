@@ -25,6 +25,11 @@
     <servlet-name>LoginService</servlet-name>
     <url-pattern>/it_projekt_gruppe4_2/login</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>LoginService</servlet-name>
+    <url-pattern>/report/login</url-pattern>
+  </servlet-mapping>
 
   <servlet>
 		<servlet-name>editorAdministrationServlet</servlet-name>
@@ -34,6 +39,11 @@
 	<servlet-mapping>
 		<servlet-name>editorAdministrationServlet</servlet-name>
 		<url-pattern>/it_projekt_gruppe4_2/administration</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>editorAdministrationServlet</servlet-name>
+		<url-pattern>/report/administration</url-pattern>
 	</servlet-mapping>
 
 

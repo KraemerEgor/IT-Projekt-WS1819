@@ -105,6 +105,11 @@ html {
     width: 25%;
     min-height: 100vh;
     background-color: #DCdCdC;
+    height: 100%;
+	background-color: #177f7f;
+	paddin-bottom: 100%;
+	margin-bottom: -100%;
+
 }
 
 .btnPanel{
@@ -310,7 +315,6 @@ h1 {
    margin-top: 30px;
    margin-bottom:5px;
    background-color:white;
-   text:"Search";
    font-family: 'Arial', sans-serif;
    font-size: 16px;
 }
@@ -365,12 +369,27 @@ h1 {
     font-style: italic;
 }
 .postbox{
-	border: 3em;
-	border-color: black;
+	
 	margin: 5px;
 	font-color: black;
 	background-color: white;
+	padding: 20px;
+
 }
+
+
+
+.postbox tbody tr td table{
+	margin-bottom: 30px;
+	background-color: white;
+	
+}
+
+.buttonPanel tbody tr td{
+	max-width: 20%;
+	float: left;
+}
+
 .cellList *{
 
 }
@@ -384,7 +403,7 @@ h1 {
  	color: white;
  	position: absolute;
  	margin-left: 80%;
- 	margin-top: 0px;
+ 	margin-top: -70px;
  	border: none;
 }
 
