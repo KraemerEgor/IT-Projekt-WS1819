@@ -188,6 +188,7 @@ public class PinboardPanel extends VerticalPanel {
 						@Override
 						public void onSuccess(Vector<Comment> result) {
 							commentcounter = result.size();
+							Collections.reverse(result);
 
 							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
 									"postdate_lbl"));
