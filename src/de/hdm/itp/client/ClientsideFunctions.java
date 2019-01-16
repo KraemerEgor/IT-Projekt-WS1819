@@ -550,6 +550,7 @@ public abstract class ClientsideFunctions {
 		
 		
 		public CommentDialogBox(Post post) {
+			this.setStylePrimaryName("commentBox");
 			db = this;
 			currentPost = post;
 			if (editorAdministration == null) {
@@ -562,6 +563,7 @@ public abstract class ClientsideFunctions {
 			comment_box.setWidth("150px");
 			scrollpanel.setWidth("420px");
 			scrollpanel.setHeight("350px");
+			
 			submit_btn.addClickHandler(new SubmitDBClickHandler(post.getId()));
 			 editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>(){
 
@@ -576,7 +578,7 @@ public abstract class ClientsideFunctions {
 					 panel.setHeight("700");
 				     panel.setWidth("800");
 				     panel.setSpacing(10);
-				     panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+				     panel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_LEFT);
 				     panel.setSize("700", "800");
 				     scrollpanel.setAlwaysShowScrollBars(true);
 				     if(!result.isEmpty()) {
@@ -591,21 +593,24 @@ public abstract class ClientsideFunctions {
 
 							@Override
 							public void onSuccess(User result) {
-								panel.add(new StyleLabel("Kommentar von "+result.getFirstname()+" '"+result.getNickname()+"' "+result.getLastname()+": ","search_lbl"));
-								panel.add(new StyleLabel(c.getText(),"search_lbl"));
+								panel.add(new StyleLabel("Kommentar von "+result.getFirstname()+" '"+result.getNickname()+"' "+result.getLastname()+": ","label"));
+								panel.add(new StyleLabel(c.getText(),"label"));
 							
 								if(c.getOwnerId()==user.getId()) {
 									HorizontalPanel ownButtonPanel = new HorizontalPanel();
-									ownButtonPanel.add(new StyleLabel("Löschen", new DeleteCommentClickHandler(c),"comment_lbl"));
-									ownButtonPanel.add(new StyleLabel("Bearbeiten", new EditCommentClickHandler(c,db),"comment_lbl"));
+									ownButtonPanel.add(new StyleLabel("Löschen", new DeleteCommentClickHandler(c),"changeLabel"));
+									ownButtonPanel.add(new StyleLabel("Bearbeiten", new EditCommentClickHandler(c,db),"changeLabel"));
 									panel.add(ownButtonPanel);
 								}
 								panel.add(new Label("--------------------------------------------"));
 								
 								buttonpanel.add(comment_box);
 								buttonpanel.add(submit_btn);
+								submit_btn.setStylePrimaryName("commentButton");
 								buttonpanel.add(close_btn);
+								close_btn.setStylePrimaryName("commentButton");
 								panel.add(buttonpanel);
+								buttonpanel.setStylePrimaryName("panelCommentBox");
 								scrollpanel.add(panel);
 								
 							}
