@@ -94,9 +94,8 @@ public class NavPanelReport extends VerticalPanel {
 		}
 
 	
-//		u = ClientsideSettings.getUser();
+		u = ClientsideSettings.getUser();
 		
-		Window.alert(u.getFirstname());
 		
 //		u.setId(10000001);
 		
