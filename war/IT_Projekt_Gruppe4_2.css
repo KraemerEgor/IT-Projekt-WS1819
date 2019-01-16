@@ -1,13 +1,19 @@
 /** Add css rules here for your application. */
-/* Rosa-Farbton: #FFA9A2 */
+/* Rosa-Farbton: #F3E367 */
 *, body, html{
 	margin-top: 0px;
 	padding: 0px;
 	font-family: 'Product Sans';
+	
 }
 
 html {
 	min-width: 100%;
+	background-image: linear-gradient(#7F8688, white);
+}
+
+body{
+	background-image: linear-gradient(#7F8688, white);
 }
 
 
@@ -19,9 +25,10 @@ html {
 }
 #Head {
 	margin-top: 0px!important;
-	background-color: grey  ;
 	padding-left: 14px;
 	height: 100px;
+	background-color: #6f7779;
+	border: 2px solid  #F3E367;
 }
 
 
@@ -30,7 +37,6 @@ html {
 	padding: 14px;
     width: calc(75% - 56px);
     min-height: 100vh;
-	background-color: whitesmoke ;
 	color: grey;
 	
 }
@@ -46,14 +52,25 @@ html {
 }
 /*Hier wird die Profilspalte definiert*/
 .profile{
-	background-color: white;
-	color: grey;
+	background-color: #6f7779;
+	color: white;
 	font-size: 3em;
-	border: 3em;
-	width: 100%!important;
+	border: 1px solid white;
+	max-width: 100%!important;
 	height: 200px!important;
-	margin-bottom: 15px;
+	margin-bottom: 25px;
 	padding: 15px;
+	margin-left: 5px;
+}
+
+.profile table td{
+	font-size: 14pt!important;
+	min-width: 120px;
+}
+
+.profile table td .submit-userProfileButton{
+	margin-top: 15px;
+	margin-left: 0px;
 }
 
 .avatar {
@@ -61,7 +78,7 @@ html {
 	height: 50px;
 	width: 50px;
 	padding: 2px;
-	border: 1px solid #FFA9A2;
+	border: 2px solid #F3E367;
 	border-radius: 100px;
 	margin-right: 0px;
 }
@@ -78,19 +95,24 @@ html {
 	width: 500px;
 	height: 80px;
 	text-align: top;
-	border-color: lightgrey;
+	border: 1px solid #F3E367;
 	padding: 10px;
 	margin-top: 15px;
+	background-color: #6f7779;
+	color: white;
+	font-size: 12pt;
+	
 	}
 
 .submit{
-	background-color: #FFA9A2;
-	color: white;
+	background-color: #F3E367;
+	color: #7F8688;
 	width: 150px;
 	height: 35px;
 	padding: 5px;
 	border: none;
 	margin: 5px;
+	margin-left: 0px;
 }
 
 .label{
@@ -103,7 +125,6 @@ html {
 	padding: 14px;
     width: 25%;
     min-height: 100vh;
-    background-color: #DCdCdC;
     height: 100%;
 	paddin-bottom: 100%;
 	margin-bottom: -100%;
@@ -123,9 +144,8 @@ html {
 	}
 
 #logo{
-	margin-top: 30px;
-	width: 50px;
-	heigh: 50px;
+	margin-top: 12px;
+	height: 80px;
 	border-radius: 10px;
 }
 
@@ -147,15 +167,15 @@ div#Subs {
 
 .com-google-gwt-user-cellview-client-CellList-Style-cellListEvenItem.com-google-gwt-user-cellview-client-CellList-Style-cellListKeyboardSelectedItem, 
 .com-google-gwt-user-cellview-client-CellList-Style-cellListOddItem.com-google-gwt-user-cellview-client-CellList-Style-cellListSelectedItem {
-	background: #FFA9A2 !important;
+	background: #F3E367 !important;
 	background-image: none!important;
-	color: white!important;
-	border: 2px solid white;
+	color: #7F8688!important;
+	border: 2px solid #F3E367;
 	
 }
 /*CellList*/
 .com-google-gwt-user-cellview-client-CellList-Style-cellListOddItem, .com-google-gwt-user-cellview-client-CellList-Style-cellListEvenItem{
-	background-color: ##FFA9A2 !important;
+	background-color: ##F3E367 !important;
 	color: white!important;
 	
 	
@@ -167,7 +187,7 @@ div#Subs {
 
 .subslist{
 	padding: 10px;
-	border: 2px solid white;
+	border: 2px solid #F3E367;
 	min-width: 250px;
 }
 
@@ -230,7 +250,7 @@ h1 {
 	position: absolute;
     right: 4px;
     top: 20px;
-	background-color: #FFA9A2;
+	background-color: #F3E367;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
@@ -314,8 +334,7 @@ h1 {
    margin-top: 30px;
    margin-bottom:5px;
    background-color:white;
-   font-family: 'Arial', sans-serif;
-   font-size: 16px;
+   font-size: 14px;
 }
 
 .gwt-SuggestBoxPopup{
@@ -351,6 +370,12 @@ h1 {
  	
 }
 
+.commentInput{
+	width: 300px;
+	font-size: 10pt;
+	padding: 3px;
+}
+
 .changeLabel{
 	margin: 10px;
 	margin-left: 0px;
@@ -361,18 +386,19 @@ h1 {
 }
 
 .commentButton{
-	background-color: brown;
+	background-color: #F3E367;
 	padding: 5px;
 	margin: 10px;
-	color: white;
+	color: #7F8688;
 	margin-top: 0px;
 	border: none;
-	margin-right: 0px;
+	margin-right: 10px;
+	margin-left: 0px;
 }
 
 .commentBox{
 	background-color: white;
-	border: 2px solid brown;
+	border: 2px solid #F3E367;
 	padding: 15px;
 }
 
@@ -383,33 +409,38 @@ h1 {
 	color: black;
     font-size: 16px;
 }
+
+.content{
+	font-size: 14pt;
+	margin: 25px;
+	color: white;
+}
+
 .postuser_lbl{
-	color: black;
-    font-size: 18px;
-    font-weight: bold;
+	color: white;
+    font-size: 11pt;
+    
 }
 .postdate_lbl{
-	color: gray;
+	color: white;
     font-size: 14px;
     font-style: italic;
+    margin-bottom: 8px;
+    margin-left: 6px;
 }
 .postbox{
 	
 	margin: 5px;
-	font-color: black;
-	background-color: white;
+	font-color: white;
+	background-color: #6f7779;
 	padding: 15px;
-
+	border: 1px solid white;
+	
 }
 
 
-
-
-
-
 .postbox tbody tr td table{
-	margin-bottom: 30px;
-	background-color: white;
+	background-color: #6f7779;
 	
 }
 
@@ -425,13 +456,13 @@ h1 {
 
 .report{
 
-	width: 200px;
-	padding: 20px;
-	background-color: brown;
- 	color: white;
+	width: 160px;
+	padding: 10px;
+	background-color: #F3E367;
+ 	color: #7F8688;
  	position: absolute;
  	margin-left: 80%;
- 	margin-top: -70px;
+ 	margin-top: -60px;
  	border: none;
 }
 

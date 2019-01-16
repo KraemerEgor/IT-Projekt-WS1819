@@ -48,6 +48,7 @@ public abstract class ClientsideFunctions {
 	public static class InputDialogBox extends DialogBox{
 		
 		/** Diverse Attribute und GWT Elemente die zur Realisierung der InputDialogBox benötigt werden. */
+		
 		private String input;
 		Label dialogBoxLabel = new Label();
         private TextBox firstnameTextBox;
@@ -60,6 +61,8 @@ public abstract class ClientsideFunctions {
         private MultiWordSuggestOracle oracle;
 		CloseButton close = new CloseButton(this);
         OkButton ok = new OkButton();
+        
+        
 		
 		/**
 		 * Instanziert eine InputDialogBox, welche genutzt wird um einen neuen Nutzer anzulegen.
@@ -441,7 +444,7 @@ public abstract class ClientsideFunctions {
 		public CloseButton(DialogBox db) {
 			this.db = db;
 			this.addClickHandler(new CloseDBClickHandler(db)); 
-			this.setText("Abbrechen");
+			this.setText("Schließen");
 			this.addStyleName("closebutton");
 		}
 		
@@ -459,7 +462,7 @@ public abstract class ClientsideFunctions {
 		 * Instanziert CloseButton.
 		 */
 		public CloseButton() {
-			this.setText("Abbrechen");
+			this.setText("Schließen");
 			this.addStyleName("closebutton");
 		}
 		
@@ -540,6 +543,7 @@ public abstract class ClientsideFunctions {
 	public static class CommentDialogBox extends DialogBox{
 		final ScrollPanel scrollpanel = new ScrollPanel();
 		final VerticalPanel panel = new VerticalPanel();
+		final HorizontalPanel commentPanel = new HorizontalPanel();
 		final HorizontalPanel buttonpanel = new HorizontalPanel();
 		TextBox comment_box = new TextBox();
 		Button submit_btn = new Button("Kommentieren");
@@ -577,7 +581,7 @@ public abstract class ClientsideFunctions {
 				 
 			 });
 			 
-			comment_box.setWidth("150px");
+			comment_box.setStylePrimaryName("commentInput");
 			scrollpanel.setWidth("420px");
 			scrollpanel.setHeight("350px");
 			
@@ -621,11 +625,12 @@ public abstract class ClientsideFunctions {
 								}
 								panel.add(new Label("--------------------------------------------"));
 								
-								buttonpanel.add(comment_box);
+								commentPanel.add(comment_box);
 								buttonpanel.add(submit_btn);
 								submit_btn.setStylePrimaryName("commentButton");
 								buttonpanel.add(close_btn);
 								close_btn.setStylePrimaryName("commentButton");
+								panel.add(commentPanel);
 								panel.add(buttonpanel);
 								buttonpanel.setStylePrimaryName("panelCommentBox");
 								scrollpanel.add(panel);
@@ -638,9 +643,12 @@ public abstract class ClientsideFunctions {
 					
 					
 				}else{
-					buttonpanel.add(comment_box);
+					commentPanel.add(comment_box);
 					buttonpanel.add(submit_btn);
+					submit_btn.setStylePrimaryName("commentButton");
 					buttonpanel.add(close_btn);
+					close_btn.setStylePrimaryName("commentButton");
+					panel.add(commentPanel);
 					panel.add(buttonpanel);
 					scrollpanel.add(panel);
 					}
@@ -766,6 +774,7 @@ public class EditCommentClickHandler implements ClickHandler{
 		final ScrollPanel scrollPanel = new ScrollPanel();
 		final VerticalPanel verticalPanel = new VerticalPanel();
 		final HorizontalPanel buttonPanel = new HorizontalPanel();
+		final HorizontalPanel commentPanel = new HorizontalPanel();
 		StyleLabel header = new StyleLabel("Beitrag bearbeiten","search_lbl");
 		TextBox updatePostBox = new TextBox();
 		static PinboardPanel pinboardPanel = new PinboardPanel();
@@ -873,6 +882,7 @@ public class EditCommentClickHandler implements ClickHandler{
 			public void onClick(ClickEvent event) {
 				db.hide();
 				superdb.show();
+				
 			}
 		}
 		
@@ -945,6 +955,7 @@ public class EditCommentClickHandler implements ClickHandler{
 		public void onClick(ClickEvent event) {
 			db.hide();
 			superdb.show();
+			
 		}
 	}
 public class UpdateCommentDBClickHandler implements ClickHandler{

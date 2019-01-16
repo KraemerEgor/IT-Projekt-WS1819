@@ -21,7 +21,7 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.client.NavPanelReport;
 
-public class userProfilePanel extends HorizontalPanel {
+public class UserProfilePanel extends HorizontalPanel {
 
 	/**
 	 * Zusammenbauen des userProfiles
@@ -103,7 +103,9 @@ public class userProfilePanel extends HorizontalPanel {
 		profile.getFlexCellFormatter().setColSpan(2, 1, 2);
 
 		submitBtn.setStylePrimaryName("submit");
-		profile.setWidget(2, 3, submitBtn);
+		profile.setWidget(3, 1, submitBtn);
+		submitBtn.setStyleDependentName("userProfileButton", true);
+		profile.setWidget(2, 3, new Label(""));
 		submitBtn.addClickHandler(new SubmitClickHandler());
 
 		this.add(this.profile);
@@ -183,13 +185,13 @@ public class userProfilePanel extends HorizontalPanel {
 			profile.getFlexCellFormatter().setColSpan(2, 1, 2);
 
 			submitBtn.setStylePrimaryName("submit");
-			profile.setWidget(2, 3, submitBtn);
+			profile.setWidget(3, 1, submitBtn);
 			submitBtn.addClickHandler(new SubmitClickHandler());
 		} else {
 			profile.setWidget(2, 1, lbl);
 			profile.getFlexCellFormatter().setColSpan(2, 1, 2);
 			profile.setWidget(2, 3, lbl);
-
+			profile.setWidget(3, 1, new Label(""));
 		}
 
 		this.add(this.profile);

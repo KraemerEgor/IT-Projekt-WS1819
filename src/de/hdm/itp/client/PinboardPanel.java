@@ -113,7 +113,7 @@ public class PinboardPanel extends VerticalPanel {
 
 		});
 		postPanel.clear();
-		postPanel.setStylePrimaryName("postbox");
+		postPanel.setStylePrimaryName("postboxOuter");
 
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
@@ -168,13 +168,13 @@ public class PinboardPanel extends VerticalPanel {
 				if (isLiked) {
 					postsPanel.add(new StyleLabel(pinboardUser.getFirstname() + " '"
 							+ pinboardUser.getNickname() + "' " + pinboardUser.getLastname() + ": ", "postuser_lbl"));
-					postsPanel.add(new StyleLabel(post.getContent(), "search_lbl"));
+					postsPanel.add(new StyleLabel(post.getContent(), "content"));
 					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
 					String fulldate = post.getModDate().toString();
 					String[] parts = fulldate.split("[.]");
 					String cutdate = parts[0];
 					postsPanel.add(new StyleLabel("Zuletzt geändert am " + cutdate, "postdate_lbl"));
-					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
+					//postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
 					final int likes = result.size();
 
 					editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>() {
@@ -190,8 +190,8 @@ public class PinboardPanel extends VerticalPanel {
 							commentcounter = result.size();
 							Collections.reverse(result);
 							
-							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
-									"postdate_lbl"));
+							//postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
+							//		"postdate_lbl"));
 									
 							
 							Button unlike = new Button("Unlike ("+ likes+")", new UnlikeClickHandler(pinboardPost));
@@ -219,14 +219,14 @@ public class PinboardPanel extends VerticalPanel {
 				} else {
 					postsPanel.add(new StyleLabel(pinboardUser.getFirstname() + " '"
 							+ pinboardUser.getNickname() + "' " + pinboardUser.getLastname() + ": ", "postuser_lbl"));
-					postsPanel.add(new StyleLabel(post.getContent(), "search_lbl"));
+					postsPanel.add(new StyleLabel(post.getContent(), "content"));
 					
 					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
 					String fulldate = post.getModDate().toString();
 					String[] parts = fulldate.split("[.]");
 					String cutdate = parts[0];
 					postsPanel.add(new StyleLabel("Zuletzt geändert am " + cutdate, "postdate_lbl"));
-					postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
+					//postsPanel.add(new StyleLabel("So vielen Leuten gefällt das: " + result.size(), "postdate_lbl"));
 					final int likes = result.size();
 					editorAdministration.getCommentsOfPost(post, new AsyncCallback<Vector<Comment>>() {
 
@@ -240,8 +240,8 @@ public class PinboardPanel extends VerticalPanel {
 						public void onSuccess(Vector<Comment> result) {
 							commentcounter = result.size();
 
-							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
-									"postdate_lbl"));
+//							postsPanel.add(new StyleLabel("So viele Leuten haben das kommentiert: " + result.size(),
+//									"postdate_lbl"));
 							Button like = new Button("Like ("+ likes+")", new LikeClickHandler(pinboardPost));
 							like.setStylePrimaryName("submit");
 							buttonPanel.add(like);
