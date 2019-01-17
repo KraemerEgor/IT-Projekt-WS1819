@@ -21,7 +21,6 @@ public interface EditorAdministration extends RemoteService {
 	 */
 	void init() throws IllegalArgumentException;
 	
-	void setUser(User u) throws IllegalArgumentException;
 
 	/**
 	 * Erstellen eines Users, der dann mit Hilfe des entsprechenden Mappers in der Datenbank gespeichert wird
