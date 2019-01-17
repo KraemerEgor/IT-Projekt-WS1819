@@ -56,15 +56,9 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 	private UserMapper uMapper = null;
 
-	/**
-	 * Referenz auf die EditorAdministration, welche administrative Fï¿½higkeiten definiert
-	 */
+
 	private static EditorAdministration editorAdministrationImpl = null;
 
-	/**
-	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rückgabe dessen
-	 * @return
-	 */
 	public static EditorAdministration editorAdministrationImpl() {
 		if (editorAdministrationImpl == null) {
 			editorAdministrationImpl = new EditorAdministrationImpl();
@@ -73,7 +67,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 
 	/**
-	 * No-Arguments-Constructor der EditorAdministrationImpl
+	 * No-Arguments-Constructor
 	 */
 	public EditorAdministrationImpl() throws IllegalArgumentException {
 
@@ -100,11 +94,17 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 * Ende Initialisierung
 	 */
 
-	/**
-	 * Methode zum späteren Erstellen eines User Objects
-	 * Hierbei wird ebenfalls definiert welche Attribute übergeben werden müssen zum Erstellen
-	 * @return User Object
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see de.hdm.itp.server.EditorAdministration#createUser(java.lang.String,
+	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String)
 	 */
+	public void setUser(User u) {
+		
+	}
+	
+	
 	@Override
 	public User createUser(String email, String firstname, String lastname, String nickname, String gender) {
 
@@ -597,7 +597,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 	/**
 	 * Holt die Information ob der Nutzer bereits aus der Datenbank. Identifiziert
-	 * wird dies über einen boolschen RÃ¼ckgabewert, true wenn Nutzer bereits
+	 * wird dies ï¿½ber einen boolschen RÃ¼ckgabewert, true wenn Nutzer bereits
 	 * existiert, sonst false.
 	 * 
 	 * @param email Email des Nutzers
