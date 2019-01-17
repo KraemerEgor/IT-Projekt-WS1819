@@ -21,7 +21,7 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.client.NavPanelReport;
 
-public class UserProfilePanel extends HorizontalPanel {
+public class userProfilePanel extends HorizontalPanel {
 
 	/**
 	 * Zusammenbauen des userProfiles

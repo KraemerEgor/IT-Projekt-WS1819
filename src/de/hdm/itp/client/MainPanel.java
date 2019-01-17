@@ -25,7 +25,7 @@ public class MainPanel extends VerticalPanel {
 	private EditorAdministrationAsync editorAdministration = null;
 	//private Label header_lbl = new Label("Mein Profil");
 	public PinboardPanel pp = new PinboardPanel();
-	public UserProfilePanel userProfile = new UserProfilePanel();
+	public userProfilePanel userProfile = new userProfilePanel();
 	User user = new User();
 	
 	protected HeadingElement mainHeader = Document.get().createHElement(1);
