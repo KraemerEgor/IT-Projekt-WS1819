@@ -1,6 +1,6 @@
 package de.hdm.itp.shared.report;
 
-public class AllCommentsOfAllPostsFromUserReport extends CompositeReport{
+public class AllCommentsOfAllPostsFromUserReport extends SimpleReport{
 
 	/**
 	 * Initialisierung einer serialVersionUID.

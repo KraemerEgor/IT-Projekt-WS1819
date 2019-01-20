@@ -77,6 +77,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see de.hdm.itp.shared.ReportGenerator#setUser(de.hdm.itp.shared.bo.User)
 	 */
 	public void setUser(User u) throws IllegalArgumentException {
@@ -103,15 +104,15 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	public AllCommentsFromUserReport createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
-		
-		 if( this.getEditorAdministration()== null){
-			 return null;
-			 }
+
+		if (this.getEditorAdministration() == null) {
+			return null;
+		}
 
 		AllCommentsFromUserReport result = new AllCommentsFromUserReport();
 
 		int i = 0;
-		
+
 		result.setCreateDate(new Date());
 
 		Row headline = new Row();
@@ -132,12 +133,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				i++;
 				commentRow.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
 				commentRow.addColumn(new Column(String.valueOf(c.getText())));
-				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				// hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcdate = c.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
 				String cutcdate = cparts[0];
 				commentRow.addColumn(new Column(String.valueOf(cutcdate)));
-				//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
 				String fullmdate = c.getCreateDate().toString();
 				String[] mparts = fullmdate.split(" ");
 				String cutmdate = mparts[0];
@@ -148,26 +149,25 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				result.setTitel("All Ihre Kommentare ");
 				result.setAmount("Anzahl Ihrer Kommentare: " + i);
 
-
 			} else {
 				if (c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
 					i++;
-					commentRow.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
+					commentRow
+							.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
 					commentRow.addColumn(new Column(String.valueOf(c.getText())));
-					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					// hier werden die Millisekunden vom Create_Date rausgeschnitten
 					String fullcdate = c.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
 					String cutcdate = cparts[0];
 					commentRow.addColumn(new Column(String.valueOf(cutcdate)));
-					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+					// hier werden die Millisekunden vom Mod_Date rausgeschnitten
 					String fullmdate = c.getCreateDate().toString();
 					String[] mparts = fullmdate.split(" ");
 					String cutmdate = mparts[0];
 					commentRow.addColumn(new Column(String.valueOf(cutmdate)));
 
 					result.addRow(commentRow);
-					
-					
+
 					result.setTitel("Anzahl Ihrer Kommentaren in dem ausgewählten Zeitraum " + i);
 
 				} else if (i >= 1) {
@@ -185,14 +185,17 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.hdm.itp.shared.ReportGenerator#createAllLikesFromUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 * 
+	 * @see
+	 * de.hdm.itp.shared.ReportGenerator#createAllLikesFromUserReport(de.hdm.itp.
+	 * shared.bo.User, java.util.Date, java.util.Date)
 	 */
 	public AllLikesFromUserReport createAllLikesFromUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
 
-		 if( this.getEditorAdministration()== null){
-			 return null;
-			 }
+		if (this.getEditorAdministration() == null) {
+			return null;
+		}
 		AllLikesFromUserReport result = new AllLikesFromUserReport();
 
 		int i = 0;
@@ -219,12 +222,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 				likesRow.addColumn(new Column(String.valueOf(p.getContent())));
 				likesRow.addColumn(new Column(String.valueOf(this.admin.getUserById(l.getOwnerId()).getNickname())));
-				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				// hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcdate = p.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
 				String cutcdate = cparts[0];
 				likesRow.addColumn(new Column(String.valueOf(cutcdate)));
-				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				// hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcldate = l.getCreateDate().toString();
 				String[] clparts = fullcldate.split(" ");
 				String cutcldate = clparts[0];
@@ -235,7 +238,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				result.setTitel("All Ihre Likes ");
 				result.setAmount("Anzahl Ihrer Likes : " + i);
 
-
 			} else {
 				if (l.getCreateDate().after(dateFrom) && l.getCreateDate().before(dateTill)) {
 					i++;
@@ -243,13 +245,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					Post p = this.admin.getPostById(l.getPostId());
 
 					likesRow.addColumn(new Column(String.valueOf(p.getContent())));
-					likesRow.addColumn(new Column(String.valueOf(this.admin.getUserById(l.getOwnerId()).getNickname())));
-					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					likesRow.addColumn(
+							new Column(String.valueOf(this.admin.getUserById(l.getOwnerId()).getNickname())));
+					// hier werden die Millisekunden vom Create_Date rausgeschnitten
 					String fullcdate = p.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
 					String cutcdate = cparts[0];
 					likesRow.addColumn(new Column(String.valueOf(cutcdate)));
-					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					// hier werden die Millisekunden vom Create_Date rausgeschnitten
 					String fullcldate = l.getCreateDate().toString();
 					String[] clparts = fullcldate.split(" ");
 					String cutcldate = clparts[0];
@@ -258,7 +261,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					result.addRow(likesRow);
 
 					result.setTitel(" Anzahl Ihrer Likes in dem ausgewählten Zeitraum " + i);
-					
 
 				} else if (i >= 1) {
 					result.setTitel(" Anzahl Ihrer Likes in dem ausgewählten Zeitraum " + i);
@@ -276,14 +278,17 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	/*
 	 * (non-Javadoc)
-	 * @see de.hdm.itp.shared.ReportGenerator#createAllPostsFromUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 * 
+	 * @see
+	 * de.hdm.itp.shared.ReportGenerator#createAllPostsFromUserReport(de.hdm.itp.
+	 * shared.bo.User, java.util.Date, java.util.Date)
 	 */
 	public AllPostsFromUserReport createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
 
-		 if( this.getEditorAdministration()== null){
-			 return null;
-			 }
+		if (this.getEditorAdministration() == null) {
+			return null;
+		}
 		AllPostsFromUserReport result = new AllPostsFromUserReport();
 
 		int i = 0;
@@ -297,7 +302,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		headline.addColumn(new Column("Änderungsdatum"));
 		headline.addColumn(new Column("Anzahl der Likes"));
 
-
 		result.addRow(headline);
 
 		Vector<Post> post = this.admin.getAllPostsOfUser(u);
@@ -308,18 +312,17 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			if (dateFrom == null) {
 				i++;
 				postRow.addColumn(new Column(String.valueOf(p.getContent())));
-				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				// hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcdate = p.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
 				String cutcdate = cparts[0];
 				postRow.addColumn(new Column(String.valueOf(cutcdate)));
-				//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
 				String fullmdate = p.getCreateDate().toString();
 				String[] mparts = fullmdate.split(" ");
 				String cutmdate = mparts[0];
 				postRow.addColumn(new Column(String.valueOf(cutmdate)));
 				postRow.addColumn(new Column(String.valueOf(this.admin.getAllLikesOfPost(p).size())));
-
 
 				result.addRow(postRow);
 
@@ -330,24 +333,21 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				if (p.getModDate().after(dateFrom) && p.getModDate().before(dateTill)) {
 					i++;
 					postRow.addColumn(new Column(String.valueOf(p.getContent())));
-					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					// hier werden die Millisekunden vom Create_Date rausgeschnitten
 					String fullcdate = p.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
 					String cutcdate = cparts[0];
 					postRow.addColumn(new Column(String.valueOf(cutcdate)));
-					//hier werden die Millisekunden vom Mod_Date rausgeschnitten
+					// hier werden die Millisekunden vom Mod_Date rausgeschnitten
 					String fullmdate = p.getCreateDate().toString();
 					String[] mparts = fullmdate.split(" ");
 					String cutmdate = mparts[0];
 					postRow.addColumn(new Column(String.valueOf(cutmdate)));
 					postRow.addColumn(new Column(String.valueOf(this.admin.getAllLikesOfPost(p).size())));
 
-
 					result.addRow(postRow);
 
 					result.setTitel(" Anzahl Ihrer Posts in dem ausgewählten Zeitraum " + i);
-
-
 
 				} else if (i >= 1) {
 					result.setTitel(" Anzahl Ihrer Posts in dem ausgewählten Zeitraum " + i);
@@ -363,16 +363,20 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 
 	}
+
 	/*
 	 * (non-Javadoc)
-	 * @see de.hdm.itp.shared.ReportGenerator#createAllSubsFromUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 * 
+	 * @see
+	 * de.hdm.itp.shared.ReportGenerator#createAllSubsFromUserReport(de.hdm.itp.
+	 * shared.bo.User, java.util.Date, java.util.Date)
 	 */
 	public AllSubsFromUserReport createAllSubsFromUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
 
-		 if( this.getEditorAdministration()== null){
-			 return null;
-			 }
+		if (this.getEditorAdministration() == null) {
+			return null;
+		}
 		AllSubsFromUserReport result = new AllSubsFromUserReport();
 
 		int i = 0;
@@ -393,20 +397,20 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			Row subsRow = new Row();
 
 			if (dateFrom == null) {
-				
+
 				i++;
 				User u2 = this.admin.getUserById(s.getCurrentUser());
 				subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				// hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcdate = u2.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
 				String cutcdate = cparts[0];
 				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 				result.addRow(subsRow);
 
-				result.setTitel("Hier sehen Sie Ihre Abonnements "); 
+				result.setTitel("Hier sehen Sie Ihre Abonnements ");
 				result.setAmount("Anzahlt Ihrer Abonnements: " + i);
 			} else {
 				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
@@ -415,20 +419,18 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					// hier werden die Millisekunden vom Create_Date rausgeschnitten
 					String fullcdate = u2.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
 					String cutcdate = cparts[0];
 					subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 
 					result.addRow(subsRow);
-					
-					result.setTitel("Anzahl Ihrer Abonnements im ausgewählten Zeitraum: " + i);
 
+					result.setTitel("Anzahl Ihrer Abonnements im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
 					result.setAmount("Anzahl Ihrer Abonnements im ausgewählten Zeitraum: " + i);
-					
 
 				} else {
 					result.setTitel(
@@ -442,15 +444,19 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 
 	}
+
 	/*
 	 * (non-Javadoc)
-	 * @see de.hdm.itp.shared.ReportGenerator#createAllSubsOfUserReport(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 * 
+	 * @see
+	 * de.hdm.itp.shared.ReportGenerator#createAllSubsOfUserReport(de.hdm.itp.shared
+	 * .bo.User, java.util.Date, java.util.Date)
 	 */
 	public AllSubsOfUserReport createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill)
 			throws IllegalArgumentException {
-		 if( this.getEditorAdministration()== null){
-			 return null;
-			 }
+		if (this.getEditorAdministration() == null) {
+			return null;
+		}
 
 		AllSubsOfUserReport result = new AllSubsOfUserReport();
 
@@ -479,7 +485,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-				//hier werden die Millisekunden vom Create_Date rausgeschnitten
+				// hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcdate = u2.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
 				String cutcdate = cparts[0];
@@ -496,7 +502,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					subsRow.addColumn(new Column(String.valueOf(u2.getFirstname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
-					//hier werden die Millisekunden vom Create_Date rausgeschnitten
+					// hier werden die Millisekunden vom Create_Date rausgeschnitten
 					String fullcdate = u2.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
 					String cutcdate = cparts[0];
@@ -506,7 +512,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.setTitel("All Ihre Abonnenten");
 					result.setAmount("Anzahlt Ihrer Abonnenten im augewählten Zeitraum: " + i);
-
 
 				} else if (i >= 1) {
 					result.setAmount(" Anzahl Ihrer Abonnenten in dem ausgewählten Zeitraum: " + i);
@@ -522,78 +527,198 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 
 	}
+
 	/*
 	 * (non-Javadoc)
-	 * @see de.hdm.itp.shared.ReportGenerator#createAllCommentsOfAllPostsFromUserReportForm(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 * 
+	 * @see de.hdm.itp.shared.ReportGenerator#
+	 * createAllCommentsOfAllPostsFromUserReportForm(de.hdm.itp.shared.bo.User,
+	 * java.util.Date, java.util.Date)
 	 */
 	@Override
 	public AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
 			Date dateTill) throws IllegalArgumentException {
-		
-		 if( this.getEditorAdministration()== null){
-			 return null;
-			 }
+
+		if (this.getEditorAdministration() == null) {
+			return null;
+		}
 
 		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
 
-		result.setTitel("All Ihr kommentare mit den den dazugehörigen Beiträgen");
+		result.setTitel("All Ihr Kommentare mit den den dazugehörigen Beiträgen");
 
 		result.setCreateDate(new Date());
+		
 
-		Vector<Post> posts = this.admin.getAllPostsOfUser(u);
+			
+		if(dateFrom==null) {
+			
+			Vector<Comment> comments = admin.getAllCommentsOfUser(u);
 
-		if (posts.size() != 0) {
-
-			if (dateFrom == null) {
+			
+			for (Comment c : comments) {
 				
-				for (Post p : posts) {
-					
-					//createAllPostsWithCommentFromUserReport
-					
-					result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
-					
-					Vector<Comment> comments = this.admin.getCommentsOfPost(p);
-					
-					
-					if (comments.size() != 0) {
-						
-						result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
-						
-					} else {
-						
-						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
-						 
 
-						result.setHeader(errornote);
-					}
+				Row headline = new Row();
+				
+				headline.addColumn(new Column("Beitragstext"));
+				headline.addColumn(new Column("Erstellungsdatum"));
+				headline.addColumn(new Column("Änderungsdatum"));
+				result.addRow(headline);
+
+				
+				Row postRow = new Row();
+				
+				Post p = this.admin.getPostByCommentId(c);
+				
+
+				postRow.addColumn(new Column(String.valueOf(p.getContent())));
+				// hier werden die Millisekunden vom Create_Date rausgeschnitten
+				String fullcdate = p.getCreateDate().toString();
+				String[] cparts = fullcdate.split(" ");
+				String cutcdate = cparts[0];
+				postRow.addColumn(new Column(String.valueOf(cutcdate)));
+				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
+				String fullmdate = p.getCreateDate().toString();
+				String[] mparts = fullmdate.split(" ");
+				String cutmdate = mparts[0];
+				postRow.addColumn(new Column(String.valueOf(cutmdate)));
+				
+				
+
+				result.addRow(postRow);
+				
+				
+				for (Comment c2 : comments) {
+					
+					
+					
+//					result.getRows().clear();
+					
+					Row empty = new Row();
+
+					
+
+					empty.addColumn(new Column("_________"));
+					empty.addColumn(new Column("_________"));
+					empty.addColumn(new Column("_________"));
+//					result.addRow(empty);
+
+//					headline.addColumn(new Column("Kommentar"));
+//					headline.addColumn(new Column("Erstellungsdatum"));
+//					headline.addColumn(new Column("Änderungsdatum"));
+//					result.addRow(headline);
+					
+//					Row commentRow = new Row();
+					
+					String fullcdate2 = c.getCreateDate().toString();
+					String[] cparts2 = fullcdate2.split(" ");
+					String cutcdate2 = cparts2[0];
+					
+					String fullmdate2 = c.getModDate().toString();
+					String[] mparts2 = fullmdate2.split(" ");
+					String cutmdate2 = mparts2[0];
+				
+
+					postRow.addColumn(new Column(String.valueOf(c2.getText())));
+					postRow.addColumn(new Column(String.valueOf(cutcdate2)));
+					postRow.addColumn(new Column(String.valueOf(cutmdate2)));
+
+					result.addRow(postRow);
+
+					result.setTitel("All Ihre Kommentare ");
+				
+						
 				}
-
-			} else {
-
-				Vector<Comment> CommentDate = this.admin.getCommentsOfUser(u);
-				for (Comment cD : CommentDate) {
-					if (cD.getModDate().after(dateFrom) && cD.getModDate().before(dateTill)) {
-						for (Post p : posts) {
-							result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
-							Vector<Comment> comments = this.admin.getCommentsOfPost(p);
-							if (comments.size() != 0) {
-								result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
-							} else {
-								SimpleParagraph errornote = new SimpleParagraph(
-										"Es wurden leider keine Kommentar gefunden");
-
-								result.setHeader(errornote);
-							}
-
-						}
-
-					}
-
-				}
+					
+				
+//				result.setTitel("Ihre Posts ");
+//				
+//				Row commentRow = new Row();
+//
+//				commentRow.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
+//				commentRow.addColumn(new Column(String.valueOf(c.getText())));
+//				// hier werden die Millisekunden vom Create_Date rausgeschnitten
+//
+//				commentRow.addColumn(new Column(String.valueOf(cutcdate)));
+//				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
+//
+//				commentRow.addColumn(new Column(String.valueOf(cutmdate)));
+//
+//				result.addRow(commentRow);
+//
+//				result.setTitel("All Ihre Kommentare ");
+				
+//				System.out.println(admin.getPostByCommentId(c).getContent());
 			}
-
+			
+			
+			
+				
 		}
+		
 		return result;
-
+		
 	}
 }
+
+//		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
+//
+//		result.setTitel("All Ihr kommentare mit den den dazugehörigen Beiträgen");
+//
+//		result.setCreateDate(new Date());
+//
+//		Vector<Post> posts = this.admin.ge .getAllPostsOfUser(u);
+//
+//		if (posts.size() != 0) {
+//
+//			if (dateFrom == null) {
+//				
+//				for (Post p : posts) {
+//					
+//					Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+//					//createAllPostsWithCommentFromUserReport
+//					
+//					if (comments.size() != 0) {
+//					
+//						
+//						result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
+//						
+//					} else {
+//						
+//						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+//						 
+//
+//						result.setHeader(errornote);
+//					}
+//				}
+//
+//			} else {
+//
+//				Vector<Comment> CommentDate = this.admin.getCommentsOfUser(u);
+//				for (Comment cD : CommentDate) {
+//					if (cD.getModDate().after(dateFrom) && cD.getModDate().before(dateTill)) {
+//						for (Post p : posts) {
+//							result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
+//							Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+//							if (comments.size() != 0) {
+//								result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
+//							} else {
+//								SimpleParagraph errornote = new SimpleParagraph(
+//										"Es wurden leider keine Kommentar gefunden");
+//
+//								result.setHeader(errornote);
+//							}
+//
+//						}
+//
+//					}
+//
+//				}
+//			}
+//
+//		}
+//		return result;
+//
+//	}
+//}

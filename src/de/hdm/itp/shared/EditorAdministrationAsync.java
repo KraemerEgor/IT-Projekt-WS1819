@@ -57,7 +57,7 @@ public interface EditorAdministrationAsync {
 	void updatePost(Post p, String content, AsyncCallback<Post> callback);
 	
 	/*
-	 * Löschen eines Posts
+	 * Lï¿½schen eines Posts
 	 */
 	void deletePost(Post p, AsyncCallback<Void> callback);
 
@@ -82,7 +82,7 @@ public interface EditorAdministrationAsync {
 	void createLike(Post p, User owner, AsyncCallback<Like> callback);
 	
 	/*
-	 * Löschen eines gesetzten Likes
+	 * Lï¿½schen eines gesetzten Likes
 	 */
 	void deleteLike(Like l, AsyncCallback<Void> callback);
 
@@ -117,7 +117,7 @@ public interface EditorAdministrationAsync {
 	void updateComment(Comment c, String text,AsyncCallback<Comment> callback);
 	
 	/*
-	 * Löschen eines Kommenats
+	 * Lï¿½schen eines Kommenats
 	 */
 	void deleteComment(Comment c, AsyncCallback<Void> callback);
 	
@@ -147,7 +147,7 @@ public interface EditorAdministrationAsync {
 	void createSubs(int currentUser, int targetUser, AsyncCallback<Subs> callback);
 	
 	/*
-	 * Löschen einer Abonnenten Beziehung
+	 * Lï¿½schen einer Abonnenten Beziehung
 	 */
 	void deleteSubs(Subs s, AsyncCallback<Void> callback);
 	
@@ -175,5 +175,14 @@ public interface EditorAdministrationAsync {
 	 * Abfrage des vollen Namens eines Users
 	 */
 	void getFullNameOfUser(User user, AsyncCallback<String> callback);
+	
+	
+
+	void getAllCommentsOfPost( Post p, AsyncCallback<Vector<Comment>> callback);
+
+	void getAllCommentsOfUser(User u, AsyncCallback<Vector<Comment>> callback);
+
+	void getPostByCommentId(Comment c, AsyncCallback<Post> callback);
+
 
 }
