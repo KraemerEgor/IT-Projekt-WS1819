@@ -15,6 +15,7 @@ import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.AllCommentsFromUserReport;
 import de.hdm.itp.shared.report.AllCommentsOfAllPostsFromUserReport;
 import de.hdm.itp.shared.report.AllLikesFromUserReport;
+import de.hdm.itp.shared.report.AllMyCommentsFromPostFromUserReport;
 import de.hdm.itp.shared.report.AllPostsFromUserReport;
 import de.hdm.itp.shared.report.AllSubsFromUserReport;
 import de.hdm.itp.shared.report.AllSubsOfUserReport;
@@ -535,190 +536,226 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * createAllCommentsOfAllPostsFromUserReportForm(de.hdm.itp.shared.bo.User,
 	 * java.util.Date, java.util.Date)
 	 */
-	@Override
+//	@Override
+//	public AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
+//			Date dateTill) throws IllegalArgumentException {
+//
+//		if (this.getEditorAdministration() == null) {
+//			return null;
+//		}
+//
+//		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
+//
+//		result.setTitel("All Ihr Kommentare mit den den dazugehörigen Beiträgen");
+//
+//		result.setCreateDate(new Date());
+//
+//		if (dateFrom == null) {
+//
+//			Vector<Comment> comments = admin.getAllCommentsOfUser(u);
+//
+//			for (Comment c : comments) {
+//
+////				StringBuffer resultH = new StringBuffer("<td style=\"background:silver;font-weight:bold\">");
+//
+//				Row headline = new Row();
+//
+//				headline.addColumn(new Column("Beitragstext"));
+//				headline.addColumn(new Column("Erstellungsdatum"));
+//				headline.addColumn(new Column("Änderungsdatum"));
+//				
+//				result.addRow(headline);
+//				
+//				
+//				Row postRow = new Row();
+//
+//				Post p = this.admin.getPostByCommentId(c);					
+//					
+//				// hier werden die Millisekunden vom Create_Date rausgeschnitten
+//				String fullcdate = p.getCreateDate().toString();
+//				String[] cparts = fullcdate.split(" ");
+//				String cutcdate = cparts[0];
+//
+//				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
+//				String fullmdate = p.getModDate().toString();
+//				String[] mparts = fullmdate.split(" ");
+//				String cutmdate = mparts[0];
+//
+//				postRow.addColumn(new Column(String.valueOf(p.getContent())));
+//				postRow.addColumn(new Column(String.valueOf(cutcdate)));
+//				postRow.addColumn(new Column(String.valueOf(cutmdate)));
+//
+//				result.addRow(postRow);
+//				
+//				Vector<Comment> comment = admin.getAllCommentsOfPost(p);
+//
+//				Row headline2 = new Row();
+//
+//				headline2.addColumn(new Column("Kommentar"));
+//				headline2.addColumn(new Column("Erstellungsdatum"));
+//				headline2.addColumn(new Column("Änderungsdatum"));
+//				result.addRow(headline2);
+//				
+//				for (Comment c2 : comment) {
+//
+//					Row commentRow = new Row();
+//
+//					String fullcdate2 = c2.getCreateDate().toString();
+//					String[] cparts2 = fullcdate2.split(" ");
+//					String cutcdate2 = cparts2[0];
+//
+//					String fullmdate2 = c2.getModDate().toString();
+//					String[] mparts2 = fullmdate2.split(" ");
+//					String cutmdate2 = mparts2[0];
+//
+//					commentRow.addColumn(new Column(String.valueOf(c2.getText())));
+//					commentRow.addColumn(new Column(String.valueOf(cutcdate2)));
+//					commentRow.addColumn(new Column(String.valueOf(cutmdate2)));
+//
+//					result.addRow(commentRow);
+//
+//					result.setTitel("All Ihre Kommentare ");
+//
+//				}
+//
+//			}
+//
+//		}
+//
+//		return result;
+//
+//	}
+//}
+//
+	public AllMyCommentsFromPostFromUserReport createAllMyCommentsFromPostFromUserReport(Vector<Comment> myComment, Post p) {
+		if (this.getEditorAdministration() == null) {
+			return null;
+		}
+		AllMyCommentsFromPostFromUserReport result = new AllMyCommentsFromPostFromUserReport();
+		
+		
+		result.setCreateDate(new Date());
+		
+		result.setTitel("Post " + p.getContent() + " von " + this.admin.getUserById(p.getOwnerId()).getNickname());
+		
+		Row headline2 = new Row();
+
+		headline2.addColumn(new Column("Kommentar"));
+		headline2.addColumn(new Column("Erstellungsdatum"));
+		headline2.addColumn(new Column("Änderungsdatum"));
+		result.addRow(headline2);
+
+		
+		for(Comment c: myComment) {
+			
+			Row commentRow = new Row();
+
+			String fullcdate2 = c.getCreateDate().toString();
+			String[] cparts2 = fullcdate2.split(" ");
+			String cutcdate2 = cparts2[0];
+
+			String fullmdate2 = c.getModDate().toString();
+			String[] mparts2 = fullmdate2.split(" ");
+			String cutmdate2 = mparts2[0];
+
+			commentRow.addColumn(new Column(String.valueOf(c.getText())));
+			commentRow.addColumn(new Column(String.valueOf(cutcdate2)));
+			commentRow.addColumn(new Column(String.valueOf(cutmdate2)));
+
+			result.addRow(commentRow);
+			
+			
+		}
+
+		return result;
+	}
+	
+	
 	public AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
 			Date dateTill) throws IllegalArgumentException {
 
 		if (this.getEditorAdministration() == null) {
 			return null;
 		}
-
 		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
 
-		result.setTitel("All Ihr Kommentare mit den den dazugehörigen Beiträgen");
+		result.setTitel("All Ihr kommentare mit den den dazugehörigen Beiträgen");
 
 		result.setCreateDate(new Date());
-		
 
-			
-		if(dateFrom==null) {
-			
-			Vector<Comment> comments = admin.getAllCommentsOfUser(u);
+		Vector<Post> posts = this.admin.getAllPosts();
 
-			
-			for (Comment c : comments) {
-				
-
-				Row headline = new Row();
-				
-				headline.addColumn(new Column("Beitragstext"));
-				headline.addColumn(new Column("Erstellungsdatum"));
-				headline.addColumn(new Column("Änderungsdatum"));
-				result.addRow(headline);
+			if (dateFrom == null) {
 
 				
-				Row postRow = new Row();
 				
-				Post p = this.admin.getPostByCommentId(c);
-				
-
-				postRow.addColumn(new Column(String.valueOf(p.getContent())));
-				// hier werden die Millisekunden vom Create_Date rausgeschnitten
-				String fullcdate = p.getCreateDate().toString();
-				String[] cparts = fullcdate.split(" ");
-				String cutcdate = cparts[0];
-				postRow.addColumn(new Column(String.valueOf(cutcdate)));
-				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
-				String fullmdate = p.getCreateDate().toString();
-				String[] mparts = fullmdate.split(" ");
-				String cutmdate = mparts[0];
-				postRow.addColumn(new Column(String.valueOf(cutmdate)));
-				
-				
-
-				result.addRow(postRow);
-				
-				
-				for (Comment c2 : comments) {
+				for (Post p : posts) {
 					
-					
-					
-//					result.getRows().clear();
-					
-					Row empty = new Row();
-
-					
-
-					empty.addColumn(new Column("_________"));
-					empty.addColumn(new Column("_________"));
-					empty.addColumn(new Column("_________"));
-//					result.addRow(empty);
-
-//					headline.addColumn(new Column("Kommentar"));
-//					headline.addColumn(new Column("Erstellungsdatum"));
-//					headline.addColumn(new Column("Änderungsdatum"));
-//					result.addRow(headline);
-					
-//					Row commentRow = new Row();
-					
-					String fullcdate2 = c.getCreateDate().toString();
-					String[] cparts2 = fullcdate2.split(" ");
-					String cutcdate2 = cparts2[0];
-					
-					String fullmdate2 = c.getModDate().toString();
-					String[] mparts2 = fullmdate2.split(" ");
-					String cutmdate2 = mparts2[0];
-				
-
-					postRow.addColumn(new Column(String.valueOf(c2.getText())));
-					postRow.addColumn(new Column(String.valueOf(cutcdate2)));
-					postRow.addColumn(new Column(String.valueOf(cutmdate2)));
-
-					result.addRow(postRow);
-
-					result.setTitel("All Ihre Kommentare ");
-				
+					Vector<Comment> comments = this.admin.getCommentsOfPost(p);
 						
-				}
+					Vector<Comment> myComments = new Vector<Comment>();
 					
+					
+					if (comments.size() != 0) {
+						
 				
-//				result.setTitel("Ihre Posts ");
-//				
-//				Row commentRow = new Row();
-//
-//				commentRow.addColumn(new Column(String.valueOf(this.admin.getPostById(c.getPostId()).getContent())));
-//				commentRow.addColumn(new Column(String.valueOf(c.getText())));
-//				// hier werden die Millisekunden vom Create_Date rausgeschnitten
-//
-//				commentRow.addColumn(new Column(String.valueOf(cutcdate)));
-//				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
-//
-//				commentRow.addColumn(new Column(String.valueOf(cutmdate)));
-//
-//				result.addRow(commentRow);
-//
-//				result.setTitel("All Ihre Kommentare ");
-				
-//				System.out.println(admin.getPostByCommentId(c).getContent());
+						for(Comment c :comments) {
+							
+							System.out.println("for comment loop" + c.getText());
+
+							if(c.getOwnerId()==u.getId()) {
+								
+								myComments.add(c);
+								
+								//result.addSubReport(this.create)
+								
+							}
+							
+						}
+						if(myComments.isEmpty()==false) {
+							
+							System.out.println("ifmycomments" + p.getContent());
+							result.addSubReport(this.createAllMyCommentsFromPostFromUserReport(myComments,p));
+						}
+						
+						
+//						result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
+						
+					} else {
+						
+						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+						 
+
+						result.setHeader(errornote);
+					}
+				}
+
+			} else {
+
+				Vector<Comment> CommentDate = this.admin.getCommentsOfUser(u);
+				for (Comment cD : CommentDate) {
+					if (cD.getModDate().after(dateFrom) && cD.getModDate().before(dateTill)) {
+						for (Post p : posts) {
+							result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
+							Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+							if (comments.size() != 0) {
+								result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
+							} else {
+								SimpleParagraph errornote = new SimpleParagraph(
+										"Es wurden leider keine Kommentar gefunden");
+
+								result.setHeader(errornote);
+							}
+
+						}
+
+					}
+
+				}
 			}
-			
-			
-			
-				
-		}
-		
+
+
 		return result;
-		
+
 	}
 }
-
-//		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
-//
-//		result.setTitel("All Ihr kommentare mit den den dazugehörigen Beiträgen");
-//
-//		result.setCreateDate(new Date());
-//
-//		Vector<Post> posts = this.admin.ge .getAllPostsOfUser(u);
-//
-//		if (posts.size() != 0) {
-//
-//			if (dateFrom == null) {
-//				
-//				for (Post p : posts) {
-//					
-//					Vector<Comment> comments = this.admin.getCommentsOfPost(p);
-//					//createAllPostsWithCommentFromUserReport
-//					
-//					if (comments.size() != 0) {
-//					
-//						
-//						result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
-//						
-//					} else {
-//						
-//						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
-//						 
-//
-//						result.setHeader(errornote);
-//					}
-//				}
-//
-//			} else {
-//
-//				Vector<Comment> CommentDate = this.admin.getCommentsOfUser(u);
-//				for (Comment cD : CommentDate) {
-//					if (cD.getModDate().after(dateFrom) && cD.getModDate().before(dateTill)) {
-//						for (Post p : posts) {
-//							result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
-//							Vector<Comment> comments = this.admin.getCommentsOfPost(p);
-//							if (comments.size() != 0) {
-//								result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
-//							} else {
-//								SimpleParagraph errornote = new SimpleParagraph(
-//										"Es wurden leider keine Kommentar gefunden");
-//
-//								result.setHeader(errornote);
-//							}
-//
-//						}
-//
-//					}
-//
-//				}
-//			}
-//
-//		}
-//		return result;
-//
-//	}
-//}

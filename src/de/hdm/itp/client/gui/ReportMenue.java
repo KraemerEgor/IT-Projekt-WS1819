@@ -43,7 +43,7 @@ public class ReportMenue implements EntryPoint {
 	public void onModuleLoad() {
 		
 		User test = new User();
-		test.setId(10000002);
+		test.setId(10000010);
 		test.setFirstname("Egor");
 		test.setLastname("Kramu");
 		test.setNickname("KK");
