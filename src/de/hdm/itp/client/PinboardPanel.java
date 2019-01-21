@@ -291,6 +291,10 @@ public class PinboardPanel extends VerticalPanel {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			currentUser = ClientsideSettings.getUser();
+			//TODO: Entfernen vor der Präsentation?
+			if(currentUser.getId() == post.getOwnerId()) {
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Sie haben nicht ernsthaft Ihren eigenen Post geliked? Das ist ziemlich peinlich! Besser Sie entfernen das...");
+			}
 
 			editorAdministration.createLike(post, currentUser, new AsyncCallback<Like>() {
 
@@ -387,6 +391,10 @@ public class PinboardPanel extends VerticalPanel {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			currentUser = ClientsideSettings.getUser();
+			//TODO: Entfernen vor der Präsentation?
+			if(currentUser.getId() == post.getOwnerId()) {
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Immerhin sind Sie einsichtig.");
+			}
 
 			Like like = new Like();
 			like.setOwnerId(currentUser.getId());
