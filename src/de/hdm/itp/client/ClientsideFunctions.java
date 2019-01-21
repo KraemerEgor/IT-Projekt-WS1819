@@ -570,7 +570,7 @@ public abstract class ClientsideFunctions {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 					
 				}
 
@@ -591,7 +591,7 @@ public abstract class ClientsideFunctions {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 					
 				}
 
@@ -609,7 +609,7 @@ public abstract class ClientsideFunctions {
 
 							@Override
 							public void onFailure(Throwable caught) {
-								Window.alert(caught.getMessage());
+								ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 								
 							}
 
@@ -687,7 +687,6 @@ public class CloseDBClickHandler implements ClickHandler{
 				db.hide();
 				User u= new User();
 				u.setId(postOwnerId);
-				Window.alert(u.getId()+"ist die gesetzte ID");
 				pp.createPinboard(u);
 			}
 		}
@@ -705,12 +704,12 @@ public class SubmitDBClickHandler implements ClickHandler{
 	public void onClick(ClickEvent event) {
 		text1 = comment_box.getValue();
 		if(text1=="") {
-			Window.alert("Leerer Kommentar kann nicht gepostet werden!");
+			ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Leerer Kommentar kann nicht gepostet werden.");
 		}else {
 		editorAdministration.createComment(postid1, text1, user, new AsyncCallback<Comment>() {
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 				
 			}
 
@@ -736,7 +735,7 @@ public class DeleteCommentClickHandler implements ClickHandler{
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 				
 			}
 
@@ -801,7 +800,7 @@ public class EditCommentClickHandler implements ClickHandler{
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 					
 				}
 
@@ -861,7 +860,7 @@ public class EditCommentClickHandler implements ClickHandler{
 
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert(caught.getMessage());
+						ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 					}
 
 					@Override
@@ -921,7 +920,7 @@ public class EditCommentClickHandler implements ClickHandler{
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 				
 			}
 
@@ -990,7 +989,7 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 					
 				}
 

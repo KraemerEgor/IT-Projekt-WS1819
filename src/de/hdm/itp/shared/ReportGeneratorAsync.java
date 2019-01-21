@@ -19,19 +19,43 @@ import de.hdm.itp.shared.report.AllSubsOfUserReport;
 
 public interface ReportGeneratorAsync {
 	
+	/*
+	 * Asynchrone init Methode
+	 */
 	void init(AsyncCallback<Void> callback);
 
+	/*
+	 * Setzen eines User
+	 */
 	void setUser(User u, AsyncCallback<Void> callback);
 	
+	/*
+	 * Erstellen eines Reports aller vergebenen Likes eines Users
+	 */
 	void createAllLikesFromUserReport(User u,Date dateFrom, Date dateTill, AsyncCallback<AllLikesFromUserReport> callback);
 	
+	/*
+	 * Erstellen eines Report aller vergebenen Abos eines Users
+	 */
 	void createAllSubsFromUserReport(User u,Date dateFrom, Date dateTill, AsyncCallback<AllSubsFromUserReport> callback);
 	
+	/*
+	 * Erstellen eines Reports aller Abonnenenten eines Users
+	 */
 	void createAllSubsOfUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllSubsOfUserReport> callback);
 	
+	/*
+	 * Erstellen eines Reports aller Kommentare eines Users
+	 */
 	void createAllCommentsFromUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllCommentsFromUserReport> callback);
 	
+	/*
+	 * Erstellen eines Reports aller Posts eines Users
+	 */
 	void createAllPostsFromUserReport(User u, Date dateFrom, Date dateTill, AsyncCallback<AllPostsFromUserReport> callback);
 	
+	/*
+	 * Erstellen eines Reports aller Kommentare von allen geschriebenen Posts eines Users
+	 */
 	void createAllCommentsOfAllPostsFromUserReportForm (User u, Date dateFrom, Date dateTill, AsyncCallback<AllCommentsOfAllPostsFromUserReport> callback);
 }
