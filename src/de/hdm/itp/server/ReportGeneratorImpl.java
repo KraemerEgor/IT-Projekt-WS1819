@@ -636,7 +636,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		
 		result.setCreateDate(new Date());
 		
-		result.setTitel("Post " + p.getContent() + " von " + this.admin.getUserById(p.getOwnerId()).getNickname());
+		result.setTitel("Beitrag: " + p.getContent() + " von " + this.admin.getUserById(p.getOwnerId()).getNickname());
 		
 		Row headline2 = new Row();
 
@@ -701,25 +701,20 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				
 						for(Comment c :comments) {
 							
-							System.out.println("for comment loop" + c.getText());
 
 							if(c.getOwnerId()==u.getId()) {
 								
 								myComments.add(c);
-								
-								//result.addSubReport(this.create)
-								
+																
 							}
 							
 						}
 						if(myComments.isEmpty()==false) {
 							
-							System.out.println("ifmycomments" + p.getContent());
 							result.addSubReport(this.createAllMyCommentsFromPostFromUserReport(myComments,p));
 						}
 						
 						
-//						result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
 						
 					} else {
 						
@@ -733,16 +728,39 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			} else {
 
 				Vector<Comment> CommentDate = this.admin.getCommentsOfUser(u);
-				for (Comment cD : CommentDate) {
-					if (cD.getModDate().after(dateFrom) && cD.getModDate().before(dateTill)) {
+//				for (Comment cD : CommentDate) {
+//					if (cD.getModDate().after(dateFrom) && cD.getModDate().before(dateTill)) {
 						for (Post p : posts) {
-							result.addSubReport(this.createAllPostsFromUserReport(u, dateFrom, dateTill));
+							
 							Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+								
+							Vector<Comment> myComments = new Vector<Comment>();
+							
+							
 							if (comments.size() != 0) {
-								result.addSubReport(this.createAllCommentsFromUserReport(u, dateFrom, dateTill));
+												
+								for(Comment c :comments) {
+									if (c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
+
+
+									if(c.getOwnerId()==u.getId()) {
+										
+										myComments.add(c);
+																		
+									}
+									
+								
+								if(myComments.isEmpty()==false) {
+									
+									result.addSubReport(this.createAllMyCommentsFromPostFromUserReport(myComments,p));
+								
+								
+								
+								}
 							} else {
-								SimpleParagraph errornote = new SimpleParagraph(
-										"Es wurden leider keine Kommentar gefunden");
+								
+								SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+								 
 
 								result.setHeader(errornote);
 							}
@@ -751,9 +769,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					}
 
-				}
+				
 			}
-
+			}
 
 		return result;
 

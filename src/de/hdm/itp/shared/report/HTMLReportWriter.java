@@ -248,30 +248,7 @@ public class HTMLReportWriter extends ReportWriter {
 		    this.reportText = result.toString();
 		    
 		  
-//		  if(r.getSubReportsSize()!=0){
-//			  AllCommentsOfAllPostsFromUserReport subReport2=(AllCommentsOfAllPostsFromUserReport) r.getSubReportByIndex(0);
-//		    this.process(subReport2);
-//		    result.append(this.reportText + "\n");
-//		      this.resetReportText();
-//
-//		    for (int i = 1; i < r.getSubReportsSize(); i++) {
-//		      if(r.getSubReportByIndex(i) instanceof AllCommentsOfAllPostsFromUserReport){
-//		        result.append("<hr>");
-//		        AllCommentsOfAllPostsFromUserReport subReport1=(AllCommentsOfAllPostsFromUserReport)
-//		        r.getSubReportByIndex(i);
-//		        this.process(subReport1);
-//		      }
-//		      else{
-//		    	  AllMyCommentsFromPostFromUserReport subReport = (AllMyCommentsFromPostFromUserReport)
-//		        r.getSubReportByIndex(i);
-//		        this.process(subReport);
-//		        }
-//
-//		      result.append(this.reportText + "\n");
-//		        this.resetReportText();
-//		      }
-//		  }
-//		  this.reportText=result.toString();
+
 		  }
 
 	public void process(AllCommentsFromUserReport r) {

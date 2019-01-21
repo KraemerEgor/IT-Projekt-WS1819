@@ -44,8 +44,6 @@ public class AllCommentsOfAllPostsFromUserReportForm extends ReportResultPanel {
 
 					if (report != null) {
 						
-						Window.alert("successAllcommenofAllPosts");
-
 						HTMLReportWriter writer = new HTMLReportWriter();
 						writer.process(report);
 						append(writer.getReportText());
