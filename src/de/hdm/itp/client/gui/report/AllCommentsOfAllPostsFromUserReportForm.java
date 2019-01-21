@@ -7,7 +7,8 @@ package de.hdm.itp.client.gui.report;
 	import de.hdm.itp.shared.ReportGeneratorAsync;
 	import de.hdm.itp.shared.bo.User;
 	import de.hdm.itp.shared.report.AllCommentsOfAllPostsFromUserReport;
-	import de.hdm.itp.shared.report.HTMLReportWriter;
+import de.hdm.itp.shared.report.AllMyCommentsFromPostFromUserReport;
+import de.hdm.itp.shared.report.HTMLReportWriter;
 
 public class AllCommentsOfAllPostsFromUserReportForm extends ReportResultPanel {
 	
@@ -42,11 +43,10 @@ public class AllCommentsOfAllPostsFromUserReportForm extends ReportResultPanel {
 				public void onSuccess(AllCommentsOfAllPostsFromUserReport report) {
 
 					if (report != null) {
-
+						
 						HTMLReportWriter writer = new HTMLReportWriter();
 						writer.process(report);
 						append(writer.getReportText());
-
 					}
 				}
 

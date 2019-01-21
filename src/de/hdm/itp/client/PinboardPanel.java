@@ -101,7 +101,7 @@ public class PinboardPanel extends VerticalPanel {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 			}
 
@@ -122,7 +122,7 @@ public class PinboardPanel extends VerticalPanel {
 		editorAdministration.getAllPostsOfUser(u, new AsyncCallback<Vector<Post>>() {
 
 			public void onFailure(Throwable t) {
-				Window.alert(t.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
 			}
 
 			public void onSuccess(Vector<Post> result) {
@@ -154,7 +154,7 @@ public class PinboardPanel extends VerticalPanel {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 			}
 
 			@Override
@@ -181,7 +181,7 @@ public class PinboardPanel extends VerticalPanel {
 
 						@Override
 						public void onFailure(Throwable caught) {
-							Window.alert(caught.getMessage());
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 						}
 
@@ -232,7 +232,7 @@ public class PinboardPanel extends VerticalPanel {
 
 						@Override
 						public void onFailure(Throwable caught) {
-							Window.alert(caught.getMessage());
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 						}
 
@@ -291,12 +291,16 @@ public class PinboardPanel extends VerticalPanel {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			currentUser = ClientsideSettings.getUser();
+			//TODO: Entfernen vor der Präsentation?
+			if(currentUser.getId() == post.getOwnerId()) {
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Sie haben nicht ernsthaft Ihren eigenen Post geliked? Das ist ziemlich peinlich! Besser Sie entfernen das...");
+			}
 
 			editorAdministration.createLike(post, currentUser, new AsyncCallback<Like>() {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 				}
 
@@ -356,14 +360,12 @@ public class PinboardPanel extends VerticalPanel {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 				}
 
 				@Override
 				public void onSuccess(Void result) {
-					Window.alert("Der folgende Beitrag wurde gelöscht:" + post.getContent());
-
 					User user = new User();
 					user.setId(post.getOwnerId());
 					createPinboard(user);
@@ -389,6 +391,10 @@ public class PinboardPanel extends VerticalPanel {
 				editorAdministration = ClientsideSettings.getAdministration();
 			}
 			currentUser = ClientsideSettings.getUser();
+			//TODO: Entfernen vor der Präsentation?
+			if(currentUser.getId() == post.getOwnerId()) {
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Immerhin sind Sie einsichtig.");
+			}
 
 			Like like = new Like();
 			like.setOwnerId(currentUser.getId());
@@ -398,7 +404,7 @@ public class PinboardPanel extends VerticalPanel {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 				}
 

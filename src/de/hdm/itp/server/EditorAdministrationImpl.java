@@ -62,7 +62,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	private static EditorAdministration editorAdministrationImpl = null;
 
 	/**
-	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rückgabe dessen
+	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und Rï¿½ckgabe dessen
 	 * @return
 	 */
 	public static EditorAdministration editorAdministrationImpl() {
@@ -101,8 +101,8 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	 */
 
 	/**
-	 * Methode zum späteren Erstellen eines User Objects
-	 * Hierbei wird ebenfalls definiert welche Attribute übergeben werden müssen zum Erstellen
+	 * Methode zum spï¿½teren Erstellen eines User Objects
+	 * Hierbei wird ebenfalls definiert welche Attribute ï¿½bergeben werden mï¿½ssen zum Erstellen
 	 * @return User Object
 	 */
 	@Override
@@ -597,7 +597,7 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 	/**
 	 * Holt die Information ob der Nutzer bereits aus der Datenbank. Identifiziert
-	 * wird dies über einen boolschen RÃ¼ckgabewert, true wenn Nutzer bereits
+	 * wird dies ï¿½ber einen boolschen RÃ¼ckgabewert, true wenn Nutzer bereits
 	 * existiert, sonst false.
 	 * 
 	 * @param email Email des Nutzers
@@ -629,6 +629,35 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 		result = user.getFirstname() + " " + user.getLastname();
 		return result;
+	}
+
+	
+	@Override
+	public Vector<Comment> getAllCommentsOfPost(Post p) throws IllegalArgumentException {
+		
+		return cMapper.findAllByPID(p);
+		
+	
+	}
+	
+	@Override
+	public Vector<Comment> getAllCommentsOfUser(User u) throws IllegalArgumentException {
+		
+		return cMapper.findAllByUID(u);
+	
+		
+	
+	}
+	
+	public Post getPostByCommentId(Comment c) throws IllegalArgumentException {
+		
+		
+		int postId = cMapper.findPostByID(c);
+		
+		Post p = new Post();
+		p.setId(postId);
+		return pMapper.findByID(p);
+		
 	}
 
 }

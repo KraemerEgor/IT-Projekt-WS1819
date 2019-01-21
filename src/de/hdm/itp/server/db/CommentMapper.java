@@ -71,6 +71,34 @@ public class CommentMapper {
 		
 		return c;
 	}
+	
+	
+	public int findPostByID(Comment comment){
+		Connection con = DBConnection.connection();
+		int postId = 0;
+		
+		try{
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT post FROM T_Comment WHERE C_ID ="+ comment.getId() + " ORDER BY modDate");
+			
+			if (rs.next()){
+				
+				postId = rs.getInt("post");
+				
+				return postId;	
+			}
+		}
+		
+		catch (SQLException e){
+			e.printStackTrace();
+			return postId;
+		}
+		
+		return postId;
+	}
+	
+	
+	
 	/**
 	 * Gibt alle Comment Objekte zur�ck welche mit C_ID, currentUser, post, text, createDate, modDate bef�llt sind von einem spezifischen User
 	 * Hierf�r holen wir C_ID, currentUser, post, text, createDate, modDate aus der T_Comment Tabelle, die dem User mit der id zugeteilt sind, und speichern diese in einem Comment Objekt ab und f�gen diese dem Vector hinzu

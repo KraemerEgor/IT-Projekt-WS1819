@@ -60,7 +60,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
 		signInLink.setStylePrimaryName("signin_btn");
 		User test = new User();
-		test.setId(10000004);
+		test.setId(10000002);
 		test.setFirstname("Egor");
 		test.setLastname("Kramu");
 		test.setNickname("KK");
@@ -78,7 +78,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
 
 			public void onFailure(Throwable caught) {
-				Window.alert("Fehler: " + caught.toString());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 			}
 
 			@Override
@@ -110,7 +110,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		editorAdministration.isUserKnown(loginInfo.getEmailAddress(), new AsyncCallback<Boolean>() {
 
 			public void onFailure(Throwable t) {
-				Window.alert(t.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
 			}
 
 			public void onSuccess(Boolean result) {
@@ -123,7 +123,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 					// bestehender Nutzer der Applikation
 					editorAdministration.getUserByEmail(loginInfo.getEmailAddress(), new AsyncCallback<User>() {
 						public void onFailure(Throwable t) {
-							Window.alert(t.getMessage());
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
 						}
 
 						public void onSuccess(User arg0) {
@@ -179,7 +179,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 									createAccountBox.getNicknameTextBox().getText(), getGender,
 									new AsyncCallback<User>() {
 										public void onFailure(Throwable t) {
-											Window.alert(t.getMessage());
+											ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
 											createAccountBox.hide();
 										}
 
@@ -207,7 +207,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	}
 
 	public void loadApplication() {
-		
+//		
 //		signOutLink.setHref(loginInfo.getLogoutUrl());
 //		
 //		hp.add(signOutLink);

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 /**
- * Basisklasse fï¿½r alle Business Objekte.
+ * Basisklasse für alle Business Objekte.
  */
 
 public abstract class BusinessObject implements Serializable {
@@ -15,13 +15,18 @@ public abstract class BusinessObject implements Serializable {
 	
 	
 	/**
-	 * Eindeutige Identifikationsnummer einer Instanz dieser Klasse und Mï¿½glichkeit zur Indetifizierung, 
+	 * Eindeutige Identifikationsnummer einer Instanz dieser Klasse und Möglichkeit zur Indetifizierung, 
 	 * welche Rolle dieses Objekt in der DB hat.
 	 */
 	
-	
+	/*
+	 * Date Attribut zum späteren bspw. auswählen Start Zeitpunkt für Ausgabe im Report Generator
+	 */
 	private Date dateFrom = null;
 	
+	/*
+	 * Date Attribut zum späteren bspw. auswählen End Zeitpunkt für Ausgabe im Report Generator
+	 */
 	private Date dateTill = null;
 
 	private int id = 0;
@@ -101,18 +106,30 @@ public abstract class BusinessObject implements Serializable {
 		return this.getClass().getName() + "ID:" + this.getId();
 	}
 
+	/*
+	 * Rückgabe des Start Datums
+	 */
 	public Date getDateFrom() {
 		return dateFrom;
 	}
 
+	/*
+	 * Setzen des Start Zeitpunkts
+	 */
 	public void setDateFrom(Date dateFrom) {
 		this.dateFrom = dateFrom;
 	}
 
+	/*
+	 * Rückgabe des End Zeitpunkts
+	 */
 	public Date getDateTill() {
 		return dateTill;
 	}
 
+	/*
+	 * Setzen des End Zeitpunkts
+	 */
 	public void setDateTill(Date dateTill) {
 		this.dateTill = dateTill;
 	}
