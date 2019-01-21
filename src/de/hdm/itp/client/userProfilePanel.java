@@ -43,6 +43,8 @@ public class userProfilePanel extends HorizontalPanel {
 	private User currentUser = new User();
 	private TextArea postInput = new TextArea();
 	private Button submitBtn = new Button("Post veröffentlichen");
+	
+	TextArea input = new TextArea();
 
 	public MainPanel getMainPanel() {
 		return mainPanel;
@@ -67,7 +69,7 @@ public class userProfilePanel extends HorizontalPanel {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 			}
 
@@ -106,7 +108,8 @@ public class userProfilePanel extends HorizontalPanel {
 		profile.setWidget(3, 1, submitBtn);
 		submitBtn.setStyleDependentName("userProfileButton", true);
 		profile.setWidget(2, 3, new Label(""));
-		submitBtn.addClickHandler(new SubmitClickHandler());
+		SubmitClickHandler sch =new SubmitClickHandler();
+		submitBtn.addClickHandler(sch);
 
 		this.add(this.profile);
 
@@ -120,21 +123,21 @@ public class userProfilePanel extends HorizontalPanel {
 			}
 			String inputText = postInput.getValue();
 			if(inputText == "") {
-				Window.alert("Sie können keine leeren Posts erstellen.");
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Sie können keine leeren Posts erstellen.");
 			}else {
 			
 			editorAdministration.createPost(postInput.getValue(), ClientsideSettings.getUser(),
 					new AsyncCallback<Post>() {
 				
 						public void onFailure(Throwable caught) {
-							Window.alert(caught.getMessage());
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 							
 						}
 
 						public void onSuccess(Post success) {
-							Window.alert("hat geklappt");
+							profile.clear();
 							profile.clearCell(2, 1);
-							TextArea input = new TextArea();
+							
 							input.setStylePrimaryName("postInput");
 							profile.setWidget(2, 1, input);
 							postInput.setText("");
@@ -186,7 +189,8 @@ public class userProfilePanel extends HorizontalPanel {
 
 			submitBtn.setStylePrimaryName("submit");
 			profile.setWidget(3, 1, submitBtn);
-			submitBtn.addClickHandler(new SubmitClickHandler());
+			//seit ich das auskommentiert habe werden Post nicht mehr exponentiell gepostet
+			//submitBtn.addClickHandler(new SubmitClickHandler());
 		} else {
 			profile.setWidget(2, 1, lbl);
 			profile.getFlexCellFormatter().setColSpan(2, 1, 2);

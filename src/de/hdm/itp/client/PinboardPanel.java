@@ -101,7 +101,7 @@ public class PinboardPanel extends VerticalPanel {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 			}
 
@@ -122,7 +122,7 @@ public class PinboardPanel extends VerticalPanel {
 		editorAdministration.getAllPostsOfUser(u, new AsyncCallback<Vector<Post>>() {
 
 			public void onFailure(Throwable t) {
-				Window.alert(t.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
 			}
 
 			public void onSuccess(Vector<Post> result) {
@@ -154,7 +154,7 @@ public class PinboardPanel extends VerticalPanel {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
+				ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 			}
 
 			@Override
@@ -181,7 +181,7 @@ public class PinboardPanel extends VerticalPanel {
 
 						@Override
 						public void onFailure(Throwable caught) {
-							Window.alert(caught.getMessage());
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 						}
 
@@ -232,7 +232,7 @@ public class PinboardPanel extends VerticalPanel {
 
 						@Override
 						public void onFailure(Throwable caught) {
-							Window.alert(caught.getMessage());
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 						}
 
@@ -296,7 +296,7 @@ public class PinboardPanel extends VerticalPanel {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 				}
 
@@ -356,14 +356,12 @@ public class PinboardPanel extends VerticalPanel {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 				}
 
 				@Override
 				public void onSuccess(Void result) {
-					Window.alert("Der folgende Beitrag wurde gelöscht:" + post.getContent());
-
 					User user = new User();
 					user.setId(post.getOwnerId());
 					createPinboard(user);
@@ -398,7 +396,7 @@ public class PinboardPanel extends VerticalPanel {
 
 				@Override
 				public void onFailure(Throwable caught) {
-					Window.alert(caught.getMessage());
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 
 				}
 

@@ -62,10 +62,10 @@ public class SubsPanel extends VerticalPanel {
 				currentUser = ClientsideSettings.getUser();
 				 editorAdministration.getSubsOfCurrentUser(currentUser, new AsyncCallback<Vector<Subs>>() {
 					 public void onFailure(Throwable t) {
-							Window.alert(t.getMessage());}	
+						 ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
+							}	
 					 public void onSuccess(Vector<Subs> result) {
-						 if(result.isEmpty()) {
-								Window.alert("du hast keine Subs, "+currentUser.getFirstname());
+						 if(result.isEmpty()) {					
 								buildList();
 								
 							}else {
@@ -102,7 +102,8 @@ public class SubsPanel extends VerticalPanel {
 					editorAdministration.getAllUser(new AsyncCallback<Vector<User>>() {
 						public void onFailure(Throwable t) {
 							
-							Window.alert(t.getMessage());}		
+							ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
+							}		
 						
 						public void onSuccess(Vector<User> result) {
 							
@@ -126,13 +127,15 @@ public class SubsPanel extends VerticalPanel {
 		
 		 editorAdministration.getSubsOfCurrentUser(currentUser, new AsyncCallback<Vector<Subs>>() {
 				public void onFailure(Throwable t) {
-					Window.alert(t.getMessage());}		
+					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());	
+				}		
 				
 				public void onSuccess(Vector<Subs> result) {
 					for(Subs s: result) {
 						editorAdministration.getUserById(s.getTargetUser(),new AsyncCallback<User>() {
 							public void onFailure(Throwable t) {
-								Window.alert(t.getMessage());}
+								ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(t.getMessage());
+								}
 
 							@Override
 							public void onSuccess(User result) {
@@ -167,10 +170,7 @@ public class SubsPanel extends VerticalPanel {
 		    	  mainPanel.createPinnboard(selectedUser);
 		    	  
 		        if (selectedUser != null) {
-		        	//Window.alert("die ID des Selected Users: "+selectedUser.getId());
-		          //Window.alert("Show Pinboard of: " + selected);
-		          //pp.createPinboard(selected);
-		        	
+		        			        	
 		        	if(editorAdministration == null) {
 		    			editorAdministration = ClientsideSettings.getAdministration();
 		    		}		
