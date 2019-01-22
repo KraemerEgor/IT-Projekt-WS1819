@@ -199,6 +199,7 @@ public class ReportMenue implements EntryPoint {
 
 		headP.add(signOutLink);
 
+		
 		RootPanel.get().add(headP);
 		RootPanel.get().add(navP);
 

@@ -681,7 +681,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		result.setCreateDate(new Date());
 
 		Vector<Post> posts = this.admin.getAllPosts();
-
+		
 		if (dateFrom == null) {
 
 			for (Post p : posts) {
@@ -699,7 +699,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 							myComments.add(c);
 
 						}
-
+						
 					}
 					if (myComments.isEmpty() == false) {
 
