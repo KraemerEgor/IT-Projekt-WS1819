@@ -51,7 +51,6 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	/** Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint */
 	ClientsideFunctions.InputDialogBox createAccountBox = null;
 
-	NavPanel np = new NavPanel();
 	SubsPanel sp = new SubsPanel();
 	MainPanel mp = new MainPanel();
 	HeaderPanel hp = new HeaderPanel();
