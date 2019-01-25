@@ -42,15 +42,15 @@ public class ReportMenue implements EntryPoint {
 
 	public void onModuleLoad() {
 		
-		User test = new User();
-		test.setId(10000010);
-		test.setFirstname("Egor");
-		test.setLastname("Kramu");
-		test.setNickname("KK");
-		test.setGender("m");
-		test.setEmail("egor.kramu@gmail.com");
-		ClientsideSettings.setUser(test);
-		loadApplication();
+//		User test = new User();
+//		test.setId(10000010);
+//		test.setFirstname("Egor");
+//		test.setLastname("Kramu");
+//		test.setNickname("KK");
+//		test.setGender("m");
+//		test.setEmail("egor.kramu@gmail.com");
+//		ClientsideSettings.setUser(test);
+//		loadApplication();
 		
 		Window.alert("working on report login first");
 		
@@ -192,19 +192,18 @@ public class ReportMenue implements EntryPoint {
 
 	public void loadApplication() {
 
-//		signOutLink.setHref(loginInfo.getLogoutUrl());
+		signOutLink.setHref(loginInfo.getLogoutUrl());
 		
 		HeaderPanelReport headP = new HeaderPanelReport();
 		NavPanelReport navP = new NavPanelReport();
 
-//		headP.add(signOutLink);
+		headP.add(signOutLink);
 
+		
 		RootPanel.get().add(headP);
 		RootPanel.get().add(navP);
 
-		// Window.alert("Main panels are loaded");
-
-		// Window.alert(ClientsideSettings.getUser().getNickname());
+		
 
 	}
 

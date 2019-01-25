@@ -15,7 +15,6 @@ public class HeaderPanelReport  extends HorizontalPanel {
 	private Button editorBtn = new Button("Feed");
 	private Anchor editorLink = new Anchor("editor");
 	
-	Label header_lbl = new Label("Das ist ein Label vom HeaderPanel");
 	
 	public void onLoad() {
 		
@@ -36,11 +35,9 @@ public class HeaderPanelReport  extends HorizontalPanel {
 	//	this.setHeight("220px");
 	//	this.getElement().getStyle().setBackgroundColor("grey");
 		
-		header_lbl.addStyleName("label_test");
 	//	header_lbl.setWidth("210px");
 		this.add(editorBtn);
-		this.add(header_lbl);
-		this.add(header_lbl);
+	
 		
 	
 	}

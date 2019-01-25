@@ -627,17 +627,17 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 //	}
 //}
 //
-	public AllMyCommentsFromPostFromUserReport createAllMyCommentsFromPostFromUserReport(Vector<Comment> myComment, Post p) {
+	public AllMyCommentsFromPostFromUserReport createAllMyCommentsFromPostFromUserReport(Vector<Comment> myComment,
+			Post p) {
 		if (this.getEditorAdministration() == null) {
 			return null;
 		}
 		AllMyCommentsFromPostFromUserReport result = new AllMyCommentsFromPostFromUserReport();
-		
-		
+
 		result.setCreateDate(new Date());
-		
+
 		result.setTitel("Beitrag: " + p.getContent() + " von " + this.admin.getUserById(p.getOwnerId()).getNickname());
-		
+
 		Row headline2 = new Row();
 
 		headline2.addColumn(new Column("Kommentar"));
@@ -645,9 +645,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		headline2.addColumn(new Column("Änderungsdatum"));
 		result.addRow(headline2);
 
-		
-		for(Comment c: myComment) {
-			
+		for (Comment c : myComment) {
+
 			Row commentRow = new Row();
 
 			String fullcdate2 = c.getCreateDate().toString();
@@ -663,14 +662,12 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 			commentRow.addColumn(new Column(String.valueOf(cutmdate2)));
 
 			result.addRow(commentRow);
-			
-			
+
 		}
 
 		return result;
 	}
-	
-	
+
 	public AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
 			Date dateTill) throws IllegalArgumentException {
 
@@ -679,100 +676,83 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		}
 		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
 
-		result.setTitel("All Ihr kommentare mit den den dazugehörigen Beiträgen");
+		result.setTitel("All Ihr kommentare mit den dazugehörigen Beiträgen");
 
 		result.setCreateDate(new Date());
 
 		Vector<Post> posts = this.admin.getAllPosts();
+		
+		if (dateFrom == null) {
 
-			if (dateFrom == null) {
+			for (Post p : posts) {
 
-				
-				
-				for (Post p : posts) {
-					
-					Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+				Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+
+				Vector<Comment> myComments = new Vector<Comment>();
+
+				if (comments.size() != 0) {
+
+					for (Comment c : comments) {
+
+						if (c.getOwnerId() == u.getId()) {
+
+							myComments.add(c);
+
+						}
 						
-					Vector<Comment> myComments = new Vector<Comment>();
-					
-					
-					if (comments.size() != 0) {
-						
-				
-						for(Comment c :comments) {
-							
+					}
+					if (myComments.isEmpty() == false) {
 
-							if(c.getOwnerId()==u.getId()) {
-								
+						result.addSubReport(this.createAllMyCommentsFromPostFromUserReport(myComments, p));
+					}
+
+				} else {
+
+					SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+
+					result.setHeader(errornote);
+				}
+			}
+
+		} else {
+
+			for (Post p : posts) {
+
+				Vector<Comment> comments = this.admin.getCommentsOfPost(p);
+
+				Vector<Comment> myComments = new Vector<Comment>();
+
+				if (comments.size() != 0) {
+
+					for (Comment c : comments) {
+						if (c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
+
+							if (c.getOwnerId() == u.getId()) {
+
 								myComments.add(c);
-																
+
 							}
-							
+
 						}
-						if(myComments.isEmpty()==false) {
-							
-							result.addSubReport(this.createAllMyCommentsFromPostFromUserReport(myComments,p));
-						}
-						
-						
-						
-					} else {
-						
+					}
+					if (myComments.isEmpty() == false) {
+
+						result.addSubReport(this.createAllMyCommentsFromPostFromUserReport(myComments, p));
+
+					}
+
+					else {
+
 						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
-						 
 
 						result.setHeader(errornote);
 					}
+
 				}
 
-			} else {
-
-				Vector<Comment> CommentDate = this.admin.getCommentsOfUser(u);
-//				for (Comment cD : CommentDate) {
-//					if (cD.getModDate().after(dateFrom) && cD.getModDate().before(dateTill)) {
-						for (Post p : posts) {
-							
-							Vector<Comment> comments = this.admin.getCommentsOfPost(p);
-								
-							Vector<Comment> myComments = new Vector<Comment>();
-							
-							
-							if (comments.size() != 0) {
-												
-								for(Comment c :comments) {
-									if (c.getModDate().after(dateFrom) && c.getModDate().before(dateTill)) {
-
-
-									if(c.getOwnerId()==u.getId()) {
-										
-										myComments.add(c);
-																		
-									}
-									
-								
-								if(myComments.isEmpty()==false) {
-									
-									result.addSubReport(this.createAllMyCommentsFromPostFromUserReport(myComments,p));
-								
-								
-								
-								}
-							} else {
-								
-								SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
-								 
-
-								result.setHeader(errornote);
-							}
-
-						}
-
-					}
-
-				
-			}
 			}
 
+		}
 		return result;
 
 	}
