@@ -39,14 +39,14 @@ public class NavPanelReport extends VerticalPanel {
 	
 	
 	
-	final Button AllSubsFromUserReportBtn = new Button("All Ihre Abonnements");
-	final Button AllSubsOfUserReportBtn = new Button("All Ihre Abonnenten");
+	final Button AllSubsFromUserReportBtn = new Button("All Ihre Abonnenten");
+	final Button AllSubsOfUserReportBtn = new Button("All Ihre Abonnements");
 	final Button AllCommentsFromUserReportBtn = new Button("All Ihre Kommentare");
 	final Button AllLikesFromUserReportBtn = new Button("All Ihre Likes");
 	final Button AllPostsFromUserReportBtn = new Button("All Ihre Beiträge");
 
-	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("All Ihre Abonnements in dem Angegebenen Zeitraum");
-	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("All Ihre Abonnement in dem Angegebenen Zeitraum");
+	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("All Ihre Abonnenten in dem Angegebenen Zeitraum");
+	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("All Ihre Abonnements in dem Angegebenen Zeitraum");
 	final Button AllCommentsFromUserBetweenDatesReportBtn = new Button("All Ihre Kommentare in dem Angegebenen Zeitraum");
 	final Button AllLikesFromUserBetweenDatesReportBtn = new Button("All Ihre Likes in dem Angegebenen Zeitraum");
 	final Button AllPostsFromUserBetweenDatesReportBtn = new Button("All Ihre Beiträge in dem Angegebenen Zeitraum\"");

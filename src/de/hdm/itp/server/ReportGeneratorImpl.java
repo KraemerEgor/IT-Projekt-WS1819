@@ -411,8 +411,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 				result.addRow(subsRow);
 
-				result.setTitel("Hier sehen Sie Ihre Abonnements ");
-				result.setAmount("Anzahlt Ihrer Abonnements: " + i);
+				result.setTitel("Hier sehen Sie Ihre Abonnenten ");
+				result.setAmount("Anzahlt Ihrer Abonnenten: " + i);
 			} else {
 				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
 					i++;
@@ -428,14 +428,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(subsRow);
 
-					result.setTitel("Anzahl Ihrer Abonnements im ausgewählten Zeitraum: " + i);
+					result.setTitel("Anzahl Ihrer Abonnenten im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setAmount("Anzahl Ihrer Abonnements im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Abonnenten im ausgewählten Zeitraum: " + i);
 
 				} else {
 					result.setTitel(
-							"Tut uns leid in dem ausgewählten Zeitraum wurden kein Abonnement von Ihnen vergeben");
+							"Tut uns leid in dem ausgewählten Zeitraum hat Sie keiner Abonniert");
 				}
 
 			}
@@ -493,8 +493,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 				result.addRow(subsRow);
 
-				result.setTitel("All Ihre Abonnenten");
-				result.setAmount("Anzahlt Ihrer Abonnenten: " + i);
+				result.setTitel("All Ihre Abonements");
+				result.setAmount("Anzahlt Ihrer Abonements: " + i);
 
 			} else {
 				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
@@ -511,14 +511,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(subsRow);
 
-					result.setTitel("All Ihre Abonnenten");
-					result.setAmount("Anzahlt Ihrer Abonnenten im augewählten Zeitraum: " + i);
+					result.setTitel("All Ihre Abonements");
+					result.setAmount("Anzahlt Ihrer Abonements im augewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setAmount(" Anzahl Ihrer Abonnenten in dem ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Abonements in dem ausgewählten Zeitraum: " + i);
 
 				} else {
-					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum hat Sie keiner Abonniert");
+					result.setTitel("Tut uns leid in dem Ausgewählten wurde kein Benutzer von Ihnen abonniert");
 				}
 
 			}
