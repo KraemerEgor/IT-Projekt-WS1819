@@ -9,13 +9,25 @@ import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class SubsTreeViewModel.
+ */
 public class SubsTreeViewModel implements TreeViewModel {
+	
+	/** The value results. */
 	private Vector<User> valueResults = null;
+	
+	/** The editor administration. */
 	private EditorAdministrationAsync editorAdministration = null;
+	
+	/** The current user. */
 	private User currentUser = new User(); 
 	
 	
 
+	/* (non-Javadoc)
+	 * @see com.google.gwt.view.client.TreeViewModel#getNodeInfo(java.lang.Object)
+	 */
 	@Override
 	public <T> NodeInfo<?> getNodeInfo(T value) {
 		currentUser = ClientsideSettings.getUser();
@@ -44,6 +56,9 @@ public class SubsTreeViewModel implements TreeViewModel {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.gwt.view.client.TreeViewModel#isLeaf(java.lang.Object)
+	 */
 	@Override
 	public boolean isLeaf(Object value) {
 		return (value instanceof User);

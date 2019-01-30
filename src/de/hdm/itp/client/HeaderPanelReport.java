@@ -10,12 +10,21 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
+/**
+ * The Class HeaderPanelReport.
+ */
 public class HeaderPanelReport  extends HorizontalPanel {
 	
+	/** The editor btn. */
 	private Button editorBtn = new Button("Feed");
+	
+	/** The editor link. */
 	private Anchor editorLink = new Anchor("editor");
 	
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 		
 		super.onLoad();

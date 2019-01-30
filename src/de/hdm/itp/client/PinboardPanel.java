@@ -26,34 +26,66 @@ import de.hdm.itp.shared.bo.Like;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class PinboardPanel.
+ */
 public class PinboardPanel extends VerticalPanel {
 
+	/** The editor administration. */
 	private EditorAdministrationAsync editorAdministration = null;
 
+	/** The main panel. */
 	static MainPanel mainPanel = new MainPanel();
 
+	/** The post panel. */
 	VerticalPanel postPanel = new VerticalPanel();
+	
+	/** The pinboard panel. */
 	PinboardPanel pinboardPanel;
 
+	/** The label user. */
 	Label lbl_user = new Label("Loading...");
+	
+	/** The label content. */
 	Label lbl_content = new Label("Loading...");
+	
+	/** The label date. */
 	Label lbl_date = new Label("Loading...");
 
+	/** The current user. */
 	User currentUser;
+	
+	/** The pinboard user. */
 	User pinboardUser = new User();
+	
+	/** The pinboard post. */
 	Post pinboardPost = new Post();
 	
 
+	/** The commentcounter. */
 	int commentcounter = 0;
 
+	/**
+	 * Gets the main panel.
+	 *
+	 * @return the main panel
+	 */
 	public static MainPanel getMainPanel() {
 		return mainPanel;
 	}
 
+	/**
+	 * Sets the main panel.
+	 *
+	 * @param mainPanel the new main panel
+	 */
 	public static void setMainPanel(MainPanel mainPanel) {
 		PinboardPanel.mainPanel = mainPanel;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 
 		super.onLoad();
@@ -79,23 +111,11 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
-	/*
-	 * Pinboard-Schema (TODO später löschen):
-	 * 
-	 * _________________________ | Text- | / | Beitrag (Content) | P
-	 * |_______________________| / |Optionen(Like/Komnt/DEL| P O
-	 * |_______________________| | Kommentar 1 | I S |_______________________| |
-	 * Kommentar 2 | N T |_______________________| \ | Kommentar ... | B
-	 * |_______________________|
-	 * 
-	 * O _________________________ | Text- | A / | Beitrag (Content) | P
-	 * |_______________________| R |Optionen(Like/Komnt/DEL| O
-	 * |_______________________| D | Kommentar 1 | \ S |_______________________| |
-	 * Kommentar 2 | T |_______________________| \ | Kommentar ... |
-	 * |_______________________|
-	 * 
+	/**
+	 * Creates the pinboard.
+	 *
+	 * @param u the u
 	 */
-
 	public void createPinboard(User u) {
 		editorAdministration.getUserById(u.getId(), new AsyncCallback<User>() {
 
@@ -131,7 +151,6 @@ public class PinboardPanel extends VerticalPanel {
 				for (Post p : result) {
 					postPanel.add(createPostPanel(p));
 
-					// TODO: das funktioniert noch nichtÏ
 					// postsPanel.add(postpanel.createPost2(p));
 
 				}
@@ -142,6 +161,12 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
+	/**
+	 * Creates the post panel.
+	 *
+	 * @param post the post
+	 * @return the vertical panel
+	 */
 	public VerticalPanel createPostPanel(final Post post) {
 
 		final VerticalPanel postsPanel = new VerticalPanel();
@@ -250,7 +275,7 @@ public class PinboardPanel extends VerticalPanel {
 								Button edit = new Button("Bearbeiten", new UpdatePostClickHandler(pinboardPost));
 								edit.setStylePrimaryName("submit");
 								buttonPanel.add(edit);
-								Button delete = new Button("Löschen", new DeletePostClickHandler(pinboardPost));
+								Button delete = new Button("L�schen", new DeletePostClickHandler(pinboardPost));
 								delete.setStylePrimaryName("submit");
 								buttonPanel.add(delete);
 							}
@@ -275,16 +300,27 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
-	// TODO: ClickHandler haben sich einfach so nicht mehr compilieren lassen...
-	// ohne Grund
+	/**
+	 * The Class LikeClickHandler.
+	 */
 	private class LikeClickHandler implements ClickHandler {
+		
+		/** The post. */
 		Post post = new Post();
 
+		/**
+		 * Instantiates a new like click handler.
+		 *
+		 * @param p the p
+		 */
 		public LikeClickHandler(Post p) {
 			post = p;
 
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		@Override
 		public void onClick(ClickEvent event) {
 			if (editorAdministration == null) {
@@ -319,14 +355,27 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
+	/**
+	 * The Class UpdatePostClickHandler.
+	 */
 	private class UpdatePostClickHandler implements ClickHandler {
+		
+		/** The post. */
 		Post post = new Post();
 
+		/**
+		 * Instantiates a new update post click handler.
+		 *
+		 * @param p the p
+		 */
 		public UpdatePostClickHandler(Post p) {
 			post = p;
 
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		@Override
 		public void onClick(ClickEvent event) {
 			if (editorAdministration == null) {
@@ -342,13 +391,26 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
+	/**
+	 * The Class DeletePostClickHandler.
+	 */
 	private class DeletePostClickHandler implements ClickHandler {
+		
+		/** The post. */
 		Post post = new Post();
 
+		/**
+		 * Instantiates a new delete post click handler.
+		 *
+		 * @param p the p
+		 */
 		public DeletePostClickHandler(Post p) {
 			post = p;
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		@Override
 		public void onClick(ClickEvent event) {
 			if (editorAdministration == null) {
@@ -377,14 +439,27 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
+	/**
+	 * The Class UnlikeClickHandler.
+	 */
 	private class UnlikeClickHandler implements ClickHandler {
+		
+		/** The post. */
 		Post post = new Post();
 
+		/**
+		 * Instantiates a new unlike click handler.
+		 *
+		 * @param p the p
+		 */
 		public UnlikeClickHandler(Post p) {
 			post = p;
 
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		@Override
 		public void onClick(ClickEvent event) {
 			if (editorAdministration == null) {
@@ -423,14 +498,27 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
+	/**
+	 * The Class CommentClickHandler.
+	 */
 	private class CommentClickHandler implements ClickHandler {
+		
+		/** The post. */
 		Post post = new Post();
 
+		/**
+		 * Instantiates a new comment click handler.
+		 *
+		 * @param p the p
+		 */
 		public CommentClickHandler(Post p) {
 			post = p;
 
 		}
 
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		@Override
 		public void onClick(ClickEvent event) {
 			ClientsideFunctions.CommentDialogBox cdb = new ClientsideFunctions.CommentDialogBox(post, pinboardPanel);

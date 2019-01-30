@@ -11,13 +11,24 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 
+/**
+ * The Class HeaderPanel.
+ */
 public class HeaderPanel extends HorizontalPanel {
 	
+	/** The header lbl. */
 	private Label header_lbl = new Label("Das ist ein Label vom HeaderPanel");
+	
+	/** The report btn. */
 	private Button reportBtn = new Button("Report-Generator");
+	
+	/** The report link. */
 	private Anchor reportLink = new Anchor("Report");
 	
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 		
 		super.onLoad();

@@ -22,37 +22,77 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class SubsPanel.
+ */
 public class SubsPanel extends VerticalPanel {
+	
+	/** The header. */
 	Label header = new Label();
+	
+	/** The header user. */
 	Label header_user = new Label();
 	
+	/** The editor administration. */
 	private EditorAdministrationAsync editorAdministration = null;
+	
+	/** The vp. */
 	VerticalPanel vp = new VerticalPanel();	
 	
+	/** The subsc cell. */
 	SubscCell subscCell = new SubscCell();
+	
+	/** The cell list. */
 	CellList<User> cellList = new CellList<User>(subscCell);
+	
+	/** The selection model. */
 	SingleSelectionModel<User> selectionModel = new SingleSelectionModel<User>();
+	
+	/** The data provider. */
 	ListDataProvider<User> dataProvider = new ListDataProvider<User>();
 	
+	/** The cell subs. */
 	Vector<User> cellSubs = new Vector<User>();	
+	
+	/** The selected user. */
 	User selectedUser = new User();
+	
+	/** The current user. */
 	User currentUser = new User();
 	
+	/** The profile btn. */
 	private Button profileBtn = new Button("Mein Profil");
+	
+	/** The add btn. */
 	private Button addBtn = new Button("Hinzufügen");
+	
+	/** The dlt btn. */
 	private Button dltBtn = new Button("Löschen");
 	
+	/** The btn panel. */
 	private VerticalPanel btnPanel = new VerticalPanel();
 	
+	/** The box. */
 	public Vector<User> box = new Vector<User>();
+	
+	/** The oracle. */
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
+	
+	/** The suggestbox. */
 	SuggestBox suggestbox = new SuggestBox(oracle);
 	
+	/** The testpanel. */
 	VerticalPanel testpanel = new VerticalPanel();
 	
+	/** The lbl. */
 	Label lbl = new Label();
+	
+	/** The main panel. */
 	MainPanel mainPanel = new MainPanel();
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 		super.onLoad();	
 		//erstellen einer Insatnz des Asyncronen Interfaces, des Servlets
@@ -119,6 +159,10 @@ public class SubsPanel extends VerticalPanel {
 					this.add(btnPanel);
 					this.add(vp);
 	}
+	
+	/**
+	 * Builds the list.
+	 */
 	private void buildList() {
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
@@ -183,6 +227,12 @@ public class SubsPanel extends VerticalPanel {
 		this.add(testpanel);
 		
 	}
+	
+	/**
+	 * Adds the sub.
+	 *
+	 * @param u the u
+	 */
 	public void addSub(User u) {
 		
 		currentUser = ClientsideSettings.getUser();
@@ -225,7 +275,15 @@ public class SubsPanel extends VerticalPanel {
 		
 	
 	}
+	
+	/**
+	 * The Class DeleteClickHandler.
+	 */
 	private class DeleteClickHandler implements ClickHandler{
+		
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		public void onClick(ClickEvent event) {
 			User currentUser = new User();
 			currentUser = ClientsideSettings.getUser();
@@ -256,7 +314,15 @@ public class SubsPanel extends VerticalPanel {
 			
 		}
 	}
+	
+	/**
+	 * The Class AddClickHandler.
+	 */
 	private class AddClickHandler implements ClickHandler{
+		
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		public void onClick(ClickEvent event) {
 			if(!suggestbox.getValue().isEmpty()) {
 			String inhalt = suggestbox.getValue();
@@ -300,7 +366,15 @@ public class SubsPanel extends VerticalPanel {
 			}
 			}
 	}
+	
+	/**
+	 * The Class MyProfileClickHandler.
+	 */
 	private class MyProfileClickHandler implements ClickHandler{
+		
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		public void onClick(ClickEvent event) {		
 			
 			//selectionModel.setSelected(selectedUser, false);
@@ -308,9 +382,21 @@ public class SubsPanel extends VerticalPanel {
 			
 			}
 	}
+	
+	/**
+	 * Gets the main panel.
+	 *
+	 * @return the main panel
+	 */
 	public MainPanel getMainPanel() {
 		return mainPanel;
 	}
+	
+	/**
+	 * Sets the main panel.
+	 *
+	 * @param mainPanel the new main panel
+	 */
 	public void setMainPanel(MainPanel mainPanel) {
 		this.mainPanel = mainPanel;
 	}

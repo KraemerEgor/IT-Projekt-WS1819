@@ -11,26 +11,43 @@ import de.hdm.itp.shared.ReportGenerator;
 import de.hdm.itp.shared.ReportGeneratorAsync;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class ClientsideSettings.
+ */
 public class ClientsideSettings {
 	
 	/** Remote Service Proxy zur Verbindungsaufnahme mit dem Server-seitgen 
 	 * Dienst namens editorAdministration. */
 	private static EditorAdministrationAsync editorAdministration = null;
 	
+	/** The user. */
 	private static User user = null;
 	
+	/** The report generator. */
 	private static ReportGeneratorAsync reportGenerator = null;
 	
+	/** The Constant LOGGER_NAME. */
 	private static final String LOGGER_NAME = "";
 
 	
+	/** The Constant log. */
 	private static final Logger log = Logger.getLogger(LOGGER_NAME);
 
+	/**
+	 * Gets the logger.
+	 *
+	 * @return the logger
+	 */
 	public static Logger getLogger() {
 		return log;
 		
 	}
 	
+	/**
+	 * Gets the administration.
+	 *
+	 * @return the administration
+	 */
 	public static EditorAdministrationAsync getAdministration() {
 		
 		if (editorAdministration == null) {
@@ -56,6 +73,11 @@ public class ClientsideSettings {
 	}
 
 	
+	/**
+	 * Gets the report generator.
+	 *
+	 * @return the report generator
+	 */
 	public static ReportGeneratorAsync getReportGenerator() {
 
 		if (reportGenerator == null) {

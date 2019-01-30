@@ -21,16 +21,30 @@ import de.hdm.itp.shared.bo.Like;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class PostPanel.
+ */
 public class PostPanel extends VerticalPanel {
 	
+	/** The editor administration. */
 	private EditorAdministrationAsync editorAdministration = null;
+	
+	/** The vpost. */
 	VerticalPanel vpost = new VerticalPanel();
+	
+	/** The options. */
 	HorizontalPanel options = new HorizontalPanel();
+	
+	/** The lbl. */
 	Label lbl = new Label("Post:");
 	
+	/** The current user. */
 	User currentUser;
 
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 
 		
@@ -51,54 +65,24 @@ public class PostPanel extends VerticalPanel {
 		this.getElement().getStyle().setBackgroundColor("darkgoldenrod");
 
 	}
-
 	
-	
-	
-	/* Post-Schema (TODO später löschen):
-	 * 			
-	 * 				_________________________
-	 * 				|   	Text-			|
-	 * 	 		/	|	Beitrag (Content)	|
-	 * 			P	|_______________________|
-	 * 	 			|Optionen(Like/Komnt/DEL|
-	 * 			O	|_______________________|
-	 *	 			|	Kommentar 1			|
-	 * 	 		S	|_______________________|
-	 * 				|	Kommentar 2			|
-	 * 			T	|_______________________|
-	 * 		 	\	|	Kommentar ...		|
-	 * 				|_______________________|
-	 * */
-	
+	/**
+	 * Creates the post.
+	 *
+	 * @param p the p
+	 * @return the vertical panel
+	 */
 	public VerticalPanel createPost(Post p) {
 		Window.alert("kommt hier rein");
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
 		
-		
-		/*
-		 * Post-Text-Teil 
-		 * */
-		
 		Label ueberschrift = new Label("Post:");
 		vpost.add(ueberschrift);
 		
 		Label content = new Label(p.getContent());
 		vpost.add(content);
-		
-
-		/*
-		 * Optionen-Teil 
-		 * */
-		
-		
-		
-		
-		/*
-		 * Like setzen TODO Callback aussstehend
-		 * */		
 		
 		Button like = new Button("Like");
 		like.addClickHandler(new ClickHandler() {
@@ -110,7 +94,7 @@ public class PostPanel extends VerticalPanel {
 		options.add(like);
 		
 		/*
-		 * Like löschen TODO Callback aussstehend:
+		 * Like löschen
 		 * 
 		 * Zum Löschen muss ein Like-Objekt an
 		 * deleteLike() übergeben werden. Da dieses
@@ -123,7 +107,6 @@ public class PostPanel extends VerticalPanel {
 		 * dass dem ursprünglich vom User gesetzten
 		 * Like entspricht.
 		 */
-		
 		Button dislike = new Button("Dislike");
 		dislike.addClickHandler(new ClickHandler() {
 		    public void onClick(ClickEvent event) {
@@ -138,7 +121,7 @@ public class PostPanel extends VerticalPanel {
 		options.add(dislike);
 		
 		/*
-		 * Neuen Kommentar anlegen TODO Callback aussstehend:
+		 * Neuen Kommentar anlegen
 		 * 
 		 * Hierzu soll der Kommentar-Text aus einem erscheinenden
 		 * DialogPanel übernommen werden und dann ein Kommentar
@@ -157,7 +140,7 @@ public class PostPanel extends VerticalPanel {
 		options.add(comment);
 		
 		/*
-		 * Post löschen TODO Callback aussstehend:
+		 * Post löschen
 		 * 
 		 * Nur wenn der derzeitige Nutzer gleich
 		 * dem Pinnwand-Eigentümer ist, wird die
@@ -178,12 +161,7 @@ public class PostPanel extends VerticalPanel {
 		
 		vpost.add(options);
 		
-		
-		/*
-		 * Kommentar-Teil 
-		 * */
-		
-		
+
 		editorAdministration.getCommentsOfPost(p, new AsyncCallback<Vector<Comment>>() {
 			public void onFailure(Throwable t) {
 				Window.alert(t.getMessage());}		
@@ -213,12 +191,25 @@ public class PostPanel extends VerticalPanel {
 	 * ermöglicht.
 	 */
 		
-		private Boolean permissionCheck(User u) {
+		/**
+	 * Permission check.
+	 *
+	 * @param u the u
+	 * @return the boolean
+	 */
+	private Boolean permissionCheck(User u) {
 			/*if (u == currentUser)
 			return true;
 			else return false;*/
 			return true;
 		}
+		
+		/**
+		 * Creates the post 2.
+		 *
+		 * @param post the post
+		 * @return the vertical panel
+		 */
 		public VerticalPanel createPost2(Post post){
 			VerticalPanel result = new VerticalPanel();
 			Label lbl = new Label(post.getContent());

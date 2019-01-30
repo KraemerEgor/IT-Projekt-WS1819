@@ -8,19 +8,30 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+/**
+ * The Class NavPanel.
+ */
 public class NavPanel extends VerticalPanel {
 	
-	/**
-	 * adding the header-element for the navigation panel
-	 */
+	/** adding the header-element for the navigation panel. */
 	protected HeadingElement navHeader = Document.get().createHElement(1);
 	
+	/** The header panel. */
 	VerticalPanel headerPanel = new VerticalPanel();
+	
+	/** The vp. */
 	VerticalPanel vp = new VerticalPanel();
+	
+	/** The sp. */
 	SearchPanel sp = new SearchPanel();
+	
+	/** The sup. */
 	SubsPanel sup = new SubsPanel();
 	
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 		
 

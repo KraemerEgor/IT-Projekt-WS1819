@@ -17,15 +17,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+// TODO: Auto-generated Javadoc
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class IT_Projekt_Gruppe4_2 implements EntryPoint {
-
-	// miro sign in button auf google verweis checken
-
-	// wo ist der signOut Button hin ?
-	// Logininfo schrieben wer angemeldet ist
 
 	/**
 	 * Diese Nachricht wird angezeigt, wenn der Client keine Verbindung zum Server
@@ -37,25 +33,50 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	/** Die Instanzenvariablen, die mit dem Login-Service zusammenhängen. */
 	private LoginInfo loginInfo = null;
+	
+	/** The login panel. */
 	private VerticalPanel loginPanel = new VerticalPanel();
+	
+	/** The login label. */
 	private Label loginLabel = new Label(
 			"Bitte loggen Sie sich mit ihrem Google-Account ein, um die Anwendung zu nutzen.");
+	
+	/** The sign in link. */
 	private Anchor signInLink = new Anchor("Sign In");
+	
+	/** The sign out link. */
 	private Anchor signOutLink = new Anchor("Sign Out");
+	
+	/** The signed in user. */
 	private Label signedInUser = null;
 
+	/** The admin. */
 	private EditorAdministrationAsync admin = ClientsideSettings.getAdministration();
 
+	/** The user. */
 	User user = null;
+	
+	/** The editor administration. */
 	EditorAdministrationAsync editorAdministration = null;
-	/** Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint */
+	
+	/**  Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint. */
 	ClientsideFunctions.InputDialogBox createAccountBox = null;
 
+	/** The np. */
 	NavPanel np = new NavPanel();
+	
+	/** The sp. */
 	SubsPanel sp = new SubsPanel();
+	
+	/** The mp. */
 	MainPanel mp = new MainPanel();
+	
+	/** The hp. */
 	HeaderPanel hp = new HeaderPanel();
 
+	/* (non-Javadoc)
+	 * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
+	 */
 	public void onModuleLoad() {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
 //		signInLink.setStylePrimaryName("signin_btn");
@@ -101,6 +122,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	}
 
+	/**
+	 * Load user information.
+	 */
 	public void loadUserInformation() {
 
 		if (editorAdministration == null) {
@@ -206,6 +230,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	}
 
+	/**
+	 * Load application.
+	 */
 	public void loadApplication() {
 		
 		signOutLink.setHref(loginInfo.getLogoutUrl());
@@ -229,6 +256,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 	}
 
+	/**
+	 * Load login.
+	 */
 	private void loadLogin() {
 		
 		
