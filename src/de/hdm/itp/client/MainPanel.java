@@ -18,20 +18,34 @@ import de.hdm.itp.shared.EditorAdministrationAsync;
 import de.hdm.itp.shared.bo.User;
 
 
+/**
+ * The Class MainPanel.
+ */
 public class MainPanel extends VerticalPanel {
 	
-	
-	
+	/** The editor administration. */
 	private EditorAdministrationAsync editorAdministration = null;
+	
+	/** The pp. */
 	//private Label header_lbl = new Label("Mein Profil");
 	public PinboardPanel pp = new PinboardPanel();
+	
+	/** The user profile. */
 	public userProfilePanel userProfile = new userProfilePanel();
+	
+	/** The user. */
 	User user = new User();
 	
+	/** The main header. */
 	protected HeadingElement mainHeader = Document.get().createHElement(1);
+	
+	/** The vp. */
 	VerticalPanel vp = new VerticalPanel();
 	
 	
+/* (non-Javadoc)
+ * @see com.google.gwt.user.client.ui.Widget#onLoad()
+ */
 public void onLoad() {
 		super.onLoad();
 		if (editorAdministration == null) {
@@ -71,6 +85,12 @@ public void onLoad() {
 		pp.setStylePrimaryName("profilePanel");	
 		
 }
+
+/**
+ * Creates the pinnboard.
+ *
+ * @param user the user
+ */
 public void createPinnboard(User user){
 	userProfile.clear();
 	userProfile.createUserProfile(user);
