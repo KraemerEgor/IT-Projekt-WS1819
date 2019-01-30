@@ -27,6 +27,7 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * Ergänzt die Klasse {@link ClientsideSettings} um weitere Funktionen und Dienste,
  * die für alle Client-seitigen Klassen relevant sind.
@@ -34,8 +35,7 @@ import de.hdm.itp.shared.bo.User;
  */
 public abstract class ClientsideFunctions {
 	
-	/** Objekt zur Kommunikation mit dem Server-seitgen 
-	 * Dienst namens editorAdministration*/
+	/**  Objekt zur Kommunikation mit dem Server-seitgen  Dienst namens editorAdministration. */
 	private static EditorAdministrationAsync editorAdministration = ClientsideSettings.getEditorAdministration();
 	
 	/** Client-seitiges Nutzer-Object, repräsentiert den angemeldeten Nutzer. */
@@ -51,16 +51,35 @@ public abstract class ClientsideFunctions {
 		/** Diverse Attribute und GWT Elemente die zur Realisierung der InputDialogBox benötigt werden. */
 		
 		private String input;
+		
+		/** The dialog box label. */
 		Label dialogBoxLabel = new Label();
+        
+        /** The firstname text box. */
         private TextBox firstnameTextBox;
+        
+        /** The lastname text box. */
         private TextBox lastnameTextBox;
+        
+        /** The nickname text box. */
         private TextBox nicknameTextBox;
+        
+        /** The email text box. */
         private TextBox emailTextBox;
 
+        /** The list box. */
         private ListBox listBox;
+        
+        /** The sb. */
         private SuggestBox sb;
+        
+        /** The oracle. */
         private MultiWordSuggestOracle oracle;
+		
+		/** The close. */
 		CloseButton close = new CloseButton(this);
+        
+        /** The ok. */
         OkButton ok = new OkButton();
         
         
@@ -127,7 +146,7 @@ public abstract class ClientsideFunctions {
 		}
 		
 		/**
-		 * Getter für OkButton
+		 * Getter für OkButton.
 		 *
 		 * @return OkButton
 		 */
@@ -136,7 +155,7 @@ public abstract class ClientsideFunctions {
 		}
 		
 		/**
-		 * Setter für OkButton
+		 * Setter für OkButton.
 		 *
 		 * @param b neuer OkButton
 		 */
@@ -163,7 +182,7 @@ public abstract class ClientsideFunctions {
 		}
 
 		/**
-		 * Getter für Label
+		 * Getter für Label.
 		 *
 		 * @return Label
 		 */
@@ -226,6 +245,7 @@ public abstract class ClientsideFunctions {
 		/**
 		 * Getter für NameTextBox.
 		 *
+		 * @param nicknameTextBox the new nickname text box
 		 * @return NameTextBox
 		 */
 		
@@ -251,7 +271,7 @@ public abstract class ClientsideFunctions {
 		/**
 		 * Setter für NameTextBox.
 		 *
-		 * @param nameTextBox neue NameTextBox
+		 * @return the list box
 		 */
 
 		/**
@@ -272,26 +292,57 @@ public abstract class ClientsideFunctions {
 			this.listBox = listBox;
 		}
 	
+		
+	/**
+	 * Gets the firstname text box.
+	 *
+	 * @return the firstname text box
+	 */
 	public TextBox getFirstnameTextBox() {
 			return firstnameTextBox;
 		}
 
+		/**
+		 * Sets the firstname text box.
+		 *
+		 * @param firstnameTextBox the new firstname text box
+		 */
 		public void setFirstnameTextBox(TextBox firstnameTextBox) {
 			this.firstnameTextBox = firstnameTextBox;
 		}
 
+	/**
+	 * Gets the lastname text box.
+	 *
+	 * @return the lastname text box
+	 */
 	public TextBox getLastnameTextBox() {
 			return lastnameTextBox;
 		}
 
+		/**
+		 * Sets the lastname text box.
+		 *
+		 * @param lastnameTextBox the new lastname text box
+		 */
 		public void setLastnameTextBox(TextBox lastnameTextBox) {
 			this.lastnameTextBox = lastnameTextBox;
 		}
 
+	/**
+	 * Gets the email text box.
+	 *
+	 * @return the email text box
+	 */
 	public TextBox getEmailTextBox() {
 			return emailTextBox;
 		}
 
+		/**
+		 * Sets the email text box.
+		 *
+		 * @param emailTextBox the new email text box
+		 */
 		public void setEmailTextBox(TextBox emailTextBox) {
 			this.emailTextBox = emailTextBox;
 		}
@@ -302,10 +353,19 @@ public abstract class ClientsideFunctions {
 	public static class popUpBox extends DialogBox {
 		
 
+		/** The close button. */
 		CloseButton closeButton = null;
+		
+		/** The ok button. */
 		OkButton okButton = null;
+		
+		/** The panel. */
 		VerticalPanel panel = null;
+		
+		/** The hpanel. */
 		HorizontalPanel hpanel = null;
+		
+		/** The dialog box label. */
 		Label dialogBoxLabel = new Label();
 		
 		/**
@@ -420,7 +480,7 @@ public abstract class ClientsideFunctions {
 		}
 		
 		/**
-		 * Setter für OkButton
+		 * Setter für OkButton.
 		 *
 		 * @param b neuer OkButton
 		 */
@@ -434,7 +494,7 @@ public abstract class ClientsideFunctions {
 	 */
 	public static class CloseButton extends Button{
 		
-		/** zu schließende DialogBox */
+		/**  zu schließende DialogBox. */
 		DialogBox db;
 		
 		/**
@@ -481,11 +541,21 @@ public abstract class ClientsideFunctions {
 		 */
 		public class CloseDBClickHandler implements ClickHandler{
 			
+			/** The db. */
 			DialogBox db;
 	
+			/**
+			 * Instantiates a new close DB click handler.
+			 *
+			 * @param db the db
+			 */
 			public CloseDBClickHandler(DialogBox db) {
 				this.db=db;
 			}
+			
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 */
 			public void onClick(ClickEvent event) {
 				db.hide();
 			}
@@ -530,31 +600,70 @@ public abstract class ClientsideFunctions {
 		 */
 		private class CloseDBClickHandler implements ClickHandler{
 			
+			/** The db. */
 			DialogBox db;
 	
+			/**
+			 * Instantiates a new close DB click handler.
+			 *
+			 * @param db the db
+			 */
 			public CloseDBClickHandler(DialogBox db) {
 				this.db=db;
 			}
+			
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 */
 			public void onClick(ClickEvent event) {
 				db.hide();
 			}
 		}
 	}
 }
+	
+	/**
+	 * The Class CommentDialogBox.
+	 */
 	public static class CommentDialogBox extends DialogBox{
+		
+		/** The scrollpanel. */
 		final ScrollPanel scrollpanel = new ScrollPanel();
+		
+		/** The panel. */
 		final VerticalPanel panel = new VerticalPanel();
+		
+		/** The comment panel. */
 		final HorizontalPanel commentPanel = new HorizontalPanel();
+		
+		/** The buttonpanel. */
 		final HorizontalPanel buttonpanel = new HorizontalPanel();
+		
+		/** The comment box. */
 		TextArea comment_box = new TextArea();
+		
+		/** The submit btn. */
 		Button submit_btn = new Button("Kommentieren");
+		
+		/** The close btn. */
 		CloseButton close_btn = new CloseButton();
+		
+		/** The pinboard panel. */
 		static PinboardPanel pinboardPanel = new PinboardPanel();
+		
+		/** The db. */
 		CommentDialogBox db;
 		
+		/** The current post. */
 		public Post currentPost = new Post();
 		
 		
+		/**
+		 * Instantiates a new comment dialog box.
+		 *
+		 * @param post the post
+		 * @param pp the pp
+		 */
 		public CommentDialogBox(Post post, PinboardPanel pp) {
 			pinboardPanel = pp;
 			this.setStylePrimaryName("commentBox");
@@ -663,6 +772,11 @@ public abstract class ClientsideFunctions {
 		
 	}
 		
+/**
+ * Refresh.
+ *
+ * @param postId the post id
+ */
 public void refresh(int postId) {
 			this.hide();
 			Post post = new Post();
@@ -672,17 +786,35 @@ public void refresh(int postId) {
 			
 		}
 
+/**
+ * The Class CloseDBClickHandler.
+ */
 public class CloseDBClickHandler implements ClickHandler{
 			
+			/** The db. */
 			DialogBox db;
+			
+			/** The pp. */
 			PinboardPanel pp = new PinboardPanel();
+			
+			/** The post owner id. */
 			int postOwnerId;
 			
 	
+			/**
+			 * Instantiates a new close DB click handler.
+			 *
+			 * @param db the db
+			 * @param postOwnerId the post owner id
+			 */
 			public CloseDBClickHandler(DialogBox db, int postOwnerId) {
 				this.db=db;
 				this.postOwnerId=postOwnerId;
 			}
+			
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 */
 			public void onClick(ClickEvent event) {
 				db.hide();
 				User u= new User();
@@ -690,17 +822,33 @@ public class CloseDBClickHandler implements ClickHandler{
 				pp.createPinboard(u);
 			}
 		}
+
+/**
+ * The Class SubmitDBClickHandler.
+ */
 public class SubmitDBClickHandler implements ClickHandler{
 	
+	/** The text 1. */
 	String text1 = new String();
+	
+	/** The postid 1. */
 	int postid1;
 	
 
+	/**
+	 * Instantiates a new submit DB click handler.
+	 *
+	 * @param postid the postid
+	 */
 	public SubmitDBClickHandler(int postid) {
 		
 	
 		postid1=postid;
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+	 */
 	public void onClick(ClickEvent event) {
 		text1 = comment_box.getValue();
 		if(text1=="") {
@@ -723,12 +871,27 @@ public class SubmitDBClickHandler implements ClickHandler{
 	
 	}}
 }
+
+/**
+ * The Class DeleteCommentClickHandler.
+ */
 public class DeleteCommentClickHandler implements ClickHandler{
+	
+	/** The comment. */
 	Comment comment = new Comment();
+	
+	/**
+	 * Instantiates a new delete comment click handler.
+	 *
+	 * @param c the c
+	 */
 	public DeleteCommentClickHandler(Comment c) {
 		comment=c;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+	 */
 	@Override
 	public void onClick(ClickEvent event) {
 		editorAdministration.deleteComment(comment, new AsyncCallback<Void>() {
@@ -750,13 +913,32 @@ public class DeleteCommentClickHandler implements ClickHandler{
 	}
 	
 }
+
+/**
+ * The Class EditCommentClickHandler.
+ */
 public class EditCommentClickHandler implements ClickHandler{
+	
+	/** The comment. */
 	Comment comment = new Comment();
+	
+	/** The dialog. */
 	CommentDialogBox dialog;
+	
+	/**
+	 * Instantiates a new edits the comment click handler.
+	 *
+	 * @param c the c
+	 * @param dialog the dialog
+	 */
 	public EditCommentClickHandler(Comment c, CommentDialogBox dialog) {
 		comment=c;
 		this.dialog = dialog;
 	}
+	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+	 */
 	@Override
 	public void onClick(ClickEvent event) {
 		new UpdateCommentDialogBox(comment, dialog);
@@ -768,28 +950,66 @@ public class EditCommentClickHandler implements ClickHandler{
 }
 	}
 	
+	/**
+	 * The Class UpdatePostDialogBox.
+	 */
 	//TODO
 	public static class UpdatePostDialogBox extends DialogBox{
 		
+		/** The scroll panel. */
 		final ScrollPanel scrollPanel = new ScrollPanel();
+		
+		/** The vertical panel. */
 		final VerticalPanel verticalPanel = new VerticalPanel();
+		
+		/** The button panel. */
 		final HorizontalPanel buttonPanel = new HorizontalPanel();
+		
+		/** The comment panel. */
 		final HorizontalPanel commentPanel = new HorizontalPanel();
+		
+		/** The header. */
 		StyleLabel header = new StyleLabel("Beitrag bearbeiten","search_lbl");
+		
+		/** The update post box. */
 		TextArea updatePostBox = new TextArea();
+		
+		/** The pinboard panel. */
 		static PinboardPanel pinboardPanel = new PinboardPanel();
 		
+		/** The done btn. */
 		Button doneBtn = new Button("Fertig");
+		
+		/** The close btn. */
 		CloseButton closeBtn = new CloseButton();
+		
+		/** The updated post. */
 		Post updatedPost = new Post();
 		
+		/**
+		 * Gets the update post box.
+		 *
+		 * @return the update post box
+		 */
 		public TextArea getUpdatePostBox() {
 			return updatePostBox;
 		}
+		
+		/**
+		 * Sets the update post box.
+		 *
+		 * @param updatePostBox the new update post box
+		 */
 		public void setUpdatePostBox(TextArea updatePostBox) {
 			this.updatePostBox = updatePostBox;
 		}
 		
+		/**
+		 * Instantiates a new update post dialog box.
+		 *
+		 * @param post the post
+		 * @param pp the pp
+		 */
 		public UpdatePostDialogBox(Post post, PinboardPanel pp) {
 			if (editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
@@ -836,14 +1056,33 @@ public class EditCommentClickHandler implements ClickHandler{
 			center();
 			
 		}
+		
+		/**
+		 * The Class UpdatePostDBClickHandler.
+		 */
 		public class UpdatePostDBClickHandler implements ClickHandler{
 			
+			/** The post. */
 			Post post;
+			
+			/** The updated text. */
 			String updatedText; 
+			
+			/** The Updated post DB. */
 			UpdatePostDialogBox UpdatedPostDB;
+			
+			/** The pp. */
 			PinboardPanel pp = new PinboardPanel();
 			
 			
+			/**
+			 * Instantiates a new update post DB click handler.
+			 *
+			 * @param post the post
+			 * @param updatedText the updated text
+			 * @param UpdatedPostDB the updated post DB
+			 * @param pp the pp
+			 */
 			public UpdatePostDBClickHandler(Post post, String updatedText, UpdatePostDialogBox UpdatedPostDB, PinboardPanel pp) {
 				this.post=post;
 				this.UpdatedPostDB=UpdatedPostDB;
@@ -851,6 +1090,9 @@ public class EditCommentClickHandler implements ClickHandler{
 				this.pp=pp;
 			}
 
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 */
 			@Override
 			public void onClick(ClickEvent event) {
 				if (editorAdministration == null) {
@@ -876,14 +1118,30 @@ public class EditCommentClickHandler implements ClickHandler{
 			}
 			
 		}
+		
+		/**
+		 * The Class CloseDBClickHandler.
+		 */
 		public class CloseDBClickHandler implements ClickHandler{
 			
+			/** The db. */
 			DialogBox db;
+			
+			/** The superdb. */
 			DialogBox superdb;
 
+			/**
+			 * Instantiates a new close DB click handler.
+			 *
+			 * @param db the db
+			 */
 			public CloseDBClickHandler(DialogBox db) {
 				this.db=db;
 			}
+			
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 */
 			public void onClick(ClickEvent event) {
 				db.hide();
 				superdb.show();
@@ -893,23 +1151,59 @@ public class EditCommentClickHandler implements ClickHandler{
 		
 	}
 	
+	/**
+	 * The Class UpdateCommentDialogBox.
+	 */
 	public static class UpdateCommentDialogBox extends DialogBox{
+		
+		/** The scrollpanel. */
 		final ScrollPanel scrollpanel = new ScrollPanel();
+		
+		/** The panel. */
 		final VerticalPanel panel = new VerticalPanel();
+		
+		/** The buttonpanel. */
 		final HorizontalPanel buttonpanel = new HorizontalPanel();
+		
+		/** The header. */
 		StyleLabel header = new StyleLabel("Kommentar bearbeiten","search_lbl");
+		
+		/** The comment box. */
 		TextArea commentBox = new TextArea();
+		
+		/**
+		 * Gets the comment box.
+		 *
+		 * @return the comment box
+		 */
 		public TextArea getCommentBox() {
 			return commentBox;
 		}
+		
+		/**
+		 * Sets the comment box.
+		 *
+		 * @param commentBox the new comment box
+		 */
 		public void setCommentBox(TextArea commentBox) {
 			this.commentBox = commentBox;
 		}
+		
+		/** The change btn. */
 		Button changeBtn = new Button("Fertig");
+		
+		/** The close btn. */
 		CloseButton closeBtn = new CloseButton();
 		
+		/** The fullcomment. */
 		Comment fullcomment = new Comment();
 		
+	/**
+	 * Instantiates a new update comment dialog box.
+	 *
+	 * @param comment the comment
+	 * @param dialogbox the dialogbox
+	 */
 	public UpdateCommentDialogBox(Comment comment, CommentDialogBox dialogbox){
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
@@ -952,35 +1246,75 @@ public class EditCommentClickHandler implements ClickHandler{
 		show();
 		center();
 		}
+	
+	/**
+	 * The Class CloseDBClickHandler.
+	 */
 	public class CloseDBClickHandler implements ClickHandler{
 		
+		/** The db. */
 		DialogBox db;
+		
+		/** The superdb. */
 		DialogBox superdb;
 
+		/**
+		 * Instantiates a new close DB click handler.
+		 *
+		 * @param db the db
+		 * @param superdb the superdb
+		 */
 		public CloseDBClickHandler(DialogBox db, DialogBox superdb) {
 			this.db=db;
 			this.superdb=superdb;
 		}
+		
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		public void onClick(ClickEvent event) {
 			db.hide();
 			superdb.show();
 			
 		}
 	}
+
+/**
+ * The Class UpdateCommentDBClickHandler.
+ */
 public class UpdateCommentDBClickHandler implements ClickHandler{
 		
+	/** The db. */
 	UpdateCommentDialogBox db;
+		
+		/** The superdb. */
 		CommentDialogBox superdb;
+		
+		/** The comment. */
 		Comment comment;
+		
+		/** The text. */
 		String text;
 		
 
+		/**
+		 * Instantiates a new update comment DB click handler.
+		 *
+		 * @param comment the comment
+		 * @param text the text
+		 * @param db the db
+		 * @param superdb the superdb
+		 */
 		public UpdateCommentDBClickHandler(Comment comment, String text, UpdateCommentDialogBox db, CommentDialogBox superdb) {
 			this.db=db;
 			this.superdb=superdb;
 			this.comment=comment;
 			this.text=text;
 		}
+		
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		public void onClick(ClickEvent event) {
 			if (editorAdministration == null) {
 				editorAdministration = ClientsideSettings.getAdministration();
@@ -1008,11 +1342,19 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 	}
 	
 	}
+
+/**
+ * The Class AlertDialogBox.
+ */
 public static class AlertDialogBox extends DialogBox{
 		
 		/** Diverse Attribute und GWT Elemente die zur Realisierung der AlertDialogBox benötigt werden. */
 		Label textLbl = new Label();
+		
+		/** The ok btn. */
 		CloseButton okBtn = new CloseButton(this); 
+		
+		/** The panel. */
 		VerticalPanel panel = new VerticalPanel();
 		
 		/**
@@ -1030,15 +1372,29 @@ public static class AlertDialogBox extends DialogBox{
 				center();
 			
 		}
+		
+		/**
+		 * The Class CloseDBClickHandler.
+		 */
 		public class CloseDBClickHandler implements ClickHandler{
 			
+			/** The db. */
 			DialogBox db;
 			
 
+			/**
+			 * Instantiates a new close DB click handler.
+			 *
+			 * @param db the db
+			 */
 			public CloseDBClickHandler(DialogBox db) {
 				this.db=db;
 				
 			}
+			
+			/* (non-Javadoc)
+			 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+			 */
 			public void onClick(ClickEvent event) {
 				db.hide();
 				
