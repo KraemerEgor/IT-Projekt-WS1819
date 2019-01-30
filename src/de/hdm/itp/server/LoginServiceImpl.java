@@ -7,7 +7,7 @@ import de.hdm.itp.client.LoginInfo;
 import de.hdm.itp.client.LoginService;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-/* 
+/** 
  * Die serverseitige Implementierung des Login Service pr�ft
  * ob der Nutzer sich mit seinem Google Konto eingeloggt hat. Falls der Nutzer
  * eingeloggt ist, werden die Attribute des loginInfo Objekts mit Werten aus dem

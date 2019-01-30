@@ -95,7 +95,11 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 	 * Erstellen des Reports aller Kontakte, die der angemeldete Nutzer besitzt und
 	 * mit diesem geteilt wurden.
 	 *
+	 * @param u the u
+	 * @param dateFrom the date from
+	 * @param dateTill the date till
 	 * @return the all contacts of user report
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 
 	@Override
@@ -626,7 +630,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 //
 //	}
 //}
-//
+/**
+	 * Creates the all my comments from post from user report.
+	 *
+	 * @param myComment the my comment
+	 * @param p the p
+	 * @return the all my comments from post from user report
+	 */
+	//
 	public AllMyCommentsFromPostFromUserReport createAllMyCommentsFromPostFromUserReport(Vector<Comment> myComment,
 			Post p) {
 		if (this.getEditorAdministration() == null) {
@@ -668,6 +679,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.shared.ReportGenerator#createAllCommentsOfAllPostsFromUserReportForm(de.hdm.itp.shared.bo.User, java.util.Date, java.util.Date)
+	 */
 	public AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
 			Date dateTill) throws IllegalArgumentException {
 

@@ -24,46 +24,37 @@ import java.util.Date;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
+/**
+ * The Class EditorAdministrationImpl.
+ */
 @SuppressWarnings("serial")
 public class EditorAdministrationImpl extends RemoteServiceServlet implements EditorAdministration {
 	
+	/** The current user. */
 	User currentUser = new User();
 
-	/**
-	 * Referenz auf den Commentmapper, der die Kommentare mit der Datenbank
-	 * abgleicht
-	 */
+	/** Referenz auf den Commentmapper, der die Kommentare mit der Datenbank abgleicht. */
 	private CommentMapper cMapper = null;
 
-	/**
-	 * Refernz auf den Likemapper, der die Likes mit der Datenbank abgleicht
-	 */
+	/** Refernz auf den Likemapper, der die Likes mit der Datenbank abgleicht. */
 	private LikeMapper liMapper = null;
 
-	/**
-	 * Referenz auf den Postmapper, der die Posts mit der Datenbank abgleicht
-	 */
+	/** Referenz auf den Postmapper, der die Posts mit der Datenbank abgleicht. */
 	private PostMapper pMapper = null;
 
-	/**
-	 * Referenz auf den Subsmapper, der die Subscriptions mit der Datenbank
-	 * abgleicht
-	 */
+	/** Referenz auf den Subsmapper, der die Subscriptions mit der Datenbank abgleicht. */
 	private SubsMapper sMapper = null;
 
-	/**
-	 * Referenz auf den Usermapper, der die User mit der Datenbank abgleicht
-	 */
+	/** Referenz auf den Usermapper, der die User mit der Datenbank abgleicht. */
 	private UserMapper uMapper = null;
 
-	/**
-	 * Referenz auf die EditorAdministration, welche administrative F�higkeiten definiert
-	 */
+	/** Referenz auf die EditorAdministration, welche administrative F�higkeiten definiert. */
 	private static EditorAdministration editorAdministrationImpl = null;
 
 	/**
-	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und R�ckgabe dessen
-	 * @return
+	 * Abfrage ob bereits ein editorAdministrationImpl Object vorhanden ist sonst neu Erstellung eines und R�ckgabe dessen.
+	 *
+	 * @return the editor administration
 	 */
 	public static EditorAdministration editorAdministrationImpl() {
 		if (editorAdministrationImpl == null) {
@@ -73,7 +64,9 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 
 	/**
-	 * No-Arguments-Constructor der EditorAdministrationImpl
+	 * No-Arguments-Constructor der EditorAdministrationImpl.
+	 *
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	public EditorAdministrationImpl() throws IllegalArgumentException {
 
@@ -97,7 +90,14 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 
 	/**
-	 * Ende Initialisierung
+	 * Ende Initialisierung.
+	 *
+	 * @param email the email
+	 * @param firstname the firstname
+	 * @param lastname the lastname
+	 * @param nickname the nickname
+	 * @param gender the gender
+	 * @return the user
 	 */
 
 	/**
@@ -170,7 +170,12 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 
 	/**
-	 * ************************** Ende der User-Methoden **************************
+	 * ************************** Ende der User-Methoden **************************.
+	 *
+	 * @param content the content
+	 * @param currentUsers the current users
+	 * @return the post
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 
 	/**
@@ -292,7 +297,12 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 	/**
 	 * **************************** Ende der Post-Methoden
-	 * ****************************
+	 * ****************************.
+	 *
+	 * @param p the p
+	 * @param owner the owner
+	 * @return the like
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	/**
 	 * **************************** Anfang der Like-Methoden
@@ -388,7 +398,13 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 
 	/**
-	 * *********************** Ende der Like-Methoden ***********************
+	 * *********************** Ende der Like-Methoden ***********************.
+	 *
+	 * @param postID the post ID
+	 * @param text the text
+	 * @param currentUser the current user
+	 * @return the comment
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 
 	/**
@@ -514,7 +530,12 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 	/**
 	 * ******************************* Ende der Comment-Methoden
-	 * *******************************
+	 * *******************************.
+	 *
+	 * @param currentUser the current user
+	 * @param targetUser the target user
+	 * @return the subs
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	/**
 	 * ******************************* Anfang der Subs-Methoden
@@ -592,7 +613,11 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 	/**
 	 * **************************** Ende der Subs-Methoden
-	 * ****************************
+	 * ****************************.
+	 *
+	 * @param email the email
+	 * @return true, if is user known
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 
 	/**
@@ -617,10 +642,10 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 
 	/**
 	 * Holt Klarnamen eines Nutzers aus der Datenbank.
-	 * 
+	 *
 	 * @param user Nutzer
 	 * @return Klarname des Nutzers
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException the illegal argument exception
 	 */
 	public String getFullNameOfUser(User user) throws IllegalArgumentException {
 
@@ -632,6 +657,9 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.shared.EditorAdministration#getAllCommentsOfPost(de.hdm.itp.shared.bo.Post)
+	 */
 	@Override
 	public Vector<Comment> getAllCommentsOfPost(Post p) throws IllegalArgumentException {
 		
@@ -640,6 +668,9 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.shared.EditorAdministration#getAllCommentsOfUser(de.hdm.itp.shared.bo.User)
+	 */
 	@Override
 	public Vector<Comment> getAllCommentsOfUser(User u) throws IllegalArgumentException {
 		
@@ -649,6 +680,9 @@ public class EditorAdministrationImpl extends RemoteServiceServlet implements Ed
 	
 	}
 	
+	/* (non-Javadoc)
+	 * @see de.hdm.itp.shared.EditorAdministration#getPostByCommentId(de.hdm.itp.shared.bo.Comment)
+	 */
 	public Post getPostByCommentId(Comment c) throws IllegalArgumentException {
 		
 		
