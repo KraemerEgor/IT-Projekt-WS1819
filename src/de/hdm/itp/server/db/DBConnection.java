@@ -24,7 +24,6 @@ import com.google.appengine.api.utils.SystemProperty;
  * allerdings den Rahmen dieses Projekts sprengen bzw. die Software unn�tig
  * verkomplizieren, da dies f�r diesen Anwendungsfall nicht erforderlich ist.
  * 
- * @author Thies
  */
 public class DBConnection {
 
@@ -63,8 +62,7 @@ public class DBConnection {
      * @author Thies
      * @return DAS <code>DBConncetion</code>-Objekt.
      * @see con
-     */
-   
+     */  
     public static Connection connection() {
        
         if (con == null) {

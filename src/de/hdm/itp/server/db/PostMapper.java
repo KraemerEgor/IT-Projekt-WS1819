@@ -12,7 +12,9 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
 //import com.google.cloud.sql.jdbc.Connection;
-
+/**
+ * The Class PostMapper.
+ */
 public class PostMapper {
 	
 	/**
@@ -24,11 +26,10 @@ public class PostMapper {
 	private static PostMapper  postmapper = null;
 	
 	/**
-	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zur�ck
-	 * 
-	 * @return erstmalig erstellter PostMapper
-	 * 
+	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zur�ck.
+	 *
 	 * @author Egor Kr�mer
+	 * @return erstmalig erstellter PostMapper
 	 */
 	public static PostMapper postMapper() {
 		if (postmapper == null){
@@ -36,13 +37,13 @@ public class PostMapper {
 		}
 		return postmapper;
 		}
+	
 	/**
-	 * Findet Posts durch eine P_ID und speichert die dazugehörigen Werte (P_ID, creator, content, createDate, modDate) in einem Post Objekt ab und gibt dieses wieder
-	 * 
-	 * @param pid übergebener Integer der P_ID
-	 * @return Ein vollständiges Post Objekt
-	 * 
+	 * Findet Posts durch eine P_ID und speichert die dazugehörigen Werte (P_ID, creator, content, createDate, modDate) in einem Post Objekt ab und gibt dieses wieder.
+	 *
 	 * @author Egor Krämer
+	 * @param post the post
+	 * @return Ein vollständiges Post Objekt
 	 */
 	public Post findByID(Post post){
 		Connection con = DBConnection.connection();
@@ -71,14 +72,15 @@ public class PostMapper {
 		
 		return p;
 	}
+	
 	/**
 	 * Gibt alle Post Objekte zur�ck welche mit P_ID, creator, cintent, createDate und modDate bef�llt sind von einem spezifischen User
 	 * Hierf�r holen wir P_ID, creator, cintent, createDate und modDate aus der T_Post Tabelle, die dem User mit der id zugeteilt sind, und speichern diese in einem Post Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Posts geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Post Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Posts geben wir zur�ck.
+	 *
 	 * @author Egor Krämer
+	 * @param u the u
+	 * @return Ein Vector voller Post Objekte welche bef�llt sind
 	 */
 	public Vector<Post> findAllByUID(User u){
 Connection con = DBConnection.connection();
@@ -102,15 +104,15 @@ Vector<Post> result = new Vector<Post>();
 		}
 		return result;
 	}
+	
 	/**
-		 * Gibt alle Post Objekte zur�ck welche mit P_ID, creator, content, createDate und modDate bef�llt sind
-		 * Hierf�r holen wir P_ID, creator, cintent, createDate und modDate aus der T_Post Tabelle und speichern diese in einem Post Objekt ab und f�gen diese dem Vector hinzu
-		 * Diesen Vector bef�llt mit Posts geben wir zur�ck
-		 * 
-		 * @return Ein Vector voller Post Objekte welche bef�llt sind
-		 * 
-		 * @author Egor Kr�mer
-		 */
+	 * Gibt alle Post Objekte zur�ck welche mit P_ID, creator, content, createDate und modDate bef�llt sind
+	 * Hierf�r holen wir P_ID, creator, cintent, createDate und modDate aus der T_Post Tabelle und speichern diese in einem Post Objekt ab und f�gen diese dem Vector hinzu
+	 * Diesen Vector bef�llt mit Posts geben wir zur�ck.
+	 *
+	 * @author Egor Kr�mer
+	 * @return Ein Vector voller Post Objekte welche bef�llt sind
+	 */
 		public Vector<Post> findAll(){
 	Connection con = DBConnection.connection();
 	Vector<Post> result = new Vector<Post>();
@@ -133,15 +135,15 @@ Vector<Post> result = new Vector<Post>();
 			}
 			return result;
 		}
+		
 		/**
 		 * Sucht nach der höchsten P_ID um diese um eins zu erhöhen und als neue P_ID zu nutzen
 		 * Befüllt T_Post mit P_ID, creator, content, createDate und modDate
-		 * Ein Post Objekt wird zurückgegeben
+		 * Ein Post Objekt wird zurückgegeben.
 		 *
+		 * @author Egor Krämer
 		 * @param post übergebenes Post Objekt mit allen Attributen
 		 * @return Ein vollständiges Post Objekt
-		 * 
-		 * @author Egor Krämer
 		 */
 		public Post insert(Post post){
 			Connection con = DBConnection.connection();
@@ -181,12 +183,11 @@ Vector<Post> result = new Vector<Post>();
 		
 		/**
 		 *  Befüllt T_Post mit P_ID, creator, content, createDate und modDate, falls sich was geändert hat
-		 * Ein Post Objekt wird zurückgegeben
-		 * 
+		 * Ein Post Objekt wird zurückgegeben.
+		 *
+		 * @author Egor Krämer
 		 * @param post übergebenes Post Objekt mit Attributen P_ID und type
 		 * @return Ein vollständiges Post Objekt
-		 * 
-		 * @author Egor Krämer
 		 */
 
 		public Post update(Post post){
@@ -218,11 +219,10 @@ Vector<Post> result = new Vector<Post>();
 		return post;}
 		
 		/**
-		 * Entfernt alles aus T_Post wo die P_ID der ID des übergebenen Objekts entspricht
-		 * 
-		 * @param post übergebenes Post Objekt mit Attribut P_ID
-		 * 
+		 * Entfernt alles aus T_Post wo die P_ID der ID des übergebenen Objekts entspricht.
+		 *
 		 * @author Egor Krämer
+		 * @param post übergebenes Post Objekt mit Attribut P_ID
 		 */
 		public void delete (Post post){
 			Connection con = DBConnection.connection();

@@ -14,6 +14,9 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class SubsMapper.
+ */
 public class SubsMapper {
 	/**
 	* Konstruktor f�r den SubsMapper (Singleton) 
@@ -24,11 +27,10 @@ public class SubsMapper {
 	private static SubsMapper  subsmapper = null;
 	
 	/**
-	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zur�ck
-	 * 
-	 * @return erstmalig erstellter PostMapper
-	 * 
+	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zur�ck.
+	 *
 	 * @author Egor Kr�mer
+	 * @return erstmalig erstellter PostMapper
 	 */
 	public static SubsMapper subsMapper() {
 		if (subsmapper == null){
@@ -36,14 +38,14 @@ public class SubsMapper {
 		}
 		return subsmapper;
 		}
+	
 	/**
 	 * Gibt alle Subs Objekte zur�ck welche mit currentUser, targetUser, createDate bef�llt sind
 	 * Hierf�r holen wir currentUser, targetUser, createDate aus der T_Subs Tabelle und speichern diese in einem Subs Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Subs geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Subs Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Subs geben wir zur�ck.
+	 *
 	 * @author Egor Kr�mer
+	 * @return Ein Vector voller Subs Objekte welche bef�llt sind
 	 */
 	public Vector<Subs> findAll(){
 Connection con = DBConnection.connection();
@@ -67,14 +69,15 @@ Vector<Subs> result = new Vector<Subs>();
 		}
 		return result;
 	}
+	
 	/**
 	 * Gibt alle Subs Objekte zur�ck welche mit currentUser, targetUser, createDate bef�llt sind von dem aktuellen Benutzer
 	 * Hierf�r holen wir currentUser, targetUser, createDate  aus der T_Subs Tabelle, die dem User mit der id zugeteilt sind, und speichern diese in einem Subs Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Subs geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Subs Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Subs geben wir zur�ck.
+	 *
 	 * @author Egor Krämer
+	 * @param user the user
+	 * @return Ein Vector voller Subs Objekte welche bef�llt sind
 	 */
 	public Vector<Subs> findAllByCurrentUserId(User user){
 Connection con = DBConnection.connection();
@@ -98,14 +101,15 @@ Vector<Subs> result = new Vector<Subs>();
 		}
 		return result;
 	}
+	
 	/**
 	 * Gibt alle Subs Objekte zur�ck welche mit currentUser, targetUser, createDate bef�llt sind von dem zu abonierenden Benutzer
 	 * Hierf�r holen wir currentUser, targetUser, createDate  aus der T_Subs Tabelle, die dem User mit der id zugeteilt sind, und speichern diese in einem Subs Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Subs geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Subs Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Subs geben wir zur�ck.
+	 *
 	 * @author Egor Krämer
+	 * @param user the user
+	 * @return Ein Vector voller Subs Objekte welche bef�llt sind
 	 */
 	public Vector<Subs> findAllByTargetUserId(User user){
 Connection con = DBConnection.connection();
@@ -129,14 +133,14 @@ Vector<Subs> result = new Vector<Subs>();
 		}
 		return result;
 	}
+	
 	/**
-	  * Befüllt T_Subs mit currentUser, targetUser und createDate
-	 * Ein Subs Objekt wird zurückgegeben
+	 * Befüllt T_Subs mit currentUser, targetUser und createDate
+	 * Ein Subs Objekt wird zurückgegeben.
 	 *
+	 * @author Egor Krämer
 	 * @param subs übergebenes Subs Objekt mit allen Attributen
 	 * @return Ein vollständiges Subs Objekt
-	 * 
-	 * @author Egor Krämer
 	 */
 	public Subs insert(Subs subs){
 		Connection con = DBConnection.connection();
@@ -163,12 +167,12 @@ Vector<Subs> result = new Vector<Subs>();
 			e2.printStackTrace();
 			return subs;
 		}}
+	
 	/**
-	 * Entfernt alles aus T_Subs wo die ID(currentUser und targetUser) der ID des übergebenen Objekts entspricht
-	 * 
-	 * @param subs übergebenes Subs Objekt mit Attribut ID(currentUser und targetUser)
-	 * 
+	 * Entfernt alles aus T_Subs wo die ID(currentUser und targetUser) der ID des übergebenen Objekts entspricht.
+	 *
 	 * @author Egor Krämer
+	 * @param subs übergebenes Subs Objekt mit Attribut ID(currentUser und targetUser)
 	 */
 	public void delete (Subs subs){
 		Connection con = DBConnection.connection();

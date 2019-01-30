@@ -10,6 +10,9 @@ import java.util.Vector;
 
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class UserMapper.
+ */
 public class UserMapper {
 
 	/**
@@ -21,11 +24,10 @@ public class UserMapper {
 	private static UserMapper  usermapper = null;
 	
 	/**
-	 * Falls noch kein UserMapper existiert erstellt er ein neuen UserMapper und gibt ihn zurück
-	 * 
-	 * @return erstmalig erstellter UserMapper
-	 * 
+	 * Falls noch kein UserMapper existiert erstellt er ein neuen UserMapper und gibt ihn zurück.
+	 *
 	 * @author Egor Krämer
+	 * @return erstmalig erstellter UserMapper
 	 */
 	public static UserMapper userMapper() {
 		if (usermapper == null){
@@ -34,14 +36,14 @@ public class UserMapper {
 		
 		return usermapper;
 		}
+	
 	/**
 	 * Gibt alle User Objekte zurück welche mit U_ID und eMail befüllt sind
 	 * Hierfür holen wir U_ID, firstname, lastname, nickname, email, gender und createDate aus der T_User Tabelle und speichern diese in einem User Objekt ab und fügen diese dem Vector hinzu
-	 * Diesen Vector befüllt mit User geben wir zurück
-	 * 
-	 * @return Ein Vector voller User Objekte welche befüllt sind
-	 * 
+	 * Diesen Vector befüllt mit User geben wir zurück.
+	 *
 	 * @author Egor Krämer
+	 * @return Ein Vector voller User Objekte welche befüllt sind
 	 */
 	public Vector<User> findAll(){
 		Connection con = DBConnection.connection();
@@ -69,12 +71,11 @@ public class UserMapper {
 			}
 	
 	/**
-	 * Findet User durch eine U_ID und speichert die dazugehörigen Werte (U_ID, firstname, lastname, nickname, email, gender und createDate) in einem User Objekt ab und gibt dieses wieder
-	 * 
-	 * @param uid übergebener Integer der U_ID
-	 * @return Ein vollständiges User Objekt
-	 * 
+	 * Findet User durch eine U_ID und speichert die dazugehörigen Werte (U_ID, firstname, lastname, nickname, email, gender und createDate) in einem User Objekt ab und gibt dieses wieder.
+	 *
 	 * @author Egor Krämer
+	 * @param user the user
+	 * @return Ein vollständiges User Objekt
 	 */
 	public User findByID(User user){
 		Connection con = DBConnection.connection();
@@ -108,12 +109,11 @@ public class UserMapper {
 	
 	/**
 	 * Findet User durch eine EMail und speichert die dazugehörigen Werte (U_ID, firstname, lastname, nickname, email, gender und createDate) in einem User Objekt ab 
-	 * und speichert dieses Objekt ab und gibt dieses wieder
-	 * 
+	 * und speichert dieses Objekt ab und gibt dieses wieder.
+	 *
+	 * @author Egor Krämer
 	 * @param email übergebener String der eMail
 	 * @return Ein vollständiges User Objekt
-	 * 
-	 * @author Egor Krämer
 	 */
 	public User findByEMail(String email){
 		Connection con = DBConnection.connection();
@@ -142,14 +142,14 @@ public class UserMapper {
 		
 		return u;
 	}
+	
 	/**
 	 * Findet User durch einen Nickname und speichert die dazugehörigen Werte (U_ID, firstname, lastname, nickname, email, gender und createDate) in einem User Objekt ab 
-	 * und speichert dieses Objekt ab und gibt dieses wieder
-	 * 
-	 * @param email übergebener String des Nicknames
-	 * @return Ein vollständiges User Objekt
-	 * 
+	 * und speichert dieses Objekt ab und gibt dieses wieder.
+	 *
 	 * @author Egor Krämer
+	 * @param nickname the nickname
+	 * @return Ein vollständiges User Objekt
 	 */
 	public Vector<User> findByNickname(String nickname){
 		Connection con = DBConnection.connection();
@@ -178,15 +178,15 @@ public class UserMapper {
 		}
 		
 	}
+	
 	/**
 	 * Sucht nach der höchsten U_ID um diese um eins zu erhöhen und als neue U_ID zu nutzen
 	 * Befüllt T_User mit U_ID, firstname, lastname, nickname, email, gender und createDate
-	 * Ein User wird zurückgegeben
+	 * Ein User wird zurückgegeben.
 	 *
+	 * @author Egor Krämer
 	 * @param user übergebenes User Objekt mit allen Attributen
 	 * @return Ein vollständiges User Objekt
-	 * 
-	 * @author Egor Krämer
 	 */
 	public User insert(User user){
 		Connection con = DBConnection.connection();
@@ -230,11 +230,10 @@ public class UserMapper {
 	
 	
 	/**
-	 * Entfernt alles aus T_User wo die U_ID der ID des übergebenen Objekts entspricht
-	 * 
-	 * @param user übergebenes User Objekt mit Attribut U_ID
-	 * 
+	 * Entfernt alles aus T_User wo die U_ID der ID des übergebenen Objekts entspricht.
+	 *
 	 * @author Egor Krämer
+	 * @param user übergebenes User Objekt mit Attribut U_ID
 	 */
 	public void delete (User user){
 		Connection con = DBConnection.connection();

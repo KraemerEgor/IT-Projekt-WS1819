@@ -11,8 +11,16 @@ import de.hdm.itp.server.ReportGeneratorImpl;
 import de.hdm.itp.server.db.*;
 import de.hdm.itp.shared.bo.*;
 
+/**
+ * The Class TestMapper.
+ */
 public class TestMapper {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	// @SuppressWarnings("null")
 	public static void main(String[] args) {
 

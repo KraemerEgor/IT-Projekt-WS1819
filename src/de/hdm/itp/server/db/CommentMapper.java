@@ -12,6 +12,9 @@ import de.hdm.itp.shared.bo.Comment;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class CommentMapper.
+ */
 public class CommentMapper {
 	/**
 	* Konstruktor f�r den CommentMapper (Singleton) 
@@ -22,11 +25,10 @@ public class CommentMapper {
 	private static CommentMapper  commentmapper = null;
 	
 	/**
-	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zur�ck
-	 * 
-	 * @return erstmalig erstellter PostMapper
-	 * 
+	 * Falls noch kein PostMapper existiert wird ein neuen PostMapper erstellt und gibt ihn zur�ck.
+	 *
 	 * @author Egor Kr�mer
+	 * @return erstmalig erstellter PostMapper
 	 */
 	public static CommentMapper commentMapper() {
 		if (commentmapper == null){
@@ -36,12 +38,11 @@ public class CommentMapper {
 		}
 	
 	/**
-	 * Findet Kommentare durch eine C_ID und speichert die dazugehörigen Werte (C_ID, currentUser, post, text, createDate, modDate) in einem Kommentar Objekt ab und gibt dieses wieder
-	 * 
-	 * @param cid übergebener Integer der C_ID
-	 * @return Ein vollständiges Comment Objekt
-	 * 
+	 * Findet Kommentare durch eine C_ID und speichert die dazugehörigen Werte (C_ID, currentUser, post, text, createDate, modDate) in einem Kommentar Objekt ab und gibt dieses wieder.
+	 *
 	 * @author Egor Krämer
+	 * @param comment the comment
+	 * @return Ein vollständiges Comment Objekt
 	 */
 	public Comment findByID(Comment comment){
 		Connection con = DBConnection.connection();
@@ -73,6 +74,12 @@ public class CommentMapper {
 	}
 	
 	
+	/**
+	 * Find post by ID.
+	 *
+	 * @param comment the comment
+	 * @return the int
+	 */
 	public int findPostByID(Comment comment){
 		Connection con = DBConnection.connection();
 		int postId = 0;
@@ -102,11 +109,11 @@ public class CommentMapper {
 	/**
 	 * Gibt alle Comment Objekte zur�ck welche mit C_ID, currentUser, post, text, createDate, modDate bef�llt sind von einem spezifischen User
 	 * Hierf�r holen wir C_ID, currentUser, post, text, createDate, modDate aus der T_Comment Tabelle, die dem User mit der id zugeteilt sind, und speichern diese in einem Comment Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Posts geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Comment Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Posts geben wir zur�ck.
+	 *
 	 * @author Egor Krämer
+	 * @param u the u
+	 * @return Ein Vector voller Comment Objekte welche bef�llt sind
 	 */
 	public Vector<Comment> findAllByUID(User u){
 Connection con = DBConnection.connection();
@@ -175,6 +182,13 @@ Vector<Comment> result = new Vector<Comment>();
 
 	 */
 	
+	/**
+	 * Find all by UI dand date.
+	 *
+	 * @param u the u
+	 * @param cDate the c date
+	 * @return the vector
+	 */
 	public Vector<Comment> findAllByUIDandDate(User u , Comment cDate){
 		Connection con = DBConnection.connection();
 		Vector<Comment> result = new Vector<Comment>();
@@ -202,11 +216,11 @@ Vector<Comment> result = new Vector<Comment>();
 	/**
 	 * Gibt alle Comment Objekte zur�ck welche mit C_ID, currentUser, post, text, createDate, modDate bef�llt sind von einem spezifischen Post
 	 * Hierf�r holen wir C_ID, currentUser, post, text, createDate, modDate aus der T_Comment Tabelle, die dem Post mit der id zugeteilt sind, und speichern diese in einem Comment Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Posts geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Comment Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Posts geben wir zur�ck.
+	 *
 	 * @author Egor Krämer
+	 * @param p the p
+	 * @return Ein Vector voller Comment Objekte welche bef�llt sind
 	 */
 	public Vector<Comment> findAllByPID(Post p){
 Connection con = DBConnection.connection();
@@ -231,14 +245,14 @@ Vector<Comment> result = new Vector<Comment>();
 		}
 		return result;
 	}
+	
 	/**
 	 * Gibt alle Comment Objekte zur�ck welche mit C_ID, currentUser, post, text, createDate, modDate bef�llt sind
 	 * Hierf�r holen wir C_ID, currentUser, post, text, createDate, modDate aus der T_Comment Tabelle und speichern diese in einem Comment Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Comments geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Comment Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Comments geben wir zur�ck.
+	 *
 	 * @author Egor Kr�mer
+	 * @return Ein Vector voller Comment Objekte welche bef�llt sind
 	 */
 	public Vector<Comment> findAll(){
 Connection con = DBConnection.connection();
@@ -263,15 +277,15 @@ Vector<Comment> result = new Vector<Comment>();
 		}
 		return result;
 	}
+	
 	/**
 	 * Sucht nach der höchsten C_ID um diese um eins zu erhöhen und als neue C_ID zu nutzen
 	 * Befüllt T_Comment mit C_ID, currentUser, post, text, createDate, modDate
-	 * Ein Comment Objekt wird zurückgegeben
+	 * Ein Comment Objekt wird zurückgegeben.
 	 *
+	 * @author Egor Krämer
 	 * @param comment übergebenes Comment Objekt mit allen Attributen
 	 * @return Ein vollständiges Comment Objekt
-	 * 
-	 * @author Egor Krämer
 	 */
 	public Comment insert(Comment comment){
 		Connection con = DBConnection.connection();
@@ -313,12 +327,11 @@ Vector<Comment> result = new Vector<Comment>();
 	
 	/**
 	 *  Befüllt T_Comment mit C_ID, currentUser, post, text, createDate, modDate, falls sich was geändert hat
-	 * Ein Comment Objekt wird zurückgegeben
-	 * 
+	 * Ein Comment Objekt wird zurückgegeben.
+	 *
+	 * @author Egor Krämer
 	 * @param comment übergebenes Comment Objekt mit Attributen C_ID, currentUser, post, text, createDate, modDate
 	 * @return Ein vollständiges Comment Objekt
-	 * 
-	 * @author Egor Krämer
 	 */
 
 	public Comment update(Comment comment){
@@ -350,11 +363,10 @@ Vector<Comment> result = new Vector<Comment>();
 	return comment;}
 	
 	/**
-	 * Entfernt alles aus T_Comment wo die C_ID der ID des übergebenen Objekts entspricht
-	 * 
-	 * @param comment übergebenes Comment Objekt mit Attribut C_ID
-	 * 
+	 * Entfernt alles aus T_Comment wo die C_ID der ID des übergebenen Objekts entspricht.
+	 *
 	 * @author Egor Krämer
+	 * @param comment übergebenes Comment Objekt mit Attribut C_ID
 	 */
 	public void delete (Comment comment){
 		Connection con = DBConnection.connection();
@@ -369,12 +381,12 @@ Vector<Comment> result = new Vector<Comment>();
 					e2.printStackTrace();
 					}
 				}
+	
 	/**
-	 * Entfernt alles aus T_Comment wo die P_ID der ID des übergebenen Objekts entspricht
-	 * 
-	 * @param post übergebenes Post Objekt mit Attribut Post
-	 * 
+	 * Entfernt alles aus T_Comment wo die P_ID der ID des übergebenen Objekts entspricht.
+	 *
 	 * @author Egor Krämer
+	 * @param post übergebenes Post Objekt mit Attribut Post
 	 */
 	public void deleteAllByPID (Post post){
 		Connection con = DBConnection.connection();

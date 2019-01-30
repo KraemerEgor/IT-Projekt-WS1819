@@ -13,6 +13,9 @@ import de.hdm.itp.shared.bo.Like;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
+/**
+ * The Class LikeMapper.
+ */
 public class LikeMapper {
 	/**
 	 * Konstruktor für den LikeMapper (Singleton) static weil Singleton. Einzige
@@ -24,11 +27,10 @@ public class LikeMapper {
 
 	/**
 	 * Falls noch kein LikeMapper existiert wird ein neuen LikeMapper erstellt und
-	 * gibt ihn zur�ck
-	 * 
-	 * @return erstmalig erstellter LikeMapper
-	 * 
+	 * gibt ihn zur�ck.
+	 *
 	 * @author Egor Kr�mer
+	 * @return erstmalig erstellter LikeMapper
 	 */
 	public static LikeMapper likeMapper() {
 		if (likemapper == null) {
@@ -42,11 +44,11 @@ public class LikeMapper {
 	 * bef�llt sind von einem spezifischen Post Hierf�r holen wir post, currentUser,
 	 * createDate aus der T_Like Tabelle, die dem Post mit der id zugeteilt sind,
 	 * und speichern diese in einem Like Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Likes geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Like Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Likes geben wir zur�ck.
+	 *
 	 * @author Egor Krämer
+	 * @param post the post
+	 * @return Ein Vector voller Like Objekte welche bef�llt sind
 	 */
 	public Vector<Like> findAllByPID(Post post) {
 		Connection con = DBConnection.connection();
@@ -75,11 +77,11 @@ public class LikeMapper {
 	 * bef�llt sind von einem spezifischen User Hierf�r holen wir post, currentUser,
 	 * createDate aus der T_Like Tabelle, die dem User mit der id zugeteilt sind,
 	 * und speichern diese in einem Like Objekt ab und f�gen diese dem Vector hinzu
-	 * Diesen Vector bef�llt mit Likes geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Like Objekte welche bef�llt sind
-	 * 
+	 * Diesen Vector bef�llt mit Likes geben wir zur�ck.
+	 *
 	 * @author Egor Krämer
+	 * @param user the user
+	 * @return Ein Vector voller Like Objekte welche bef�llt sind
 	 */
 	public Vector<Like> findAllByUID(User user) {
 		Connection con = DBConnection.connection();
@@ -107,11 +109,10 @@ public class LikeMapper {
 	 * Gibt alle Like Objekte zur�ck welche mit post, currentUser, createDate
 	 * bef�llt sind Hierf�r holen wir post, currentUser, createDate aus der T_Like
 	 * Tabelle und speichern diese in einem Like Objekt ab und f�gen diese dem
-	 * Vector hinzu Diesen Vector bef�llt mit Like geben wir zur�ck
-	 * 
-	 * @return Ein Vector voller Like Objekte welche bef�llt sind
-	 * 
+	 * Vector hinzu Diesen Vector bef�llt mit Like geben wir zur�ck.
+	 *
 	 * @author Egor Kr�mer
+	 * @return Ein Vector voller Like Objekte welche bef�llt sind
 	 */
 	public Vector<Like> findAll() {
 		Connection con = DBConnection.connection();
@@ -136,12 +137,11 @@ public class LikeMapper {
 
 	/**
 	 * Befüllt T_Like mit post, currentUser und createDate Ein Like Objekt wird
-	 * zurückgegeben
+	 * zurückgegeben.
 	 *
+	 * @author Egor Krämer
 	 * @param like übergebenes Like Objekt mit allen Attributen
 	 * @return Ein vollständiges Like Objekt
-	 * 
-	 * @author Egor Krämer
 	 */
 	public Like insert(Like like) {
 		Connection con = DBConnection.connection();
@@ -165,11 +165,10 @@ public class LikeMapper {
 
 	/**
 	 * Entfernt alles aus T_Like wo die ID(post und currentUser) der ID des
-	 * übergebenen Objekts entspricht
-	 * 
-	 * @param like übergebenes Like Objekt mit Attribut ID(post und currentUser)
-	 * 
+	 * übergebenen Objekts entspricht.
+	 *
 	 * @author Egor Krämer
+	 * @param like übergebenes Like Objekt mit Attribut ID(post und currentUser)
 	 */
 	public void delete(Like like) {
 		Connection con = DBConnection.connection();
@@ -188,11 +187,10 @@ public class LikeMapper {
 
 	/**
 	 * Entfernt alles aus T_Like wo die ID(post und currentUser) der ID des
-	 * übergebenen Objekts entspricht
-	 * 
-	 * @param like übergebenes Post Objekt mit Attribut Post
-	 * 
+	 * übergebenen Objekts entspricht.
+	 *
 	 * @author Egor Krämer
+	 * @param post the post
 	 */
 	public void deleteAllByPID(Post post) {
 		Connection con = DBConnection.connection();
