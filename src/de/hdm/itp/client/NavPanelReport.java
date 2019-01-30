@@ -47,10 +47,10 @@ MainPanelReport resultPanel = new MainPanelReport();
 	
 	
 	/** The All subs from user report btn. */
-	final Button AllSubsFromUserReportBtn = new Button("All Ihre Abonnements");
+	final Button AllSubsFromUserReportBtn = new Button("All Ihre Abonnenten");
 	
 	/** The All subs of user report btn. */
-	final Button AllSubsOfUserReportBtn = new Button("All Ihre Abonnenten");
+	final Button AllSubsOfUserReportBtn = new Button("All Ihre Abonnements");
 	
 	/** The All comments from user report btn. */
 	final Button AllCommentsFromUserReportBtn = new Button("All Ihre Kommentare");
@@ -62,10 +62,10 @@ MainPanelReport resultPanel = new MainPanelReport();
 	final Button AllPostsFromUserReportBtn = new Button("All Ihre Beiträge");
 
 	/** The All subs from user between dates report btn. */
-	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("All Ihre Abonnements in dem Angegebenen Zeitraum");
+	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("All Ihre Abonnenten in dem Angegebenen Zeitraum");
 	
 	/** The All subs of user between dates report btn. */
-	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("All Ihre Abonnement in dem Angegebenen Zeitraum");
+	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("All Ihre Abonnements in dem Angegebenen Zeitraum");
 	
 	/** The All comments from user between dates report btn. */
 	final Button AllCommentsFromUserBetweenDatesReportBtn = new Button("All Ihre Kommentare in dem Angegebenen Zeitraum");
