@@ -22,9 +22,18 @@ import de.hdm.itp.shared.bo.Comment;
 import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 
+
+/**
+ * The Class DialogPanel which is used for textual dialogues and their contents.
+ */
 public class DialogPanel extends DialogBox implements ClickHandler {
 
-	    public String CommentDialog() {
+	    /**
+    	 * Comment dialog.
+    	 *
+    	 * @return the string
+    	 */
+    	public String CommentDialog() {
 		      // Dialog-Name
 		      setText("Kommentar verfassen");
 			  new DialogPanel().show();
@@ -42,7 +51,12 @@ public class DialogPanel extends DialogBox implements ClickHandler {
 		    }
 	
 	
-	    public String PostDialog() {
+	    /**
+    	 * Post dialog.
+    	 *
+    	 * @return the string
+    	 */
+    	public String PostDialog() {
 		      // Dialog-Name
 		      setText("Post verfassen");
 			  new DialogPanel().show();
@@ -60,11 +74,17 @@ public class DialogPanel extends DialogBox implements ClickHandler {
 	    }
 
 
-	  public void onModuleLoad() {
+	  /**
+  	 * On module load.
+  	 */
+  	public void onModuleLoad() {
 		  super.onLoad();
 	  }
 
-	  public void onClick(ClickEvent event) {
+	  /* (non-Javadoc)
+  	 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+  	 */
+  	public void onClick(ClickEvent event) {
 	    // Instantiate the dialog box and show it.
 	    new DialogPanel().show();
 	  }
