@@ -17,29 +17,51 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
+/**
+ * The Class ReportMenue.
+ */
 public class ReportMenue implements EntryPoint {
 
+	/** The Constant SERVER_ERROR. */
 	private static final String SERVER_ERROR = "An error occurred while "
 			+ "attempting to contact the server. Please check your network " + "connection and try again.";
 
 	/** Die Instanzenvariablen, die mit dem Login-Service zusammenhängen. */
 	private LoginInfo loginInfo = null;
+	
+	/** The login panel. */
 	private VerticalPanel loginPanel = new VerticalPanel();
+	
+	/** The login label. */
 	private Label loginLabel = new Label(
 			"Bitte loggen Sie sich mit ihrem Google-Account ein, um die Anwendung zu nutzen.");
+	
+	/** The sign in link. */
 	private Anchor signInLink = new Anchor("Sign In");
+	
+	/** The sign out link. */
 	private Anchor signOutLink = new Anchor("Sign Out");
+	
+	/** The signed in user. */
 	private Label signedInUser = null;
 
+	/** The admin. */
 	private EditorAdministrationAsync admin = ClientsideSettings.getAdministration();
 
+	/** The user. */
 	User user = null;
+	
+	/** The editor administration. */
 	EditorAdministrationAsync editorAdministration = null;
-	/** Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint */
+	
+	/**  Die DialogBox, die bei erstmaliger Registrierung des Nutzers erscheint. */
 	ClientsideFunctions.InputDialogBox createAccountBox = null;
 
 	
 
+	/* (non-Javadoc)
+	 * @see com.google.gwt.core.client.EntryPoint#onModuleLoad()
+	 */
 	public void onModuleLoad() {
 		
 //		User test = new User();
@@ -85,6 +107,9 @@ public class ReportMenue implements EntryPoint {
 
 	}
 
+	/**
+	 * Load user information.
+	 */
 	public void loadUserInformation() {
 
 		if (editorAdministration == null) {
@@ -190,6 +215,9 @@ public class ReportMenue implements EntryPoint {
 
 	}
 
+	/**
+	 * Load application.
+	 */
 	public void loadApplication() {
 
 		signOutLink.setHref(loginInfo.getLogoutUrl());
@@ -207,6 +235,9 @@ public class ReportMenue implements EntryPoint {
 
 	}
 
+	/**
+	 * Load login.
+	 */
 	private void loadLogin() {
 		
 		
