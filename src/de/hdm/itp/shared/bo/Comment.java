@@ -2,29 +2,32 @@ package de.hdm.itp.shared.bo;
 
 import java.sql.Timestamp;
 
-
+/**
+ * The Class Comment.
+ */
 public class Comment extends BusinessObject {
 	
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 
-	/** Der Text des Kommentars */
+	/**  Der Text des Kommentars. */
 	private String text;
 	
-	/** Das Modifikationsdatum des Kommentars */
+	/**  Das Modifikationsdatum des Kommentars. */
 	private Timestamp modDate;
 	
-	/** Der Verfasser des Kommentars */
+	/**  Der Verfasser des Kommentars. */
 	private int ownerId;
 	
-	/** Post, auf den sich der Kommentar bezieht */
+	/**  Post, auf den sich der Kommentar bezieht. */
 	private int postId;
 	
 	
 	/**
-	 * Auslesen des Textes eines Kommentars
-	 * 
+	 * Auslesen des Textes eines Kommentars.
+	 *
 	 * @return String, welcher den Text des Kommentars enthält
 	 */
 	public String getText() {
@@ -32,16 +35,17 @@ public class Comment extends BusinessObject {
 	}
 	
 	/**
-	 * Setzen des Textes
-	 * 
-	 * @param Text, der im Kommentar steht
+	 * Setzen des Textes.
+	 *
+	 * @param text the new text
 	 */
 	public void setText (String text) {
 		this.text = text;
 	}
 	
 	/**
-	 * Auslesen des Datums, an dem der Kommentar verändert wurde
+	 * Auslesen des Datums, an dem der Kommentar verändert wurde.
+	 *
 	 * @return Timestamp des genauen Modifizierungszeitpunkts
 	 */
 
@@ -50,8 +54,9 @@ public class Comment extends BusinessObject {
 	}
 	
 	/**
-	 * Setzen des Zeitpunktes, an dem ein Kommentar modifiziert wird
-	 * @param modDate, an dem der Kommentar verändert wird
+	 * Setzen des Zeitpunktes, an dem ein Kommentar modifiziert wird.
+	 *
+	 * @param modDate the new mod date
 	 */
 
 	public void setModDate(Timestamp modDate) {
@@ -59,7 +64,8 @@ public class Comment extends BusinessObject {
 	}
 	
 	/**
-	 * Auslesen des Users, der den Kommentar verfasst hat
+	 * Auslesen des Users, der den Kommentar verfasst hat.
+	 *
 	 * @return ownerId, welche den User eindeutig identifiziert
 	 */
 
@@ -68,8 +74,9 @@ public class Comment extends BusinessObject {
 	}
 	
 	/**
-	 * Setzen des Users, der den Kommentar verfasst
-	 * @param ownerId, die den User eindeutig identifiziert
+	 * Setzen des Users, der den Kommentar verfasst.
+	 *
+	 * @param ownerId the new owner id
 	 */
 
 	public void setOwnerId(int ownerId) {
@@ -77,7 +84,8 @@ public class Comment extends BusinessObject {
 	}
 	
 	/**
-	 * Auslesen des Posts, auf den sich der Kommentar bezieht
+	 * Auslesen des Posts, auf den sich der Kommentar bezieht.
+	 *
 	 * @return postId, die den Post eindeutig identifiziert
 	 */
 
@@ -86,8 +94,9 @@ public class Comment extends BusinessObject {
 	}
 	
 	/**
-	 * Setzen des Posts, auf den sich der Kommentar bezieht
-	 * @param postId, die den Post eindeutig identifiziert
+	 * Setzen des Posts, auf den sich der Kommentar bezieht.
+	 *
+	 * @param postId the new post id
 	 */
 
 	public void setPostId(int postId) {

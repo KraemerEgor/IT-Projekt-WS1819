@@ -7,7 +7,6 @@ import java.util.Date;
 /**
  * Basisklasse für alle Business Objekte.
  */
-
 public abstract class BusinessObject implements Serializable {
 	
 	
@@ -19,12 +18,12 @@ public abstract class BusinessObject implements Serializable {
 	 * welche Rolle dieses Objekt in der DB hat.
 	 */
 	
-	/*
+	/**
 	 * Date Attribut zum späteren bspw. auswählen Start Zeitpunkt für Ausgabe im Report Generator
 	 */
 	private Date dateFrom = null;
 	
-	/*
+	/**
 	 * Date Attribut zum späteren bspw. auswählen End Zeitpunkt für Ausgabe im Report Generator
 	 */
 	private Date dateTill = null;
@@ -49,7 +48,6 @@ public abstract class BusinessObject implements Serializable {
 	 *
 	 * @return id
 	 */
-	
 	public int getId() {
 		return this.id;
 	}
@@ -59,7 +57,6 @@ public abstract class BusinessObject implements Serializable {
 	 *
 	 *@return Timestamp, welcher das Erstelldatum des BOs resprï¿½sentiert.
 	 */
-		
 	public Timestamp getCreateDate(){
 		return createDate;
 	}
@@ -69,7 +66,6 @@ public abstract class BusinessObject implements Serializable {
 	 *
 	 *@param modificationdate Timestamp, welcher das Erstelldatum des BOs resprï¿½sentiert. 
 	 */
-	
 	public void setCreateDate(Timestamp ts){
 		this.createDate = ts;
 	}
@@ -80,7 +76,6 @@ public abstract class BusinessObject implements Serializable {
 	 * @param object das zu vergleichende Objekt
 	 * @return true, wenn inhaltlich gleich
 	 */
-	
 	public boolean equals(Object object) {
 		if (object != null && object instanceof BusinessObject) {
 		      BusinessObject bo = (BusinessObject) object;
@@ -101,33 +96,32 @@ public abstract class BusinessObject implements Serializable {
 	 *
 	 * @return Der oben beschriebene String
 	 */
-	
 	public String toString() {
 		return this.getClass().getName() + "ID:" + this.getId();
 	}
 
-	/*
+	/**
 	 * Rückgabe des Start Datums
 	 */
 	public Date getDateFrom() {
 		return dateFrom;
 	}
 
-	/*
+	/**
 	 * Setzen des Start Zeitpunkts
 	 */
 	public void setDateFrom(Date dateFrom) {
 		this.dateFrom = dateFrom;
 	}
 
-	/*
+	/**
 	 * Rückgabe des End Zeitpunkts
 	 */
 	public Date getDateTill() {
 		return dateTill;
 	}
 
-	/*
+	/**
 	 * Setzen des End Zeitpunkts
 	 */
 	public void setDateTill(Date dateTill) {

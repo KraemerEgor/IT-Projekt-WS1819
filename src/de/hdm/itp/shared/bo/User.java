@@ -4,7 +4,6 @@ package de.hdm.itp.shared.bo;
  *Die Klasse User reräsentiert die Nutzer eines Systems. Jeder Nutzer besitzt eine 
  *eindeutige E-Mail Adresse. 
  */
-
 public class User extends BusinessObject {
 	
 	private static final long serialVersionUID = 1L;

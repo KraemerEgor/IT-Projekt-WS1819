@@ -6,10 +6,10 @@ import java.text.SimpleDateFormat;
 /**
  * Die Klasse Contact, Datenstruktur f�r das Kontakt Business Objekt.
  */
-
 public class Post extends BusinessObject {
 
 	
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
 	/** Der Vorname des Kontakts. */
@@ -34,24 +34,28 @@ public class Post extends BusinessObject {
 	
 	/**
 	 * Setzen des Vornamens. 
-	 * 
-	 * @param firstname String, welcher den Vornamen des Kontakts repr�sentiert. 
+	 *
+	 * @param content the new content
 	 */
 	public void setContent(String content) {
 		this.content = content;
 	}
 	
 
+	/**
+	 * Gets the owner id.
+	 *
+	 * @return the owner id
+	 */
 	public int getOwnerId() {
 		return ownerId;
 	}
 	
 	/**
-	 *Setzen des Owners. 
+	 * Setzen des Owners. 
 	 *
-	 *@param owner Integer, welcher den Eigent�mer des Kontakts repr�sentiert.
+	 * @param ownerId the new owner id
 	 */
-
 	public void setOwnerId(int ownerId) {
 		this.ownerId = ownerId;
 	}
@@ -61,17 +65,15 @@ public class Post extends BusinessObject {
 	 *
 	 *@return Timestamp, welcher das Modifiktaionsdatum des Kontakts respr�sentiert.
 	 */
-		
 	public Timestamp getModDate(){
 		return modDate;
 	}
 	
 	/**
-	 *Setzen des Modifikationsdatums. 
+	 * Setzen des Modifikationsdatums. 
 	 *
-	 *@param modificationdate Timestamp, welcher das Modifiktaionsdatum des Kontakts respr�sentiert. 
+	 * @param modDate the new mod date
 	 */
-	
 	public void setModDate(Timestamp modDate){
 		this.modDate = modDate;
 	}
