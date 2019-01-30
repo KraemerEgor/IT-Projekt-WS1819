@@ -11,177 +11,320 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.Subs;
 import de.hdm.itp.shared.bo.User;
 
-/*
+/**
  * Interface der Asyncronen Editor Administration Klasse
  */
 public interface EditorAdministrationAsync {
 	
+	/**
+	 * Inits the.
+	 *
+	 * @param callback the callback
+	 */
 	/*
 	 * Init Methode
 	 */
 	void init(AsyncCallback<Void> callback);
 	
-	/*
-	 * Erstellung eines Users
+	/**
+	 * Creates the user.
+	 *
+	 * @param email the email
+	 * @param firstname the firstname
+	 * @param lastname the lastname
+	 * @param nickname the nickname
+	 * @param gender the gender
+	 * @param callback the callback
 	 */
 	void createUser(String email, String firstname, String lastname, String nickname, String gender, AsyncCallback<User> callback);
 
-	/*
-	 * Abfrage eines Users basierend auf seinem Nickname
+	/**
+	 * Gets the user by nickname.
+	 *
+	 * @param nickname the nickname
+	 * @param callback the callback
+	 * @return the user by nickname
 	 */
 	void getUserByNickname(String nickname, AsyncCallback<Vector<User>> callback);
 	
-	/*
-	 * Abfrage eines Users basierend auf seiner Email Adresse
+	/**
+	 * Gets the user by email.
+	 *
+	 * @param email the email
+	 * @param callback the callback
+	 * @return the user by email
 	 */
 	void getUserByEmail(String email, AsyncCallback<User> callback);
 	
-	/*
-	 * Abfrage eines Users basierend auf seiner ID
+	/**
+	 * Gets the user by id.
+	 *
+	 * @param userId the user id
+	 * @param callback the callback
+	 * @return the user by id
 	 */
 	void getUserById(int userId, AsyncCallback<User> callback);
 	
-	/*
-	 * Abfrage aller User
+	/**
+	 * Gets the all user.
+	 *
+	 * @param callback the callback
+	 * @return the all user
 	 */
 	void getAllUser(AsyncCallback<Vector<User>> callback);
 	
-	/*
-	 * Erstellung eines Posts
+	/**
+	 * Creates the post.
+	 *
+	 * @param content the content
+	 * @param currentUsers the current users
+	 * @param callback the callback
 	 */
 	void createPost(String content, User currentUsers, AsyncCallback<Post> callback);
 	
-	/*
-	 * Bearbeiten eines Posts
+	/**
+	 * Update post.
+	 *
+	 * @param p the p
+	 * @param content the content
+	 * @param callback the callback
 	 */
 	void updatePost(Post p, String content, AsyncCallback<Post> callback);
 	
-	/*
-	 * L�schen eines Posts
+	/**
+	 * Delete post.
+	 *
+	 * @param p the p
+	 * @param callback the callback
 	 */
 	void deletePost(Post p, AsyncCallback<Void> callback);
 
-	/*
-	 * Abfrage eines Postes basierend auf seiner ID
+	/**
+	 * Gets the post by id.
+	 *
+	 * @param postId the post id
+	 * @param callback the callback
+	 * @return the post by id
 	 */
 	void getPostById(int postId, AsyncCallback<Post> callback);
 	
-	/*
-	 * Abfrage aller Posts eines Users
+	/**
+	 * Gets the all posts of user.
+	 *
+	 * @param u the u
+	 * @param callback the callback
+	 * @return the all posts of user
 	 */
 	void getAllPostsOfUser(User u, AsyncCallback<Vector<Post>> callback);
 	
-	/*
-	 * Abfrage aller erstellten Posts
+	/**
+	 * Gets the all posts.
+	 *
+	 * @param callback the callback
+	 * @return the all posts
 	 */
 	void getAllPosts(AsyncCallback<Vector<Post>> callback);
 	
-	/*
-	 * Setzen eines Likes
+	/**
+	 * Creates the like.
+	 *
+	 * @param p the p
+	 * @param owner the owner
+	 * @param callback the callback
 	 */
 	void createLike(Post p, User owner, AsyncCallback<Like> callback);
 	
-	/*
-	 * L�schen eines gesetzten Likes
+	/**
+	 * Delete like.
+	 *
+	 * @param l the l
+	 * @param callback the callback
 	 */
 	void deleteLike(Like l, AsyncCallback<Void> callback);
 
-	/*
-	 * Abfrage eines gestzten Likes basierend auf der ID
+	/**
+	 * Gets the like by id.
+	 *
+	 * @param callback the callback
+	 * @return the like by id
 	 */
 	void getLikeById(AsyncCallback<Like> callback);
 	
-	/*
-	 * Abfrage der Anzahl aller Likes welche auf einen Post gestzt worden sind
+	/**
+	 * Gets the all likes of post.
+	 *
+	 * @param p the p
+	 * @param callback the callback
+	 * @return the all likes of post
 	 */
 	void getAllLikesOfPost(Post p, AsyncCallback<Vector<Like>> callback);
 	
-	/*
-	 * Abfrage aller Likes eines Users
+	/**
+	 * Gets the all likes of user.
+	 *
+	 * @param u the u
+	 * @param callback the callback
+	 * @return the all likes of user
 	 */
 	void getAllLikesOfUser(User u, AsyncCallback<Vector<Like>> callback);
 	
-	/*
-	 * Abfrage aller Likes auf allen Posts
+	/**
+	 * Gets the all likes.
+	 *
+	 * @param callback the callback
+	 * @return the all likes
 	 */
 	void getAllLikes(AsyncCallback<Vector<Like>> callback);
 	
-	/*
-	 * Erstellen eines Kommentars
+	/**
+	 * Creates the comment.
+	 *
+	 * @param postID the post ID
+	 * @param text the text
+	 * @param currentUser the current user
+	 * @param callback the callback
 	 */
 	void createComment(int postID, String text, User currentUser, AsyncCallback<Comment> callback);
 	
-	/*
-	 * Bearbeiten eines Kommentars
+	/**
+	 * Update comment.
+	 *
+	 * @param c the c
+	 * @param text the text
+	 * @param callback the callback
 	 */
 	void updateComment(Comment c, String text,AsyncCallback<Comment> callback);
 	
-	/*
-	 * L�schen eines Kommenats
+	/**
+	 * Delete comment.
+	 *
+	 * @param c the c
+	 * @param callback the callback
 	 */
 	void deleteComment(Comment c, AsyncCallback<Void> callback);
 	
-	/*
-	 * Abfrage eines Kommentars basierend auf seiner ID
+	/**
+	 * Gets the comment by id.
+	 *
+	 * @param commentId the comment id
+	 * @param callback the callback
+	 * @return the comment by id
 	 */
 	void getCommentById(int commentId, AsyncCallback<Comment> callback);
 	
-	/*
-	 * Abfrage von Kommentaren eines spezifischen Posts
+	/**
+	 * Gets the comments of post.
+	 *
+	 * @param p the p
+	 * @param callback the callback
+	 * @return the comments of post
 	 */
 	void getCommentsOfPost(Post p, AsyncCallback<Vector<Comment>> callback);
 	
-	/*
-	 * Abfrage von Kommentaren eines Users
+	/**
+	 * Gets the comments of user.
+	 *
+	 * @param u the u
+	 * @param callback the callback
+	 * @return the comments of user
 	 */
 	void getCommentsOfUser(User u, AsyncCallback<Vector<Comment>> callback);
 	
-	/*
-	 * Abfrage aller Kommentare
+	/**
+	 * Gets the all comments.
+	 *
+	 * @param callback the callback
+	 * @return the all comments
 	 */
 	void getAllComments(AsyncCallback<Vector<Comment>> callback);
 	
-	/*
-	 * Erstellen einer Abonnenten Beziehung
+	/**
+	 * Creates the subs.
+	 *
+	 * @param currentUser the current user
+	 * @param targetUser the target user
+	 * @param callback the callback
 	 */
 	void createSubs(int currentUser, int targetUser, AsyncCallback<Subs> callback);
 	
-	/*
-	 * L�schen einer Abonnenten Beziehung
+	/**
+	 * Delete subs.
+	 *
+	 * @param s the s
+	 * @param callback the callback
 	 */
 	void deleteSubs(Subs s, AsyncCallback<Void> callback);
 	
-	/*
-	 * Abfrage aller Abonnenten Beziehungen des aktuellen Users
+	/**
+	 * Gets the subs of current user.
+	 *
+	 * @param u the u
+	 * @param callback the callback
+	 * @return the subs of current user
 	 */
 	void getSubsOfCurrentUser(User u, AsyncCallback<Vector<Subs>> callback);
 	
-	/*
-	 * Abfrage aller Abonennten Beziehungen eines spezifischen Users
+	/**
+	 * Gets the subs of target user.
+	 *
+	 * @param u the u
+	 * @param callback the callback
+	 * @return the subs of target user
 	 */
 	void getSubsOfTargetUser(User u, AsyncCallback<Vector<Subs>> callback);
 	
-	/*
-	 * Abfrage aller gestzten Abonnenten Beziehungen
+	/**
+	 * Gets the all subs.
+	 *
+	 * @param callback the callback
+	 * @return the all subs
 	 */
 	void getAllSubs(AsyncCallback<Vector<Subs>> callback);
 	
-	/*
-	 * Abfrage ob der User bereits vorhanden ist
+	/**
+	 * Checks if is user known.
+	 *
+	 * @param email the email
+	 * @param callback the callback
 	 */
 	void isUserKnown(String email, AsyncCallback<Boolean> callback);
 	
-	/*
-	 * Abfrage des vollen Namens eines Users
+	/**
+	 * Gets the full name of user.
+	 *
+	 * @param user the user
+	 * @param callback the callback
+	 * @return the full name of user
 	 */
 	void getFullNameOfUser(User user, AsyncCallback<String> callback);
 	
 	
 
+	/**
+	 * Gets the all comments of post.
+	 *
+	 * @param p the p
+	 * @param callback the callback
+	 * @return the all comments of post
+	 */
 	void getAllCommentsOfPost( Post p, AsyncCallback<Vector<Comment>> callback);
 
+	/**
+	 * Gets the all comments of user.
+	 *
+	 * @param u the u
+	 * @param callback the callback
+	 * @return the all comments of user
+	 */
 	void getAllCommentsOfUser(User u, AsyncCallback<Vector<Comment>> callback);
 
+	/**
+	 * Gets the post by comment id.
+	 *
+	 * @param c the c
+	 * @param callback the callback
+	 * @return the post by comment id
+	 */
 	void getPostByCommentId(Comment c, AsyncCallback<Post> callback);
 
 
