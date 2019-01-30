@@ -11,9 +11,15 @@ import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
 import de.hdm.itp.shared.bo.User;
 
+/**
+	 * The Class SubscCell.
+	 */
 	public class SubscCell extends AbstractCell<User> {
    
-	    public void render(Context context, User value, SafeHtmlBuilder sb) {
+	    /* (non-Javadoc)
+    	 * @see com.google.gwt.cell.client.AbstractCell#render(com.google.gwt.cell.client.Cell.Context, java.lang.Object, com.google.gwt.safehtml.shared.SafeHtmlBuilder)
+    	 */
+    	public void render(Context context, User value, SafeHtmlBuilder sb) {
 	    
 	      if (value == null) {
 	        return;

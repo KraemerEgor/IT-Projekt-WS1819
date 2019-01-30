@@ -21,32 +21,59 @@ import de.hdm.itp.shared.bo.User;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 
-
-
-
-
-
+/**
+ * The Class SearchPanel.
+ */
 public class SearchPanel extends FlowPanel {
 	
+	/** The admin. */
 	private EditorAdministrationAsync admin = null;
+	
+	/** The result panel. */
 	VerticalPanel resultPanel = new VerticalPanel();
+	
+	/** The report link. */
 	private Anchor reportLink = new Anchor("Report");
+	
+	/** The header lbl. */
 	private Label header_lbl = new Label("Navigation"); 
+	
+	/** The profile btn. */
 	private Button profileBtn = new Button("Mein Profil");
+	
+	/** The add btn. */
 	private Button addBtn = new Button("Hinzufügen");
+	
+	/** The dlt btn. */
 	private Button dltBtn = new Button("Löschen");
+	
+	/** The box. */
 	public Vector<User> box = new Vector<User>();
+	
+	/** The oracle. */
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
+	
+	/** The suggestbox. */
 	SuggestBox suggestbox = new SuggestBox(oracle);
+	
+	/** The sp. */
 	SubsPanel sp = new SubsPanel();
+	
+	/** The pp. */
 	PinboardPanel pp = new PinboardPanel();
+	
+	/** The current user. */
 	User currentUser = new User();
 	
+	/** The btn panel. */
 	private VerticalPanel btnPanel = new VerticalPanel();
 	
 	
 	
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 		
 		super.onLoad();

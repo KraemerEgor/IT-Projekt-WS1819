@@ -21,40 +21,79 @@ import de.hdm.itp.shared.bo.Post;
 import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.client.NavPanelReport;
 
+/**
+ * The Class userProfilePanel.
+ */
 public class userProfilePanel extends HorizontalPanel {
 
-	/**
-	 * Zusammenbauen des userProfiles
-	 */
+	/** Zusammenbauen des userProfiles. */
 
 	private EditorAdministrationAsync editorAdministration = null;
 
+	/** The u. */
 	private User u = new User();
+	
+	/** The main panel. */
 	static MainPanel mainPanel = new MainPanel();
 
+	/** The avatar man. */
 	private Image avatar_man = new Image("man.png");
+	
+	/** The avatar girl. */
 	private Image avatar_girl = new Image("girl.png");
+	
+	/** The avatar other. */
 	private Image avatar_other = new Image("user.png");
+	
+	/** The profile. */
 	private FlexTable profile = new FlexTable();
+	
+	/** The nickname lbl. */
 	private Label nickname_lbl = new Label("Nickname: ");
+	
+	/** The firstname lbl. */
 	private Label firstname_lbl = new Label("Vorname: ");
+	
+	/** The lastname lbl. */
 	private Label lastname_lbl = new Label("Nachname: ");
+	
+	/** The email lbl. */
 	private Label email_lbl = new Label("Email: ");
+	
+	/** The current user. */
 	private User currentUser = new User();
+	
+	/** The post input. */
 	private TextArea postInput = new TextArea();
+	
+	/** The submit btn. */
 	private Button submitBtn = new Button("Post veröffentlichen");
 	
+	/** The input. */
 	TextArea input = new TextArea();
 
+	/**
+	 * Gets the main panel.
+	 *
+	 * @return the main panel
+	 */
 	public MainPanel getMainPanel() {
 		return mainPanel;
 	}
 
+	/**
+	 * Sets the main panel.
+	 *
+	 * @param mainPanel the new main panel
+	 */
 	public void setMainPanel(MainPanel mainPanel) {
 		this.mainPanel = mainPanel;
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 
 		super.onLoad();
@@ -115,7 +154,14 @@ public class userProfilePanel extends HorizontalPanel {
 
 	}
 
+	/**
+	 * The Class SubmitClickHandler.
+	 */
 	private class SubmitClickHandler implements ClickHandler {
+		
+		/* (non-Javadoc)
+		 * @see com.google.gwt.event.dom.client.ClickHandler#onClick(com.google.gwt.event.dom.client.ClickEvent)
+		 */
 		public void onClick(ClickEvent event) {
 			currentUser = ClientsideSettings.getUser();
 			if (editorAdministration == null) {
@@ -150,6 +196,11 @@ public class userProfilePanel extends HorizontalPanel {
 
 	}
 
+	/**
+	 * Creates the user profile.
+	 *
+	 * @param user the user
+	 */
 	public void createUserProfile(User user) {
 
 		if (editorAdministration == null) {

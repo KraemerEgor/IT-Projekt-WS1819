@@ -25,42 +25,79 @@ import de.hdm.itp.client.gui.report.AllSubsOfUserReportForm;
 import de.hdm.itp.shared.ReportGeneratorAsync;
 import de.hdm.itp.shared.bo.User;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NavPanelReport.
+ */
 public class NavPanelReport extends VerticalPanel {
 	
 //	final VerticalPanel resultPanel = new VerticalPanel();
 	
-	MainPanelReport resultPanel = new MainPanelReport();
+	/** The result panel. */
+MainPanelReport resultPanel = new MainPanelReport();
 
 	
+	/** The report generator. */
 	private static ReportGeneratorAsync reportGenerator = null;
 
 	
+	/** The u. */
 	private User u = new User();
 	
 	
 	
+	/** The All subs from user report btn. */
 	final Button AllSubsFromUserReportBtn = new Button("All Ihre Abonnements");
+	
+	/** The All subs of user report btn. */
 	final Button AllSubsOfUserReportBtn = new Button("All Ihre Abonnenten");
+	
+	/** The All comments from user report btn. */
 	final Button AllCommentsFromUserReportBtn = new Button("All Ihre Kommentare");
+	
+	/** The All likes from user report btn. */
 	final Button AllLikesFromUserReportBtn = new Button("All Ihre Likes");
+	
+	/** The All posts from user report btn. */
 	final Button AllPostsFromUserReportBtn = new Button("All Ihre Beiträge");
 
+	/** The All subs from user between dates report btn. */
 	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("All Ihre Abonnements in dem Angegebenen Zeitraum");
+	
+	/** The All subs of user between dates report btn. */
 	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("All Ihre Abonnement in dem Angegebenen Zeitraum");
+	
+	/** The All comments from user between dates report btn. */
 	final Button AllCommentsFromUserBetweenDatesReportBtn = new Button("All Ihre Kommentare in dem Angegebenen Zeitraum");
+	
+	/** The All likes from user between dates report btn. */
 	final Button AllLikesFromUserBetweenDatesReportBtn = new Button("All Ihre Likes in dem Angegebenen Zeitraum");
+	
+	/** The All posts from user between dates report btn. */
 	final Button AllPostsFromUserBetweenDatesReportBtn = new Button("All Ihre Beiträge in dem Angegebenen Zeitraum\"");
 	
+	/** The check box show all. */
 	final CheckBox checkBoxShowAll = new CheckBox("Suchanfrage Aller");
+	
+	/** The check box pick date. */
 	final CheckBox checkBoxPickDate = new CheckBox("Suchanfrage nach Zeitraum");
 	
+	/** The date from. */
 	final DateBox dateFrom = new DateBox();
+	
+	/** The date till. */
 	final DateBox dateTill = new DateBox();
 	
+	/** The lbl from. */
 	final Label lblFrom = new Label("Von");
+	
+	/** The lbl till. */
 	final Label lblTill = new Label("Bis");
 
 	
+	/* (non-Javadoc)
+	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
+	 */
 	public void onLoad() {
 		super.onLoad();
 		this.setStylePrimaryName("NavReport");
