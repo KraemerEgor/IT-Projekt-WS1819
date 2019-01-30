@@ -11,12 +11,27 @@ import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.AllPostsFromUserReport;
 import de.hdm.itp.shared.report.HTMLReportWriter;
 
+/**
+ * The Class AllPostsFromUserReportForm.
+ */
 public class AllPostsFromUserReportForm extends ReportResultPanel {
 
+	/** The user attribute. */
 	private User u;
+	
+	/** The date from attribute. */
 	private Date dateFrom;
+	
+	/** The date till attribute. */
 	private Date dateTill;
 
+	/**
+	 * Instantiates a new all posts from user report form.
+	 *
+	 * @param u the u
+	 * @param dateFrom the date from
+	 * @param dateTill the date till
+	 */
 	public AllPostsFromUserReportForm(User u, Date dateFrom, Date dateTill) {
 		this.u = u;
 		this.dateFrom = dateFrom;
@@ -25,6 +40,9 @@ public class AllPostsFromUserReportForm extends ReportResultPanel {
 		run();
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 
 		ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();

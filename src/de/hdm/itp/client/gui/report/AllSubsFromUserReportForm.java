@@ -11,12 +11,27 @@ import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.shared.report.AllSubsFromUserReport;
 import de.hdm.itp.shared.report.HTMLReportWriter;
 
+/**
+ * The Class AllSubsFromUserReportForm.
+ */
 public class AllSubsFromUserReportForm extends ReportResultPanel {
 
+	/** The user attribute. */
 	private User u;
+	
+	/** The date from attribute. */
 	private Date dateFrom;
+	
+	/** The date till attribute. */
 	private Date dateTill;
 
+	/**
+	 * Instantiates a new all subs from user report form.
+	 *
+	 * @param u the u
+	 * @param dateFrom the date from
+	 * @param dateTill the date till
+	 */
 	public AllSubsFromUserReportForm(User u, Date dateFrom, Date dateTill) {
 		this.u = u;
 		this.dateFrom = dateFrom;
@@ -25,6 +40,9 @@ public class AllSubsFromUserReportForm extends ReportResultPanel {
 		run();
 	}
 
+	/**
+	 * Run.
+	 */
 	protected void run() {
 
 		ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();

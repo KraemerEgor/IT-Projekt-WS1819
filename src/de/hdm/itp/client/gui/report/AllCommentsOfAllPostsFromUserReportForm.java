@@ -10,14 +10,29 @@ package de.hdm.itp.client.gui.report;
 import de.hdm.itp.shared.report.AllMyCommentsFromPostFromUserReport;
 import de.hdm.itp.shared.report.HTMLReportWriter;
 
+/**
+ * The Class AllCommentsOfAllPostsFromUserReportForm.
+ */
 public class AllCommentsOfAllPostsFromUserReportForm extends ReportResultPanel {
 	
 
 
+		/** The User attribute */
 		private User u;
+		
+		/** The date from attribute. */
 		private Date dateFrom;
+		
+		/** The date till attribute. */
 		private Date dateTill;
 
+		/**
+		 * Instantiates a new all comments of all posts from user report form.
+		 *
+		 * @param u the u
+		 * @param dateFrom the date from
+		 * @param dateTill the date till
+		 */
 		public AllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom, Date dateTill) {
 			this.u = u;
 			this.dateFrom = dateFrom;
@@ -26,6 +41,9 @@ public class AllCommentsOfAllPostsFromUserReportForm extends ReportResultPanel {
 			run();
 		}
 
+		/**
+		 * Run.
+		 */
 		protected void run() {
 
 			ReportGeneratorAsync reportGenerator = ClientsideSettings.getReportGenerator();
