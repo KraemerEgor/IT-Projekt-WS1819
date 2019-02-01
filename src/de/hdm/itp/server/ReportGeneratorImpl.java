@@ -144,7 +144,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				String cutcdate = cparts[0];
 				commentRow.addColumn(new Column(String.valueOf(cutcdate)));
 				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
-				String fullmdate = c.getCreateDate().toString();
+				String fullmdate = c.getModDate().toString();
 				String[] mparts = fullmdate.split(" ");
 				String cutmdate = mparts[0];
 				commentRow.addColumn(new Column(String.valueOf(cutmdate)));
@@ -166,7 +166,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					String cutcdate = cparts[0];
 					commentRow.addColumn(new Column(String.valueOf(cutcdate)));
 					// hier werden die Millisekunden vom Mod_Date rausgeschnitten
-					String fullmdate = c.getCreateDate().toString();
+					String fullmdate = c.getModDate().toString();
 					String[] mparts = fullmdate.split(" ");
 					String cutmdate = mparts[0];
 					commentRow.addColumn(new Column(String.valueOf(cutmdate)));
@@ -323,7 +323,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				String cutcdate = cparts[0];
 				postRow.addColumn(new Column(String.valueOf(cutcdate)));
 				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
-				String fullmdate = p.getCreateDate().toString();
+				String fullmdate = p.getModDate().toString();
 				String[] mparts = fullmdate.split(" ");
 				String cutmdate = mparts[0];
 				postRow.addColumn(new Column(String.valueOf(cutmdate)));
@@ -344,7 +344,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					String cutcdate = cparts[0];
 					postRow.addColumn(new Column(String.valueOf(cutcdate)));
 					// hier werden die Millisekunden vom Mod_Date rausgeschnitten
-					String fullmdate = p.getCreateDate().toString();
+					String fullmdate = p.getModDate().toString();
 					String[] mparts = fullmdate.split(" ");
 					String cutmdate = mparts[0];
 					postRow.addColumn(new Column(String.valueOf(cutmdate)));

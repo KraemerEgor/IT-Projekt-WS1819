@@ -20,7 +20,7 @@ body{
 #Login {
 	float: right;
 	padding: 5px;
-	background-color: #00ff40;
+	
 	
 }
 #Head {
@@ -72,6 +72,7 @@ body{
 	margin-top: 15px;
 	margin-left: 0px;
 }
+
 
 .avatar {
 	
@@ -180,6 +181,40 @@ div#Subs {
 	padding: 5px;
 	background-color: white;
 	border-right: 3px solid #00868B;
+}
+
+.logout{
+  width: 160px;
+  padding-top: 10px;
+  background-color: #F3E367;
+  color: #7F8688;
+  position: absolute;
+  margin-left: 80%;
+  margin-top: -60px;
+  border: none;
+  height: 22px!important;
+  text-align: center;
+}
+
+
+.login{
+  width: 160px;
+  padding-top: 10px;
+  padding-left: 10px;
+  background-color: #F3E367;
+  color: #7F8688;
+  margin-right: 20px;
+  margin-top: 20px;
+  display: block;
+  float: left;
+  border: none;
+  height: 22px!important;
+  text-align: center;
+}
+
+.login tbody tr td a{
+	color: #7F8688;
+	text-align: center;
 }
 
 .com-google-gwt-user-cellview-client-CellList-Style-cellListEvenItem.com-google-gwt-user-cellview-client-CellList-Style-cellListKeyboardSelectedItem, 
