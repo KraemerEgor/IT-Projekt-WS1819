@@ -275,7 +275,7 @@ public class PinboardPanel extends VerticalPanel {
 								Button edit = new Button("Bearbeiten", new UpdatePostClickHandler(pinboardPost));
 								edit.setStylePrimaryName("submit");
 								buttonPanel.add(edit);
-								Button delete = new Button("Löschen", new DeletePostClickHandler(pinboardPost));
+								Button delete = new Button("LÃ¶schen", new DeletePostClickHandler(pinboardPost));
 								delete.setStylePrimaryName("submit");
 								buttonPanel.add(delete);
 							}

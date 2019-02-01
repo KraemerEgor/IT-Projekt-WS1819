@@ -681,6 +681,7 @@ public abstract class ClientsideFunctions {
 				public void onFailure(Throwable caught) {
 					ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox(caught.getMessage());
 					
+					
 				}
 
 				@Override
@@ -1363,9 +1364,16 @@ public static class AlertDialogBox extends DialogBox{
 		 * @param text String Inhant von dem was angezeigt werden soll
 		 */
 		public AlertDialogBox(String text) {
+			
+			
+			this.setStylePrimaryName("alert");
+			
+			
 			textLbl.setText(text);
 			panel.add(textLbl);
 			okBtn.addClickHandler(new CloseDBClickHandler(this));
+			okBtn.setStylePrimaryName("submit");
+			okBtn.setStyleDependentName("exit", true);
 			panel.add(okBtn);
 			setWidget(panel);    
 		        show();
