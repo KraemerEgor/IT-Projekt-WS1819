@@ -347,7 +347,7 @@ public class SubsPanel extends VerticalPanel {
 						}
 						for(User u: cellSubs) {
 							if(result.getId()==u.getId()) {
-								ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Der Nutzer "+result.getFirstname()+" "+ result.getLastname()+ " befindet sich bereits unter den Abonenten");
+								ClientsideFunctions.AlertDialogBox adb = new ClientsideFunctions.AlertDialogBox("Der Nutzer "+result.getFirstname()+" "+ result.getLastname()+ " befindet sich bereits unter den Abonnenten");
 								toAdd = false;
 							}
 							
