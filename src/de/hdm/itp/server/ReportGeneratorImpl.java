@@ -173,10 +173,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(commentRow);
 
-					result.setTitel("Anzahl Ihrer Kommentare im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Kommentare im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setTitel("Anzahl Ihrer Kommentare im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Kommentare im ausgewählten Zeitraum: " + i);
 
 				} else {
 					result.setTitel("Tut uns leid! Im ausgewählten Zeitraum wurden keine Kommentare erstellt");
@@ -265,10 +265,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(likesRow);
 
-					result.setTitel("Anzahl Ihrer Likes im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Likes im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setTitel("Anzahl Ihrer Likes im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Likes im ausgewählten Zeitraum: " + i);
 
 				} else {
 					result.setTitel("Tut uns leid! Im ausgewählten Zeitraum wurden keine Likes erstellt");
@@ -352,10 +352,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(postRow);
 
-					result.setTitel("Anzahl Ihrer Beiträge im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Beiträge im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setTitel("Anzahl Ihrer Beiträge im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Beiträge im ausgewählten Zeitraum: " + i);
 
 				} else {
 					result.setTitel("Tut uns leid! Im ausgewählten Zeitraum wurden keine Beiträge erstellt");
@@ -432,7 +432,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(subsRow);
 
-					result.setTitel("Anzahl Ihrer Abonnenten im ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Abonnenten im ausgewählten Zeitraum: " + i);
+					
 
 				} else if (i >= 1) {
 					result.setAmount("Anzahl Ihrer Abonnenten im ausgewählten Zeitraum: " + i);
@@ -496,8 +497,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				String cutcdate = cparts[0];
 				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 				result.addRow(subsRow);
-
-				result.setTitel("Alle Ihre Abonnements");
+				
+				result.setTitel("Hier sehen Sie Ihre Abonnements");
 				result.setAmount("Anzahl Ihrer Abonnements: " + i);
 
 			} else {
@@ -515,7 +516,6 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(subsRow);
 
-					result.setTitel("Alle Ihre Abonnements");
 					result.setAmount("Anzahl Ihrer Abonnements im augewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
