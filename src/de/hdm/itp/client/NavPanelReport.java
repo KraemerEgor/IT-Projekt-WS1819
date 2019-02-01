@@ -303,7 +303,9 @@ MainPanelReport resultPanel = new MainPanelReport();
 				RootPanel.get().add(resultPanel);	
 				
 			}
+			
 		});
+	
 		AllLikesFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				
