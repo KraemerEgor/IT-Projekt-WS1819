@@ -80,15 +80,15 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	public void onModuleLoad() {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
 		signInLink.setStylePrimaryName("signin_btn");
-//		User test = new User();
-//		test.setId(10000002);
-//		test.setFirstname("Egor");
-//		test.setLastname("Kramu");
-//		test.setNickname("KK");
-//		test.setGender("m");
-//		test.setEmail("egor.kramu@gmail.com");
-//		ClientsideSettings.setUser(test);
-//		loadApplication();
+		User test = new User();
+		test.setId(10000002);
+		test.setFirstname("Egor");
+		test.setLastname("Kramu");
+		test.setNickname("KK");
+		test.setGender("m");
+		test.setEmail("egor.kramu@gmail.com");
+		ClientsideSettings.setUser(test);
+		loadApplication();
 
 		//Window.alert("loginTesting");
 
@@ -235,7 +235,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	 */
 	public void loadApplication() {
 		
-		signOutLink.setHref(loginInfo.getLogoutUrl());
+		//signOutLink.setHref(loginInfo.getLogoutUrl());
 		signOutLink.setStylePrimaryName("submit");
 		signOutLink.setStyleDependentName("logout", true);
 		
@@ -264,9 +264,10 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		
 
 		signInLink.setHref(loginInfo.getLoginUrl());
-		loginPanel.add(loginLabel);
-		loginPanel.add(signInLink);
-		RootPanel.get("Login").add(loginPanel);
+		signInLink.setStylePrimaryName("submit");
+		signInLink.setStyleDependentName("logout", true);
+		
+		hp.add(signInLink);
 
 	
 
