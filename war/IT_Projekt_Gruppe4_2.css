@@ -115,7 +115,11 @@ body{
 	margin-left: 0px;
 }
 
-.submit-logout{
+.submit.submit-exit{
+	margin-top: 30px!important;
+}
+
+.submit.submit-logout{
 	width: 160px;
 	padding-top: 10px;
 	background-color: #F3E367;
@@ -259,24 +263,7 @@ h1 {
 
 
 /*Signout Button*/
-.signout{
-	position: absolute;
-    right: 4px;
-    top: 20px;
-	background-color: #F3E367;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	border: none;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: 'Lato', sans-serif;
-	font-size: 15px;
-	padding: 12px 18px;
-	text-decoration: none;
-	margin: 0px 10px;
-}
+
 .signedInUser{
 	position: absolute;
 	right: 4px;
@@ -293,7 +280,7 @@ h1 {
     display: inline-block;
     cursor: pointer;
     color: #ffffff;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Arial', sans-serif;
     font-size: 15px;
     padding: 9px 4px;
     text-decoration: none;
@@ -459,6 +446,14 @@ h1 {
 	border: 2px solid #F3E367;
 }
 
+.alert{
+	width: 400px;
+	height: 100px;
+	background-color: white;
+	padding: 15px;
+	border: 2px solid #F3E367;
+}
+
 .updatePostInput{
 	width: 300px;
 	min-height: 100px;
@@ -503,7 +498,7 @@ h1 {
 
 .cellList{
 
-	font-family: 'Lato', sans-serif;
+	font-family: 'Arial', sans-serif;
     font-size: 12px;
 	
 }
