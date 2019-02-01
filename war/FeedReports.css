@@ -1,19 +1,85 @@
 @charset "UTF-8";
 
+
+
+
 .NavReport{
-	background-color: lightgrey;
+	background-color: ;
 	min-height: 800px;
-	min-width: 100%;
 	float: left;
 	padding: 20px; 
+	background-color: #6f7779;
+	border: 2px solid  #F3E367;
+	color: white;
 }
 
-.HeaderReport{
-	background-color: white;
-	min-height: 100px;
-	min-width: 100%;
-	float: left;
-	padding: 20px;
-	border: 2px solid brown;
-	
+.resultPanel{
+	margin: 50px;
 }
+
+
+.logo{
+	margin-top: 12px;
+	height: 80px;
+	border-radius: 10px;
+}
+
+.submit{
+	background-color: #F3E367;
+	color: #7F8688;
+	width: 150px;
+	height: 35px;
+	padding: 5px;
+	border: none;
+	margin: 5px;
+	margin-left: 0px;
+}
+
+.submit-logout{
+	width: 160px;
+	padding: 10px;
+	background-color: #F3E367;
+ 	color: #7F8688;
+ 	position: absolute;
+ 	margin-left: 80%;
+ 	margin-top: 35px;
+ 	border: none;
+ 	height: 15px!important;
+	text-align: center!important;
+}
+
+.submit-time{
+	height: 60px!important;
+}
+
+.feed{
+	background-color: #F3E367;
+	color: #7F8688;
+	width: 150px;
+	height: 35px;
+	padding: 5px;
+	border: none;
+	margin: 5px;
+	margin-left: 0px;
+	position: absolute;
+	margin-left: -30%;
+	margin-top: 35px;
+}
+
+.header{
+	margin-top: 0px!important;
+	padding-left: 14px;
+	height: 110px;
+	background-color: #6f7779;
+	border: 2px solid  #F3E367;
+	width: 100%;
+}
+
+.headerLbl{
+	font-size: 36px;
+	color: white;
+	position: absolute;
+	margin-left: -75%;
+	margin-top: 2%;
+}
+

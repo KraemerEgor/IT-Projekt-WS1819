@@ -47,37 +47,37 @@ MainPanelReport resultPanel = new MainPanelReport();
 	
 	
 	/** The All subs from user report btn. */
-	final Button AllSubsFromUserReportBtn = new Button("All Ihre Abonnenten");
+	final Button AllSubsFromUserReportBtn = new Button("Alle Ihre Abonnenten");
 	
 	/** The All subs of user report btn. */
-	final Button AllSubsOfUserReportBtn = new Button("All Ihre Abonnements");
+	final Button AllSubsOfUserReportBtn = new Button("Alle Ihre Abonnements");
 	
 	/** The All comments from user report btn. */
-	final Button AllCommentsFromUserReportBtn = new Button("All Ihre Kommentare");
+	final Button AllCommentsFromUserReportBtn = new Button("Alle Ihre Kommentare");
 	
 	/** The All likes from user report btn. */
-	final Button AllLikesFromUserReportBtn = new Button("All Ihre Likes");
+	final Button AllLikesFromUserReportBtn = new Button("Alle Ihre Likes");
 	
 	/** The All posts from user report btn. */
-	final Button AllPostsFromUserReportBtn = new Button("All Ihre Beiträge");
+	final Button AllPostsFromUserReportBtn = new Button("Alle Ihre Beiträge");
 
 	/** The All subs from user between dates report btn. */
-	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("All Ihre Abonnenten in dem Angegebenen Zeitraum");
+	final Button AllSubsFromUserBetweenDatesReportBtn = new Button("Alle Ihre Abonnenten im angegebenen Zeitraum");
 	
 	/** The All subs of user between dates report btn. */
-	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("All Ihre Abonnements in dem Angegebenen Zeitraum");
+	final Button AllSubsOfUserBetweenDatesReportBtn = new Button("Alle Ihre Abonnements im angegebenen Zeitraum");
 	
 	/** The All comments from user between dates report btn. */
-	final Button AllCommentsFromUserBetweenDatesReportBtn = new Button("All Ihre Kommentare in dem Angegebenen Zeitraum");
+	final Button AllCommentsFromUserBetweenDatesReportBtn = new Button("Alle Ihre Kommentare im angegebenen Zeitraum");
 	
 	/** The All likes from user between dates report btn. */
-	final Button AllLikesFromUserBetweenDatesReportBtn = new Button("All Ihre Likes in dem Angegebenen Zeitraum");
+	final Button AllLikesFromUserBetweenDatesReportBtn = new Button("Alle Ihre Likes im angegebenen Zeitraum");
 	
 	/** The All posts from user between dates report btn. */
-	final Button AllPostsFromUserBetweenDatesReportBtn = new Button("All Ihre Beiträge in dem Angegebenen Zeitraum\"");
+	final Button AllPostsFromUserBetweenDatesReportBtn = new Button("Alle Ihre Beiträge im angegebenen Zeitraum");
 	
 	/** The check box show all. */
-	final CheckBox checkBoxShowAll = new CheckBox("Suchanfrage Aller");
+	final CheckBox checkBoxShowAll = new CheckBox("Suchanfrage Alle");
 	
 	/** The check box pick date. */
 	final CheckBox checkBoxPickDate = new CheckBox("Suchanfrage nach Zeitraum");
@@ -102,7 +102,29 @@ MainPanelReport resultPanel = new MainPanelReport();
 		super.onLoad();
 		this.setStylePrimaryName("NavReport");
 		
-	//	this.setWidth("300px");
+		
+		AllSubsFromUserReportBtn.setStylePrimaryName("submit");
+		AllSubsOfUserReportBtn.setStylePrimaryName("submit");
+		AllCommentsFromUserReportBtn.setStylePrimaryName("submit");
+		AllLikesFromUserReportBtn.setStylePrimaryName("submit");
+		AllPostsFromUserReportBtn.setStylePrimaryName("submit");
+		
+		
+		AllSubsFromUserBetweenDatesReportBtn.setStylePrimaryName("submit");
+		AllSubsFromUserBetweenDatesReportBtn.setStyleDependentName("time", true);
+		
+		AllSubsOfUserBetweenDatesReportBtn.setStylePrimaryName("submit");
+		AllSubsOfUserBetweenDatesReportBtn.setStyleDependentName("time", true);
+		
+		AllCommentsFromUserBetweenDatesReportBtn.setStylePrimaryName("submit");
+		AllCommentsFromUserBetweenDatesReportBtn.setStyleDependentName("time", true);
+		
+		AllLikesFromUserBetweenDatesReportBtn.setStylePrimaryName("submit");
+		AllLikesFromUserBetweenDatesReportBtn.setStyleDependentName("time", true);
+
+		AllPostsFromUserBetweenDatesReportBtn.setStylePrimaryName("submit");
+		AllPostsFromUserBetweenDatesReportBtn.setStyleDependentName("time", true);
+
 				
 		this.add(checkBoxShowAll);
 		this.add(checkBoxPickDate);

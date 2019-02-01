@@ -151,7 +151,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 				result.addRow(commentRow);
 
-				result.setTitel("All Ihre Kommentare ");
+				result.setTitel("Alle Ihre Kommentare ");
 				result.setAmount("Anzahl Ihrer Kommentare: " + i);
 
 			} else {
@@ -173,13 +173,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(commentRow);
 
-					result.setTitel("Anzahl Ihrer Kommentaren in dem ausgewählten Zeitraum " + i);
+					result.setTitel("Anzahl Ihrer Kommentare im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setTitel("Anzahl Ihrer Kommentaren in dem ausgewählten Zeitraum " + i);
+					result.setTitel("Anzahl Ihrer Kommentare im ausgewählten Zeitraum: " + i);
 
 				} else {
-					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum wurden keine Kommentare erstellt");
+					result.setTitel("Tut uns leid! Im ausgewählten Zeitraum wurden keine Kommentare erstellt");
 				}
 			}
 
@@ -208,10 +208,10 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		result.setCreateDate(new Date());
 
 		Row headline = new Row();
-		headline.addColumn(new Column("Beitragstext"));
-		headline.addColumn(new Column("Beitrag erstellt von"));
-		headline.addColumn(new Column("Erstellungsdatum des Beitrags"));
-		headline.addColumn(new Column("Erstellungsdatum des Likes"));
+		headline.addColumn(new Column("Beitragstext:"));
+		headline.addColumn(new Column("Beitrag erstellt von:"));
+		headline.addColumn(new Column("Erstellungsdatum des Beitrags:"));
+		headline.addColumn(new Column("Erstellungsdatum des Likes:"));
 
 		result.addRow(headline);
 
@@ -240,8 +240,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 				result.addRow(likesRow);
 
-				result.setTitel("All Ihre Likes ");
-				result.setAmount("Anzahl Ihrer Likes : " + i);
+				result.setTitel("Alle Ihre Likes ");
+				result.setAmount("Anzahl Ihrer Likes: " + i);
 
 			} else {
 				if (l.getCreateDate().after(dateFrom) && l.getCreateDate().before(dateTill)) {
@@ -265,13 +265,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(likesRow);
 
-					result.setTitel(" Anzahl Ihrer Likes in dem ausgewählten Zeitraum " + i);
+					result.setTitel("Anzahl Ihrer Likes im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setTitel(" Anzahl Ihrer Likes in dem ausgewählten Zeitraum " + i);
+					result.setTitel("Anzahl Ihrer Likes im ausgewählten Zeitraum: " + i);
 
 				} else {
-					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum wurden keine Likes erstellt");
+					result.setTitel("Tut uns leid! Im ausgewählten Zeitraum wurden keine Likes erstellt");
 				}
 
 			}
@@ -331,8 +331,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 				result.addRow(postRow);
 
-				result.setTitel("All Ihre Posts ");
-				result.setAmount("Anzahl Ihrer Posts: " + i);
+				result.setTitel("Alle Ihre Beiträge ");
+				result.setAmount("Anzahl Ihrer Beiträge: " + i);
 
 			} else {
 				if (p.getModDate().after(dateFrom) && p.getModDate().before(dateTill)) {
@@ -352,13 +352,13 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(postRow);
 
-					result.setTitel(" Anzahl Ihrer Posts in dem ausgewählten Zeitraum " + i);
+					result.setTitel("Anzahl Ihrer Beiträge im ausgewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setTitel(" Anzahl Ihrer Posts in dem ausgewählten Zeitraum " + i);
+					result.setTitel("Anzahl Ihrer Beiträge im ausgewählten Zeitraum: " + i);
 
 				} else {
-					result.setTitel("Tut uns leid in dem Ausgewählten Zeitraum wurden keine Posts erstellt");
+					result.setTitel("Tut uns leid! Im ausgewählten Zeitraum wurden keine Beiträge erstellt");
 				}
 
 			}
@@ -416,7 +416,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				result.addRow(subsRow);
 
 				result.setTitel("Hier sehen Sie Ihre Abonnenten ");
-				result.setAmount("Anzahlt Ihrer Abonnenten: " + i);
+				result.setAmount("Anzahl Ihrer Abonnenten: " + i);
 			} else {
 				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
 					i++;
@@ -439,7 +439,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 				} else {
 					result.setTitel(
-							"Tut uns leid in dem ausgewählten Zeitraum hat Sie keiner Abonniert");
+							"Tut uns leid! Im ausgewählten Zeitraum hat Sie keiner abonniert");
 				}
 
 			}
@@ -471,9 +471,9 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 		Row headline = new Row();
 
-		headline.addColumn(new Column("Vorname des Abonnierten Benutzers"));
-		headline.addColumn(new Column("Nachname des Abonnierten Benutzers"));
-		headline.addColumn(new Column("Nickname des Abonnierten Benutzers"));
+		headline.addColumn(new Column("Vorname des abonnierten Benutzers"));
+		headline.addColumn(new Column("Nachname des abonnierten Benutzers"));
+		headline.addColumn(new Column("Nickname des abonnierten Benutzers"));
 		headline.addColumn(new Column("Abonnent seit"));
 
 		result.addRow(headline);
@@ -497,8 +497,8 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
 				result.addRow(subsRow);
 
-				result.setTitel("All Ihre Abonements");
-				result.setAmount("Anzahlt Ihrer Abonements: " + i);
+				result.setTitel("Alle Ihre Abonnements");
+				result.setAmount("Anzahl Ihrer Abonnements: " + i);
 
 			} else {
 				if (s.getCreateDate().after(dateFrom) && s.getCreateDate().before(dateTill)) {
@@ -515,14 +515,14 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					result.addRow(subsRow);
 
-					result.setTitel("All Ihre Abonements");
-					result.setAmount("Anzahlt Ihrer Abonements im augewählten Zeitraum: " + i);
+					result.setTitel("Alle Ihre Abonnements");
+					result.setAmount("Anzahl Ihrer Abonnements im augewählten Zeitraum: " + i);
 
 				} else if (i >= 1) {
-					result.setAmount("Anzahl Ihrer Abonements in dem ausgewählten Zeitraum: " + i);
+					result.setAmount("Anzahl Ihrer Abonnements im ausgewählten Zeitraum: " + i);
 
 				} else {
-					result.setTitel("Tut uns leid in dem Ausgewählten wurde kein Benutzer von Ihnen abonniert");
+					result.setTitel("Tut uns leid! Im ausgewählten Zeitraum wurde kein Benutzer von Ihnen abonniert");
 				}
 
 			}
@@ -533,103 +533,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see de.hdm.itp.shared.ReportGenerator#
-	 * createAllCommentsOfAllPostsFromUserReportForm(de.hdm.itp.shared.bo.User,
-	 * java.util.Date, java.util.Date)
-	 */
-//	@Override
-//	public AllCommentsOfAllPostsFromUserReport createAllCommentsOfAllPostsFromUserReportForm(User u, Date dateFrom,
-//			Date dateTill) throws IllegalArgumentException {
-//
-//		if (this.getEditorAdministration() == null) {
-//			return null;
-//		}
-//
-//		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
-//
-//		result.setTitel("All Ihr Kommentare mit den den dazugehörigen Beiträgen");
-//
-//		result.setCreateDate(new Date());
-//
-//		if (dateFrom == null) {
-//
-//			Vector<Comment> comments = admin.getAllCommentsOfUser(u);
-//
-//			for (Comment c : comments) {
-//
-////				StringBuffer resultH = new StringBuffer("<td style=\"background:silver;font-weight:bold\">");
-//
-//				Row headline = new Row();
-//
-//				headline.addColumn(new Column("Beitragstext"));
-//				headline.addColumn(new Column("Erstellungsdatum"));
-//				headline.addColumn(new Column("Änderungsdatum"));
-//				
-//				result.addRow(headline);
-//				
-//				
-//				Row postRow = new Row();
-//
-//				Post p = this.admin.getPostByCommentId(c);					
-//					
-//				// hier werden die Millisekunden vom Create_Date rausgeschnitten
-//				String fullcdate = p.getCreateDate().toString();
-//				String[] cparts = fullcdate.split(" ");
-//				String cutcdate = cparts[0];
-//
-//				// hier werden die Millisekunden vom Mod_Date rausgeschnitten
-//				String fullmdate = p.getModDate().toString();
-//				String[] mparts = fullmdate.split(" ");
-//				String cutmdate = mparts[0];
-//
-//				postRow.addColumn(new Column(String.valueOf(p.getContent())));
-//				postRow.addColumn(new Column(String.valueOf(cutcdate)));
-//				postRow.addColumn(new Column(String.valueOf(cutmdate)));
-//
-//				result.addRow(postRow);
-//				
-//				Vector<Comment> comment = admin.getAllCommentsOfPost(p);
-//
-//				Row headline2 = new Row();
-//
-//				headline2.addColumn(new Column("Kommentar"));
-//				headline2.addColumn(new Column("Erstellungsdatum"));
-//				headline2.addColumn(new Column("Änderungsdatum"));
-//				result.addRow(headline2);
-//				
-//				for (Comment c2 : comment) {
-//
-//					Row commentRow = new Row();
-//
-//					String fullcdate2 = c2.getCreateDate().toString();
-//					String[] cparts2 = fullcdate2.split(" ");
-//					String cutcdate2 = cparts2[0];
-//
-//					String fullmdate2 = c2.getModDate().toString();
-//					String[] mparts2 = fullmdate2.split(" ");
-//					String cutmdate2 = mparts2[0];
-//
-//					commentRow.addColumn(new Column(String.valueOf(c2.getText())));
-//					commentRow.addColumn(new Column(String.valueOf(cutcdate2)));
-//					commentRow.addColumn(new Column(String.valueOf(cutmdate2)));
-//
-//					result.addRow(commentRow);
-//
-//					result.setTitel("All Ihre Kommentare ");
-//
-//				}
-//
-//			}
-//
-//		}
-//
-//		return result;
-//
-//	}
-//}
+
 /**
 	 * Creates the all my comments from post from user report.
 	 *
@@ -690,7 +594,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 		}
 		AllCommentsOfAllPostsFromUserReport result = new AllCommentsOfAllPostsFromUserReport();
 
-		result.setTitel("All Ihr kommentare mit den dazugehörigen Beiträgen");
+		result.setTitel("Alle Ihre Kommentare mit den dazugehörigen Beiträgen");
 
 		result.setCreateDate(new Date());
 
@@ -722,7 +626,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 				} else {
 
-					SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+					SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentare gefunden");
 
 					result.setHeader(errornote);
 				}
@@ -757,7 +661,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					else {
 
-						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentar gefunden");
+						SimpleParagraph errornote = new SimpleParagraph("Es wurden leider keine Kommentare gefunden");
 
 						result.setHeader(errornote);
 					}

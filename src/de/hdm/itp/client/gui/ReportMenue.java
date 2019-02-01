@@ -74,11 +74,9 @@ public class ReportMenue implements EntryPoint {
 //		ClientsideSettings.setUser(test);
 //		loadApplication();
 		
-		Window.alert("working on report login first");
 		
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
 
-		Window.alert("second");
 		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
 			
 
@@ -92,11 +90,9 @@ public class ReportMenue implements EntryPoint {
 				loginInfo = result;
 
 				if (loginInfo.isLoggedIn()) {
-					Window.alert("if !!!loggedin and loadUserInformation");
 					loadUserInformation();
 
 				} else {
-					Window.alert("else loadLogin");
 
 					loadLogin();
 
@@ -123,10 +119,8 @@ public class ReportMenue implements EntryPoint {
 			}
 
 			public void onSuccess(Boolean result) {
-				Window.alert("KnownUserSuccess");
 
 				if (result) {
-					Window.alert("UserisKnown");
 
 					// Der Nutzer konnte in der Datenbank gefunden werden und ist somit bereits
 					// bestehender Nutzer der Applikation
@@ -141,7 +135,6 @@ public class ReportMenue implements EntryPoint {
 							// und in einer Instanzenvariable gespeichert.
 							ClientsideSettings.setUser(arg0);
 							user = arg0;
-							Window.alert("UserWurdegesetzt");
 
 							// da der Nutzer bereits bekannt ist, wird für ihn im Folgenden die Applikation
 							// geladen
@@ -151,7 +144,6 @@ public class ReportMenue implements EntryPoint {
 				}
 
 				else {
-					Window.alert("Userisunknown");
 
 					/*
 					 * Wenn kein Nutzer mit dieser e-Mail in der Datenbank gefunden wurde, wird die
@@ -221,12 +213,14 @@ public class ReportMenue implements EntryPoint {
 	public void loadApplication() {
 
 		signOutLink.setHref(loginInfo.getLogoutUrl());
+		signOutLink.setStylePrimaryName("submit");
+		signOutLink.setStyleDependentName("logout", true);
 		
 		HeaderPanelReport headP = new HeaderPanelReport();
 		NavPanelReport navP = new NavPanelReport();
 
 		headP.add(signOutLink);
-
+		headP.setStylePrimaryName("header");
 		
 		RootPanel.get().add(headP);
 		RootPanel.get().add(navP);

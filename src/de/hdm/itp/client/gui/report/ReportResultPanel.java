@@ -16,6 +16,7 @@ public class ReportResultPanel extends VerticalPanel{
 	public void append(String text){
 		HTML content = new HTML(text);
 		this.add(content);
+		this.setStylePrimaryName("resultPanel");
 	}
 
 }

@@ -36,6 +36,7 @@ public class HeaderPanel extends HorizontalPanel {
 		
 		this.add(reportBtn);
 		reportBtn.setStylePrimaryName("report");
+		reportBtn.setStyleDependentName("button", true);
 		
 		reportBtn.addClickHandler(new ClickHandler(){
 			public void onClick(ClickEvent event) {

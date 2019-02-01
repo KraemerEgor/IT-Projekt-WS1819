@@ -79,7 +79,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 		//Diese 9 Lines entkommentieren, um lokal auszuführen
-//		signInLink.setStylePrimaryName("signin_btn");
+		signInLink.setStylePrimaryName("signin_btn");
 //		User test = new User();
 //		test.setId(10000002);
 //		test.setFirstname("Egor");
@@ -236,6 +236,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	public void loadApplication() {
 		
 		signOutLink.setHref(loginInfo.getLogoutUrl());
+		signOutLink.setStylePrimaryName("submit");
+		signOutLink.setStyleDependentName("logout", true);
+		
 		
 		hp.add(signOutLink);
 
@@ -250,9 +253,6 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 
 
 
-		//Window.alert("Main panels are loaded");
-
-		//Window.alert(ClientsideSettings.getUser().getNickname());
 
 	}
 
@@ -268,46 +268,7 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 		loginPanel.add(signInLink);
 		RootPanel.get("Login").add(loginPanel);
 
-//		/*
-//		 * Das loginPanel wird aufgebaut
-//		 */		
-//		Window.alert("loadLogin°!°");
-//		/*
-//		 * Der signOutLink wird dem loginPanel hinzugefügt
-//		 */
-//		signOutLink.setHref(loginInfo.getLogoutUrl());
-//		signOutLink.setStylePrimaryName("signout");
-//		signInLink.setStylePrimaryName("reportbutton");
-//
-//		loginPanel.add(loginLabel);
-//	    loginPanel.add(signInLink);
-//		loginPanel.add(signOutLink);
-//		
-//		Window.alert("loginpanel.add");
-//
-//		/*
-//		 * Die Information über den aktuell angemeldeten Nutzer wird ebenfalls dem
-//		 * loginPanel hinzugefügt
-//		 */
-//		signedInUser = new Label();
-//		signedInUser.addStyleName("signedInUser");
-//
-//		editorAdministration.getFullNameOfUser(user, new AsyncCallback<String>() {
-//			public void onFailure(Throwable t) {
-//				System.out.println(t.getMessage());
-//
-//			}
-//
-//			public void onSuccess(String result) {
-//
-//				signedInUser.setText("Angemeldet als: " + result);
-//			}
-//		});
-//
-//		loginPanel.add(signedInUser);
-//	    RootPanel.get("Login").add(loginPanel);
-//
-//		// das loginPanel wird dem div mit der id "Login" hinzugefügt
+	
 
 	}
 }

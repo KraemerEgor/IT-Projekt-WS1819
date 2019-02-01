@@ -115,6 +115,19 @@ body{
 	margin-left: 0px;
 }
 
+.submit-logout{
+	width: 160px;
+	padding-top: 10px;
+	background-color: #F3E367;
+ 	color: #7F8688;
+ 	position: absolute;
+ 	margin-left: 80%;
+ 	margin-top: -60px;
+ 	border: none;
+ 	height: 22px!important;
+ 	text-align: center;
+}
+
 .label{
 	color: black;
 }
@@ -482,7 +495,7 @@ h1 {
 	background-color: #F3E367;
  	color: #7F8688;
  	position: absolute;
- 	margin-left: 80%;
+ 	margin-left: 65%;
  	margin-top: -60px;
  	border: none;
 }
