@@ -26,6 +26,14 @@ import de.hdm.itp.shared.report.SimpleParagraph;
 /**
  * Die ReportGeneratorImpl Klasse.
  */
+
+/***
+ * In dieser Klasse liegt die Logik, die Datenstrukturen und die Regeln für unseren Report-Generator und dient als Servlet
+ * zur Serialisiserung und Deserialisierung für die Kommunikation mit dem Client. 
+ * Die Klasse erbt von RemoteServiceServlet und erhält daher die Informationen, wie genau serialisiert und deserialisiert wird.
+ * @author nilskaper
+ *
+ */
 @SuppressWarnings("serial")
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
 

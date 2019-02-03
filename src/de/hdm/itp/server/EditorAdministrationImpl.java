@@ -27,6 +27,16 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 /**
  * The Class EditorAdministrationImpl.
  */
+
+/**
+ * In dieser Klasse liegt die Logik, die Datenstrukturen und die Regeln unseres Servlets "administration".
+ * Diese Regeln und die Logik wird vor allem auf unsere Business-Objekts angewandt.
+ * Diese Klasse erbt von RemoteServiceServlet und kann daher auch Objekte, die per Http-Request vom Client an den Server 
+ * geschickt werden deserialisieren und nach Antwort vom Server auch wieder serialisieren, um diese per HTTP-Response
+ * zurück an den Client zu schicken.
+ * @author nilskaper
+ *
+ */
 @SuppressWarnings("serial")
 public class EditorAdministrationImpl extends RemoteServiceServlet implements EditorAdministration {
 	

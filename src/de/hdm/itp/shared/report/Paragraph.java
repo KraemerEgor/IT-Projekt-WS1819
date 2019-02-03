@@ -6,6 +6,8 @@ import java.io.Serializable;
  * Paragraph ist serialisierbar um Objekte der Klasse über das Netzwerk zu verschicken.
  */
 
+
+
 public class Paragraph implements Serializable {
 	
 	/**

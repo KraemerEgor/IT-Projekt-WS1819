@@ -3,7 +3,7 @@ package de.hdm.itp.shared.report;
 	import java.util.Vector;
 
 	/**
-	 //TODO Klassenbeschreibung CompositeReport
+	 //Erstellt einen Report, der sich aus zwei oder mehr Simple-Reports zusammensetzt.
 	 */
 	public class CompositeReport extends Report {
 

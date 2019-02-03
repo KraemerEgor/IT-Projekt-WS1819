@@ -1,8 +1,7 @@
 package de.hdm.itp.shared.report;
 
 /**
- //TODO Klassenbeschreibung SP
- *
+ * SimpleParagraph erbt von der Klasse Pragraph und ermöglicht das Anzeigen von einzelnen Paragraphen.
  */
 public class SimpleParagraph extends Paragraph{
 	
