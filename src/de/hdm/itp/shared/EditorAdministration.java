@@ -15,6 +15,10 @@ import de.hdm.itp.shared.bo.User;
 
 /**
  * The Interface EditorAdministration.
+ * Hier stehen nur die Methodenköpfe der Methoden, die in der Impl-Klasse implementiert und überschrieben werden.
+ * Dort wird dann auch die Logik und die Methodenköpfe der einzlenen Methoden festgelegt.
+ * Außerdem enthält das Interface den RemoteServiceRelativePath als Annotation, wo festgelegt wird, an welches
+ * Interface die Anfrage des Clients weitergeleitet werden soll.
  */
 @RemoteServiceRelativePath("administration")
 public interface EditorAdministration extends RemoteService {

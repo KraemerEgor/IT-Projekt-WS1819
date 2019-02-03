@@ -6,6 +6,13 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * The Class ReportResultPanel.
  */
+
+/**
+ * Hier wird das ResultPanel estellt, das von VerticalPanel erbt und 
+ * auf das die Ergebnisse der einzelnen Reports geschrieben werden.
+ * @author nilskaper
+ *
+ */
 public class ReportResultPanel extends VerticalPanel{
 	
 	/**

@@ -3,8 +3,7 @@ package de.hdm.itp.shared.report;
 import java.util.Vector;
 
 /*
- *
- //TODO Klassenbeschreibung SimpleReport   
+ *die Klasse SimpleReport beschreibt eine Tabelle mit Daten. Die Klasse erbt von der Klasse Report.   
  */
 
 public class SimpleReport extends Report{

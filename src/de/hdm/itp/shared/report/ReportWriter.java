@@ -1,7 +1,7 @@
 package de.hdm.itp.shared.report;
 
 /**
- * 
+ * definiert die abtrakten Methoden der einzelnen Reports.
  *
  */
 public abstract class ReportWriter {

@@ -8,7 +8,10 @@ import de.hdm.itp.shared.bo.*;
 import de.hdm.itp.shared.report.*;
 
 /**
- * Interface des Report Generators zur Rahmenabsteckung f�r Impl Klasse
+ * Interface des Report Generators zur Rahmenabsteckung f�r Impl Klasse
+ * Erbt außerdem von RemoteService und erhält die Annotation mit dem Namen des Servlets,
+ * an welches die HTTP-Requests geschickt werden sollen.
+ * Der Pfad zu den einzelnen Servlets ist in der web.xml hinterlegt.
  */
 @RemoteServiceRelativePath("report")
 public interface ReportGenerator extends RemoteService {

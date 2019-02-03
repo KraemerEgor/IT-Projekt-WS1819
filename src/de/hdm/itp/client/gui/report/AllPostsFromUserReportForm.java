@@ -14,6 +14,13 @@ import de.hdm.itp.shared.report.HTMLReportWriter;
 /**
  * The Class AllPostsFromUserReportForm.
  */
+
+/**
+ * In dieser Klasse wird unter Anderem das Proxy-Objekt des Report-Generators initialisisert oder geholt.
+ * Außerdem wird der Report AllPostsFromUserReport über einen asynchronen Aufruf erstellt.
+ * @author nilskaper
+ *
+ */
 public class AllPostsFromUserReportForm extends ReportResultPanel {
 
 	/** The user attribute. */

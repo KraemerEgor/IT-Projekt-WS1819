@@ -13,6 +13,12 @@ import de.hdm.itp.shared.report.HTMLReportWriter;
 /**
  * The Class AllCommentsOfAllPostsFromUserReportForm.
  */
+/**
+ * In dieser Klasse wird unter Anderem das Proxy-Objekt des Report-Generators initialisisert oder geholt.
+ * Außerdem wird der Report AllCommentsOfAllPostsFromUserReport über einen asynchronen Aufruf erstellt.
+ * @author nilskaper
+ *
+ */
 public class AllCommentsOfAllPostsFromUserReportForm extends ReportResultPanel {
 	
 

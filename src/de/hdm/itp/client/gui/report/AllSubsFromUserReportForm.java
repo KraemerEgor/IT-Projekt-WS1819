@@ -14,6 +14,13 @@ import de.hdm.itp.shared.report.HTMLReportWriter;
 /**
  * The Class AllSubsFromUserReportForm.
  */
+
+/**
+ * In dieser Klasse wird unter Anderem das Proxy-Objekt des Report-Generators initialisisert oder geholt.
+ * Außerdem wird der Report AllSubsFromUserReport über einen asynchronen Aufruf erstellt.
+ * @author nilskaper
+ *
+ */
 public class AllSubsFromUserReportForm extends ReportResultPanel {
 
 	/** The user attribute. */

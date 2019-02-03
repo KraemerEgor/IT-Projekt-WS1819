@@ -3,9 +3,8 @@ package de.hdm.itp.shared.report;
 import java.io.Serializable;
 import java.util.Date;
 
-//TODO klassenbeschreibung
 /*
- * Basiscklasse aller Reports.
+ * Basisklasse aller Reports.
  */
 
 public class Report implements Serializable{

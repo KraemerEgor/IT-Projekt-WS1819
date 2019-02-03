@@ -20,6 +20,14 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 /**
  * The Class ReportMenue.
  */
+
+/**
+ * Diese Klasse ist der Entry-Point für den Report und beinhaltet außerdem den Login.
+ * Die Klasse ist genauso aufgebaut, wie der EntryPoint für unseren Feed.
+ * Panels, die automatisch geladen werden, gehören aber zum Report und nicht zum Feed.
+ * @author nilskaper
+ *
+ */
 public class ReportMenue implements EntryPoint {
 
 	/** The Constant SERVER_ERROR. */
