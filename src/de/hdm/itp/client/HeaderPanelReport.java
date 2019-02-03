@@ -13,6 +13,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 
 /**
  * The Class HeaderPanelReport.
+ * Hier wird das HeaderPanel mit Logo Report Button, Logout Button und Logo befüllt. 
+ * Des weiteren werden die styles der Button Hinzugefügt. 
  */
 public class HeaderPanelReport  extends HorizontalPanel {
 	

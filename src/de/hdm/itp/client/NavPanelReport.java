@@ -25,13 +25,17 @@ import de.hdm.itp.client.gui.report.AllSubsOfUserReportForm;
 import de.hdm.itp.shared.ReportGeneratorAsync;
 import de.hdm.itp.shared.bo.User;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NavPanelReport.
+ * Diese Klasse beinhaltet die einzelnen Buttons zum Anzeigen der einzelnen Reports.
+ * Außerdem werden die Checkboxes hinzugefügt, über die ausgewählt werden kann, ob alle Business Objects des Users
+ * angezeigt werden sollen oder nur die aus einem bestimmten Zeitraum, der über die Dateboxes gewählt wird.
+ * @author: Nils Kaper, Leonard Schwenk
  */
 public class NavPanelReport extends VerticalPanel {
 	
 //	final VerticalPanel resultPanel = new VerticalPanel();
+	
 	
 	/** The result panel. */
 MainPanelReport resultPanel = new MainPanelReport();
@@ -125,7 +129,11 @@ MainPanelReport resultPanel = new MainPanelReport();
 		AllPostsFromUserBetweenDatesReportBtn.setStylePrimaryName("submit");
 		AllPostsFromUserBetweenDatesReportBtn.setStyleDependentName("time", true);
 
-				
+		/**
+		 * hinzufügen der CheckBoxes zum NavPanel
+		 * @author Leonard Schwenk
+		 */
+		
 		this.add(checkBoxShowAll);
 		this.add(checkBoxPickDate);
 		
@@ -155,15 +163,20 @@ MainPanelReport resultPanel = new MainPanelReport();
 	
 		u = ClientsideSettings.getUser();
 		
-		
-//		u.setId(10000001);
-		
 		reportGenerator.setUser(u, new setUserCallback());
 
+		/**
+		 * Die  checkBoxShowAll wird bei laden des NavPanels per default gesetzt und somit werden die DateBoxes inital NULL gesetzt.
+		 * Bis die checkBoxPickDate ausgewält und die DateBoxes per default mit einem Timestamp besetzt werden.  
+		 * @author Leonard Schwenk
+		 */
 
 		checkBoxShowAll.setValue(true);
 		
-		//setting date Format
+		/**
+		 * setzen des dateFormats
+		 * @author Leonard Schwenk
+		 */
 		
 		dateFrom.setFormat(new DateBox.DefaultFormat (DateTimeFormat.getFormat("dd.MM.yyyy"))); 
 		dateTill.setFormat(new DateBox.DefaultFormat (DateTimeFormat.getFormat("dd.MM.yyyy"))); 
@@ -174,7 +187,7 @@ MainPanelReport resultPanel = new MainPanelReport();
 			}
 		});
 
-
+		
 		dateTill.addValueChangeHandler(new ValueChangeHandler<Date>() {
 			public void onValueChange(ValueChangeEvent<Date> event) {
 			}
@@ -275,7 +288,12 @@ MainPanelReport resultPanel = new MainPanelReport();
 			}
 		});
 
-		// button
+		/**
+		 * Hinzufügen der AllReportsButtons mit dem zugehörtigen ClickHanlder
+		 * @author Leonard Schwenk
+		 */
+		
+		
 		
 		AllSubsFromUserReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
@@ -328,7 +346,10 @@ MainPanelReport resultPanel = new MainPanelReport();
 			}
 		});
 		
-		//#########between button
+		/**
+		 * Hinzufügen der AllReportsBetweenButtons mit dem zugehörtigen ClickHanlder, hier wird das ausgewählte date der DateBoxen hinzugefügt.
+		 * @author Leonard Schwenk
+		 */
 		
 		AllSubsFromUserBetweenDatesReportBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
