@@ -48,9 +48,13 @@ public class MainPanel extends VerticalPanel {
  */
 public void onLoad() {
 		super.onLoad();
+		/** Hier wird die Instanz des AsyncronenInterfaces initialisiert
+		 * dies dient im weiteren Verlauf zum Aufruf asyncroner Methoden */
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
+		
+		/** Hier wird der aktuelle User aus den CLientsideSettings geholt */
 		
 		user = ClientsideSettings.getUser();
 
@@ -87,9 +91,12 @@ public void onLoad() {
 }
 
 /**
- * Creates the pinnboard.
+ * In dieser Metode wird die gesamte Pinnwand eines Users aufgebaut.
+ * Diese besteht aus dem userProfilePanel und dem PinboardPanel.
+ * Diese werden vorabgecleart, da diese Methode auch als refresh Methode funtioniert
+ * 
  *
- * @param user the user
+ * @param user Der User dessen Pinnwand angezeigt werden soll
  */
 public void createPinnboard(User user){
 	userProfile.clear();

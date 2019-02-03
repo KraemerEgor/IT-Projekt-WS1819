@@ -22,7 +22,8 @@ import de.hdm.itp.shared.bo.User;
 import de.hdm.itp.client.NavPanelReport;
 
 /**
- * The Class userProfilePanel.
+ * userProfilePanel
+ * Ein Teil der Pinnwand und somit des MainPanels
  */
 public class userProfilePanel extends HorizontalPanel {
 
@@ -30,19 +31,19 @@ public class userProfilePanel extends HorizontalPanel {
 
 	private EditorAdministrationAsync editorAdministration = null;
 
-	/** The u. */
+	/** The user. */
 	private User u = new User();
 	
-	/** The main panel. */
+	/** The main panel to use the functions to the parent objekt. */
 	static MainPanel mainPanel = new MainPanel();
 
-	/** The avatar man. */
+	/** The avatar for male users. */
 	private Image avatar_man = new Image("man.png");
 	
-	/** The avatar girl. */
+	/** The avatar for female users. */
 	private Image avatar_girl = new Image("girl.png");
 	
-	/** The avatar other. */
+	/** The avatar for other user. */
 	private Image avatar_other = new Image("user.png");
 	
 	/** The profile. */
@@ -69,13 +70,13 @@ public class userProfilePanel extends HorizontalPanel {
 	/** The submit btn. */
 	private Button submitBtn = new Button("Post veröffentlichen");
 	
-	/** The input. */
+	/** The input TextArea. */
 	TextArea input = new TextArea();
 
 	/**
 	 * Gets the main panel.
 	 *
-	 * @return the main panel
+	 * @return the main panel as a parent
 	 */
 	public MainPanel getMainPanel() {
 		return mainPanel;
@@ -84,7 +85,7 @@ public class userProfilePanel extends HorizontalPanel {
 	/**
 	 * Sets the main panel.
 	 *
-	 * @param mainPanel the new main panel
+	 * @param mainPanel the new main panel as a parent
 	 */
 	public void setMainPanel(MainPanel mainPanel) {
 		this.mainPanel = mainPanel;
@@ -95,13 +96,14 @@ public class userProfilePanel extends HorizontalPanel {
 	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
 	 */
 	public void onLoad() {
-
+		
 		super.onLoad();
-
+		/** Hier wird die Instanz des AsyncronenInterfaces initialisiert
+		 * dies dient im weiteren Verlauf zum Aufruf asyncroner Methoden */
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getEditorAdministration();
 		}
-
+		/** Hier wird der aktuelle User aus den ClientsideSettings geholt */
 		currentUser = ClientsideSettings.getUser();
 
 		editorAdministration.getUserById(currentUser.getId(), new AsyncCallback<User>() {
@@ -155,7 +157,9 @@ public class userProfilePanel extends HorizontalPanel {
 	}
 
 	/**
-	 * The Class SubmitClickHandler.
+	 * SubmitClickHandler.
+	 * Der ClickHandler wird dem Button hinzugefügt, welcher einen Post veröffentlicht.
+	 * Er sorgt dafür dass der Post in die Datenbank geschrieben wird und unter dem Panel angezeigt wird
 	 */
 	private class SubmitClickHandler implements ClickHandler {
 		
@@ -199,7 +203,7 @@ public class userProfilePanel extends HorizontalPanel {
 	/**
 	 * Creates the user profile.
 	 *
-	 * @param user the user
+	 * @param user der User dessen Profil angezeigt werden soll
 	 */
 	public void createUserProfile(User user) {
 

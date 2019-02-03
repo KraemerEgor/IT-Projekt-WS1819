@@ -91,11 +91,13 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 //		loadApplication();
 
 		//Window.alert("loginTesting");
-
+		/** Hier wird das Proxy-Objekt erzeugt 
+		 * Außerdem entstehen hier die Compilate für verschiedene Browser*/
 		LoginServiceAsync loginService = GWT.create(LoginService.class);
 
 		//Window.alert("hier gehts noch ");
-
+		/** Hier wird die Google Methode login() aufgerufen
+		 * Diese versucht den User durch seinen Google-Account anzumelden */
 		loginService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
 
 			public void onFailure(Throwable caught) {
@@ -123,7 +125,9 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	}
 
 	/**
-	 * Load user information.
+	 * In dieser Methoden werden die Daten des Users in die ClientsideSettings geschrieben.
+	 * Wenn der User sich das Erste Mal anmeldet, so muss dieser erst die Daten angeben zur Anmeldung.
+	 * Diese Daten werden dann in die Datenbank geschrieben und der Nutzer gilt als angemeldet.
 	 */
 	public void loadUserInformation() {
 
@@ -231,7 +235,11 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	}
 
 	/**
-	 * Load application.
+	 * In dieser Methode wird die eigentliche Sturkur der Applikation aufgebaut.
+	 * Hier werden die einzelnen Bestandteile in der richtigen Reihenfolge dem RootPanel hinzugefügt.
+	 * RootPanel
+	 * HeadPanel, NavPanel, MainPanel
+	 * MainPanel Sub: userProfilePanel, PinnboardPanel
 	 */
 	public void loadApplication() {
 		
@@ -257,7 +265,8 @@ public class IT_Projekt_Gruppe4_2 implements EntryPoint {
 	}
 
 	/**
-	 * Load login.
+	 * Hier wird der LoginButton hinzugefügt 
+	 * und alles weitere für den Login eingeleitet.
 	 */
 	private void loadLogin() {
 		

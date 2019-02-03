@@ -27,10 +27,10 @@ import de.hdm.itp.shared.bo.User;
  */
 public class SubsPanel extends VerticalPanel {
 	
-	/** The header. */
+	/** The header label with a default text. */
 	Label header = new Label();
 	
-	/** The header user. */
+	/** The header user shows the User which is logged in. */
 	Label header_user = new Label();
 	
 	/** The editor administration. */
@@ -39,55 +39,55 @@ public class SubsPanel extends VerticalPanel {
 	/** The vp. */
 	VerticalPanel vp = new VerticalPanel();	
 	
-	/** The subsc cell. */
+	/** The subsc cell, which renders the entries of the CellList */
 	SubscCell subscCell = new SubscCell();
 	
-	/** The cell list. */
+	/** The cell list. It shows all Subs of a User in a List. */
 	CellList<User> cellList = new CellList<User>(subscCell);
 	
-	/** The selection model. */
+	/** The selection model of the CellList. */
 	SingleSelectionModel<User> selectionModel = new SingleSelectionModel<User>();
 	
-	/** The data provider. */
+	/** The data provider for the CellList and the cellSubs Vector. */
 	ListDataProvider<User> dataProvider = new ListDataProvider<User>();
 	
-	/** The cell subs. */
+	/** The cellsubs Vector containts all User, which should be shown in the CellList. */
 	Vector<User> cellSubs = new Vector<User>();	
 	
-	/** The selected user. */
+	/** The selected user of the CellList. */
 	User selectedUser = new User();
 	
 	/** The current user. */
 	User currentUser = new User();
 	
-	/** The profile btn. */
+	/** The profile btn to show the pinboard of your own user. */
 	private Button profileBtn = new Button("Mein Profil");
 	
-	/** The add btn. */
+	/** The add btn to add a sub to your CellList. */
 	private Button addBtn = new Button("Hinzufügen");
 	
-	/** The dlt btn. */
+	/** The dlt btn to delete a sub form your CellList. */
 	private Button dltBtn = new Button("Löschen");
 	
-	/** The btn panel. */
+	/** The btn panel is a Panel to order the buttons. */
 	private VerticalPanel btnPanel = new VerticalPanel();
 	
 	/** The box. */
 	public Vector<User> box = new Vector<User>();
 	
-	/** The oracle. */
+	/** The oracle for the suggestbox. */
 	MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	
-	/** The suggestbox. */
+	/** The suggestbox with all possible Users of FeedMe. */
 	SuggestBox suggestbox = new SuggestBox(oracle);
 	
-	/** The testpanel. */
+	/** The testpanel is a panel for debugging. */
 	VerticalPanel testpanel = new VerticalPanel();
 	
-	/** The lbl. */
+	/** The lbl is a label for debugging. */
 	Label lbl = new Label();
 	
-	/** The main panel. */
+	/** The main panel is the instance of the MainPanel to use the functions of it. */
 	MainPanel mainPanel = new MainPanel();
 	
 	/* (non-Javadoc)
@@ -96,9 +96,12 @@ public class SubsPanel extends VerticalPanel {
 	public void onLoad() {
 		super.onLoad();	
 		//erstellen einer Insatnz des Asyncronen Interfaces, des Servlets
+		/** Hier wird die Instanz des AsyncronenInterfaces initialisiert
+		 * dies dient im weiteren Verlauf zum Aufruf asyncroner Methoden */
 		if(editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 	    }
+		/** Hier wird der aktuelle User aus den CLientsideSettings geholt */
 				currentUser = ClientsideSettings.getUser();
 				 editorAdministration.getSubsOfCurrentUser(currentUser, new AsyncCallback<Vector<Subs>>() {
 					 public void onFailure(Throwable t) {
@@ -161,7 +164,7 @@ public class SubsPanel extends VerticalPanel {
 	}
 	
 	/**
-	 * Builds the list.
+	 * Builds the CellList.
 	 */
 	private void buildList() {
 		if(editorAdministration == null) {
@@ -229,9 +232,9 @@ public class SubsPanel extends VerticalPanel {
 	}
 	
 	/**
-	 * Adds the sub.
+	 * Adds a sub to the CellList.
 	 *
-	 * @param u the u
+	 * @param u the user, which should be added to the CellList
 	 */
 	public void addSub(User u) {
 		
@@ -277,7 +280,9 @@ public class SubsPanel extends VerticalPanel {
 	}
 	
 	/**
-	 * The Class DeleteClickHandler.
+	 * DeleteClickHandler.
+	 * Der ClickHandler der dem Löschen Button hinzugefügt wird.
+	 * Dieser löscht den ausgewählten User aus der CellList.
 	 */
 	private class DeleteClickHandler implements ClickHandler{
 		
@@ -316,7 +321,9 @@ public class SubsPanel extends VerticalPanel {
 	}
 	
 	/**
-	 * The Class AddClickHandler.
+	 * AddClickHandler.
+	 * Der ClickHandler der dem Hinzufügen Button hinzugefügt wird.
+	 * Dieser fügt den ausgewählten User aus der suggestbox der CellList hinzu.
 	 */
 	private class AddClickHandler implements ClickHandler{
 		
@@ -368,7 +375,9 @@ public class SubsPanel extends VerticalPanel {
 	}
 	
 	/**
-	 * The Class MyProfileClickHandler.
+	 * MyProfileClickHandler.
+	 * Der ClickHandler der dem Mein Profil Button hinzugefügt wird.
+	 * Dieser zeigt die eigene Pinnwand auf dem Mainpanel an.
 	 */
 	private class MyProfileClickHandler implements ClickHandler{
 		

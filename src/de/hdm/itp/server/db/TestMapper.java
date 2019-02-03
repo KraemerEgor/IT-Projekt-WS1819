@@ -46,17 +46,19 @@ public class TestMapper {
 		sub.setCurrentUser(10000001);
 		sub.setTargetUser(10000002);
 		Post p = new Post();
-		p.setId(20000005);
+		p.setId(2000008);
 		p.setOwnerId(10000004);
-		p.setContent("Ich poste immernoch wahnsinnig gerne Sachen!!");
+		p.setContent("Ich poste Sachen!!!!");
 		c.setPostId(20000003);
 		c.setText("Also ich finde dich wundervoll");
 		c.setOwnerId(10000004);
 		
+		//pMapper.insert(p);
+		p.setContent("Ich poste immee Sachennn!!!!!");
+		pMapper.update(p);
 		
 		
 		
-		cMapper.insert(c);
 		
 		
 		/*

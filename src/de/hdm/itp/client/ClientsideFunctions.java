@@ -70,16 +70,16 @@ public abstract class ClientsideFunctions {
         /** The list box. */
         private ListBox listBox;
         
-        /** The sb. */
+        /** The suggestbox. */
         private SuggestBox sb;
         
-        /** The oracle. */
+        /** The oracle for the suggestbox. */
         private MultiWordSuggestOracle oracle;
 		
-		/** The close. */
+		/** The close button. */
 		CloseButton close = new CloseButton(this);
         
-        /** The ok. */
+        /** The ok button. */
         OkButton ok = new OkButton();
         
         
@@ -623,7 +623,12 @@ public abstract class ClientsideFunctions {
 }
 	
 	/**
-	 * The Class CommentDialogBox.
+	 * CommentDialogBox.
+	 * Eine DialogBox von einem Post, welche folgende Möglichkeiten bietet:
+	 * Kommentare sehen
+	 * Kommentare erstellen
+	 * Eigene Kommentare löschen
+	 * Eigene Kommentare bearbeiten: Hierfür wird eine extra Dialogbox geöffnet
 	 */
 	public static class CommentDialogBox extends DialogBox{
 		
@@ -776,7 +781,7 @@ public abstract class ClientsideFunctions {
 /**
  * Refresh.
  *
- * @param postId the post id
+ * @param postId the id of the Post
  */
 public void refresh(int postId) {
 			this.hide();
@@ -789,6 +794,8 @@ public void refresh(int postId) {
 
 /**
  * The Class CloseDBClickHandler.
+ * Wird dem Abbrechen Button hinzugefügt
+ * Closes the dialogbox.
  */
 public class CloseDBClickHandler implements ClickHandler{
 			
@@ -825,7 +832,9 @@ public class CloseDBClickHandler implements ClickHandler{
 		}
 
 /**
- * The Class SubmitDBClickHandler.
+ * SubmitDBClickHandler.
+ * Wird dem kommentieren Button hinzugefügt
+ * Veröffentlicht ein Kommentar und stellt es in der box dar
  */
 public class SubmitDBClickHandler implements ClickHandler{
 	
@@ -874,7 +883,9 @@ public class SubmitDBClickHandler implements ClickHandler{
 }
 
 /**
- * The Class DeleteCommentClickHandler.
+ * DeleteCommentClickHandler.
+ * wird dem Löschen Button hinzugefügt.
+ * Löscht ein Kommentar.
  */
 public class DeleteCommentClickHandler implements ClickHandler{
 	
@@ -916,7 +927,9 @@ public class DeleteCommentClickHandler implements ClickHandler{
 }
 
 /**
- * The Class EditCommentClickHandler.
+ * EditCommentClickHandler.
+ * Wird dem bearbeiten Button hinzugefügt
+ * öffnet eine Dialogbox welche es erlaubt einen eigenen Kommentar zu modifizieren
  */
 public class EditCommentClickHandler implements ClickHandler{
 	
@@ -929,7 +942,7 @@ public class EditCommentClickHandler implements ClickHandler{
 	/**
 	 * Instantiates a new edits the comment click handler.
 	 *
-	 * @param c the c
+	 * @param c the comment to edit
 	 * @param dialog the dialog
 	 */
 	public EditCommentClickHandler(Comment c, CommentDialogBox dialog) {
@@ -952,7 +965,7 @@ public class EditCommentClickHandler implements ClickHandler{
 	}
 	
 	/**
-	 * The Class UpdatePostDialogBox.
+	 * UpdatePostDialogBox.
 	 */
 	//TODO
 	public static class UpdatePostDialogBox extends DialogBox{
@@ -1059,7 +1072,9 @@ public class EditCommentClickHandler implements ClickHandler{
 		}
 		
 		/**
-		 * The Class UpdatePostDBClickHandler.
+		 *  UpdatePostDBClickHandler.
+		 *  wird dem schließen Button hinzugefügt
+		 *  Schließt die Dialogbox.
 		 */
 		public class UpdatePostDBClickHandler implements ClickHandler{
 			
@@ -1121,7 +1136,9 @@ public class EditCommentClickHandler implements ClickHandler{
 		}
 		
 		/**
-		 * The Class CloseDBClickHandler.
+		 * CloseDBClickHandler.
+		 * wird dem Schließen Button hinzugefügt
+		 * Schließt die DialogBox
 		 */
 		public class CloseDBClickHandler implements ClickHandler{
 			
@@ -1153,7 +1170,9 @@ public class EditCommentClickHandler implements ClickHandler{
 	}
 	
 	/**
-	 * The Class UpdateCommentDialogBox.
+	 * UpdateCommentDialogBox.
+	 * DialogBox welche es erlaubt ein Kommentar zu modifizieren.
+	 * 
 	 */
 	public static class UpdateCommentDialogBox extends DialogBox{
 		
@@ -1249,7 +1268,9 @@ public class EditCommentClickHandler implements ClickHandler{
 		}
 	
 	/**
-	 * The Class CloseDBClickHandler.
+	 * CloseDBClickHandler.
+	 * wird dem Abbrechen Button hinzugefügt.
+	 * Schließt die DialogBox öffnet die Parent-DialogBox
 	 */
 	public class CloseDBClickHandler implements ClickHandler{
 		
@@ -1281,7 +1302,9 @@ public class EditCommentClickHandler implements ClickHandler{
 	}
 
 /**
- * The Class UpdateCommentDBClickHandler.
+ * UpdateCommentDBClickHandler.
+ * ClickHandler der dem Bearbeiten Button hinzugefügt wird.
+ * Öffnet die DialogBox, welche es erlaubt ein Kommentar zu bearbeiten.
  */
 public class UpdateCommentDBClickHandler implements ClickHandler{
 		
@@ -1301,10 +1324,10 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 		/**
 		 * Instantiates a new update comment DB click handler.
 		 *
-		 * @param comment the comment
-		 * @param text the text
-		 * @param db the db
-		 * @param superdb the superdb
+		 * @param comment the comment to edit
+		 * @param text the text to add in the comment
+		 * @param db the dialogbox of ChangeComment
+		 * @param superdb the parent dialogbox commentsDB
 		 */
 		public UpdateCommentDBClickHandler(Comment comment, String text, UpdateCommentDialogBox db, CommentDialogBox superdb) {
 			this.db=db;
@@ -1345,7 +1368,9 @@ public class UpdateCommentDBClickHandler implements ClickHandler{
 	}
 
 /**
- * The Class AlertDialogBox.
+ * AlertDialogBox.
+ * Ist eine DialogBox welche dem User Feedback geben soll.
+ * Diese wird verwendet zur Fehlerbehandlung und Fehlervermeidung.
  */
 public static class AlertDialogBox extends DialogBox{
 		
@@ -1382,7 +1407,9 @@ public static class AlertDialogBox extends DialogBox{
 		}
 		
 		/**
-		 * The Class CloseDBClickHandler.
+		 * CloseDBClickHandler.
+		 * Der ClickHandler wird dem OK Button hinzugefügt.
+		 * Dieser schließt die DialogBox
 		 */
 		public class CloseDBClickHandler implements ClickHandler{
 			

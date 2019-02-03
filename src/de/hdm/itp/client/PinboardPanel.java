@@ -89,13 +89,19 @@ public class PinboardPanel extends VerticalPanel {
 	public void onLoad() {
 
 		super.onLoad();
+		/** Hier wird die Instanz des AsyncronenInterfaces initialisiert
+		 * dies dient im weiteren Verlauf zum Aufruf asyncroner Methoden */
 		if (editorAdministration == null) {
 			editorAdministration = ClientsideSettings.getAdministration();
 		}
+		
+		/** Hier wird der aktuelle User aus den CLientsideSettings geholt */
 		currentUser = ClientsideSettings.getUser();
 		pinboardPanel=this;
 
 		// this.add(postpanel);
+		/** Dieser Methodenaufruf sorgt dafür, dass die Pinnwand beim ersten betreten der Seite
+		 * per Default die Pinnwand des aktuellen Users anzeigt*/
 		createPinboard(currentUser);
 
 		// this.addStyleName("Pinboard");
@@ -114,7 +120,8 @@ public class PinboardPanel extends VerticalPanel {
 	/**
 	 * Creates the pinboard.
 	 *
-	 * @param u the u
+	 * Diese Methode wird im Mainpanel verwendet und baut nur ein Teil der Pinnwand auf. 
+	 * @param u der User dessen Pinnwand angezeigt werden soll. 
 	 */
 	public void createPinboard(User u) {
 		editorAdministration.getUserById(u.getId(), new AsyncCallback<User>() {
@@ -162,10 +169,14 @@ public class PinboardPanel extends VerticalPanel {
 	}
 
 	/**
-	 * Creates the post panel.
+	 * Erstellt das PostPanel.
+	 * 
+	 * Diese Methode wird iner der createPinboard-Methode dieser Klasse aufgerufen.
+	 * Sie Baut die einzelen Posts für das PinboardPanel auf 
+	 * in einem VerticalPanel und gibt dieses Panel samt Inhalt zurück.
 	 *
-	 * @param post the post
-	 * @return the vertical panel
+	 * @param post Der Post der dargestellt werden soll
+	 * @return Das fetige Verticalpanel mit der enthaltenen Darstellung des Posts
 	 */
 	public VerticalPanel createPostPanel(final Post post) {
 
@@ -300,8 +311,12 @@ public class PinboardPanel extends VerticalPanel {
 
 	}
 
+	/** Hier startet die Erstellung der ClickHandler, welche den Buttons im PinboardPanel hinzugefügt werden*/
+	
 	/**
-	 * The Class LikeClickHandler.
+	 * LikeClickHandler.
+	 * Der Clickhandler für den Like Button.
+	 * Führ das Setzten eines Likes aus.
 	 */
 	private class LikeClickHandler implements ClickHandler {
 		
@@ -311,7 +326,7 @@ public class PinboardPanel extends VerticalPanel {
 		/**
 		 * Instantiates a new like click handler.
 		 *
-		 * @param p the p
+		 * @param p der Post der geliked werden soll
 		 */
 		public LikeClickHandler(Post p) {
 			post = p;
@@ -356,7 +371,9 @@ public class PinboardPanel extends VerticalPanel {
 	}
 
 	/**
-	 * The Class UpdatePostClickHandler.
+	 * UpdatePostClickHandler.
+	 * Der ClickHandler für den Bearbeiten Button von einem Post.
+	 * Dieser ruft eine DialogBox auf, welche das bearbeiten eines Posts erlaubt.
 	 */
 	private class UpdatePostClickHandler implements ClickHandler {
 		
@@ -366,7 +383,7 @@ public class PinboardPanel extends VerticalPanel {
 		/**
 		 * Instantiates a new update post click handler.
 		 *
-		 * @param p the p
+		 * @param p der Post der geändert werden soll
 		 */
 		public UpdatePostClickHandler(Post p) {
 			post = p;
@@ -392,7 +409,9 @@ public class PinboardPanel extends VerticalPanel {
 	}
 
 	/**
-	 * The Class DeletePostClickHandler.
+	 * DeletePostClickHandler.
+	 * Der ClickHandler wird dem Löschen Button vom Post hinzugefügt.
+	 * Dieser löscht den angegebenen Post.
 	 */
 	private class DeletePostClickHandler implements ClickHandler {
 		
@@ -402,7 +421,7 @@ public class PinboardPanel extends VerticalPanel {
 		/**
 		 * Instantiates a new delete post click handler.
 		 *
-		 * @param p the p
+		 * @param p der Post der gelöscht werden soll.
 		 */
 		public DeletePostClickHandler(Post p) {
 			post = p;
@@ -440,7 +459,9 @@ public class PinboardPanel extends VerticalPanel {
 	}
 
 	/**
-	 * The Class UnlikeClickHandler.
+	 * UnlikeClickHandler.
+	 * Der ClcikHandler wird dem Unlike Button hinzugefügt.
+	 * Dieser löscht ein gesetztes Like von dem aktuellen User auf einem spezifischen Post
 	 */
 	private class UnlikeClickHandler implements ClickHandler {
 		
@@ -450,7 +471,7 @@ public class PinboardPanel extends VerticalPanel {
 		/**
 		 * Instantiates a new unlike click handler.
 		 *
-		 * @param p the p
+		 * @param p der Post dessen Like entfernt werden soll
 		 */
 		public UnlikeClickHandler(Post p) {
 			post = p;
@@ -499,7 +520,10 @@ public class PinboardPanel extends VerticalPanel {
 	}
 
 	/**
-	 * The Class CommentClickHandler.
+	 * CommentClickHandler.
+	 * Der Clickhandler der dem Kommentieren Button eines Posts hinzugefügt wird.
+	 * Dieser erstellt eine DilogBox, welche es ermöglicht ein Kommentar zu erstellen,
+	 * zu löschen, zu bearbeiten oder zu lesen.
 	 */
 	private class CommentClickHandler implements ClickHandler {
 		
@@ -509,7 +533,7 @@ public class PinboardPanel extends VerticalPanel {
 		/**
 		 * Instantiates a new comment click handler.
 		 *
-		 * @param p the p
+		 * @param p der Post dessen CommentBox angezeigt werden soll
 		 */
 		public CommentClickHandler(Post p) {
 			post = p;

@@ -13,6 +13,9 @@ import de.hdm.itp.shared.bo.User;
 
 /**
 	 * The Class SubscCell.
+	 * Die SubscCell ist eine Cell Klasse, welche von AbstractCell erbt.
+	 * Diese Klasse rendert die übergebenen User zu Divs, welche in der CellList dargestellt werden sollen.
+	 * Dies geschieht mit der render() Methode.
 	 */
 	public class SubscCell extends AbstractCell<User> {
    
@@ -37,7 +40,7 @@ import de.hdm.itp.shared.bo.User;
 				
 			}
 			if(value.getGender()=="o") {
-				//wenn der User anders ist
+				//wenn der User ein anderes Geschlecht hat
 				sb.appendHtmlConstant("<img src=\"user.png\" style=\"margin-right: 10px;\" height=\"20\" width=\"20\" >");	
 				
 			}

@@ -16,19 +16,26 @@ import com.google.gwt.user.client.ui.RootPanel;
  */
 public class HeaderPanel extends HorizontalPanel {
 	
-	/** The header lbl. */
+	/** The header Label. 
+	 * A Label for styling and testing */
 	private Label header_lbl = new Label("Das ist ein Label vom HeaderPanel");
 	
-	/** The report btn. */
+	/** The report btn. 
+	 * A Button which refers to the Report Generator*/
 	private Button reportBtn = new Button("Report-Generator");
 	
-	/** The report link. */
+	/** The report link. 
+	 * An Anchor which refers to the Report Generator*/
 	private Anchor reportLink = new Anchor("Report");
 	
 	
 	/* (non-Javadoc)
 	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
 	 */
+	/** Diese Klasse wird automatisch aufgerufen, wenn das HeaderPanel instanziiert wird
+	 * Darin werden den Buttons css-Styles hinzugefügt 
+	 * ,der Link zum Reportgenerator hinzugefügt
+	 * und ein ClickHandler welcher zum Report-Generator navigiert */
 	public void onLoad() {
 		
 		super.onLoad();
