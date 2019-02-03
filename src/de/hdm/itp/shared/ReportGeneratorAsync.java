@@ -16,6 +16,8 @@ import de.hdm.itp.shared.report.AllSubsOfUserReport;
 
 /**
  * The Interface ReportGeneratorAsync.
+ * Enthält die gleichen Methodenköpfe wie das Report-Generator Interface, nur dass als Rückgabewert
+ * void festgelegt wird. Außerdem wird bei jedem Methodenaufruf ein Callback-Objekt erstellt.
  */
 @RemoteServiceRelativePath("reportgenerator")
 public interface ReportGeneratorAsync {

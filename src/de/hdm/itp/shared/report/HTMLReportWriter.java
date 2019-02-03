@@ -6,6 +6,7 @@ import com.google.gwt.i18n.client.DateTimeFormat;
 
 
 /**
+ * Hier wird der Report in HTML-Format umgewandelt.
  */
 
 public class HTMLReportWriter extends ReportWriter {

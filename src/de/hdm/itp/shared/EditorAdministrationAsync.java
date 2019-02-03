@@ -14,6 +14,12 @@ import de.hdm.itp.shared.bo.User;
 /**
  * Interface der Asyncronen Editor Administration Klasse
  */
+/**
+ * Enthält die Methodenköpfe, die schon im Interface EditorAdministration definiert werden.
+ * Diese haben aber jetzt den Rückgabewert void, damit das hier erstellte callback-Objekt nicht auf die Antwort des Servers warten muss.
+ * Ermöglicht den asynchronen Methodenaufruf.
+ *
+ */
 public interface EditorAdministrationAsync {
 	
 	/**

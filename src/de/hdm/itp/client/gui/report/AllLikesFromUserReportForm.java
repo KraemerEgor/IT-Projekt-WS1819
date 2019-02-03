@@ -14,6 +14,12 @@ import de.hdm.itp.shared.report.HTMLReportWriter;
 /**
  * The Class AllLikesFromUserReportForm.
  */
+/**
+ * In dieser Klasse wird unter Anderem das Proxy-Objekt des Report-Generators initialisisert oder geholt.
+ * Außerdem wird der Report AllLikesFromUserReport über einen asynchronen Aufruf erstellt.
+ * @author nilskaper
+ *
+ */
 public class AllLikesFromUserReportForm extends ReportResultPanel {
 
 	/** The user attribute. */

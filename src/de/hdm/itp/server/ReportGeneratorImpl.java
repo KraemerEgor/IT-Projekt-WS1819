@@ -26,6 +26,14 @@ import de.hdm.itp.shared.report.SimpleParagraph;
 /**
  * Die ReportGeneratorImpl Klasse.
  */
+
+/***
+ * In dieser Klasse liegt die Logik, die Datenstrukturen und die Regeln für unseren Report-Generator und dient als Servlet
+ * zur Serialisiserung und Deserialisierung für die Kommunikation mit dem Client. 
+ * Die Klasse erbt von RemoteServiceServlet und erhält daher die Informationen, wie genau serialisiert und deserialisiert wird.
+ * @author nilskaper
+ *
+ */
 @SuppressWarnings("serial")
 public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportGenerator {
 
@@ -226,7 +234,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				Post p = this.admin.getPostById(l.getPostId());
 
 				likesRow.addColumn(new Column(String.valueOf(p.getContent())));
-				likesRow.addColumn(new Column(String.valueOf(this.admin.getUserById(l.getOwnerId()).getNickname())));
+				likesRow.addColumn(new Column(String.valueOf(this.admin.getUserById(p.getOwnerId()).getNickname())));
 				// hier werden die Millisekunden vom Create_Date rausgeschnitten
 				String fullcdate = p.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
@@ -251,7 +259,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 
 					likesRow.addColumn(new Column(String.valueOf(p.getContent())));
 					likesRow.addColumn(
-							new Column(String.valueOf(this.admin.getUserById(l.getOwnerId()).getNickname())));
+							new Column(String.valueOf(this.admin.getUserById(p.getOwnerId()).getNickname())));
 					// hier werden die Millisekunden vom Create_Date rausgeschnitten
 					String fullcdate = p.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
@@ -425,7 +433,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
 					// hier werden die Millisekunden vom Create_Date rausgeschnitten
-					String fullcdate = u2.getCreateDate().toString();
+					String fullcdate = s.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
 					String cutcdate = cparts[0];
 					subsRow.addColumn(new Column(String.valueOf(cutcdate)));
@@ -492,7 +500,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 				subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 				subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
 				// hier werden die Millisekunden vom Create_Date rausgeschnitten
-				String fullcdate = u2.getCreateDate().toString();
+				String fullcdate = s.getCreateDate().toString();
 				String[] cparts = fullcdate.split(" ");
 				String cutcdate = cparts[0];
 				subsRow.addColumn(new Column(String.valueOf(cutcdate)));
@@ -509,7 +517,7 @@ public class ReportGeneratorImpl extends RemoteServiceServlet implements ReportG
 					subsRow.addColumn(new Column(String.valueOf(u2.getLastname())));
 					subsRow.addColumn(new Column(String.valueOf(u2.getNickname())));
 					// hier werden die Millisekunden vom Create_Date rausgeschnitten
-					String fullcdate = u2.getCreateDate().toString();
+					String fullcdate = s.getCreateDate().toString();
 					String[] cparts = fullcdate.split(" ");
 					String cutcdate = cparts[0];
 					subsRow.addColumn(new Column(String.valueOf(cutcdate)));
